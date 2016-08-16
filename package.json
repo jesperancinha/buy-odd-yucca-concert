@@ -4,7 +4,8 @@
   "description": "This is a shop to buy odd things",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "webpack-dev-server --content-base src"
   },
   "repository": {
     "type": "git",

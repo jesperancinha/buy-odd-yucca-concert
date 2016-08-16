@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 
 
-class Shop extends React Component{
+class Shop extends React.Component{
     render() {
         return (
             <p>Welcome to my webshop</p>
