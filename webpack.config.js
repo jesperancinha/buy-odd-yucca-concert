@@ -14,7 +14,19 @@ module.exports = {
                 query: {
                     presets: ['react', 'es2015', 'stage-0'],
                     plugins: ['react-html-attrs', 'transform-class-properties'],
-                }
+                },
+
+            },
+            {
+                test: /\.less/,
+                loader: 'style!css!less'
+            },
+            {
+                test: /\.css/, loader:
+                'style!css' },
+            {
+                test: /\.(woff2|woff|ttf|svg|eot)$/,
+                loader: 'file-loader'
             }
         ]
     },
@@ -26,5 +38,6 @@ module.exports = {
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false}),
+        new ExtractTextPlugin("[name].css")
     ]
 }
