@@ -7,3 +7,4 @@ node_modules
 *.ttf
 *.eot
 *.woff
+/npm-debug.log

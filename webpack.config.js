@@ -19,11 +19,11 @@ module.exports = {
             },
             {
                 test: /\.less/,
-                loader: 'style!css!less'
+                loader: 'style-loader!css-loader!less-loader'
             },
             {
                 test: /\.css/, loader:
-                'style!css' },
+                'style-loader!css-loader' },
             {
                 test: /\.(woff2|woff|ttf|svg|eot)$/,
                 loader: 'file-loader'
