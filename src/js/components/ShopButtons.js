@@ -25,4 +25,3 @@ export default class ShopButtons extends React.Component {
     );
   }
 }
-

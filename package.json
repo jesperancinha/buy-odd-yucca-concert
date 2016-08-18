@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "./node_modules/.bin/webpack-dev-server --content-base src",
-    "server-inline": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot"
+    "start": "./node_modules/.bin/webpack-dev-server --content-base src",
+    "start-inline": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot"
   },
   "repository": {
     "type": "git",
@@ -43,6 +43,7 @@
     "react-dom": "^15.3.0",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "webworker-threads": "^0.7.8"
   }
 }
