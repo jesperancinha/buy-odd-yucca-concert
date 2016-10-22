@@ -40,6 +40,6 @@ module.exports = {
         new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false}),
     ],
     plugins: [
-        new webpack.optimize.UglifyJsPlugin({ mangle: true, sourcemap: false}),
+        new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false}),
     ]
 }
