@@ -22,29 +22,30 @@ module.exports = {
         loader: 'less-loader'
       },
       {
-        test: /\.css/, loader:
-        'css-loader' },
-        {
-          test: /\.(woff2|woff|ttf|svg|eot)$/,
-          loader: 'file-loader'
-        }
-      ]
-    },
-    output: {
-      path: __dirname + '/app',
-      filename: "shop.min.js",
-      publicPath: '/app'
-    },
-    plugins: [
-      new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.OccurenceOrderPlugin(),
-      new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false}),
-      new CopyWebpackPlugin([
-        {
-          from: 'index.html',
-          to: 'index.html',
-        }
-      ]
-    )
-  ]
+        test: /\.css/,
+        loader: 'style-loader!css-loader'
+      },
+      {
+        test: /\.(woff2|woff|ttf|svg|eot)$/,
+        loader: 'file-loader'
+      }
+    ]
+  },
+  output: {
+    path: __dirname + '/app',
+    filename: "shop.min.js",
+    publicPath: '/app'
+  },
+  plugins: [
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false}),
+    new CopyWebpackPlugin([
+      {
+        from: 'index.html',
+        to: 'index.html',
+      }
+    ]
+  )
+]
 }

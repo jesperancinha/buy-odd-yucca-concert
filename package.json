@@ -45,10 +45,10 @@
     "react-bootstrap": "^0.30.2",
     "react-dom": "^15.3.0",
     "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1",
-    "webworker-threads": "^0.7.8"
+    "webpack-dev-server": "^1.14.1"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "^4.0.0"
+    "copy-webpack-plugin": "^4.0.0",
+    "style-loader": "^0.13.1"
   }
 }
