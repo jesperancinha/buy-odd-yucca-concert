@@ -1,10 +1,15 @@
+# Intellij
 .idea
+
+# Node
 node_modules
 /src/shop.min.js
-
 *.woff2
 *.svg
 *.ttf
 *.eot
 *.woff
 /npm-debug.log
+*.lock
+*.yarnclean
+app
