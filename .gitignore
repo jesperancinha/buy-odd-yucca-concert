@@ -11,3 +11,5 @@ node_modules
 *.woff
 /npm-debug.log
 *.lock
+*.yarnclean
+app

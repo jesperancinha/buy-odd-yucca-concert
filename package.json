@@ -2,11 +2,11 @@
   "name": "buy-odd-react",
   "version": "1.0.0",
   "description": "This is a shop to buy odd things",
-  "main": "index.js",
+  "main": "app/shop.min.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "./node_modules/.bin/webpack-dev-server --content-base src",
-    "start-inline": "./node_modules/.bin/webpack-dev-server --content-base src --inline --hot"
+    "start": "./node_modules/.bin/webpack-dev-server --content-base ./app",
+    "start-inline": "./node_modules/.bin/webpack-dev-server --content-base ./app --inline --hot"
   },
   "repository": {
     "type": "git",
@@ -44,9 +44,11 @@
     "react-async-button": "0.0.3",
     "react-bootstrap": "^0.30.2",
     "react-dom": "^15.3.0",
-    "style-loader": "^0.13.1",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1",
     "webworker-threads": "^0.7.8"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^4.0.0"
   }
 }

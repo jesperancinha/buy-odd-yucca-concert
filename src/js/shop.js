@@ -5,7 +5,6 @@ import Button from 'react-bootstrap/lib/Button';
 import Label from 'react-bootstrap/lib/Label';
 import ButtonToolbar from 'react-bootstrap/lib/ButtonToolbar';
 import Bootstrap from './../../node_modules/bootstrap/dist/css/bootstrap.css';
-import WebWorker from 'webworker-threads';
 
 class Shop extends React.Component{
 
