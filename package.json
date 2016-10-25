@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "./node_modules/.bin/webpack-dev-server --content-base ./app",
-    "start-inline": "./node_modules/.bin/webpack-dev-server --content-base ./app --inline --hot"
+    "start-inline": "./node_modules/.bin/webpack-dev-server --content-base ./app --inline --hot",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "repository": {
     "type": "git",
@@ -47,6 +49,7 @@
   },
   "devDependencies": {
     "copy-webpack-plugin": "^4.0.0",
-    "style-loader": "^0.13.1"
+    "style-loader": "^0.13.1",
+    "@kadira/storybook": "^2.21.0"
   }
 }
