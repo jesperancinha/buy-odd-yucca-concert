@@ -1,7 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 import AsyncButton from 'react-async-button';
-import ButtonToolbar  from 'react-bootstrap/lib/ButtonToolbar';
 
 export default class ShopButtons extends React.Component {
   clickHandler() {
