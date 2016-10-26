@@ -1,3 +1,67 @@
+div#shop-buttons {
+    top: -30px;
+    float: right;
+    position: relative;
+}
+
+div#shop-app {
+    float: left;
+}
+
+div#product-description {
+    float: left;
+}
+body {
+    height: 1000px;
+    background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(black, blue); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(black, blue); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(black, blue); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(black, blue); /* Standard syntax (must be last) */
+}
+
+h1 {
+	color: #fff;
+	font-family: 'Cormorant Garamond';
+	border-bottom: 3px solid #e66c7e;
+	font-size: 48px;
+	font-weight: 400;
+	line-height: 72px;
+	letter-spacing: 35px;
+	margin-bottom: 57px;
+	text-align: center;
+	text-indent: 24px;
+	text-transform: uppercase;
+}
+
+p {
+	color: #fff;
+
+	font-family: 'Cormorant Garamond';
+	font-size: 28px;
+	font-style: italic;
+	font-weight: 400;
+	line-height: 48px;
+	max-width: 640px;
+	margin: 0 auto 48px;
+	text-align: center;
+}
+
+a {
+	color: #e66c7e;	border-bottom: 2px solid #e66c7e;
+	font-family: 'Cormorant Garamond';
+	font-size: 16px;
+	font-weight: 700;
+	letter-spacing: 3px;
+	text-decoration: none;
+	text-transform: uppercase;
+}
+
+a:hover {
+	color: #fff;
+	border-bottom: 2px solid #fff;
+}
+
 button {
   background: #abe4f8;
   background: -webkit-gradient(linear, 0 0, 0 bottom, from(#abe4f8), to(#74d0f4));
