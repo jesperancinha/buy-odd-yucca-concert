@@ -62,6 +62,15 @@ a:hover {
 	border-bottom: 2px solid #fff;
 }
 
+label {
+  color: #fff;
+  font-weight: bold;
+  display: block;
+  width: 150px;
+  float: left;
+  text-align: center;
+}
+
 button {
   background: #abe4f8;
   background: -webkit-gradient(linear, 0 0, 0 bottom, from(#abe4f8), to(#74d0f4));
