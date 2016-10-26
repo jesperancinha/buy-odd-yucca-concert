@@ -13,3 +13,7 @@ node_modules
 *.lock
 *.yarnclean
 app
+
+# Storybook
+yarn-error.log
+.out
