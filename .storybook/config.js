@@ -6,7 +6,7 @@ import '../src/css/styles.css';
 const req = require.context('../stories', true, /story\.js$/);
 
 function loadStories() {
-  req.keys().forEach(req);
+  req.keys().forEach((filename) => req(filename));
 }
 
 setAddon(infoAddon);

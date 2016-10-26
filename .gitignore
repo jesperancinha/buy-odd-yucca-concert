@@ -16,3 +16,4 @@ app
 
 # Storybook
 yarn-error.log
+.out

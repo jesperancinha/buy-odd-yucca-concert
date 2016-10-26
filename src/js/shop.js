@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 import ShopButtons from './components/ShopButtons';
+import ProductComponent from './components/ProductComponent';
 import '../css/main.shop.styles.css';
 
 class Shop extends React.Component{
@@ -68,6 +69,8 @@ class Shop extends React.Component{
 
 const shopapp = document.getElementById('shop-app');
 const shopbuttons = document.getElementById('shop-buttons');
+const productdescription = document.getElementById('product-description');
 
 ReactDom.render(<Shop/>, shopapp);
 ReactDom.render(<ShopButtons/>, shopbuttons);
+ReactDom.render(<ProductComponent/>, productdescription);
