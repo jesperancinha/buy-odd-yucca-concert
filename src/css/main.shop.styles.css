@@ -8,6 +8,25 @@ div#shop-app {
     float: left;
 }
 
+
+#shop-button-main-page {
+  left:0%;
+}
+
+#shop-button-about-us {
+  left:25%;
+}
+
+#shop-button-increase-counter {
+  left:50%
+}
+
+div#shop-main-buttons {
+  text-align: justify;
+  -ms-text-justify: distribute-all-lines;
+  text-justify: distribute-all-lines;
+}
+
 div#product-description {
     float: left;
 }
