@@ -6,14 +6,26 @@ const ProductContainer = styled.div`
   border: 1px solid hotpink;
   border-radius: 2px;
   position: relative;
+  min-height: 321px;
 `;
 
 const DescriptionContainer = styled.div`
-  transition: transform 1s;
   background-color: white;
-  height: 150px;
+  height: 75px;
+  margin-top: -0px;
+  -moz-transition: height 1s, margin-top 1s;
+  -o-transition: height 1s, margin-top 1s;
+  -webkit-transition: height 1s, margin-top 1s;
+  transition: height 1s, margin-top 1s;
+  position:fixed;
+  overflow: hidden;
+  width: 238px;
     &:hover {
-      transform: translate(0px, -150px);
+      height: 225px;
+      margin-top: -155px;
+      -moz-transition: height 1s, margin-top 1s;
+      -o-transition: height 1s, margin-top 1s;
+      -webkit-transition: height 1s, margin-top 1s;
   }
 `;
 
