@@ -30,8 +30,9 @@ $ npm i enzyme
 }
 
 
-* NOTE: When you are done, if enzyme doesn't work when you run guestbook, go to node_modules/enzyme and run npm install
 
 # References
 
 * https://github.com/kadirahq/react-storybook
+
+* http://www.w3schools.com/css/css3_transitions.asp
