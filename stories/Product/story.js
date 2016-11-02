@@ -15,7 +15,7 @@ stories.addWithInfo('Basic home',
   () => {
     const name = text('Name', 'Nike');
     const price = text('Price', '36');
-    const summary = text('Summary', 'Something about a product');
+    const summary = text('Summary', 'Something about a product, testing more than a lot of lines');
     const image = text('Image', 'http://lorempixel.com/400/400/cats/1');
     const corner = text('Corner', 'Sale');
     const story = (
