@@ -1490,3 +1490,53 @@ patch:
         patched: '2019-10-05T00:05:21.405Z'
     - snyk > proxy-agent > pac-proxy-agent > https-proxy-agent:
         patched: '2019-10-06T14:13:58.813Z'
+    - react-native > connect > serve-static > send > debug:
+        patched: '2019-05-06T00:04:30.821Z'
+    - react-native > connect > body-parser > debug:
+        patched: '2019-05-06T00:04:30.821Z'
+    - react-native > connect > express-session > debug:
+        patched: '2019-05-06T00:04:30.821Z'
+    - react-native > connect > morgan > debug:
+        patched: '2019-05-06T00:04:30.821Z'
+    - react-native > connect > serve-index > debug:
+        patched: '2019-05-06T00:04:30.821Z'
+    - react-native > connect > connect-timeout > debug:
+        patched: '2019-05-06T00:04:30.821Z'
+    - react-native > connect > compression > debug:
+        patched: '2019-05-06T00:04:30.821Z'
+  'npm:lodash:20180130':
+    - react-native > plist > xmlbuilder > lodash:
+        patched: '2019-05-06T00:04:30.821Z'
+    - react-native > yeoman-generator > html-wiring > cheerio > lodash:
+        patched: '2019-05-06T00:04:30.821Z'
+    - react-native > xcode > simple-plist > plist > xmlbuilder > lodash:
+        patched: '2019-05-06T00:04:30.821Z'
+  'npm:mime:20170907':
+    - react-native > connect > serve-static > send > mime:
+        patched: '2019-05-06T00:04:30.821Z'
+  'npm:ms:20170412':
+    - react-native > connect > connect-timeout > ms:
+        patched: '2019-05-06T00:04:30.821Z'
+    - react-native > connect > morgan > debug > ms:
+        patched: '2019-05-06T00:04:30.821Z'
+    - react-native > connect > express-session > debug > ms:
+        patched: '2019-05-06T00:04:30.821Z'
+    - react-native > connect > compression > debug > ms:
+        patched: '2019-05-06T00:04:30.821Z'
+    - react-native > connect > serve-index > debug > ms:
+        patched: '2019-05-06T00:04:30.821Z'
+    - react-native > connect > body-parser > debug > ms:
+        patched: '2019-05-06T00:04:30.821Z'
+    - react-native > connect > connect-timeout > debug > ms:
+        patched: '2019-05-06T00:04:30.821Z'
+    - react-native > connect > serve-static > send > ms:
+        patched: '2019-05-06T00:04:30.821Z'
+    - react-native > connect > serve-static > send > debug > ms:
+        patched: '2019-05-06T00:04:30.821Z'
+    - react-native > connect > serve-favicon > ms:
+        patched: '2019-05-06T00:04:30.821Z'
+  'npm:negotiator:20160616':
+    - react-native > connect > compression > accepts > negotiator:
+        patched: '2019-05-06T00:04:30.821Z'
+    - react-native > connect > serve-index > accepts > negotiator:
+        patched: '2019-05-06T00:04:30.821Z'
