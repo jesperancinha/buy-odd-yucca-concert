@@ -62,7 +62,7 @@
     "styled-components": "^1.0.8",
     "webpack": "^2.2.0",
     "webpack-dev-server": "^3.1.11",
-    "snyk": "^1.231.0"
+    "snyk": "^1.161.1"
   },
   "devDependencies": {
     "@kadira/react-storybook-addon-info": "^3.3.0",
