@@ -1,4 +1,7 @@
-# buy-odd-react
+# Buy Odd React
+
+[![Known Vulnerabilities](https://snyk.io/test/github/jesperancinha/buy-odd-react/badge.svg)](https://snyk.io/test/github/jesperancinha/buy-odd-react)
+
 for ReactJS
 
 # Running Commands
