@@ -2437,3 +2437,5 @@ patch:
         patched: '2020-04-30T22:49:51.451Z'
     - react-native > @react-native-community/cli > metro > metro-config > metro > metro-react-native-babel-preset > @babel/plugin-transform-exponentiation-operator > @babel/helper-builder-binary-assignment-operator-visitor > @babel/helper-explode-assignable-expression > @babel/traverse > @babel/helper-function-name > @babel/template > @babel/types > lodash:
         patched: '2020-04-30T22:49:51.451Z'
+    - react-native > @react-native-community/cli > @react-native-community/cli-server-api > @react-native-community/cli-tools > lodash:
+        patched: '2020-05-18T22:52:24.230Z'
