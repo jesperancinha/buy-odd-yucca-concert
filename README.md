@@ -8,8 +8,6 @@ for ReactJS
 ```
 $ npm i -g webpack-dev-server
 ```
-
-
 # Installation Notes
 
 ## Maybe commands
@@ -31,8 +29,6 @@ $ npm i react-addons-test-utils
 $ npm i enzyme
 ```
 }
-
-
 
 # References
 
