@@ -17,6 +17,7 @@
 
 #### Online
 
+- [Redhwan Nacef's Kong Tutorial On GitHub](https://github.com/redhwannacef/youtube-tutorials/tree/main/kong-gateway)
 - [Lorem Picsum Phosots](https://picsum.photos/)
 
 #### Online videos
@@ -30,6 +31,11 @@
       <a title="Kong Gateway Tutorial | API Gateway For Beginners" href="https://www.youtube.com/watch?v=20rOdqag4Dw">
      <img 
           src="https://img.youtube.com/vi/20rOdqag4Dw/0.jpg" 
+          style="width:10%;">
+      </a>
+      <a title="How to Use Kong Gateway JWT Plugin" href="https://www.youtube.com/watch?v=OjF95vVldxY">
+     <img 
+          src="https://img.youtube.com/vi/OjF95vVldxY/0.jpg" 
           style="width:10%;">
       </a>
 </div>
