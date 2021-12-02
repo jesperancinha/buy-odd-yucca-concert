@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom';
-import Product from './../../../stories/Product'
+import Product from '../../../stories/Product'
 
 export default class ProductComponent extends React.Component {
 

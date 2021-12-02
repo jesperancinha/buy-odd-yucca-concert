@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import ShopButtons from './components/ShopButtons';
 import ProductComponent from './components/ProductComponent';
-import Shop from  './components/Shop';
+import Shop from './components/Shop';
 import '../css/main.shop.styles.css';
 
 
