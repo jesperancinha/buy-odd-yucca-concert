@@ -9,14 +9,25 @@
 
 ---
 
+## Introduction 🌴
+
 ## References
 
+#### Online
+
 - [Lorem Picsum Phosots](https://picsum.photos/)
+
+#### Online videos
 
 <div align="center">
       <a title="Kong Gateway for Beginners: Adding a Service, Route and Plugins" href="https://www.youtube.com/watch?v=kGZyAEVioWg">
      <img 
           src="https://img.youtube.com/vi/kGZyAEVioWg/0.jpg" 
+          style="width:10%;">
+      </a>
+      <a title="Kong Gateway Tutorial | API Gateway For Beginners" href="https://www.youtube.com/watch?v=20rOdqag4Dw">
+     <img 
+          src="https://img.youtube.com/vi/20rOdqag4Dw/0.jpg" 
           style="width:10%;">
       </a>
 </div>
