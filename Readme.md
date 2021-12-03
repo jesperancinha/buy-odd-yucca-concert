@@ -17,6 +17,8 @@
 
 #### Online
 
+- [Kong /docker-kong 🦍 (sounds like Donkey Kong!)](https://github.com/Kong/docker-kong/tree/master/compose)
+- [Kong Gateway](https://docs.konghq.com/gateway/)
 - [MemboxX](https://www.crunchbase.com/organization/memboxx)
 - [Kong Inc. Wikipedia Repubished](https://wiki2.org/en/Kong_Inc.)
 - [5 questions for Kong CEO Augusto Marietti](https://www.bizjournals.com/sanfrancisco/news/2018/11/29/5-questions-for-kong-ceo-augusto-marietti.html)
