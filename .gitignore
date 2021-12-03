@@ -43,3 +43,9 @@ node_modules
 
 # Batch jobs
 .csv
+
+# Kong Files
+kong_data
+kong.conf
+kong_prefix_vol
+kong_tmp_vol

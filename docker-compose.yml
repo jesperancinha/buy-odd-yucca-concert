@@ -62,6 +62,12 @@ services:
       KONG_PROXY_ERROR_LOG: /dev/stderr
       KONG_PREFIX: ${KONG_PREFIX:-/var/run/kong}
       KONG_DECLARATIVE_CONFIG: "/opt/kong/kong.yaml"
+      KONG_ADMIN_GUI_URL: "http://0.0.0.0:8002"
+      KONG_PORTAL_GUI_HOST: "0.0.0.0:8003"
+      KONG_PORTAL: "on"
+    restart: on-failure
+    depends_on:
+      - db
     secrets:
       - kong_postgres_password
     networks:
@@ -78,17 +84,20 @@ services:
 
       - "127.0.0.1:8001:8001/tcp"
       - "127.0.0.1:8444:8444/tcp"
+      - "8002:8002"
+      - "8003:8003"
     healthcheck:
       test: ["CMD", "kong", "health"]
       interval: 10s
       timeout: 10s
-      retries: 10
-    restart: on-failure:5
+      retries: 20
     read_only: true
     volumes:
-      - kong_prefix_vol:${KONG_PREFIX:-/var/run/kong}
-      - kong_tmp_vol:/tmp
+      - ./kong_prefix_vol:${KONG_PREFIX:-/var/run/kong}
+      - ./kong_tmp_vol:/tmp
       - ./kong:/opt/kong
+      - ./kong/kong-migration.sh:/opt/kong/kong-migration.sh
+
     security_opt:
       - no-new-privileges
 
@@ -114,7 +123,7 @@ services:
     networks:
       - kong-net
     volumes:
-      - kong_data:/var/lib/postgresql/data
+      - ./kong_data:/var/lib/postgresql/data
 
 secrets:
   kong_postgres_password:

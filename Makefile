@@ -31,6 +31,7 @@ docker-delete: stop
 docker-cleanup: docker-delete
 	docker images -q | xargs docker rmi
 docker-clean:
+	docker system prune --all --volumes
 	docker-compose rm -svf
 docker-clean-build-start: docker-clean b docker
 docker-delete-apps: stop
