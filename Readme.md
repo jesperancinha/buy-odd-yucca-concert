@@ -17,6 +17,13 @@
 
 #### Online
 
+- [MemboxX](https://www.crunchbase.com/organization/memboxx)
+- [Kong Inc. Wikipedia Repubished](https://wiki2.org/en/Kong_Inc.)
+- [5 questions for Kong CEO Augusto Marietti](https://www.bizjournals.com/sanfrancisco/news/2018/11/29/5-questions-for-kong-ceo-augusto-marietti.html)
+- [Author: Augusto Marietti](https://konghq.com/blog/author/augusto/)
+- [Years after crashing on Travis Kalanick’s couch, this founder has raised $18M for his startup, Mashape](https://techcrunch.com/2017/03/23/years-after-crashing-on-travis-kalanicks-couch-this-italian-founder-just-raised-18-million-for-his-startup/)
+- [Mashape Rebrands as Kong Inc., Declares Monolithic Application Dead](https://www.globenewswire.com/news-release/2017/10/16/1230930/0/en/Mashape-Rebrands-as-Kong-Inc-Declares-Monolithic-Application-Dead.html)
+- [Kong Inc.](https://en.wikipedia.org/wiki/Kong_Inc.)
 - [Redhwan Nacef's Kong Tutorial On GitHub](https://github.com/redhwannacef/youtube-tutorials/tree/main/kong-gateway)
 - [Lorem Picsum Phosots](https://picsum.photos/)
 
