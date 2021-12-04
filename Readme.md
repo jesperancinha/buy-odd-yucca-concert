@@ -17,6 +17,9 @@
 
 #### Online
     
+- [Micronaut CLI](https://docs.micronaut.io/latest/guide/#cli)
+- [CREATING YOUR FIRST MICRONAUT APPLICATION](https://guides.micronaut.io/latest/creating-your-first-micronaut-app-maven-kotlin.html)
+- [Micronaut](https://micronaut.io/)
 - [Deploy an Enterprise License](https://docs.konghq.com/gateway/2.6.x/plan-and-deploy/licenses/deploy-license/)
 - [Kong Gateway Licensing @ Kong Docs](https://docs.konghq.com/gateway/2.6.x/plan-and-deploy/licenses/)
 - [How To Enable the Dev Portal @ Kong Docs](https://docs.konghq.com/gateway/2.6.x/developer-portal/enable-dev-portal/)
@@ -48,6 +51,21 @@
       <a title="How to Use Kong Gateway JWT Plugin" href="https://www.youtube.com/watch?v=OjF95vVldxY">
      <img 
           src="https://img.youtube.com/vi/OjF95vVldxY/0.jpg" 
+          style="width:10%;">
+      </a>
+      <a title="Developing Micronaut Applications with IntelliJ IDEA" href="https://www.youtube.com/watch?v=KIp9PlyJOjg">
+     <img 
+          src="https://img.youtube.com/vi/KIp9PlyJOjg/0.jpg" 
+          style="width:10%;">
+      </a>
+      <a title="Micronaut Deep Dive by Graeme Rocher" href="https://www.youtube.com/watch?v=S5yfTfPeue8">
+     <img 
+          src="https://img.youtube.com/vi/S5yfTfPeue8/0.jpg" 
+          style="width:10%;">
+      </a>
+      <a title="Introduction to Micronaut • Graeme Rocher • GOTO 2019" href="https://www.youtube.com/watch?v=RtjSqRZ_md4">
+     <img 
+          src="https://img.youtube.com/vi/RtjSqRZ_md4/0.jpg" 
           style="width:10%;">
       </a>
 </div>
