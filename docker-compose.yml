@@ -17,7 +17,7 @@ volumes:
       device: tmpfs
 
 networks:
-  kong-net:
+  yucca-net:
     external: false
 
 services:
@@ -32,7 +32,7 @@ services:
     secrets:
       - kong_postgres_password
     networks:
-      - kong-net
+      - yucca-net
     restart: on-failure
 
   kong:
@@ -52,14 +52,14 @@ services:
       KONG_DECLARATIVE_CONFIG: "/opt/kong/kong.yaml"
       KONG_ADMIN_GUI_URL: "http://0.0.0.0:8002"
       KONG_PORTAL_GUI_HOST: "0.0.0.0:8003"
-      KONG_PORTAL: on
+      KONG_PORTAL: "on"
     restart: on-failure
     depends_on:
       - db
     secrets:
       - kong_postgres_password
     networks:
-      - kong-net
+      - yucca-net
     ports:
       # The following two environment variables default to an insecure value (0.0.0.0)
       # according to the CIS Security test.
@@ -111,9 +111,32 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - kong-net
+      - yucca-net
     volumes:
       - ./kong_data:/var/lib/postgresql/data
+
+  localstack:
+    image: localstack/localstack:0.13.0
+    hostname: localstack
+    container_name: localstack
+    ports:
+      - "4566:4566"
+      - "4571:4571"
+      - "8090:8090"
+    environment:
+      - SERVICES=${AWS_SERVICES}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+      - PORT_WEB_UI=8090
+      - DEFAULT_REGION=eu-central-1
+      - DATA_DIR=/tmp/localstack/data
+      - LAMBDA_EXECUTOR=local
+      - START_WEB=1
+    healthcheck:
+      test: ["CMD", "/usr/bin/curl", "http://localhost:4566/health"]
+    volumes:
+      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
+    networks:
+      - yucca-net
 
 secrets:
   kong_postgres_password:
