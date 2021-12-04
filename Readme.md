@@ -16,7 +16,10 @@
 ## References
 
 #### Online
-
+    
+- [Deploy an Enterprise License](https://docs.konghq.com/gateway/2.6.x/plan-and-deploy/licenses/deploy-license/)
+- [Kong Gateway Licensing @ Kong Docs](https://docs.konghq.com/gateway/2.6.x/plan-and-deploy/licenses/)
+- [How To Enable the Dev Portal @ Kong Docs](https://docs.konghq.com/gateway/2.6.x/developer-portal/enable-dev-portal/)
 - [Kong /docker-kong 🦍 (sounds like Donkey Kong!)](https://github.com/Kong/docker-kong/tree/master/compose)
 - [Kong Gateway](https://docs.konghq.com/gateway/)
 - [MemboxX](https://www.crunchbase.com/organization/memboxx)

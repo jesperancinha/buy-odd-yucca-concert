@@ -16,6 +16,7 @@ local: no-test
 no-test:
 	mvn clean install -DskipTests
 docker:
+	docker-compose down
 	docker-compose up -d --build --remove-orphans
 docker-databases: stop local
 build-images:
@@ -31,7 +32,9 @@ docker-delete: stop
 docker-cleanup: docker-delete
 	docker images -q | xargs docker rmi
 docker-clean:
-	docker system prune --all --volumes
+	rm -r kong_data
+	rm -r kong_prefix_vol
+	rm -r kong_tmp_vol
 	docker-compose rm -svf
 docker-clean-build-start: docker-clean b docker
 docker-delete-apps: stop

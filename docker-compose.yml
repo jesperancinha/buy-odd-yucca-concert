@@ -6,7 +6,7 @@ x-kong-config: &kong-env
   KONG_PG_PASSWORD_FILE: /run/secrets/kong_postgres_password
 
 volumes:
-  kong_data: {}
+  kong_data: { }
   kong_prefix_vol:
     driver_opts:
       type: tmpfs
@@ -21,24 +21,10 @@ networks:
     external: false
 
 services:
-  kong-migrations:
-    image: "${KONG_DOCKER_TAG:-kong:latest}"
-    command: kong migrations bootstrap
-    profiles: ["database"]
-    depends_on:
-      - db
-    environment:
-      <<: *kong-env
-    secrets:
-      - kong_postgres_password
-    networks:
-      - kong-net
-    restart: on-failure
-
   kong-migrations-up:
     image: "${KONG_DOCKER_TAG:-kong:latest}"
-    command: kong migrations up && kong migrations finish
-    profiles: ["database"]
+    command: kong migrations bootstrap && kong migrations up && kong migrations finish
+    profiles: [ "database" ]
     depends_on:
       - db
     environment:
@@ -50,6 +36,8 @@ services:
     restart: on-failure
 
   kong:
+    hostname: kong
+    container_name: kong
     image: "${KONG_DOCKER_TAG:-kong:latest}"
     user: "${KONG_USER:-kong}"
     environment:
@@ -64,7 +52,7 @@ services:
       KONG_DECLARATIVE_CONFIG: "/opt/kong/kong.yaml"
       KONG_ADMIN_GUI_URL: "http://0.0.0.0:8002"
       KONG_PORTAL_GUI_HOST: "0.0.0.0:8003"
-      KONG_PORTAL: "on"
+      KONG_PORTAL: on
     restart: on-failure
     depends_on:
       - db
@@ -87,7 +75,7 @@ services:
       - "8002:8002"
       - "8003:8003"
     healthcheck:
-      test: ["CMD", "kong", "health"]
+      test: [ "CMD", "kong", "health" ]
       interval: 10s
       timeout: 10s
       retries: 20
@@ -102,8 +90,10 @@ services:
       - no-new-privileges
 
   db:
+    hostname: db
+    container_name: db
     image: postgres:9.5
-    profiles: ["database"]
+    profiles: [ "database" ]
     environment:
       POSTGRES_DB: ${KONG_PG_DATABASE:-kong}
       POSTGRES_USER: ${KONG_PG_USER:-kong}
@@ -111,7 +101,7 @@ services:
     secrets:
       - kong_postgres_password
     healthcheck:
-      test: ["CMD", "pg_isready", "-U", "${KONG_PG_USER:-kong}"]
+      test: [ "CMD", "pg_isready", "-U", "${KONG_PG_USER:-kong}" ]
       interval: 30s
       timeout: 30s
       retries: 3
