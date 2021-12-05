@@ -8,20 +8,10 @@
   <packaging>${packaging}</packaging>
 
   <parent>
-    <groupId>io.micronaut</groupId>
-    <artifactId>micronaut-parent</artifactId>
-    <version>3.2.0</version>
+    <artifactId>buy-odd-yucca-concert</artifactId>
+    <groupId>org.jesperancinha.concert</groupId>
+    <version>1.0-SNAPSHOT</version>
   </parent>
-
-  <properties>
-    <packaging>jar</packaging>
-    <jdk.version>11</jdk.version>
-    <release.version>11</release.version>
-    <micronaut.version>3.2.0</micronaut.version>
-    <exec.mainClass>buy.oyc.parking.service.ApplicationKt</exec.mainClass>
-    <kotlinVersion>1.6.0</kotlinVersion>
-    <micronaut.runtime>netty</micronaut.runtime>
-  </properties>
 
   <repositories>
     <repository>

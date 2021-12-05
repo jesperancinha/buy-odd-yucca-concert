@@ -18,7 +18,8 @@
 ## References
 
 #### Online
-    
+   
+-   [Creating a Rest application with Micronaut](https://medium.com/danieldiasjava/creating-a-rest-application-with-micronaut-30a001b3c38b) 
 -   [Micronaut CLI](https://docs.micronaut.io/latest/guide/#cli)
 -   [CREATING YOUR FIRST MICRONAUT APPLICATION](https://guides.micronaut.io/latest/creating-your-first-micronaut-app-maven-kotlin.html)
 -   [Micronaut](https://micronaut.io/)

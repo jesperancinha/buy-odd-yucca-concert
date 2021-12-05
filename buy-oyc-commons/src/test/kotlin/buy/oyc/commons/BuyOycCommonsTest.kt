@@ -1,15 +1,17 @@
 package buy.oyc.commons
+
 import io.micronaut.runtime.EmbeddedApplication
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
+import jakarta.inject.Inject
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import jakarta.inject.Inject
 
 @MicronautTest
-class BuyOycCommonsTest {
-
+class BuyOycCommonsTest(
     @Inject
-    lateinit var application: EmbeddedApplication<*>
+    val application: EmbeddedApplication<*>
+) {
+
 
     @Test
     fun testItWorks() {

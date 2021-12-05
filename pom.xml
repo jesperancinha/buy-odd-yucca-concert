@@ -16,4 +16,27 @@
     </modules>
 
     <packaging>pom</packaging>
+
+    <properties>
+        <packaging>jar</packaging>
+        <jdk.version>11</jdk.version>
+        <release.version>11</release.version>
+        <micronaut.version>3.2.0</micronaut.version>
+        <exec.mainClass>buy.oyc.ticket.service.ApplicationKt</exec.mainClass>
+        <kotlinVersion>1.6.0</kotlinVersion>
+        <micronaut.runtime>netty</micronaut.runtime>
+        <micronaut-parent.version>3.2.0</micronaut-parent.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.micronaut</groupId>
+                <artifactId>micronaut-parent</artifactId>
+                <version>${micronaut-parent.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 </project>

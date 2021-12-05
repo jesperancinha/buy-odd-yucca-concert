@@ -6,10 +6,10 @@ import org.junit.jupiter.api.Test
 import jakarta.inject.Inject
 
 @MicronautTest
-class BuyOycParkingServiceTest {
-
+class BuyOycParkingServiceTest(
     @Inject
-    lateinit var application: EmbeddedApplication<*>
+    val application: EmbeddedApplication<*>
+) {
 
     @Test
     fun testItWorks() {
