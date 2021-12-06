@@ -1,5 +1,5 @@
 applicationType: default
-defaultPackage: buy.oyc.parking.service
+defaultPackage: org.jesperancinha.concert
 testFramework: junit
 sourceLanguage: kotlin
 buildTool: maven
