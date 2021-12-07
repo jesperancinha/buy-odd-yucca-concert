@@ -84,6 +84,21 @@
           src="https://img.youtube.com/vi/RtjSqRZ_md4/0.jpg" 
           style="width:10%;">
       </a>
+      <a title="What is Rate Limiting / API Throttling? | System Design Concepts" href="https://www.youtube.com/watch?v=9CIjoWPwAhU">
+     <img 
+          src="https://img.youtube.com/vi/9CIjoWPwAhU/0.jpg" 
+          style="width:10%;">
+      </a>
+      <a title="API Gateway Plugins for Kubernetes Ingress Controller" href="https://www.youtube.com/watch?v=xHpYbncyXmA">
+     <img 
+          src="https://img.youtube.com/vi/xHpYbncyXmA/0.jpg" 
+          style="width:10%;">
+      </a>
+      <a title="Installing Kong's API Gateway with Docker" href="https://www.youtube.com/watch?v=sJEID1xEZMg">
+     <img 
+          src="https://img.youtube.com/vi/sJEID1xEZMg/0.jpg" 
+          style="width:10%;">
+      </a>
 </div>
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
