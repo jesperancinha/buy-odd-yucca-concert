@@ -1,6 +1,8 @@
 micronaut:
   application:
     name: buyOycParkingService
+  server:
+    port: 8085
 
 datasources:
   default:
