@@ -146,6 +146,22 @@ services:
     networks:
       - yucca-net
 
+  buy-oyc-ticket:
+    hostname: buy-oyc-ticket
+    container_name: buy-oyc-ticket
+    build:
+      context: buy-oyc-ticket-service/.
+    networks:
+      - yucca-net
+
+  buy-oyc-catering:
+    hostname: buy-oyc-catering
+    container_name: buy-oyc-catering
+    build:
+      context: buy-oyc-catering-service/.
+    networks:
+      - yucca-net
+
 secrets:
   kong_postgres_password:
     file: ./password

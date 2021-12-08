@@ -10,8 +10,8 @@
 
     <modules>
         <module>buy-oyc-commons</module>
-        <module>buy-oyc-ticket-service</module>
         <module>buy-oyc-parking-service</module>
+        <module>buy-oyc-ticket-service</module>
         <module>buy-oyc-catering-service</module>
     </modules>
 

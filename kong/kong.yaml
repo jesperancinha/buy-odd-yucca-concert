@@ -8,5 +8,22 @@ services:
     routes:
       - name: buy-oyc-parking-service-routes
         paths:
-          - /
+          - /yucca-parking
         strip_path: true
+
+  - name: buy-oyc-ticket-service
+    url: http://buy-oyc-ticket:8086
+    routes:
+      - name: buy-oyc-ticket-service-routes
+        paths:
+          - /yucca-ticket
+        strip_path: true
+
+  - name: buy-oyc-catering-service
+    url: http://buy-oyc-catering:8087
+    routes:
+      - name: buy-oyc-catering-service-routes
+        paths:
+          - /yucca-catering
+        strip_path: true
+

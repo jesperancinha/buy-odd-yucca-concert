@@ -26,10 +26,24 @@
 
 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧 !!! UNDER CONSTRUCTION !!! 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧 
 
+## Installing NVM
+
+You don't need to install NVM. This may only be need if you are running a non LTS version of nodejs. In that case, just run:
+
+```shell
+nvm-install.sh
+node -v
+```
+
+This project is built upon node v16.13.1
+
+[NVM-SH](https://github.com/nvm-sh/nvm/blob/master/README.md)
+
 ## References
 
 #### Online
 
+- [Create a New React App](https://reactjs.org/docs/create-a-new-react-app.html)
 - [Micronaut: A five-minute introduction](https://dev.to/mkbaldwin/micronaut-a-five-minute-introduction-c27)
 - [Building Restful APIs with Micronaut](https://itnext.io/building-restful-apis-with-micronaut-98f4eb39211c)
 - [Creating a Rest application with Micronaut](https://medium.com/danieldiasjava/creating-a-rest-application-with-micronaut-30a001b3c38b) 

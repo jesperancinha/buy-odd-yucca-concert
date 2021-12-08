@@ -1,3 +1,5 @@
 micronaut:
   application:
     name: buyOycCateringService
+  server:
+    port: 8087

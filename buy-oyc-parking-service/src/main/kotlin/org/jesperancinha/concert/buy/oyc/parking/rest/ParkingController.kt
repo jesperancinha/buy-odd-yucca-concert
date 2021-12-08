@@ -16,7 +16,7 @@ import org.jesperancinha.concert.buy.oyc.parking.dto.toDto
 import javax.validation.Valid
 
 @Controller("/api")
-class PersonController(
+class ParkingController(
     @Inject
     private val parkingReservationRepository: ParkingReservationRepository
 ) {

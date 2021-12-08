@@ -2,9 +2,7 @@ b: build-npm build-maven
 build: build-npm
 	mvn clean install
 build-npm:
-	cd buy-odd-yucca-gui && yarn install && npm run build
-	rm -rf docker-images/nginx/dist
-	mv stamps-and-coins-web/dist docker-images/nginx/
+	cd buy-odd-yucca-gui && yarn install && yarn build
 build-maven:
 	mvn clean install -DskipTests
 test:
@@ -32,9 +30,7 @@ docker-delete: stop
 docker-cleanup: docker-delete
 	docker images -q | xargs docker rmi
 docker-clean:
-	rm -r kong_data
-	rm -r kong_prefix_vol
-	rm -r kong_tmp_vol
+	docker-compose down -v
 	docker-compose rm -svf
 docker-clean-build-start: docker-clean b docker
 docker-delete-apps: stop
@@ -46,7 +42,6 @@ prune-all: stop
 	docker system prune --all --volumes
 stop:
 	docker-compose down --remove-orphans
-k8-endpoint:
-	./bash/endpoint.sh
-minikube-vmware:
-	minikube start --driver=vmware
+install:
+	nvm install --lts
+	nvm use --lts
