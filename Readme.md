@@ -113,6 +113,11 @@ This project is built upon node v16.13.1
           src="https://img.youtube.com/vi/sJEID1xEZMg/0.jpg" 
           style="width:10%;">
       </a>
+      <a title="DevOps Is More Than Configuration Management" href="https://www.youtube.com/watch?v=vmgvs11XKow">
+     <img 
+          src="https://img.youtube.com/vi/vmgvs11XKow/0.jpg" 
+          style="width:10%;">
+      </a>
 </div>
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
