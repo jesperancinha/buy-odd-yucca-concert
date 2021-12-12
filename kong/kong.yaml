@@ -8,7 +8,7 @@ services:
     routes:
       - name: buy-oyc-parking-service-routes
         paths:
-          - /yucca-parking
+          - /api/yucca-parking
         strip_path: true
 
   - name: buy-oyc-ticket-service
@@ -16,7 +16,7 @@ services:
     routes:
       - name: buy-oyc-ticket-service-routes
         paths:
-          - /yucca-ticket
+          - /api/yucca-ticket
         strip_path: true
 
   - name: buy-oyc-catering-service
@@ -24,6 +24,6 @@ services:
     routes:
       - name: buy-oyc-catering-service-routes
         paths:
-          - /yucca-catering
+          - /api/yucca-catering
         strip_path: true
 

@@ -19,6 +19,10 @@ volumes:
 networks:
   yucca-net:
     external: false
+    ipam:
+      driver: default
+      config:
+        - subnet: ${NETWORK_SUBNET}
 
 services:
   kong-migrations-up:
@@ -59,7 +63,8 @@ services:
     secrets:
       - kong_postgres_password
     networks:
-      - yucca-net
+      yucca-net:
+        ipv4_address: ${KONG_SERVICE_IP}
     ports:
       # The following two environment variables default to an insecure value (0.0.0.0)
       # according to the CIS Security test.
@@ -85,7 +90,6 @@ services:
       - ./kong_tmp_vol:/tmp
       - ./kong:/opt/kong
       - ./kong/kong-migration.sh:/opt/kong/kong-migration.sh
-
     security_opt:
       - no-new-privileges
 
@@ -144,7 +148,8 @@ services:
     build:
       context: buy-oyc-parking-service/.
     networks:
-      - yucca-net
+      yucca-net:
+        ipv4_address: ${YUCCA_PARKING_SERVICE_IP}
 
   buy-oyc-ticket:
     hostname: buy-oyc-ticket
@@ -152,7 +157,8 @@ services:
     build:
       context: buy-oyc-ticket-service/.
     networks:
-      - yucca-net
+      yucca-net:
+        ipv4_address: ${YUCCA_TICKET_SERVICE_IP}
 
   buy-oyc-catering:
     hostname: buy-oyc-catering
@@ -160,7 +166,29 @@ services:
     build:
       context: buy-oyc-catering-service/.
     networks:
-      - yucca-net
+      yucca-net:
+        ipv4_address: ${YUCCA_CATERING_SERVICE_IP}
+
+
+  buy-oyc-nginx:
+    hostname: buy-oyc-nginx
+    container_name: buy-oyc-nginx
+    build:
+      context: ./buy-odd-yucca-gui/.
+    ports:
+      - "8080:8080"
+    restart: on-failure
+    environment:
+      - KONG_SERVICE_IP=${KONG_SERVICE_IP}
+    deploy:
+      resources:
+        limits:
+          memory: 300M
+        reservations:
+          memory: 300M
+    networks:
+      yucca-net:
+        ipv4_address: ${NGINX_SERVICE_IP}
 
 secrets:
   kong_postgres_password:

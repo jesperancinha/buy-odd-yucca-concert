@@ -6,13 +6,13 @@ WORKDIR ${runningFolder}
 
 RUN mv /etc/nginx/conf.d/default.conf /etc/nginx/conf.d/default.conf.disabled
 
-COPY default.conf /etc/nginx/conf.d/default.conf
+COPY nginx/default.conf /etc/nginx/conf.d/default.conf
 
-COPY nginx.conf /etc/nginx/nginx.conf
+COPY nginx/nginx.conf /etc/nginx/nginx.conf
 
-COPY entrypoint.sh /usr/local/bin/
+COPY nginx/entrypoint.sh /usr/local/bin/
 
-COPY dist/buy-odd-yucca-gui /usr/share/nginx/html
+COPY build /usr/share/nginx/html
 
 ENTRYPOINT ["entrypoint.sh"]
 
