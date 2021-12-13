@@ -26,6 +26,10 @@
         <kotlin.version>1.6.0</kotlin.version>
         <micronaut.runtime>netty</micronaut.runtime>
         <micronaut-parent.version>3.2.1</micronaut-parent.version>
+        <jakarta.annotation-api.version>2.1.0-B1</jakarta.annotation-api.version>
+        <jakarta.persistence-api.version>3.0.0</jakarta.persistence-api.version>
+        <mockk.version>1.9.3</mockk.version>
+        <kotest.version>4.2.5</kotest.version>
     </properties>
 
     <dependencyManagement>
@@ -41,6 +45,45 @@
                 <version>${micronaut-parent.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.annotation</groupId>
+                <artifactId>jakarta.annotation-api</artifactId>
+                <version>${jakarta.annotation-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>jakarta.persistence</groupId>
+                <artifactId>jakarta.persistence-api</artifactId>
+                <version>${jakarta.persistence-api.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-reflect</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.jetbrains.kotlin</groupId>
+                <artifactId>kotlin-stdlib-jdk8</artifactId>
+                <version>${kotlin.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.mockk</groupId>
+                <artifactId>mockk</artifactId>
+                <version>${mockk.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.kotest</groupId>
+                <artifactId>kotest-runner-junit5-jvm</artifactId>
+                <version>${kotest.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.kotest</groupId>
+                <artifactId>kotest-assertions-core-jvm</artifactId>
+                <version>${kotest.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
