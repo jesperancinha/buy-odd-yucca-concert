@@ -125,6 +125,16 @@ This project is built upon node v16.13.1
           src="https://img.youtube.com/vi/vmgvs11XKow/0.jpg" 
           style="width:10%;">
       </a>
+      <a title="DynamoDB Partitions - How they work - AWS Service Deep Dive" href="https://www.youtube.com/watch?v=WoxNmq5-E9o">
+     <img 
+          src="https://img.youtube.com/vi/WoxNmq5-E9o/0.jpg" 
+          style="width:10%;">
+      </a>
+      <a title="Working with DynamoDB Tables - Partition Key and Sort Key - Dynamo Deep Dive" href="https://www.youtube.com/watch?v=T6VZ_GfQdvo">
+     <img 
+          src="https://img.youtube.com/vi/T6VZ_GfQdvo/0.jpg" 
+          style="width:10%;">
+      </a>
 </div>
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
