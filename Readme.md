@@ -135,6 +135,16 @@ This project is built upon node v16.13.1
           src="https://img.youtube.com/vi/T6VZ_GfQdvo/0.jpg" 
           style="width:10%;">
       </a>
+      <a title="AWS re:Invent 2018: Amazon DynamoDB Deep Dive: Advanced Design Patterns for DynamoDB (DAT401)" href="https://www.youtube.com/watch?v=HaEPXoXVf2k">
+     <img 
+          src="https://img.youtube.com/vi/HaEPXoXVf2k/0.jpg" 
+          style="width:10%;">
+      </a>
+      <a title="What is a DynamoDB GSI (Global Secondary Index) ?" href="https://www.youtube.com/watch?v=ihMOlb8EZKE">
+     <img 
+          src="https://img.youtube.com/vi/ihMOlb8EZKE/0.jpg" 
+          style="width:10%;">
+      </a>
 </div>
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
