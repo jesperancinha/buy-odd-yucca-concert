@@ -28,7 +28,7 @@
         <micronaut-parent.version>3.2.1</micronaut-parent.version>
         <jakarta.annotation-api.version>2.1.0-B1</jakarta.annotation-api.version>
         <jakarta.persistence-api.version>3.0.0</jakarta.persistence-api.version>
-        <mockk.version>1.9.3</mockk.version>
+        <mockk.version>1.12.1</mockk.version>
         <kotest.version>5.0.2</kotest.version>
     </properties>
 
