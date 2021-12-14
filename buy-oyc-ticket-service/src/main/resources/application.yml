@@ -3,3 +3,19 @@ micronaut:
     name: buyOycTicketService
   server:
     port: 8086
+
+r2dbc:
+  datasources:
+    default:
+      schema-generate: NONE
+      dialect: POSTGRES
+      url: r2dbc:postgresql://admin@postgres:5432/phonebook?currentSchema=ypages
+      username: admin
+      password: admin
+
+jackson:
+  serialization:
+    indentOutput: true
+    writeDatesAsTimestamps: false
+  deserialization:
+    failOnUnknownProperties: false

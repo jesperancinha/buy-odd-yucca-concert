@@ -49,3 +49,4 @@ kong_data
 kong.conf
 kong_prefix_vol
 kong_tmp_vol
+kong_*

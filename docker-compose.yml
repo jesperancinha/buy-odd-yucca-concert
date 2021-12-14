@@ -42,7 +42,7 @@ services:
   kong:
     hostname: kong
     container_name: kong
-    image: "${KONG_DOCKER_TAG:-kong:latest}"
+    image: "${KONG_DOCKER_TAG:-kong:2.6.0}"
     user: "${KONG_USER:-kong}"
     environment:
       <<: *kong-env
@@ -86,8 +86,8 @@ services:
       retries: 20
     read_only: true
     volumes:
-      - ./kong_prefix_vol:${KONG_PREFIX:-/var/run/kong}
-      - ./kong_tmp_vol:/tmp
+      - ./kong_prefix:${KONG_PREFIX:-/var/run/kong}
+      - ./kong_tmp:/tmp
       - ./kong:/opt/kong
       - ./kong/kong-migration.sh:/opt/kong/kong-migration.sh
     security_opt:
@@ -96,12 +96,13 @@ services:
   db:
     hostname: db
     container_name: db
-    image: postgres:9.5
+    image: postgres:14.1
     profiles: [ "database" ]
     environment:
       POSTGRES_DB: ${KONG_PG_DATABASE:-kong}
       POSTGRES_USER: ${KONG_PG_USER:-kong}
       POSTGRES_PASSWORD_FILE: /run/secrets/kong_postgres_password
+      POSTGRES_MULTIPLE_DATABASES: yucca
     secrets:
       - kong_postgres_password
     healthcheck:
@@ -118,6 +119,8 @@ services:
       - yucca-net
     volumes:
       - ./kong_data:/var/lib/postgresql/data
+      - ./docker-images/docker-psql:/docker-entrypoint-initdb.d
+      - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple
 
   localstack:
     image: localstack/localstack:0.13.0

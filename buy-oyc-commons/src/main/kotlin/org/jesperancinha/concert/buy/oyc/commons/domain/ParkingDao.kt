@@ -1,5 +1,6 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
+import io.micronaut.data.annotation.DateCreated
 import io.micronaut.data.annotation.GeneratedValue
 import io.micronaut.data.annotation.Id
 import io.micronaut.data.annotation.MappedEntity
@@ -7,13 +8,16 @@ import io.micronaut.data.model.naming.NamingStrategies
 import io.micronaut.data.model.query.builder.sql.Dialect
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository
 import io.micronaut.data.repository.CrudRepository
+import java.time.LocalDateTime
 
 @MappedEntity(value = "parking_reservation", namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
 data class ParkingReservation(
-    @Id
-    @GeneratedValue(value = GeneratedValue.Type.AUTO)
+    @field: Id
+    @field: GeneratedValue(value = GeneratedValue.Type.AUTO)
     val id: Long? = null,
     val parkingNumber: Long,
+    @field:DateCreated
+    val createdAt: LocalDateTime? = LocalDateTime.now(),
 ) {
     @Override
     override fun toString(): String {

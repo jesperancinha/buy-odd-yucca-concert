@@ -14,7 +14,8 @@ local: no-test
 no-test:
 	mvn clean install -DskipTests
 docker:
-	docker-compose down
+	docker-compose down -v
+	docker-compose rm -svf
 	docker-compose up -d --build --remove-orphans
 docker-databases: stop local
 build-images:
