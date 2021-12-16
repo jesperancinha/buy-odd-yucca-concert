@@ -2,8 +2,28 @@
 
 ## Test Endpoints
 
-1.  [http://localhost:8001/config](http://localhost:8001/config) - Kong Endpoint Configuration
-2.  [http://localhost:8001/services/buy-oyc-parking-service/routes](http://localhost:8001/services/buy-oyc-parking-service/routes) - Kong Routes
+1. [http://localhost:8001/config](http://localhost:8001/config) - Kong Endpoint Configuration
+2. [http://localhost:8001/services/buy-oyc-parking-service/routes](http://localhost:8001/services/buy-oyc-parking-service/routes) - Kong Routes
+3. [http://localhost:8080](http://localhost:8080)
+4. [http://localhost:8000/api/yucca-ticket/](http://localhost:8000/api/yucca-ticket/)
+5. [http://localhost:8000/api/yucca-parking/](http://localhost:8000/api/yucca-parking/)
+6. [http://localhost:8000/api/yucca-catering/](http://localhost:8000/api/yucca-catering/)
+
+## Test payloads
+
+#### 1. Rate Limiting
+
+```shell
+curl -X POST http://localhost:8001/services/yucca-ticket/plugins \
+    --data "name=rate-limiting"  \
+    --data "config.second=5" \
+    --data "config.hour=10000" \
+    --data "config.policy=local" \
+    --data "config.fault_tolerant=true" \
+    --data "config.hide_client_headers=false" \
+    --data "config.redis_ssl=false" \
+    --data "config.redis_ssl_verify=false"
+```
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 
