@@ -26,8 +26,8 @@ show:
 docker-delete-idle:
 	docker ps --format '{{.ID}}' -q | xargs docker rm
 docker-delete: stop
-	docker ps -a --format '{{.ID}}' -q | xargs docker stop
-	docker ps -a --format '{{.ID}}' -q | xargs docker rm
+	docker ps -a --format '{{.ID}}' -q | xargs -I {}  docker stop {}
+	docker ps -a --format '{{.ID}}' -q | xargs -I {}  docker rm {}
 docker-cleanup: docker-delete
 	docker images -q | xargs docker rmi
 docker-clean:
@@ -35,9 +35,7 @@ docker-clean:
 	docker-compose rm -svf
 docker-clean-build-start: docker-clean b docker
 docker-delete-apps: stop
-prune-all: stop
-	docker ps -a --format '{{.ID}}' -q | xargs -I docker stop
-	docker ps -a --format '{{.ID}}' -q | xargs -I docker rm
+prune-all: docker-delete
 	docker system prune --all
 	docker builder prune
 	docker system prune --all --volumes
