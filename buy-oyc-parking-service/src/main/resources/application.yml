@@ -4,21 +4,18 @@ micronaut:
   server:
     port: 8085
 
-datasources:
-  default:
-    url: jdbc:h2:mem:devDb
-    driverClassName: org.h2.Driver
-    username: sa
-    password: ""
-    dialect: H2
+r2dbc:
+  datasources:
+    default:
+      schema-generate: NONE
+      dialect: POSTGRES
+      url: r2dbc:postgresql://kong@localhost:5432/yucca?currentSchema=parking
+      username: kong
+      password: kong
 
-jpa:
-  default:
-    entity-scan:
-      packages: 'org.jesperancinha.buy.oyc.commons.domain'
-    properties:
-      hibernate:
-        hbm2ddl:
-          auto: update
-        show_sql: true
-        format_sql: true
+jackson:
+  serialization:
+    indentOutput: true
+    writeDatesAsTimestamps: false
+  deserialization:
+    failOnUnknownProperties: false

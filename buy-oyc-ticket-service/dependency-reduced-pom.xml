@@ -237,5 +237,65 @@
         </exclusion>
       </exclusions>
     </dependency>
+    <dependency>
+      <groupId>org.jetbrains.kotlin</groupId>
+      <artifactId>kotlin-test-junit</artifactId>
+      <version>1.6.0</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>kotlin-test</artifactId>
+          <groupId>org.jetbrains.kotlin</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>junit</artifactId>
+          <groupId>junit</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>io.kotest</groupId>
+      <artifactId>kotest-assertions-core-jvm</artifactId>
+      <version>5.0.1</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>kotest-assertions-shared-jvm</artifactId>
+          <groupId>io.kotest</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>kotlinx-coroutines-jdk8</artifactId>
+          <groupId>org.jetbrains.kotlinx</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>kotest-common-jvm</artifactId>
+          <groupId>io.kotest</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>kotest-assertions-api-jvm</artifactId>
+          <groupId>io.kotest</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+    <dependency>
+      <groupId>io.kotest</groupId>
+      <artifactId>kotest-assertions-core</artifactId>
+      <version>5.0.0</version>
+      <scope>test</scope>
+      <exclusions>
+        <exclusion>
+          <artifactId>kotest-assertions-shared</artifactId>
+          <groupId>io.kotest</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>kotest-common</artifactId>
+          <groupId>io.kotest</groupId>
+        </exclusion>
+        <exclusion>
+          <artifactId>kotest-assertions-api</artifactId>
+          <groupId>io.kotest</groupId>
+        </exclusion>
+      </exclusions>
+    </dependency>
   </dependencies>
 </project>

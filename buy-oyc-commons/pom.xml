@@ -143,9 +143,6 @@
                     <jvmTarget>${jdk.version}</jvmTarget>
                     <compilerPlugins>
                         <plugin>all-open</plugin>
-                        <plugin>no-arg</plugin>
-                        <plugin>spring</plugin>
-                        <plugin>jpa</plugin>
                     </compilerPlugins>
                     <pluginOptions>
                         <option>all-open:annotation=io.micronaut.aop.Around</option>
@@ -161,7 +158,12 @@
                             <sourceDirs>
                                 <sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
                             </sourceDirs>
-                            <annotationProcessorPaths combine.self="override">
+                            <annotationProcessorPaths combine.self="append">
+                                <annotationProcessorPath>
+                                    <groupId>io.micronaut.data</groupId>
+                                    <artifactId>micronaut-data-processor</artifactId>
+                                    <version>${micronaut.version}</version>
+                                </annotationProcessorPath>
                                 <annotationProcessorPath>
                                     <groupId>io.micronaut</groupId>
                                     <artifactId>micronaut-graal</artifactId>
