@@ -36,8 +36,8 @@ docker-clean:
 docker-clean-build-start: docker-clean b docker
 docker-delete-apps: stop
 prune-all: stop
-	docker ps -a --format '{{.ID}}' -q | xargs docker stop
-	docker ps -a --format '{{.ID}}' -q | xargs docker rm
+	docker ps -a --format '{{.ID}}' -q | xargs -I docker stop
+	docker ps -a --format '{{.ID}}' -q | xargs -I docker rm
 	docker system prune --all
 	docker builder prune
 	docker system prune --all --volumes
