@@ -38,6 +38,7 @@ docker-clean:
 docker-clean-build-start: docker-clean b docker
 docker-delete-apps: stop
 prune-all: docker-delete
+	docker network prune
 	docker system prune --all
 	docker builder prune
 	docker system prune --all --volumes
