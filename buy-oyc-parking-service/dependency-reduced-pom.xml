@@ -27,7 +27,7 @@
           <transformers>
             <transformer>
               <manifestEntries>
-                <Main-Class>org.jesperancinha.concert.buy.oyc.ParkingServiceLauncher</Main-Class>
+                <Main-Class>org.jesperancinha.concert.buy.oyc.ParkingServiceLauncherKt</Main-Class>
               </manifestEntries>
             </transformer>
             <transformer />
@@ -429,6 +429,6 @@
     </dependency>
   </dependencies>
   <properties>
-    <exec.mainClass>org.jesperancinha.concert.buy.oyc.ParkingServiceLauncher</exec.mainClass>
+    <exec.mainClass>org.jesperancinha.concert.buy.oyc.ParkingServiceLauncherKt</exec.mainClass>
   </properties>
 </project>

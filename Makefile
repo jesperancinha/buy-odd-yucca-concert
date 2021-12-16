@@ -16,7 +16,9 @@ no-test:
 docker:
 	docker-compose down -v
 	docker-compose rm -svf
+	mkdir -p kong_prefix kong_tmp kong_data
 	docker-compose up -d --build --remove-orphans
+	chmod -R 777 kong_tmp
 docker-databases: stop local
 build-images:
 build-docker: stop no-test build-npm
@@ -24,7 +26,7 @@ build-docker: stop no-test build-npm
 show:
 	docker ps -a  --format '{{.ID}} - {{.Names}} - {{.Status}}'
 docker-delete-idle:
-	docker ps --format '{{.ID}}' -q | xargs docker rm
+	docker ps --format '{{.ID}}' -q | xargs -I {} docker rm {}
 docker-delete: stop
 	docker ps -a --format '{{.ID}}' -q | xargs -I {}  docker stop {}
 	docker ps -a --format '{{.ID}}' -q | xargs -I {}  docker rm {}

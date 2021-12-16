@@ -13,7 +13,7 @@
     <packaging>${packaging}</packaging>
 
     <properties>
-        <exec.mainClass>org.jesperancinha.concert.buy.oyc.ParkingServiceLauncher</exec.mainClass>
+        <exec.mainClass>org.jesperancinha.concert.buy.oyc.ParkingServiceLauncherKt</exec.mainClass>
     </properties>
     <repositories>
         <repository>
@@ -169,7 +169,7 @@
                         <transformer
                                 implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                             <manifestEntries>
-                                <Main-Class>org.jesperancinha.concert.buy.oyc.ParkingServiceLauncher</Main-Class>
+                                <Main-Class>org.jesperancinha.concert.buy.oyc.ParkingServiceLauncherKt</Main-Class>
                             </manifestEntries>
                         </transformer>
                         <transformer

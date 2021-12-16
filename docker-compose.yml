@@ -28,7 +28,6 @@ services:
   kong-migrations-up:
     image: "${KONG_DOCKER_TAG:-kong:latest}"
     command: kong migrations bootstrap && kong migrations up && kong migrations finish
-    profiles: [ "database" ]
     depends_on:
       - db
     environment:
@@ -84,7 +83,6 @@ services:
       interval: 10s
       timeout: 10s
       retries: 20
-    read_only: true
     volumes:
       - ./kong_prefix:${KONG_PREFIX:-/var/run/kong}
       - ./kong_tmp:/tmp
@@ -97,7 +95,7 @@ services:
     hostname: db
     container_name: db
     image: postgres:14.1
-    profiles: [ "database" ]
+    user: "postgres"
     environment:
       POSTGRES_DB: ${KONG_PG_DATABASE:-kong}
       POSTGRES_USER: ${KONG_PG_USER:-kong}
