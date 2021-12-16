@@ -3,7 +3,7 @@
 ---
 
 [![Twitter URL](https://img.shields.io/twitter/url?logoColor=blue&style=social&url=https%3A%2F%2Fimg.shields.io%2Ftwitter%2Furl%3Fstyle%3Dsocial)](https://twitter.com/intent/tweet?text=%20Checkout%20this%20%40github%20repo%20by%20%40joaofse%20%F0%9F%91%A8%F0%9F%8F%BD%E2%80%8D%F0%9F%92%BB%3A%20https%3A//github.com/jesperancinha/buy-odd-yucca-concert)
-[![Generic badge](https://img.shields.io/static/v1.svg?label=GitHub&message=Buy%20Odd%20Yucca%20Concert&color=informational)](https://github.com/jesperancinha/buy-odd-yucca-concert)
+[![Generic badge](https://img.shields.io/static/v1.svg?label=GitHub&message=Buy%20Odd%20Yucca%20Concert🌴&color=informational)](https://github.com/jesperancinha/buy-odd-yucca-concert)
 
 [![CircleCI](https://circleci.com/gh/jesperancinha/buy-odd-yucca-concert/tree/master.svg?style=svg)](https://circleci.com/gh/jesperancinha/buy-odd-yucca-concert/tree/master)
 [![buy-odd-yucca-concert](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert.yml/badge.svg)](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert.yml)
@@ -42,18 +42,18 @@ This project is built upon node v16.13.1
 
 ## Endpoints
 
-- [http://localhost:8080](http://localhost:8080)
-- [http://localhost:8000/api/yucca-ticket/](http://localhost:8000/api/yucca-ticket/)
-- [http://localhost:8000/api/yucca-parking/](http://localhost:8000/api/yucca-parking/)
-- [http://localhost:8000/api/yucca-catering/](http://localhost:8000/api/yucca-catering/)
+-   [http://localhost:8080](http://localhost:8080)
+-   [http://localhost:8000/api/yucca-ticket/](http://localhost:8000/api/yucca-ticket/)
+-   [http://localhost:8000/api/yucca-parking/](http://localhost:8000/api/yucca-parking/)
+-   [http://localhost:8000/api/yucca-catering/](http://localhost:8000/api/yucca-catering/)
 
 ## References
 
 #### Online
 
-- [MICRONAUT 1.0 RC1 AND THE POWER OF AHEAD-OF-TIME COMPILATION](https://micronaut.io/2018/09/30/micronaut-1-0-rc1-and-the-power-of-ahead-of-time-compilation/)
-- [Building Micronaut applications with Micronaut Data R2dbc and Kotlin Coroutines](https://itnext.io/building-micronaut-applications-with-micronaut-data-r2dbc-and-kotlin-coroutines-a1416db5a7d0)
-- [From Spring Boot to Micronaut](https://blog.frankel.ch/spring-to-micronaut/)
+-   [MICRONAUT 1.0 RC1 AND THE POWER OF AHEAD-OF-TIME COMPILATION](https://micronaut.io/2018/09/30/micronaut-1-0-rc1-and-the-power-of-ahead-of-time-compilation/)
+-   [Building Micronaut applications with Micronaut Data R2dbc and Kotlin Coroutines](https://itnext.io/building-micronaut-applications-with-micronaut-data-r2dbc-and-kotlin-coroutines-a1416db5a7d0)
+-   [From Spring Boot to Micronaut](https://blog.frankel.ch/spring-to-micronaut/)
 -   [Create a New React App](https://reactjs.org/docs/create-a-new-react-app.html)
 -   [Micronaut: A five-minute introduction](https://dev.to/mkbaldwin/micronaut-a-five-minute-introduction-c27)
 -   [Building Restful APIs with Micronaut](https://itnext.io/building-restful-apis-with-micronaut-98f4eb39211c)
