@@ -12,9 +12,6 @@
     <artifactId>buy-oyc-parking-service</artifactId>
     <packaging>${packaging}</packaging>
 
-    <properties>
-        <exec.mainClass>org.jesperancinha.concert.buy.oyc.ParkingServiceLauncherKt</exec.mainClass>
-    </properties>
     <repositories>
         <repository>
             <id>central</id>
@@ -63,12 +60,12 @@
         <dependency>
             <groupId>io.micronaut.data</groupId>
             <artifactId>micronaut-data-r2dbc</artifactId>
-            <scope>compile</scope>
+
         </dependency>
         <dependency>
             <groupId>io.micronaut.kotlin</groupId>
             <artifactId>micronaut-kotlin-extension-functions</artifactId>
-            <scope>compile</scope>
+
         </dependency>
         <dependency>
             <groupId>io.r2dbc</groupId>
@@ -87,12 +84,12 @@
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-inject</artifactId>
-            <scope>compile</scope>
+
         </dependency>
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-validation</artifactId>
-            <scope>compile</scope>
+
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
@@ -117,33 +114,33 @@
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-http-client</artifactId>
-            <scope>compile</scope>
+
         </dependency>
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-http-server-netty</artifactId>
-            <scope>compile</scope>
+
         </dependency>
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-runtime</artifactId>
-            <scope>compile</scope>
+
         </dependency>
         <dependency>
             <groupId>io.micronaut.kotlin</groupId>
             <artifactId>micronaut-kotlin-runtime</artifactId>
-            <scope>compile</scope>
+
         </dependency>
         <dependency>
             <groupId>javax.annotation</groupId>
             <artifactId>javax.annotation-api</artifactId>
-            <scope>compile</scope>
+
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
             <version>${kotlin.version}</version>
-            <scope>compile</scope>
+
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
@@ -163,7 +160,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.2.4</version>
+                <version>${maven-shade-plugin.version}</version>
                 <configuration>
                     <transformers>
                         <transformer
@@ -188,7 +185,7 @@
             <plugin>
                 <groupId>io.micronaut.build</groupId>
                 <artifactId>micronaut-maven-plugin</artifactId>
-                <version>3.0.2</version>
+                <version>${micronaut-maven-plugin.version}</version>
             </plugin>
             <plugin>
                 <artifactId>kotlin-maven-plugin</artifactId>
@@ -258,8 +255,10 @@
                                 </annotationProcessorPath>
                             </annotationProcessorPaths>
                             <annotationProcessorArgs>
-                                <annotationProcessorArg>micronaut.processing.group=org.jesperancinha.concert</annotationProcessorArg>
-                                <annotationProcessorArg>micronaut.processing.module=buyOycParkingService</annotationProcessorArg>
+                                <annotationProcessorArg>micronaut.processing.group=org.jesperancinha.concert
+                                </annotationProcessorArg>
+                                <annotationProcessorArg>micronaut.processing.module=buyOycParkingService
+                                </annotationProcessorArg>
                             </annotationProcessorArgs>
                         </configuration>
                     </execution>
@@ -318,7 +317,6 @@
                     <proc>none</proc>
                     <source>${jdk.version}</source>
                     <target>${jdk.version}</target>
-
                 </configuration>
                 <executions>
                     <execution>

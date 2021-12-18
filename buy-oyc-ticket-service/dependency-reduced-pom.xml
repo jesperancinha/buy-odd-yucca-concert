@@ -17,7 +17,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>3.2.4</version>
+        <version>${maven-shade-plugin.version}</version>
         <executions>
           <execution>
             <phase>package</phase>
@@ -240,7 +240,7 @@
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-test-junit</artifactId>
-      <version>1.6.0</version>
+      <version>1.6.10</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -256,7 +256,7 @@
     <dependency>
       <groupId>io.kotest</groupId>
       <artifactId>kotest-assertions-core-jvm</artifactId>
-      <version>5.0.1</version>
+      <version>5.0.2</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -280,7 +280,7 @@
     <dependency>
       <groupId>io.kotest</groupId>
       <artifactId>kotest-assertions-core</artifactId>
-      <version>5.0.0</version>
+      <version>5.0.2</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>

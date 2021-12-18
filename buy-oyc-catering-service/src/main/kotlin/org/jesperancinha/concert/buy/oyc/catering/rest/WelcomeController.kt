@@ -1,4 +1,4 @@
-package org.jesperancinha.concert.buy.oyc.parking.rest
+package org.jesperancinha.concert.buy.oyc.catering.rest
 
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Controller

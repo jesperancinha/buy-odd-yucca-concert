@@ -14,7 +14,7 @@
     <plugins>
       <plugin>
         <artifactId>maven-shade-plugin</artifactId>
-        <version>3.2.4</version>
+        <version>${maven-shade-plugin.version}</version>
         <executions>
           <execution>
             <phase>package</phase>
@@ -37,7 +37,7 @@
       <plugin>
         <groupId>io.micronaut.build</groupId>
         <artifactId>micronaut-maven-plugin</artifactId>
-        <version>3.0.2</version>
+        <version>${micronaut-maven-plugin.version}</version>
       </plugin>
       <plugin>
         <groupId>org.jetbrains.kotlin</groupId>
@@ -236,7 +236,7 @@
     <dependency>
       <groupId>io.kotest</groupId>
       <artifactId>kotest-runner-junit5-jvm</artifactId>
-      <version>4.2.5</version>
+      <version>5.0.2</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -260,6 +260,10 @@
           <groupId>io.kotest</groupId>
         </exclusion>
         <exclusion>
+          <artifactId>kotest-framework-concurrency-jvm</artifactId>
+          <groupId>io.kotest</groupId>
+        </exclusion>
+        <exclusion>
           <artifactId>junit-platform-engine</artifactId>
           <groupId>org.junit.platform</groupId>
         </exclusion>
@@ -276,7 +280,7 @@
     <dependency>
       <groupId>io.kotest</groupId>
       <artifactId>kotest-assertions-core-jvm</artifactId>
-      <version>4.2.5</version>
+      <version>5.0.2</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -286,18 +290,6 @@
         <exclusion>
           <artifactId>kotlinx-coroutines-jdk8</artifactId>
           <groupId>org.jetbrains.kotlinx</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>java-diff-utils</artifactId>
-          <groupId>io.github.java-diff-utils</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>univocity-parsers</artifactId>
-          <groupId>com.univocity</groupId>
-        </exclusion>
-        <exclusion>
-          <artifactId>generex</artifactId>
-          <groupId>com.github.mifmif</groupId>
         </exclusion>
         <exclusion>
           <artifactId>kotest-assertions-api-jvm</artifactId>
@@ -394,7 +386,7 @@
     <dependency>
       <groupId>org.jetbrains.kotlin</groupId>
       <artifactId>kotlin-test-junit</artifactId>
-      <version>1.6.0</version>
+      <version>1.6.10</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -410,7 +402,7 @@
     <dependency>
       <groupId>io.kotest</groupId>
       <artifactId>kotest-assertions-core</artifactId>
-      <version>5.0.0</version>
+      <version>5.0.2</version>
       <scope>test</scope>
       <exclusions>
         <exclusion>
@@ -428,7 +420,4 @@
       </exclusions>
     </dependency>
   </dependencies>
-  <properties>
-    <exec.mainClass>org.jesperancinha.concert.buy.oyc.ParkingServiceLauncherKt</exec.mainClass>
-  </properties>
 </project>

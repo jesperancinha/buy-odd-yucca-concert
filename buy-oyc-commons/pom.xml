@@ -114,7 +114,7 @@
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-inject</artifactId>
-            <scope>compile</scope>
+
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

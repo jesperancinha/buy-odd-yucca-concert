@@ -8,3 +8,7 @@ data class ParkingReservationDto(
 
 val ParkingReservation.toDto
     get() = ParkingReservationDto(pN = parkingNumber)
+
+
+val ParkingReservationDto.toData: ParkingReservation
+    get() = ParkingReservation(parkingNumber = pN)
