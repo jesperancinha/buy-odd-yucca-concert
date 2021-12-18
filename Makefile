@@ -47,3 +47,5 @@ stop:
 install:
 	nvm install --lts
 	nvm use --lts
+	brew tap kong/deck
+	brew install deck

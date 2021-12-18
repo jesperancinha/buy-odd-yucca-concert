@@ -1,5 +1,22 @@
 # Buy Odd Yucca Concert Kong Configuration and Tests
 
+## Install and setup
+
+- MAC-OS
+
+```shell
+brew tap kong/deck
+brew install deck
+``` 
+
+- Generic
+
+```shell
+deck ping
+deck sync
+deck dump
+```
+
 ## Test Endpoints
 
 1.  [http://localhost:8001/config](http://localhost:8001/config) - Kong Endpoint Configuration
@@ -14,16 +31,18 @@
 #### 1.  Rate Limiting
 
 ```shell
-curl -X POST http://localhost:8001/services/yucca-ticket/plugins \
+curl -i -X POST http://localhost:8001/services/buy-oyc-ticket-service/plugins \
     --data "name=rate-limiting"  \
     --data "config.second=5" \
     --data "config.hour=10000" \
     --data "config.policy=local" \
     --data "config.fault_tolerant=true" \
-    --data "config.hide_client_headers=false" \
-    --data "config.redis_ssl=false" \
-    --data "config.redis_ssl_verify=false"
+    --data "config.hide_client_headers=false"
 ```
+
+## References
+
+- [Getting started with decK](https://docs.konghq.com/deck/1.8.x/guides/getting-started/)
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 
