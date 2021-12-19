@@ -27,7 +27,5 @@ class TicketController(
         } ?: status(HttpStatus.NOT_FOUND)
 
     @Get(value = "/", produces = [MediaType.APPLICATION_JSON])
-    fun getAllParkingReservations(): Flow<Ticket> {
-        return ticketRepository.findAll()
-    }
+    fun getAllParkingReservations(): Flow<Ticket> =  ticketRepository.findAll()
 }
