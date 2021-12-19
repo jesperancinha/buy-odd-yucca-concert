@@ -2,14 +2,14 @@
 
 ## Install and setup
 
-- MAC-OS
+-   MAC-OS
 
 ```shell
 brew tap kong/deck
 brew install deck
 ``` 
 
-- Generic
+-   Generic
 
 ```shell
 deck ping
@@ -42,7 +42,7 @@ curl -i -X POST http://localhost:8001/services/buy-oyc-ticket-service/plugins \
 
 ## References
 
-- [Getting started with decK](https://docs.konghq.com/deck/1.8.x/guides/getting-started/)
+-   [Getting started with decK](https://docs.konghq.com/deck/1.8.x/guides/getting-started/)
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 
