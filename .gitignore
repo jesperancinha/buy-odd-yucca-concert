@@ -50,3 +50,6 @@ kong.conf
 kong_prefix_vol
 kong_tmp_vol
 kong_*
+
+# Generated files
+dependency-reduced-pom.xml
