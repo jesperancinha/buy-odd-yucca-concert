@@ -8,7 +8,16 @@
 [![CircleCI](https://circleci.com/gh/jesperancinha/buy-odd-yucca-concert/tree/master.svg?style=svg)](https://circleci.com/gh/jesperancinha/buy-odd-yucca-concert/tree/master)
 [![buy-odd-yucca-concert](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert.yml/badge.svg)](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert.yml)
 
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/6a3c3910140f433e9092239a88b73de6)](https://www.codacy.com/gh/jesperancinha/buy-odd-yucca-concert/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/buy-odd-yucca-concert&amp;utm_campaign=Badge_Grade)	
 [![Known Vulnerabilities](https://snyk.io/test/github/jesperancinha/buy-odd-yucca-concert/badge.svg)](https://snyk.io/test/github/jesperancinha/buy-odd-yucca-concert)
+
+[![codecov](https://codecov.io/gh/jesperancinha/buy-odd-yucca-concert/branch/master/graph/badge.svg?token=9Q3q61ry36)](https://codecov.io/gh/jesperancinha/buy-odd-yucca-concert)
+[![Coverage Status](https://coveralls.io/repos/github/jesperancinha/buy-odd-yucca-concert/badge.svg?branch=master)](https://coveralls.io/github/jesperancinha/buy-odd-yucca-concert?branch=master)
+
+
+[![GitHub language count](https://img.shields.io/github/languages/count/jesperancinha/buy-odd-yucca-concert.svg)](#)
+[![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/buy-odd-yucca-concert.svg)](#)
+[![GitHub top language](https://img.shields.io/github/languages/code-size/jesperancinha/buy-odd-yucca-concert.svg)](#)
 
 ---
 
