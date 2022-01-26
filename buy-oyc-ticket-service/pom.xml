@@ -6,7 +6,7 @@
     <parent>
         <artifactId>buy-odd-yucca-concert</artifactId>
         <groupId>org.jesperancinha.concert</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>0.0.0-SNAPSHOT</version>
     </parent>
 
     <artifactId>buy-oyc-ticket-service</artifactId>
