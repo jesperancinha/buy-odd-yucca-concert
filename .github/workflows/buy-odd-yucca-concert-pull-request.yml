@@ -1,4 +1,4 @@
-name: buy-odd-yucca-concert
+name: buy-odd-yucca-concert-pull_request
 
 on:
   pull_request:
