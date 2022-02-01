@@ -14,9 +14,18 @@ jobs:
           with:
             java-version: '17'
             distribution: 'adopt'
+        - uses: actions/setup-node@v2
+          with:
+            node-version: '16'
+
+        - name: Install Jest
+           run: yarn add jest
 
         - name: Build and Test
           run:  mvn clean install jacoco:prepare-agent package jacoco:report
+
+        - name: Node Coverage
+          run: cd buy-odd-yucca-gui && jest --coverage
 
         - name: Coverage Reports
           run: mvn omni-coveragereporter:report

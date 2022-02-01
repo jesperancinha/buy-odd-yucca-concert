@@ -20,6 +20,10 @@ docker:
 	docker-compose up -d --build --remove-orphans
 	chmod -R 777 kong_tmp
 docker-databases: stop local
+coverage:
+	mvn clean install jacoco:prepare-agent package jacoco:report
+	cd buy-odd-yucca-gui && jest --coverage
+	mvn omni-coveragereporter:report
 build-images:
 build-docker: stop no-test build-npm
 	docker-compose up -d --build --remove-orphans
