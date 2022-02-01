@@ -19,13 +19,13 @@ jobs:
             node-version: '16'
 
         - name: Install Jest
-          run: cd buy-odd-yucca-gui && yarn add jest
+          run: cd buy-odd-yucca-gui && yarn && yarn add jest
 
         - name: Build and Test
           run:  mvn clean install jacoco:prepare-agent package jacoco:report
 
         - name: Node Coverage
-          run: cd buy-odd-yucca-gui && jest --coverage
+          run: cd buy-odd-yucca-gui && npm run coverage
 
         - name: Coverage Reports
           run: mvn omni-coveragereporter:report
