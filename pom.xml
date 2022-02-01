@@ -25,7 +25,7 @@
         <exec.mainClass>buy.oyc.ticket.service.ApplicationKt</exec.mainClass>
         <kotlin.version>1.6.10</kotlin.version>
         <micronaut.runtime>netty</micronaut.runtime>
-        <micronaut-parent.version>3.2.7</micronaut-parent.version>
+        <micronaut-parent.version>3.3.0</micronaut-parent.version>
         <jakarta.annotation-api.version>2.1.0-B1</jakarta.annotation-api.version>
         <jakarta.persistence-api.version>3.0.0</jakarta.persistence-api.version>
         <mockk.version>1.12.2</mockk.version>
@@ -38,7 +38,7 @@
         <r2dbc-spi.version>0.9.0.RELEASE</r2dbc-spi.version>
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
         <micronaut-maven-plugin.version>3.0.2</micronaut-maven-plugin.version>
-        <omni-coveragereporter-maven-plugin.version>0.0.13</omni-coveragereporter-maven-plugin.version>
+        <omni-coveragereporter-maven-plugin.version>0.1.2</omni-coveragereporter-maven-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
     </properties>
