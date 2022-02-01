@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build test coverage report:
+  build-test-coverage-report:
     runs-on: ubuntu-latest
     steps:
         - uses: actions/checkout@v2
