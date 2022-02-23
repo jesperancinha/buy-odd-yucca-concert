@@ -56,10 +56,17 @@ This project is built upon node v16.13.1
 
 ## Endpoints
 
+#### API
+
 -   [http://localhost:8080](http://localhost:8080)
 -   [http://localhost:8000/api/yucca-ticket/](http://localhost:8000/api/yucca-ticket/)
 -   [http://localhost:8000/api/yucca-parking/](http://localhost:8000/api/yucca-parking/)
 -   [http://localhost:8000/api/yucca-catering/](http://localhost:8000/api/yucca-catering/)
+
+#### Routes
+
+- [Main](http://localhost:8001)
+- [Routes](http://localhost:8001/routes)
 
 ## References
 

@@ -15,7 +15,7 @@ import java.util.*
 /**
  * Created by jofisaes on 19/12/2021
  */
-@MappedEntity(value = "parking_reservation", namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
+@MappedEntity(value = "ticket_reservation", namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
 data class Ticket(
     @field: Id
     @field: AutoPopulated
