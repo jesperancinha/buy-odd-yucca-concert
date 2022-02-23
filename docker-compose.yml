@@ -41,7 +41,7 @@ services:
   kong:
     hostname: kong
     container_name: kong
-    image: "${KONG_DOCKER_TAG:-kong:2.6.0}"
+    image: "${KONG_DOCKER_TAG:-kong:2.7.1}"
     user: "${KONG_USER:-kong}"
     environment:
       <<: *kong-env
