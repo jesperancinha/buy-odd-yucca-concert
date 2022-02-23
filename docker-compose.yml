@@ -121,7 +121,7 @@ services:
       - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple
 
   localstack:
-    image: localstack/localstack:0.13.0
+    image: localstack/localstack:0.14.0
     hostname: localstack
     container_name: localstack
     ports:
