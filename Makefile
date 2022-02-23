@@ -19,6 +19,8 @@ docker:
 	mkdir -p kong_prefix kong_tmp kong_data
 	docker-compose up -d --build --remove-orphans
 	chmod -R 777 kong_tmp
+kong-setup:
+	cd kong && deck sync
 docker-databases: stop local
 coverage:
 	mvn clean install jacoco:prepare-agent package jacoco:report

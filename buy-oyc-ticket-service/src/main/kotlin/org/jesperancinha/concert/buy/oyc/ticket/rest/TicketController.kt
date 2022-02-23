@@ -9,15 +9,15 @@ import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.Post
 import kotlinx.coroutines.flow.Flow
-import org.jesperancinha.concert.buy.oyc.commons.domain.Ticket
 import org.jesperancinha.concert.buy.oyc.commons.domain.TicketRepository
+import org.jesperancinha.concert.buy.oyc.commons.domain.TicketReservation
 import org.jesperancinha.concert.buy.oyc.ticket.dto.TicketDto
 import org.jesperancinha.concert.buy.oyc.ticket.dto.toData
 import javax.validation.Valid
 
 @Controller("/api")
 class TicketController(
-    private val ticketRepository: TicketRepository
+    private val ticketRepository: TicketRepository,
 ) {
     @Post
     suspend fun saveParkingReservation(@Body ticketDto: @Valid TicketDto?): MutableHttpResponse<Pair<Int, String>> =
@@ -27,5 +27,5 @@ class TicketController(
         } ?: status(HttpStatus.NOT_FOUND)
 
     @Get(value = "/", produces = [MediaType.APPLICATION_JSON])
-    fun getAllParkingReservations(): Flow<Ticket> =  ticketRepository.findAll()
+    fun getAllParkingReservations(): Flow<TicketReservation> = ticketRepository.findAll()
 }

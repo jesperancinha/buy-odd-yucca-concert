@@ -15,6 +15,7 @@ brew install deck
 deck ping
 deck sync
 deck dump
+deck reset -f
 ```
 
 ## Test Endpoints

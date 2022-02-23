@@ -16,7 +16,7 @@ import java.util.*
  * Created by jofisaes on 19/12/2021
  */
 @MappedEntity(value = "ticket_reservation", namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
-data class Ticket(
+data class TicketReservation(
     @field: Id
     @field: AutoPopulated
     val id: UUID? = null,
@@ -25,5 +25,5 @@ data class Ticket(
 )
 
 @R2dbcRepository(dialect = Dialect.POSTGRES)
-interface TicketRepository : CoroutineCrudRepository<Ticket, UUID>,
-    CoroutineJpaSpecificationExecutor<Ticket>
+interface TicketRepository : CoroutineCrudRepository<TicketReservation, UUID>,
+    CoroutineJpaSpecificationExecutor<TicketReservation>

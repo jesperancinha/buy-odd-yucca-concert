@@ -50,6 +50,24 @@ nvm-install.sh
 node -v
 ```
 
+## How to run
+
+#### 1 - Run docker
+
+```shell
+make docker-clean-build-start
+```
+
+#### 2 - Load Kong Settings
+
+Wait for containers to start (usually no more than 10 seconds).
+
+```shell
+make kong-setup
+```
+
+## Settings
+
 This project is built upon node v16.13.1
 
 [NVM-SH](https://github.com/nvm-sh/nvm/blob/master/README.md)
