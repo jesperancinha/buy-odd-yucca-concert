@@ -55,6 +55,11 @@ node -v
 #### 1 - Run docker
 
 ```shell
+sudo usermod -a -G docker $(whoami)
+newgrp docker
+```
+
+```shell
 make docker-clean-build-start
 ```
 
