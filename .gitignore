@@ -45,7 +45,7 @@ node_modules
 .csv
 
 # Kong Files
-kong_data
+kong_datas
 kong.conf
 kong_prefix_vol
 kong_tmp_vol
@@ -53,3 +53,6 @@ kong_*
 
 # Generated files
 dependency-reduced-pom.xml
+
+# Draw IO
+*.dtmp

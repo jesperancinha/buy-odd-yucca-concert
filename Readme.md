@@ -77,6 +77,25 @@ This project is built upon node v16.13.1
 
 [NVM-SH](https://github.com/nvm-sh/nvm/blob/master/README.md)
 
+## Docker Usages
+
+#### Using Containers
+```shell
+docker exec -it buy-oyc-nginx /bin/bash
+docker exec -it kong /bin/bash
+docker exec -it buy-oyc-parking /bin/bash
+docker exec -it buy-oyc-ticket /bin/bash
+```
+
+#### Endpoints from inside Docker
+
+
+- [http://192.168.0.21:8000/api/yucca-ticket](http://192.168.0.21:8000/api/yucca-ticket)
+
+```shell
+curl http://192.168.0.21:8000/api/yucca-ticket
+```
+
 ## Endpoints
 
 #### API
