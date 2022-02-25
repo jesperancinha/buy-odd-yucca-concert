@@ -12,6 +12,13 @@ import io.micronaut.data.repository.kotlin.CoroutineCrudRepository
 import java.time.LocalDateTime
 import java.util.*
 
+@MappedEntity(value = "car_parking", namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
+data class CarParking(
+    @field: Id
+    @field: AutoPopulated
+    val id: UUID? = null,
+    val parkingNumber: Long
+)
 @MappedEntity(value = "parking_reservation", namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
 data class ParkingReservation(
     @field: Id

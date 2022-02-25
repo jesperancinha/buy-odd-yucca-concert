@@ -9,6 +9,9 @@ import io.micronaut.data.model.query.builder.sql.Dialect
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository
 import io.micronaut.data.repository.jpa.kotlin.CoroutineJpaSpecificationExecutor
 import io.micronaut.data.repository.kotlin.CoroutineCrudRepository
+import jakarta.persistence.Column
+import java.net.Inet4Address
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
 
@@ -20,6 +23,13 @@ data class TicketReservation(
     @field: Id
     @field: AutoPopulated
     val id: UUID? = null,
+    val reference: UUID = UUID.randomUUID(),
+    val name:String,
+    val address: String,
+    val birthDate:LocalDate,
+    val concertDays: List<String> = emptyList(),
+    val meals: List<String> = emptyList(),
+    val carParkingTicket: String? = null,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now(),
 )

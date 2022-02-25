@@ -10,13 +10,25 @@ import io.micronaut.data.r2dbc.annotation.R2dbcRepository
 import io.micronaut.data.repository.jpa.kotlin.CoroutineJpaSpecificationExecutor
 import io.micronaut.data.repository.kotlin.CoroutineCrudRepository
 import java.math.BigDecimal
-import java.math.BigInteger
 import java.time.LocalDateTime
 import java.util.*
 
 enum class BoxType {
     XS, S, M, L, XL
 }
+
+@MappedEntity(value = "drink", namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
+data class Drink(
+    @field: Id
+    @field: AutoPopulated
+    val id: UUID,
+    val name: String,
+    val width: Long,
+    val height: Long,
+    val shape: String,
+    val volume: String,
+    val price: BigDecimal,
+)
 
 /**
  * Created by jofisaes on 18/12/2021
