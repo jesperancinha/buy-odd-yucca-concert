@@ -1,17 +1,49 @@
-version: 2.1
+version: 2
 jobs:
-  build-and-test:
-    docker:
-      - image: cimg/openjdk:17.0
+  build-maven:
+    machine:
+      image: ubuntu-2004:202010-01
+
+
+    working_directory: ~/repo
+
     steps:
       - checkout
+
       - run:
-          name: Build
-          command: mvn -B -DskipTests clean package
+          name: Install SDK 17
+          command: wget https://download.java.net/java/GA/jdk17.0.2/dfd4a8d0985749f896bed50d7138ee7f/8/GPL/openjdk-17.0.2_linux-x64_bin.tar.gz &&
+            tar xvf openjdk-17.0.2_linux-x64_bin.tar.gz &&
+            sudo mv jdk-17*/ /opt/jdk17 &&
+            export JAVA_HOME=/opt/jdk17 &&
+            export PATH=$PATH:$JAVA_HOME/bin
+
       - run:
-          name: Test
-          command: mvn test
+          name: Maven Clean Install
+          command: export JAVA_HOME=/opt/jdk17 &&
+             export PATH=$PATH:$JAVA_HOME/bin &&
+             mvn clean install
+
+  build-yarn:
+    docker:
+      - image: cimg/node:17.3.1
+
+    working_directory: ~/repo
+
+    steps:
+      - checkout
+
+      - run:
+          command: yarn install --force
+          working_directory: buy-odd-yucca-gui
+
+      - run:
+          command: yarn
+          working_directory: buy-odd-yucca-gui
+
 workflows:
-  sample:
+  version: 2
+  build_all:
     jobs:
-      - build-and-test
+      - build-maven
+      - build-yarn
