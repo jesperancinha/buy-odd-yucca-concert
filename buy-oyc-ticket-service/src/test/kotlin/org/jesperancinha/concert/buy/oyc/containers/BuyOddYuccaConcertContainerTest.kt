@@ -13,9 +13,12 @@ abstract class BuyOddYuccaConcertContainerTest {
             .withUsername("kong")
             .withPassword("kong")
             .withDatabaseName("yucca")
+            .withExtraHost("localhost", "127.0.0.1")
+            .withExposedPorts(5432)
 
         init {
             postgreSQLContainer.start()
         }
     }
+
 }

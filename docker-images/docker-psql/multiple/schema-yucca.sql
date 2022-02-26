@@ -20,7 +20,10 @@ drop table if exists ticket.ticket_reservation;
 
 create table if not exists ticket.ticket_reservation
 (
-    id             UUID               DEFAULT gen_random_uuid(),
-    created_at     TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
+    id         UUID               DEFAULT gen_random_uuid(),
+    reference  UUID      NOT NULL UNIQUE,
+    created_at TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id)
 );
+
+DROP TABLE IF EXISTS ticket_reservation;
