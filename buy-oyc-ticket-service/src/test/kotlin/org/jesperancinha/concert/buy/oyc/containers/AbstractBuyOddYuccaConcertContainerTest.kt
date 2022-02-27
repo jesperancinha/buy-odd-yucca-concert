@@ -9,7 +9,7 @@ import org.testcontainers.junit.jupiter.Container
 
 class TestPostgresSQLContainer(imageName: String) : PostgreSQLContainer<TestPostgresSQLContainer>(imageName)
 
-abstract class BuyOddYuccaConcertContainerTest(
+abstract class AbstractBuyOddYuccaConcertContainerTest(
 ) {
     companion object {
         @Container
