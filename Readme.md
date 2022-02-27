@@ -110,6 +110,18 @@ curl http://192.168.0.21:8000/api/yucca-ticket
 - [Main](http://localhost:8001)
 - [Routes](http://localhost:8001/routes)
 
+#### Security Report
+
+```shell
+mvn clean install -Powasp
+```
+Read report after running:
+
+- [buy-oyc-commons](buy-oyc-commons/target/dependency-check-report.html)
+- [buy-oyc-catering-service](buy-oyc-catering-service/target/dependency-check-report.html)
+- [buy-oyc-parking-service](buy-oyc-parking-service/target/dependency-check-report.html)
+- [buy-oyc-ticket-service](buy-oyc-ticket-service/target/dependency-check-report.html)
+
 ## References
 
 #### Online
