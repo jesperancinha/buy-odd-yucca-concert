@@ -45,7 +45,7 @@
         <kotlin.version>1.6.20-RC</kotlin.version>
         <kotlinx-coroutines-test.version>1.6.0</kotlinx-coroutines-test.version>
         <testcontainers.version>1.16.3</testcontainers.version>
-        <micronaut-flyway.version>5.1.2</micronaut-flyway.version>
+        <micronaut-flyway.version>5.1.3</micronaut-flyway.version>
     </properties>
 
     <build>
