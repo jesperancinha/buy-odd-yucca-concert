@@ -57,3 +57,9 @@ install:
 	brew install deck
 locust-welcome-start:
 	cd locust/welcome && locust --host=localhost
+install-update:
+	npm i -g snyk
+	npm install -g npm-check-updates
+	cd buy-odd-yucca-gui && ncu -u && yarn
+audit:
+	cd buy-odd-yucca-gui && npm audit fix && yarn
