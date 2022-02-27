@@ -15,12 +15,14 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.testcontainers.junit.jupiter.Testcontainers
+import java.time.LocalDate
+import javax.transaction.Transactional
 
 /**
  * Created by jofisaes on 25/02/2022
  */
 @Testcontainers
-@MicronautTest(startApplication = false)
+@MicronautTest
 class TicketReservationTest @Inject constructor(
     private val ticketRepository: TicketRepository,
 ) : BuyOddYuccaConcertContainerTest() {
@@ -30,16 +32,24 @@ class TicketReservationTest @Inject constructor(
     @BeforeEach
     fun beforeEach() {
         postgreSQLContainer.start()
-
         config.setDataSource(postgreSQLContainer.jdbcUrl, postgreSQLContainer.username, postgreSQLContainer.password)
         config.schemas = arrayOf("ticket")
-
         Flyway(config).migrate()
     }
 
     @Test
     fun `should read an empty ticket list from repository`() = runTest {
         ticketRepository.findAll().toList().shouldBeEmpty()
+    }
+
+    @Test
+    fun `should save simple ticket to repository`() = runTest {
+        val ticketReservation = TicketReservation(
+            name = "Joao",
+            birthDate = LocalDate.now(),
+            address = "Road to nowhere"
+        )
+        ticketRepository.save(ticketReservation)
     }
 
     @AfterEach
