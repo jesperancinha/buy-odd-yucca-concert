@@ -114,6 +114,8 @@ curl http://192.168.0.21:8000/api/yucca-ticket
 
 #### Online
 
+- [Using Micronaut Data, JDBC, R2DBC, TestContainers, and Flyway with multiple schemas](https://www.zsiegel.com/2022/01/25/Micronaut-JDBC-R2DBC-Flyway-multiple-schemas)
+- [Realtime Testing: Micronaut, Postgres and Testcontainer](https://blog.pallav.dev/realtime-testing-micronaut-postgres-and-testcontainer)
 - [Entity-Relationship Diagram Symbols and Notation](https://www.lucidchart.com/pages/ER-diagram-symbols-and-meaning)
 - [MICRONAUT 1.0 RC1 AND THE POWER OF AHEAD-OF-TIME COMPILATION](https://micronaut.io/2018/09/30/micronaut-1-0-rc1-and-the-power-of-ahead-of-time-compilation/)
 - [Building Micronaut applications with Micronaut Data R2dbc and Kotlin Coroutines](https://itnext.io/building-micronaut-applications-with-micronaut-data-r2dbc-and-kotlin-coroutines-a1416db5a7d0)

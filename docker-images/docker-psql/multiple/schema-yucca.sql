@@ -25,5 +25,3 @@ create table if not exists ticket.ticket_reservation
     created_at TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id)
 );
-
-DROP TABLE IF EXISTS ticket_reservation;
