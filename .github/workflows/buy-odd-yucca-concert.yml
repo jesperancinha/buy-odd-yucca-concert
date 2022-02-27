@@ -39,5 +39,8 @@ jobs:
              CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
              CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
 
-        - name: Security Check
+        - name: Maven OWASP Security Check
           run: mvn clean install -Powasp
+
+        - name: NPM Snyk Security Check
+          run: cd buy-odd-yucca-gui && yarn install && npm run snyk
