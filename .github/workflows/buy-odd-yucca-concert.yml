@@ -44,3 +44,5 @@ jobs:
 
         - name: NPM Snyk Security Check
           run: cd buy-odd-yucca-gui && rm package-lock.json && yarn install && npm run snyk
+          env:
+             SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
