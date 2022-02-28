@@ -3,6 +3,7 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
 import io.kotest.matchers.collections.shouldBeEmpty
+import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.comparables.shouldBeEqualComparingTo
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
@@ -20,6 +21,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.testcontainers.junit.jupiter.Testcontainers
 import java.time.LocalDate
+import javax.transaction.Transactional
 
 /**
  * Created by jofisaes on 25/02/2022
@@ -28,6 +30,7 @@ import java.time.LocalDate
 @MicronautTest
 class TicketReservationTest @Inject constructor(
     private val ticketRepository: TicketRepository,
+    private val parkingReservationRepository: ParkingReservationRepository
 ) : AbstractBuyOddYuccaConcertContainerTest() {
 
     private val config = ClassicConfiguration()
@@ -46,6 +49,7 @@ class TicketReservationTest @Inject constructor(
     }
 
     @Test
+    @Transactional
     fun `should save simple ticket to repository`() = runTest {
         val birthDate = LocalDate.now()
         val ticketReservation = TicketReservation(
@@ -64,6 +68,36 @@ class TicketReservationTest @Inject constructor(
         meals.shouldBeEmpty()
         carParkingTicket.shouldBeNull()
         createdAt.shouldNotBeNull()
+    }
+
+    @Test
+    @Transactional
+    fun `should save complete ticket to repository`() = runTest {
+        val carParkingTicket = ParkingReservation(parkingNumber = 10)
+        val birthDate = LocalDate.now()
+        val savedParkingReservation = parkingReservationRepository.save(carParkingTicket)
+        val (idParkingTicket, parkingNumber, createdAt1) = savedParkingReservation
+        val ticketReservation = TicketReservation(
+            name = "João",
+            birthDate = birthDate,
+            address = "Road to nowhere",
+            carParkingTicket = savedParkingReservation
+        )
+        val (id, reference, name, address, birthDateResult, concertDays, meals, carParkingTicketResult, createdAt)
+                = ticketRepository.save(ticketReservation)
+        id.shouldNotBeNull()
+        name shouldBe "João"
+        reference.shouldNotBeNull()
+        address shouldBe "Road to nowhere"
+        birthDateResult shouldBeEqualComparingTo birthDate
+        concertDays.shouldBeEmpty()
+        meals.shouldBeEmpty()
+        createdAt.shouldNotBeNull()
+        carParkingTicketResult.shouldNotBeNull()
+        parkingReservationRepository.findAll().toList().shouldNotBeEmpty()
+        idParkingTicket.shouldNotBeNull()
+        parkingNumber shouldBe 10
+        createdAt1.shouldNotBeNull()
     }
 
     @AfterEach

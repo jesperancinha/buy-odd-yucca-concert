@@ -2,7 +2,11 @@ create schema if not exists parking;
 
 create schema if not exists ticket;
 
-create table if not exists parking.parking_reservation
+drop table  if exists ticket.parking_reservation;
+
+drop table  if exists ticket.ticket_reservation;
+
+create table if not exists ticket.parking_reservation
 (
     id             UUID               DEFAULT gen_random_uuid(),
     parking_number bigint    NOT NULL,
@@ -24,5 +28,5 @@ create table if not exists ticket.ticket_reservation
     PRIMARY KEY (id),
     CONSTRAINT fk_car_parking_ticket
         FOREIGN KEY (car_parking_ticket_id)
-            REFERENCES parking.parking_reservation (id)
+            REFERENCES ticket.parking_reservation (id)
 );
