@@ -169,6 +169,7 @@
                     <jvmTarget>${java.version}</jvmTarget>
                     <compilerPlugins>
                         <plugin>all-open</plugin>
+                        <plugin>no-arg</plugin>
                     </compilerPlugins>
                     <pluginOptions>
                         <option>all-open:annotation=io.micronaut.aop.Around</option>

@@ -3,7 +3,9 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
 import io.kotest.matchers.collections.shouldBeEmpty
+import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.comparables.shouldBeEqualComparingTo
+import io.kotest.matchers.equality.shouldBeEqualToComparingFields
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
@@ -79,15 +81,23 @@ class TicketReservationTest @Inject constructor(
         carParkingResult.shouldNotBeNull()
         carParkingResult.id.shouldNotBeNull()
 
-//        val parkingTicket = ParkingReservation(carParking = carParkingResult)
-//        val savedParkingReservation = parkingReservationRepository.save(parkingTicket)
-//        val (idParkingTicket, carParkingOnReservation) = savedParkingReservation
+        val parkingReservation = ParkingReservation(carParking = carParkingResult)
+        val savedParkingReservation = parkingReservationRepository.save(parkingReservation)
+        val (idParkingTicket, carParkingOnReservation) = savedParkingReservation
+
+        idParkingTicket.shouldNotBeNull()
+        carParkingOnReservation.shouldNotBeNull()
+        parkingReservation.shouldBeEqualToComparingFields(savedParkingReservation)
+        carParkingOnReservation.parkingNumber shouldBe 10
+        carParkingOnReservation.id shouldBe carParkingResult.id
+        carParkingOnReservation.parkingNumber shouldBe carParkingResult.parkingNumber
+
         val birthDate = LocalDate.now()
         val ticketReservation = TicketReservation(
             name = "João",
             birthDate = birthDate,
             address = "Road to nowhere",
-//            parkingReservation = savedParkingReservation
+            parkingReservation = savedParkingReservation
         )
         val (id, reference, name, address, birthDateResult, concertDays, meals, carParkingTicketResult, createdAt)
                 = ticketRepository.save(ticketReservation)
@@ -99,12 +109,12 @@ class TicketReservationTest @Inject constructor(
         concertDays.shouldBeEmpty()
         meals.shouldBeEmpty()
         createdAt.shouldNotBeNull()
-//        carParkingTicketResult.shouldNotBeNull()
-//        carParkingTicketResult.id.shouldNotBeNull()
-//        parkingReservationRepository.findAll().toList().shouldNotBeEmpty()
-//        idParkingTicket.shouldNotBeNull()
-//        carParkingOnReservation.shouldNotBeNull()
-//        carParkingOnReservation.parkingNumber shouldBe 10
+        carParkingTicketResult.shouldNotBeNull()
+        carParkingTicketResult.idPR.shouldNotBeNull()
+        parkingReservationRepository.findAll().toList().shouldNotBeEmpty()
+        idParkingTicket.shouldNotBeNull()
+        carParkingOnReservation.shouldNotBeNull()
+        carParkingOnReservation.parkingNumber shouldBe 10
     }
 
     @AfterEach

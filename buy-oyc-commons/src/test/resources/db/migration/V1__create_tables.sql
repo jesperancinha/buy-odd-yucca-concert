@@ -19,10 +19,10 @@ create table if not exists ticket.car_parking
 
 create table if not exists ticket.parking_reservation
 (
-    id             UUID               DEFAULT gen_random_uuid(),
+    id_pr          UUID      NOT NULL,
     car_parking_id UUID      NULL,
     created_at     TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
-    PRIMARY KEY (id),
+    PRIMARY KEY (id_pr),
     CONSTRAINT fk_car_parking
         FOREIGN KEY (car_parking_id)
             REFERENCES ticket.car_parking (id)
@@ -30,7 +30,7 @@ create table if not exists ticket.parking_reservation
 
 create table if not exists ticket.ticket_reservation
 (
-    id                     UUID               DEFAULT gen_random_uuid(),
+    id                     UUID      NOT NULL DEFAULT gen_random_uuid(),
     name                   varchar,
     address                varchar,
     birth_date             date,
@@ -40,5 +40,5 @@ create table if not exists ticket.ticket_reservation
     PRIMARY KEY (id),
     CONSTRAINT fk_parking_reservation
         FOREIGN KEY (parking_reservation_id)
-            REFERENCES ticket.parking_reservation (id)
+            REFERENCES ticket.parking_reservation (id_pr)
 );

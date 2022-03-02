@@ -2,7 +2,6 @@ package org.jesperancinha.concert.buy.oyc.commons.domain
 
 import io.micronaut.data.annotation.*
 import io.micronaut.data.annotation.Relation.Kind.ONE_TO_ONE
-import io.micronaut.data.model.naming.NamingStrategies
 import io.micronaut.data.model.naming.NamingStrategies.UnderScoreSeparatedLowerCase
 import io.micronaut.data.model.query.builder.sql.Dialect
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository
@@ -21,13 +20,13 @@ data class CarParking(
     val createdAt: LocalDateTime? = LocalDateTime.now()
 )
 
-@MappedEntity(value = "parking_reservation", namingStrategy = UnderScoreSeparatedLowerCase::class)
+@MappedEntity(namingStrategy = UnderScoreSeparatedLowerCase::class)
 data class ParkingReservation(
     @field: Id
     @field: AutoPopulated
-    val id: UUID? = null,
+    var idPR: UUID? = null,
     @field: Relation(value = ONE_TO_ONE, cascade = [Relation.Cascade.PERSIST])
-    val carParking: CarParking? = null,
+    var carParking: CarParking? = null,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now()
 )
