@@ -109,6 +109,7 @@
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-test</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>io.micronaut.flyway</groupId>
