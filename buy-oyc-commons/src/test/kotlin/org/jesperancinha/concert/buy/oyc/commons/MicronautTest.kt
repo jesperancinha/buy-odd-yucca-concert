@@ -7,14 +7,13 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
 
 @MicronautTest
-class BuyOycCommonsTest(
+class MicronautTest(
     @Inject
     val application: EmbeddedApplication<*>
 ) {
 
-
     @Test
-    fun testItWorks() {
+    fun `should start a Micronaut application`() {
         Assertions.assertTrue(application.isRunning)
     }
 

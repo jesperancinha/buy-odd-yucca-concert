@@ -31,7 +31,7 @@ create table if not exists ticket.parking_reservation
 
 create table if not exists ticket.concert_day
 (
-    id          UUID         NOT NULL,
+    id          UUID                  DEFAULT gen_random_uuid(),
     name        varchar(255) NULL,
     description varchar(255) NULL,
     date        TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
@@ -41,13 +41,25 @@ create table if not exists ticket.concert_day
 
 create table if not exists ticket.drink
 (
-    id         UUID         NOT NULL,
+    id         UUID                  DEFAULT gen_random_uuid(),
     name       varchar(255) NULL,
     width      bigint,
     height     bigint,
     shape      varchar(255),
     volume     bigint,
     price      numeric,
+    created_at TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+create table if not exists ticket.meal
+(
+    id         UUID                  DEFAULT gen_random_uuid(),
+    coupon     UUID         NOT NULL,
+    box_type   varchar(255) NULL,
+    discount   bigint,
+    price      numeric,
+    processed  boolean,
     created_at TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id)
 );

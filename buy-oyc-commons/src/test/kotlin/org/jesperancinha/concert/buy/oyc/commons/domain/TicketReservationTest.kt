@@ -17,6 +17,7 @@ import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
 import org.flywaydb.core.Flyway
 import org.flywaydb.core.api.configuration.ClassicConfiguration
+import org.jesperancinha.concert.buy.oyc.commons.domain.BoxType.XL
 import org.jesperancinha.concert.buy.oyc.containers.AbstractContainerTest
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
@@ -117,6 +118,15 @@ class TicketReservationTest @Inject constructor(
                 price = BigDecimal(10)
             )
         )
+
+        val meal = mealRepository.save(
+            Meal(
+                boxType = XL,
+                discount = 10,
+                price = BigDecimal(80)
+
+            )
+        )
         val birthDate = LocalDate.now()
         val ticketReservation = TicketReservation(
             name = "João",
@@ -124,7 +134,8 @@ class TicketReservationTest @Inject constructor(
             address = "Road to nowhere",
             parkingReservation = savedParkingReservation,
             concertDays = listOf(concertDay),
-            drinks = listOf(drink)
+            drinks = listOf(drink),
+            meals = listOf(meal)
         )
         val (id, reference, name, address, birthDateResult, concertDays, meals, drinks, carParkingTicketResult, createdAt) = ticketRepository.save(
             ticketReservation
@@ -148,7 +159,12 @@ class TicketReservationTest @Inject constructor(
         firstDrink.shape shouldBe "bottle"
         firstDrink.volume shouldBe 33
         firstDrink.price shouldBe BigDecimal(10)
-        meals.shouldBeEmpty()
+        meals.shouldHaveSize(1)
+        val firstMeal = meals.first()
+        firstMeal.shouldNotBeNull()
+        firstMeal.boxType shouldBe XL
+        firstMeal.discount shouldBe 10
+        firstMeal.price shouldBe BigDecimal(80)
         createdAt.shouldNotBeNull()
         carParkingTicketResult.shouldNotBeNull()
         carParkingTicketResult.idPR.shouldNotBeNull()

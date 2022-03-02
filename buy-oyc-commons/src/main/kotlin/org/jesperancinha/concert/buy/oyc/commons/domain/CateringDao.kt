@@ -37,12 +37,12 @@ data class Drink(
 data class Meal(
     @field: Id
     @field: AutoPopulated
-    val id: UUID,
+    val id: UUID? = null,
+    val coupon: UUID = UUID.randomUUID(),
     val boxType: BoxType,
-    val coupon: UUID,
     val discount: Long,
     val price: BigDecimal,
-    val processed: Boolean,
+    val processed: Boolean = false,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now(),
 )
