@@ -21,12 +21,12 @@ enum class BoxType {
 data class Drink(
     @field: Id
     @field: AutoPopulated
-    val id: UUID,
+    val id: UUID? = null,
     val name: String,
     val width: Long,
     val height: Long,
     val shape: String,
-    val volume: String,
+    val volume: Long,
     val price: BigDecimal,
 )
 
@@ -46,6 +46,10 @@ data class Meal(
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now(),
 )
+
+@R2dbcRepository(dialect = Dialect.POSTGRES)
+interface DrinkRepository : CoroutineCrudRepository<Drink, UUID>,
+    CoroutineJpaSpecificationExecutor<Drink>
 
 @R2dbcRepository(dialect = Dialect.POSTGRES)
 interface MealRepository : CoroutineCrudRepository<Meal, UUID>,

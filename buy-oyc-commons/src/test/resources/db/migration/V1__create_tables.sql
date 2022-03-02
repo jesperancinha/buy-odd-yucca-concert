@@ -5,9 +5,10 @@ create schema if not exists ticket;
 drop table if exists ticket.car_parking;
 
 drop table if exists ticket.parking_reservation;
-drop table if exists parking_reservation;
 
 drop table if exists ticket.ticket_reservation;
+
+drop table if exists ticket.drink;
 
 create table if not exists ticket.car_parking
 (
@@ -38,7 +39,18 @@ create table if not exists ticket.concert_day
     PRIMARY KEY (id)
 );
 
-
+create table if not exists ticket.drink
+(
+    id         UUID         NOT NULL,
+    name       varchar(255) NULL,
+    width      bigint,
+    height     bigint,
+    shape      varchar(255),
+    volume     bigint,
+    price      numeric,
+    created_at TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
+    PRIMARY KEY (id)
+);
 
 create table if not exists ticket.ticket_reservation
 (

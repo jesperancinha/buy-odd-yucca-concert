@@ -28,6 +28,8 @@ data class TicketReservation(
     val concertDays: List<ConcertDay> = emptyList(),
     @field: Relation(value = ONE_TO_MANY)
     val meals: List<Meal> = emptyList(),
+    @field: Relation(value = ONE_TO_MANY)
+    val drinks: List<Drink> = emptyList(),
     @field: Relation(value = ONE_TO_ONE, cascade = [Relation.Cascade.PERSIST])
     val parkingReservation: ParkingReservation? = null,
     @field:DateCreated

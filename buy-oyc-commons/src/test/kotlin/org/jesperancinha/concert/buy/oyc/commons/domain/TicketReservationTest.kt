@@ -22,6 +22,7 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.testcontainers.junit.jupiter.Testcontainers
+import java.math.BigDecimal
 import java.time.LocalDate
 import javax.transaction.Transactional
 
@@ -34,7 +35,9 @@ class TicketReservationTest @Inject constructor(
     private val ticketRepository: TicketRepository,
     private val parkingReservationRepository: ParkingReservationRepository,
     private val carParkingRepository: CarParkingRepository,
-    private val concertDayRepository: ConcertDayRepository
+    private val concertDayRepository: ConcertDayRepository,
+    private val drinkRepository: DrinkRepository,
+    private val mealRepository: MealRepository
 ) : AbstractContainerTest() {
 
     private val config = ClassicConfiguration()
@@ -61,8 +64,9 @@ class TicketReservationTest @Inject constructor(
             birthDate = birthDate,
             address = "Road to nowhere"
         )
-        val (id, reference, name, address, birthDateResult, concertDays, meals, carParkingTicket, createdAt)
-                = ticketRepository.save(ticketReservation)
+        val (id, reference, name, address, birthDateResult, concertDays, meals, drinks, carParkingTicket, createdAt) = ticketRepository.save(
+            ticketReservation
+        )
         id.shouldNotBeNull()
         name shouldBe "João"
         reference.shouldNotBeNull()
@@ -70,6 +74,7 @@ class TicketReservationTest @Inject constructor(
         birthDateResult shouldBeEqualComparingTo birthDate
         concertDays.shouldBeEmpty()
         meals.shouldBeEmpty()
+        drinks.shouldBeEmpty()
         carParkingTicket.shouldBeNull()
         createdAt.shouldNotBeNull()
     }
@@ -101,16 +106,29 @@ class TicketReservationTest @Inject constructor(
                 date = LocalDate.now()
             )
         )
+
+        val drink = drinkRepository.save(
+            Drink(
+                name = "Orange Flavour",
+                width = 5,
+                height = 10,
+                shape = "bottle",
+                volume = 33,
+                price = BigDecimal(10)
+            )
+        )
         val birthDate = LocalDate.now()
         val ticketReservation = TicketReservation(
             name = "João",
             birthDate = birthDate,
             address = "Road to nowhere",
             parkingReservation = savedParkingReservation,
-            concertDays = listOf(concertDay)
+            concertDays = listOf(concertDay),
+            drinks = listOf(drink)
         )
-        val (id, reference, name, address, birthDateResult, concertDays, meals, carParkingTicketResult, createdAt)
-                = ticketRepository.save(ticketReservation)
+        val (id, reference, name, address, birthDateResult, concertDays, meals, drinks, carParkingTicketResult, createdAt) = ticketRepository.save(
+            ticketReservation
+        )
         id.shouldNotBeNull()
         name shouldBe "João"
         reference.shouldNotBeNull()
@@ -122,6 +140,14 @@ class TicketReservationTest @Inject constructor(
         firstConcertDay.name shouldBe concertDay.name
         firstConcertDay.description shouldBe concertDay.description
         firstConcertDay.date shouldBe concertDay.date
+        drinks.shouldHaveSize(1)
+        val firstDrink = drinks.first()
+        firstDrink.shouldNotBeNull()
+        firstDrink.name shouldBe "Orange Flavour"
+        firstDrink.height shouldBe 10
+        firstDrink.shape shouldBe "bottle"
+        firstDrink.volume shouldBe 33
+        firstDrink.price shouldBe BigDecimal(10)
         meals.shouldBeEmpty()
         createdAt.shouldNotBeNull()
         carParkingTicketResult.shouldNotBeNull()
