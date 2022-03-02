@@ -137,7 +137,7 @@
     </dependencies>
 
     <build>
-        <finalName>${project.name}</finalName>
+        <finalName>runnable/${project.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>io.micronaut.build</groupId>
@@ -166,7 +166,7 @@
                             <goal>shade</goal>
                         </goals>
                         <configuration>
-                            <outputDirectory>runnable</outputDirectory>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
                         </configuration>
                     </execution>
                 </executions>
