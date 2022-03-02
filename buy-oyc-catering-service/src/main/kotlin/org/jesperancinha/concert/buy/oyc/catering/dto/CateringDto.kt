@@ -7,7 +7,7 @@ import java.util.*
 
 
 data class MealDto(
-    val mN: UUID,
+    val mN: UUID?,
 )
 
 val Meal.toDto
