@@ -26,14 +26,14 @@ jobs:
         - name: Install Jest
           run: cd buy-odd-yucca-gui && yarn && yarn add jest --dev
 
-        - name: Build and Test
-          run:  mvn clean install jacoco:prepare-agent package jacoco:report
-
         - name: Node Coverage
           run: cd buy-odd-yucca-gui && npm run coverage
 
+        - name: Build and Test
+          run:  mvn clean install jacoco:prepare-agent package jacoco:report
+
         - name: Coverage Reports
-          run: mvn omni-coveragereporter:report
+          run: mvn clean install jacoco:prepare-agent package jacoco:report omni-coveragereporter:report
           env:
              COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
              CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
