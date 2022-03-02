@@ -158,6 +158,8 @@
     </dependencies>
 
     <build>
+        <finalName>${artifactId}</finalName>
+        <sourceDirectory>src/main/kotlin</sourceDirectory>
         <plugins>
             <plugin>
                 <artifactId>kotlin-maven-plugin</artifactId>
