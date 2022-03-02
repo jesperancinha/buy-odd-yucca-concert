@@ -28,6 +28,18 @@ create table if not exists ticket.parking_reservation
             REFERENCES ticket.car_parking (id)
 );
 
+create table if not exists ticket.concert_day
+(
+    id          UUID         NOT NULL,
+    name        varchar(255) NULL,
+    description varchar(255) NULL,
+    date        TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
+    created_at  TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+
+
 create table if not exists ticket.ticket_reservation
 (
     id                     UUID      NOT NULL DEFAULT gen_random_uuid(),

@@ -3,6 +3,7 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
 import io.kotest.matchers.collections.shouldBeEmpty
+import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.comparables.shouldBeEqualComparingTo
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields
@@ -32,7 +33,8 @@ import javax.transaction.Transactional
 class TicketReservationTest @Inject constructor(
     private val ticketRepository: TicketRepository,
     private val parkingReservationRepository: ParkingReservationRepository,
-    private val carParkingRepository: CarParkingRepository
+    private val carParkingRepository: CarParkingRepository,
+    private val concertDayRepository: ConcertDayRepository
 ) : AbstractContainerTest() {
 
     private val config = ClassicConfiguration()
@@ -92,12 +94,20 @@ class TicketReservationTest @Inject constructor(
         carParkingOnReservation.id shouldBe carParkingResult.id
         carParkingOnReservation.parkingNumber shouldBe carParkingResult.parkingNumber
 
+        val concertDay = concertDayRepository.save(
+            ConcertDay(
+                name = "Cabbage Maniacs",
+                description = "Soul Music",
+                date = LocalDate.now()
+            )
+        )
         val birthDate = LocalDate.now()
         val ticketReservation = TicketReservation(
             name = "João",
             birthDate = birthDate,
             address = "Road to nowhere",
-            parkingReservation = savedParkingReservation
+            parkingReservation = savedParkingReservation,
+            concertDays = listOf(concertDay)
         )
         val (id, reference, name, address, birthDateResult, concertDays, meals, carParkingTicketResult, createdAt)
                 = ticketRepository.save(ticketReservation)
@@ -106,7 +116,12 @@ class TicketReservationTest @Inject constructor(
         reference.shouldNotBeNull()
         address shouldBe "Road to nowhere"
         birthDateResult shouldBeEqualComparingTo birthDate
-        concertDays.shouldBeEmpty()
+        concertDays.shouldHaveSize(1)
+        val firstConcertDay = concertDays.first()
+        firstConcertDay.shouldNotBeNull()
+        firstConcertDay.name shouldBe concertDay.name
+        firstConcertDay.description shouldBe concertDay.description
+        firstConcertDay.date shouldBe concertDay.date
         meals.shouldBeEmpty()
         createdAt.shouldNotBeNull()
         carParkingTicketResult.shouldNotBeNull()
