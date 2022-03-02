@@ -138,6 +138,7 @@
 
     <build>
         <finalName>${project.name}</finalName>
+        <sourceDirectory>src/main/kotlin</sourceDirectory>
         <plugins>
             <plugin>
                 <groupId>io.micronaut.build</groupId>
@@ -165,9 +166,6 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
-                        <configuration>
-                            <outputDirectory>runnable/${project.build.directory}</outputDirectory>
-                        </configuration>
                     </execution>
                 </executions>
             </plugin>
