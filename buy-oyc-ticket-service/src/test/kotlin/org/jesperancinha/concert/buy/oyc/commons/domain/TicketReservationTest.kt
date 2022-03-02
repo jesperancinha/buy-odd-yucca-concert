@@ -30,7 +30,8 @@ import javax.transaction.Transactional
 @MicronautTest
 class TicketReservationTest @Inject constructor(
     private val ticketRepository: TicketRepository,
-    private val parkingReservationRepository: ParkingReservationRepository
+    private val parkingReservationRepository: ParkingReservationRepository,
+    private val carParkingRepository: CarParkingRepository
 ) : AbstractBuyOddYuccaConcertContainerTest() {
 
     private val config = ClassicConfiguration()
@@ -73,15 +74,21 @@ class TicketReservationTest @Inject constructor(
     @Test
     @Transactional
     fun `should save complete ticket to repository`() = runTest {
-        val carParkingTicket = ParkingReservation(parkingNumber = 10)
+        val carParking = CarParking(parkingNumber = 10)
+        val carParkingResult = carParkingRepository.save(carParking)
+
+        carParkingResult.shouldNotBeNull()
+        carParkingResult.id.shouldNotBeNull()
+
+//        val parkingTicket = ParkingReservation(carParking = carParkingResult)
+//        val savedParkingReservation = parkingReservationRepository.save(parkingTicket)
+//        val (idParkingTicket, carParkingOnReservation) = savedParkingReservation
         val birthDate = LocalDate.now()
-        val savedParkingReservation = parkingReservationRepository.save(carParkingTicket)
-        val (idParkingTicket, parkingNumber, createdAt1) = savedParkingReservation
         val ticketReservation = TicketReservation(
             name = "João",
             birthDate = birthDate,
             address = "Road to nowhere",
-            carParkingTicket = savedParkingReservation
+//            parkingReservation = savedParkingReservation
         )
         val (id, reference, name, address, birthDateResult, concertDays, meals, carParkingTicketResult, createdAt)
                 = ticketRepository.save(ticketReservation)
@@ -93,11 +100,12 @@ class TicketReservationTest @Inject constructor(
         concertDays.shouldBeEmpty()
         meals.shouldBeEmpty()
         createdAt.shouldNotBeNull()
-        carParkingTicketResult.shouldNotBeNull()
-        parkingReservationRepository.findAll().toList().shouldNotBeEmpty()
-        idParkingTicket.shouldNotBeNull()
-        parkingNumber shouldBe 10
-        createdAt1.shouldNotBeNull()
+//        carParkingTicketResult.shouldNotBeNull()
+//        carParkingTicketResult.id.shouldNotBeNull()
+//        parkingReservationRepository.findAll().toList().shouldNotBeEmpty()
+//        idParkingTicket.shouldNotBeNull()
+//        carParkingOnReservation.shouldNotBeNull()
+//        carParkingOnReservation.parkingNumber shouldBe 10
     }
 
     @AfterEach

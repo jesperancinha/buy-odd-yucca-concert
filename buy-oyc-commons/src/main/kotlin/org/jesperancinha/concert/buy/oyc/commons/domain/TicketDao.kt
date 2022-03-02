@@ -29,7 +29,7 @@ data class TicketReservation(
     @field: Relation(value = ONE_TO_MANY)
     val meals: List<Meal> = emptyList(),
     @field: Relation(value = ONE_TO_ONE, cascade = [Relation.Cascade.PERSIST])
-    val carParkingTicket: ParkingReservation? = null,
+    val parkingReservation: ParkingReservation? = null,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now(),
 )

@@ -1,5 +1,6 @@
 package org.jesperancinha.concert.buy.oyc.parking.dto
 
+import org.jesperancinha.concert.buy.oyc.commons.domain.CarParking
 import org.jesperancinha.concert.buy.oyc.commons.domain.ParkingReservation
 
 data class ParkingReservationDto(
@@ -7,8 +8,8 @@ data class ParkingReservationDto(
 )
 
 val ParkingReservation.toDto
-    get() = ParkingReservationDto(pN = parkingNumber)
+    get() = ParkingReservationDto(pN = carParking?.parkingNumber ?: -1)
 
 
 val ParkingReservationDto.toData: ParkingReservation
-    get() = ParkingReservation(parkingNumber = pN)
+    get() = ParkingReservation(carParking = CarParking(parkingNumber = pN))
