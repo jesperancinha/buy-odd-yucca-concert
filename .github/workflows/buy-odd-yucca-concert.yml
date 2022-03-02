@@ -30,7 +30,7 @@ jobs:
           run: cd buy-odd-yucca-gui && npm run coverage
 
         - name: Build and Test
-          run:  mvn clean install jacoco:prepare-agent package jacoco:report -Pnoexec
+          run:  mvn clean install jacoco:prepare-agent package jacoco:report
 
         - name: Coverage Reports
           run: mvn omni-coveragereporter:report
@@ -41,9 +41,6 @@ jobs:
 
         - name: Maven OWASP Security Check
           run: mvn clean install -Powasp
-
-        - name: Build Runnable
-          run:  mvn clean install
 
         - name: NPM Snyk Security Check
           run: cd buy-odd-yucca-gui && yarn install && npm run snyk
