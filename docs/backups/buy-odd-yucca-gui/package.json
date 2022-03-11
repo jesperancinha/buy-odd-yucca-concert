@@ -62,7 +62,7 @@
     "snyk": "^1.854.0",
     "storybook": "6.4.19",
     "styled-components": "^5.3.3",
-    "webpack": "^5.69.0",
+    "webpack": "^5.69.1",
     "webpack-dev-server": "^4.7.4"
   },
   "devDependencies": {
