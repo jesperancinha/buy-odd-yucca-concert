@@ -35,7 +35,7 @@
         <kotlinx.version>1.6.0-native-mt</kotlinx.version>
         <postgresql.version>42.3.3</postgresql.version>
         <flyway-core.version>8.5.4</flyway-core.version>
-        <r2dbc-postgresql.version>0.8.11.RELEASE</r2dbc-postgresql.version>
+        <r2dbc-postgresql.version>0.8.12.RELEASE</r2dbc-postgresql.version>
         <r2dbc-spi.version>0.9.1.RELEASE</r2dbc-spi.version>
         <maven-shade-plugin.version>3.2.4</maven-shade-plugin.version>
         <micronaut-maven-plugin.version>3.1.1</micronaut-maven-plugin.version>
