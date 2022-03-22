@@ -7827,10 +7827,10 @@ slash@^4.0.0:
   resolved "https://registry.yarnpkg.com/slash/-/slash-4.0.0.tgz#2422372176c4c6c5addb5e2ada885af984b396a7"
   integrity sha512-3dOsAHXXUkQTpOYcoAxLIorMTp4gIQr5IW3iVb7A7lFIp0VHhnynm9izx6TssdrIcVIESAlVjtnO2K8bg+Coew==
 
-snyk@^1.878.0:
-  version "1.878.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.878.0.tgz#02e8d2961e9a068bdbbced750f72e0f546d1a8f2"
-  integrity sha512-5esdH2PRGAc1DQE48GtvsUbAFnebFUXsKpDhR56KWx8G8JdC2lbaTheV0/MUoen5/+xNW6t35xHhUERFAK/MOw==
+snyk@^1.880.0:
+  version "1.880.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.880.0.tgz#efd36aaf7a254aa4ab092523e7795f417eb4c53d"
+  integrity sha512-K2aI8+evbbsPAtrOVVC3JAdFPBKeeLP74RM7Bh0C4V1d6pkIgTOUxLVcFDPmlTKcIjoYR6vKbmTQ+bd1su4YhA==
 
 sockjs@^0.3.21:
   version "0.3.24"
