@@ -90,7 +90,7 @@ docker exec -it buy-oyc-ticket /bin/bash
 #### Endpoints from inside Docker
 
 
-- [http://192.168.0.21:8000/api/yucca-ticket](http://192.168.0.21:8000/api/yucca-ticket)
+-   [http://192.168.0.21:8000/api/yucca-ticket](http://192.168.0.21:8000/api/yucca-ticket)
 
 ```shell
 curl http://192.168.0.21:8000/api/yucca-ticket
@@ -107,8 +107,8 @@ curl http://192.168.0.21:8000/api/yucca-ticket
 
 #### Routes
 
-- [Main](http://localhost:8001)
-- [Routes](http://localhost:8001/routes)
+-   [Main](http://localhost:8001)
+-   [Routes](http://localhost:8001/routes)
 
 #### Security Report
 
@@ -117,42 +117,42 @@ mvn clean install -Powasp
 ```
 Read report after running:
 
-- [buy-oyc-commons](buy-oyc-commons/target/dependency-check-report.html)
-- [buy-oyc-catering-service](buy-oyc-catering-service/target/dependency-check-report.html)
-- [buy-oyc-parking-service](buy-oyc-parking-service/target/dependency-check-report.html)
-- [buy-oyc-ticket-service](buy-oyc-ticket-service/target/dependency-check-report.html)
+-   [buy-oyc-commons](buy-oyc-commons/target/dependency-check-report.html)
+-   [buy-oyc-catering-service](buy-oyc-catering-service/target/dependency-check-report.html)
+-   [buy-oyc-parking-service](buy-oyc-parking-service/target/dependency-check-report.html)
+-   [buy-oyc-ticket-service](buy-oyc-ticket-service/target/dependency-check-report.html)
 
 ## References
 
 #### Online
 
-- [Using Micronaut Data, JDBC, R2DBC, TestContainers, and Flyway with multiple schemas](https://www.zsiegel.com/2022/01/25/Micronaut-JDBC-R2DBC-Flyway-multiple-schemas)
-- [Realtime Testing: Micronaut, Postgres and Testcontainer](https://blog.pallav.dev/realtime-testing-micronaut-postgres-and-testcontainer)
-- [Entity-Relationship Diagram Symbols and Notation](https://www.lucidchart.com/pages/ER-diagram-symbols-and-meaning)
-- [MICRONAUT 1.0 RC1 AND THE POWER OF AHEAD-OF-TIME COMPILATION](https://micronaut.io/2018/09/30/micronaut-1-0-rc1-and-the-power-of-ahead-of-time-compilation/)
-- [Building Micronaut applications with Micronaut Data R2dbc and Kotlin Coroutines](https://itnext.io/building-micronaut-applications-with-micronaut-data-r2dbc-and-kotlin-coroutines-a1416db5a7d0)
-- [From Spring Boot to Micronaut](https://blog.frankel.ch/spring-to-micronaut/)
-- [Create a New React App](https://reactjs.org/docs/create-a-new-react-app.html)
-- [Micronaut: A five-minute introduction](https://dev.to/mkbaldwin/micronaut-a-five-minute-introduction-c27)
-- [Building Restful APIs with Micronaut](https://itnext.io/building-restful-apis-with-micronaut-98f4eb39211c)
-- [Creating a Rest application with Micronaut](https://medium.com/danieldiasjava/creating-a-rest-application-with-micronaut-30a001b3c38b) 
-- [Micronaut CLI](https://docs.micronaut.io/latest/guide/#cli)
-- [CREATING YOUR FIRST MICRONAUT APPLICATION](https://guides.micronaut.io/latest/creating-your-first-micronaut-app-maven-kotlin.html)
-- [Micronaut](https://micronaut.io/)
-- [Deploy an Enterprise License](https://docs.konghq.com/gateway/2.6.x/plan-and-deploy/licenses/deploy-license/)
-- [Kong Gateway Licensing @ Kong Docs](https://docs.konghq.com/gateway/2.6.x/plan-and-deploy/licenses/)
-- [How To Enable the Dev Portal @ Kong Docs](https://docs.konghq.com/gateway/2.6.x/developer-portal/enable-dev-portal/)
-- [Kong /docker-kong 🦍 (sounds like Donkey Kong!)](https://github.com/Kong/docker-kong/tree/master/compose)
-- [Kong Gateway](https://docs.konghq.com/gateway/)
-- [MemboxX](https://www.crunchbase.com/organization/memboxx)
-- [Kong Inc. Wikipedia Repubished](https://wiki2.org/en/Kong_Inc.)
-- [5 questions for Kong CEO Augusto Marietti](https://www.bizjournals.com/sanfrancisco/news/2018/11/29/5-questions-for-kong-ceo-augusto-marietti.html)
-- [Author: Augusto Marietti](https://konghq.com/blog/author/augusto/)
-- [Years after crashing on Travis Kalanick’s couch, this founder has raised $18M for his startup, Mashape](https://techcrunch.com/2017/03/23/years-after-crashing-on-travis-kalanicks-couch-this-italian-founder-just-raised-18-million-for-his-startup/)
-- [Mashape Rebrands as Kong Inc., Declares Monolithic Application Dead](https://www.globenewswire.com/news-release/2017/10/16/1230930/0/en/Mashape-Rebrands-as-Kong-Inc-Declares-Monolithic-Application-Dead.html)
-- [Kong Inc.](https://en.wikipedia.org/wiki/Kong_Inc.)
-- [Redhwan Nacef's Kong Tutorial On GitHub](https://github.com/redhwannacef/youtube-tutorials/tree/main/kong-gateway)
-- [Lorem Picsum Phosots](https://picsum.photos/)
+-   [Using Micronaut Data, JDBC, R2DBC, TestContainers, and Flyway with multiple schemas](https://www.zsiegel.com/2022/01/25/Micronaut-JDBC-R2DBC-Flyway-multiple-schemas)
+-   [Realtime Testing: Micronaut, Postgres and Testcontainer](https://blog.pallav.dev/realtime-testing-micronaut-postgres-and-testcontainer)
+-   [Entity-Relationship Diagram Symbols and Notation](https://www.lucidchart.com/pages/ER-diagram-symbols-and-meaning)
+-   [MICRONAUT 1.0 RC1 AND THE POWER OF AHEAD-OF-TIME COMPILATION](https://micronaut.io/2018/09/30/micronaut-1-0-rc1-and-the-power-of-ahead-of-time-compilation/)
+-   [Building Micronaut applications with Micronaut Data R2dbc and Kotlin Coroutines](https://itnext.io/building-micronaut-applications-with-micronaut-data-r2dbc-and-kotlin-coroutines-a1416db5a7d0)
+-   [From Spring Boot to Micronaut](https://blog.frankel.ch/spring-to-micronaut/)
+-   [Create a New React App](https://reactjs.org/docs/create-a-new-react-app.html)
+-   [Micronaut: A five-minute introduction](https://dev.to/mkbaldwin/micronaut-a-five-minute-introduction-c27)
+-   [Building Restful APIs with Micronaut](https://itnext.io/building-restful-apis-with-micronaut-98f4eb39211c)
+-   [Creating a Rest application with Micronaut](https://medium.com/danieldiasjava/creating-a-rest-application-with-micronaut-30a001b3c38b) 
+-   [Micronaut CLI](https://docs.micronaut.io/latest/guide/#cli)
+-   [CREATING YOUR FIRST MICRONAUT APPLICATION](https://guides.micronaut.io/latest/creating-your-first-micronaut-app-maven-kotlin.html)
+-   [Micronaut](https://micronaut.io/)
+-   [Deploy an Enterprise License](https://docs.konghq.com/gateway/2.6.x/plan-and-deploy/licenses/deploy-license/)
+-   [Kong Gateway Licensing @ Kong Docs](https://docs.konghq.com/gateway/2.6.x/plan-and-deploy/licenses/)
+-   [How To Enable the Dev Portal @ Kong Docs](https://docs.konghq.com/gateway/2.6.x/developer-portal/enable-dev-portal/)
+-   [Kong /docker-kong 🦍 (sounds like Donkey Kong!)](https://github.com/Kong/docker-kong/tree/master/compose)
+-   [Kong Gateway](https://docs.konghq.com/gateway/)
+-   [MemboxX](https://www.crunchbase.com/organization/memboxx)
+-   [Kong Inc. Wikipedia Repubished](https://wiki2.org/en/Kong_Inc.)
+-   [5 questions for Kong CEO Augusto Marietti](https://www.bizjournals.com/sanfrancisco/news/2018/11/29/5-questions-for-kong-ceo-augusto-marietti.html)
+-   [Author: Augusto Marietti](https://konghq.com/blog/author/augusto/)
+-   [Years after crashing on Travis Kalanick’s couch, this founder has raised $18M for his startup, Mashape](https://techcrunch.com/2017/03/23/years-after-crashing-on-travis-kalanicks-couch-this-italian-founder-just-raised-18-million-for-his-startup/)
+-   [Mashape Rebrands as Kong Inc., Declares Monolithic Application Dead](https://www.globenewswire.com/news-release/2017/10/16/1230930/0/en/Mashape-Rebrands-as-Kong-Inc-Declares-Monolithic-Application-Dead.html)
+-   [Kong Inc.](https://en.wikipedia.org/wiki/Kong_Inc.)
+-   [Redhwan Nacef's Kong Tutorial On GitHub](https://github.com/redhwannacef/youtube-tutorials/tree/main/kong-gateway)
+-   [Lorem Picsum Phosots](https://picsum.photos/)
 
 #### Online videos
 
@@ -229,16 +229,11 @@ Read report after running:
       </a>
 </div>
 
-## Buy me a coffee
-
-I hope you enjoyed this repository. If you did, you can optionally please buy me a coffee, which supports me in constantly improve and make new free content regularly for everyone. Thank you so much!
-
-[![Buy me a coffee](https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20coffee&emoji=&slug=jesperancinha&button_colour=046c46&font_colour=ffffff&font_family=Cookie&outline_colour=ffffff&coffee_colour=FFDD00 "title")](https://www.buymeacoffee.com/jesperancinha)
-
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/JEOrgLogo-20.png "João Esperancinha Homepage")](http://joaofilipesabinoesperancinha.nl)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://medium.com/@jofisaes)
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/bmc-20.png "Buy me a Coffe")](https://www.buymeacoffee.com/jesperancinha)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/credly-20.png "Credly")](https://www.credly.com/users/joao-esperancinha)
 [![Generic badge](https://img.shields.io/static/v1.svg?label=Homepage&message=joaofilipesabinoesperancinha.nl&color=6495ED "João Esperancinha Homepage")](https://joaofilipesabinoesperancinha.nl/)
 [![GitHub followers](https://img.shields.io/github/followers/jesperancinha.svg?label=jesperancinha&style=social "GitHub")](https://github.com/jesperancinha)
