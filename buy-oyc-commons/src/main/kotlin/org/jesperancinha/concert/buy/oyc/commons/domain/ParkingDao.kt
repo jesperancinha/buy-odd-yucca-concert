@@ -15,6 +15,7 @@ data class CarParking(
     @field: Id
     @field: AutoPopulated
     val id: UUID? = null,
+    val reference: UUID = UUID.randomUUID(),
     val parkingNumber: Long,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now()
@@ -25,6 +26,7 @@ data class ParkingReservation(
     @field: Id
     @field: AutoPopulated
     var idPR: UUID? = null,
+    val reference: UUID = UUID.randomUUID(),
     @field: Relation(value = ONE_TO_ONE, cascade = [Relation.Cascade.PERSIST])
     var carParking: CarParking? = null,
     @field:DateCreated

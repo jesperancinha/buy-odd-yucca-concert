@@ -13,6 +13,7 @@ drop table if exists ticket.drink;
 create table if not exists ticket.car_parking
 (
     id             UUID               DEFAULT gen_random_uuid(),
+    reference      UUID      NOT NULL UNIQUE,
     parking_number bigint    NOT NULL,
     created_at     TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id)
@@ -21,6 +22,7 @@ create table if not exists ticket.car_parking
 create table if not exists ticket.parking_reservation
 (
     id_pr          UUID      NOT NULL,
+    reference      UUID      NOT NULL UNIQUE,
     car_parking_id UUID      NULL,
     created_at     TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id_pr),
@@ -32,6 +34,7 @@ create table if not exists ticket.parking_reservation
 create table if not exists ticket.concert_day
 (
     id          UUID                  DEFAULT gen_random_uuid(),
+    reference   UUID         NOT NULL UNIQUE,
     name        varchar(255) NULL,
     description varchar(255) NULL,
     date        TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
@@ -42,6 +45,7 @@ create table if not exists ticket.concert_day
 create table if not exists ticket.drink
 (
     id         UUID                  DEFAULT gen_random_uuid(),
+    reference  UUID         NOT NULL UNIQUE,
     name       varchar(255) NULL,
     width      bigint,
     height     bigint,
@@ -55,6 +59,7 @@ create table if not exists ticket.drink
 create table if not exists ticket.meal
 (
     id         UUID                  DEFAULT gen_random_uuid(),
+    reference  UUID         NOT NULL UNIQUE,
     coupon     UUID         NOT NULL,
     box_type   varchar(255) NULL,
     discount   bigint,
@@ -67,11 +72,11 @@ create table if not exists ticket.meal
 create table if not exists ticket.ticket_reservation
 (
     id                     UUID      NOT NULL DEFAULT gen_random_uuid(),
+    reference              UUID      NOT NULL UNIQUE,
     name                   varchar,
     address                varchar,
     birth_date             date,
     parking_reservation_id UUID      NULL,
-    reference              UUID      NOT NULL UNIQUE,
     created_at             TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id),
     CONSTRAINT fk_parking_reservation

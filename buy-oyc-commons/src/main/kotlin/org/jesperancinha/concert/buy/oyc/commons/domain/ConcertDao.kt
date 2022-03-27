@@ -21,6 +21,7 @@ data class ConcertDay(
     @field: Id
     @field: AutoPopulated
     val id: UUID? = null,
+    val reference: UUID = UUID.randomUUID(),
     val name: String,
     val description: String,
     @field:DateCreated

@@ -22,6 +22,7 @@ data class Drink(
     @field: Id
     @field: AutoPopulated
     val id: UUID? = null,
+    val reference: UUID = UUID.randomUUID(),
     val name: String,
     val width: Long,
     val height: Long,
@@ -38,6 +39,7 @@ data class Meal(
     @field: Id
     @field: AutoPopulated
     val id: UUID? = null,
+    val reference: UUID = UUID.randomUUID(),
     val coupon: UUID = UUID.randomUUID(),
     val boxType: BoxType,
     val discount: Long,

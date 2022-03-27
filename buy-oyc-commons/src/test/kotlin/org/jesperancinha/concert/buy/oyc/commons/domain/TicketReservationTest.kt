@@ -91,7 +91,7 @@ class TicketReservationTest @Inject constructor(
 
         val parkingReservation = ParkingReservation(carParking = carParkingResult)
         val savedParkingReservation = parkingReservationRepository.save(parkingReservation)
-        val (idParkingTicket, carParkingOnReservation) = savedParkingReservation
+        val (idParkingTicket, _, carParkingOnReservation) = savedParkingReservation
 
         idParkingTicket.shouldNotBeNull()
         carParkingOnReservation.shouldNotBeNull()
