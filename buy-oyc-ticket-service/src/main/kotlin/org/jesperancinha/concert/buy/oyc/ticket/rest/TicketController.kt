@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import org.jesperancinha.concert.buy.oyc.commons.domain.TicketRepository
 import org.jesperancinha.concert.buy.oyc.commons.domain.TicketReservation
 import org.jesperancinha.concert.buy.oyc.ticket.dto.TicketDto
-import org.jesperancinha.concert.buy.oyc.ticket.dto.toData
+import org.jesperancinha.concert.buy.oyc.ticket.dto.toTicketData
 import javax.validation.Valid
 
 @Controller("/api")
@@ -22,7 +22,7 @@ class TicketController(
     @Post
     suspend fun saveParkingReservation(@Body ticketDto: @Valid TicketDto?): MutableHttpResponse<Pair<Int, String>> =
         ticketDto?.let {
-            ticketRepository.save(ticketDto.toData)
+            ticketRepository.save(ticketDto.toTicketData)
             status<Map<Int, String>>(HttpStatus.CREATED).body(HttpStatus.CREATED.code to "Saved successfully !")
         } ?: status(HttpStatus.NOT_FOUND)
 
