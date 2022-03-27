@@ -26,7 +26,7 @@
 
 ---
 
-## Technologies used
+##1. - Technologies used
 
 ---
 
@@ -37,33 +37,41 @@
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/apache-maven-50.png "Maven")](https://maven.apache.org/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/postgres-50.png "PostgreSQL")](https://www.postgresql.org/)
 
-## Introduction 🌴
+##2. -  Introduction 🌴
 
 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧 !!! UNDER CONSTRUCTION !!! 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧 
 
-## Installing NVM
+##3. - Installing NVM
 
-You don't need to install NVM. This may only be need if you are running a non LTS version of nodejs. In that case, just run:
+You don't need to install NVM per se. This may only be need if you are running a non LTS version of nodejs. In that case, just run:
 
 ```shell
 nvm-install.sh
 node -v
 ```
 
-## How to run
+##4. - How to run
 
-#### 1 - Run docker
+###4.1 - Run docker
 
+####4.1.1. - Optional Intallation (Mostly if something is not quite correctly configured)
 ```shell
 sudo usermod -a -G docker $(whoami)
+```
+
+Restart and:
+
+```shell
 newgrp docker
 ```
+
+####4.1.2. - Start Application
 
 ```shell
 make docker-clean-build-start
 ```
 
-#### 2 - Load Kong Settings
+###4.2 - Load Kong Settings
 
 Wait for containers to start (usually no more than 10 seconds).
 
@@ -71,15 +79,15 @@ Wait for containers to start (usually no more than 10 seconds).
 make kong-setup
 ```
 
-## Settings
+###4.3 - Settings
 
 This project is built upon node v16.13.1
 
 [NVM-SH](https://github.com/nvm-sh/nvm/blob/master/README.md)
 
-## Docker Usages
+###4.4 - Docker Usage
 
-#### Using Containers
+####4.4.1. - Using Containers
 ```shell
 docker exec -it buy-oyc-nginx /bin/bash
 docker exec -it kong /bin/bash
@@ -87,7 +95,7 @@ docker exec -it buy-oyc-parking /bin/bash
 docker exec -it buy-oyc-ticket /bin/bash
 ```
 
-#### Endpoints from inside Docker
+####4.4.2. - Endpoints from inside Docker
 
 
 -   [http://192.168.0.21:8000/api/yucca-ticket](http://192.168.0.21:8000/api/yucca-ticket)
@@ -96,21 +104,22 @@ docker exec -it buy-oyc-ticket /bin/bash
 curl http://192.168.0.21:8000/api/yucca-ticket
 ```
 
-## Endpoints
+####4.4.3. - Endpoints open to the outside
 
-#### API
+
+API
 
 -   [http://localhost:8080](http://localhost:8080)
 -   [http://localhost:8000/api/yucca-ticket/](http://localhost:8000/api/yucca-ticket/)
 -   [http://localhost:8000/api/yucca-parking/](http://localhost:8000/api/yucca-parking/)
 -   [http://localhost:8000/api/yucca-catering/](http://localhost:8000/api/yucca-catering/)
 
-#### Routes
+Routes
 
 -   [Main](http://localhost:8001)
 -   [Routes](http://localhost:8001/routes)
 
-#### Security Report
+###4.5. - Security Report
 
 ```shell
 mvn clean install -Powasp
@@ -122,9 +131,9 @@ Read report after running:
 -   [buy-oyc-parking-service](buy-oyc-parking-service/target/dependency-check-report.html)
 -   [buy-oyc-ticket-service](buy-oyc-ticket-service/target/dependency-check-report.html)
 
-## References
+##5. - References
 
-#### Online
+####5.1. - Online
 
 -   [What kinds of bot attacks are stopped by rate limiting?](https://www.cloudflare.com/en-gb/learning/bots/what-is-rate-limiting/)
 -   [Using Micronaut Data, JDBC, R2DBC, TestContainers, and Flyway with multiple schemas](https://www.zsiegel.com/2022/01/25/Micronaut-JDBC-R2DBC-Flyway-multiple-schemas)
@@ -155,7 +164,7 @@ Read report after running:
 -   [Redhwan Nacef's Kong Tutorial On GitHub](https://github.com/redhwannacef/youtube-tutorials/tree/main/kong-gateway)
 -   [Lorem Picsum Phosots](https://picsum.photos/)
 
-#### Online videos
+####5.2. - Online videos
 
 <div align="center">
       <a title="Kong Gateway for Beginners: Adding a Service, Route and Plugins" href="https://www.youtube.com/watch?v=kGZyAEVioWg">
