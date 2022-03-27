@@ -2,6 +2,10 @@
 
 #### Logbook
 
+2022/03/27 - Back from Hiatus
+- After what it seemed to be an endless roadmap of maintenance across all my projects, I'm finally able to come back
+- Reference added to all data models to formalize the request and return ticket to client.
+
 2021/12/08
 - All micronaut services up and running
 - Kong with minumal mapping without consumer. Only services and routes
