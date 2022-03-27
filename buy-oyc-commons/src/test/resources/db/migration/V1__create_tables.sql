@@ -60,7 +60,7 @@ create table if not exists ticket.meal
 (
     id         UUID                  DEFAULT gen_random_uuid(),
     reference  UUID         NOT NULL UNIQUE,
-    coupon     UUID         NOT NULL,
+    coupon     UUID         NULL,
     box_type   varchar(255) NULL,
     discount   bigint,
     price      numeric,

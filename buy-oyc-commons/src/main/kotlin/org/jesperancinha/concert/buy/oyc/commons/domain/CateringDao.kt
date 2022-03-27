@@ -28,7 +28,7 @@ data class Drink(
     val height: Long,
     val shape: String,
     val volume: Long,
-    val price: BigDecimal,
+    val price: BigDecimal
 )
 
 /**
@@ -40,7 +40,7 @@ data class Meal(
     @field: AutoPopulated
     val id: UUID? = null,
     val reference: UUID = UUID.randomUUID(),
-    val coupon: UUID = UUID.randomUUID(),
+    val coupon: UUID? = null,
     val boxType: BoxType,
     val discount: Long,
     val price: BigDecimal,

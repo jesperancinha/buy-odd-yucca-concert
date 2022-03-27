@@ -11,8 +11,8 @@ data class TicketDto(
     val address: String,
     val birthDate: LocalDate,
     val concertDays: List<ConcertDayDto> = emptyList(),
-    val meals: List<Meal> = emptyList(),
-    val drinks: List<Drink> = emptyList(),
+    val meals: List<MealDto> = emptyList(),
+    val drinks: List<DrinkDto> = emptyList(),
     val parkingReservation: ParkingReservation? = null,
     val createdAt: LocalDateTime? = LocalDateTime.now(),
 )
@@ -42,7 +42,7 @@ val TicketDto.toConcertData: List<ConcertDay>
     }
 
 data class MealDto(
-    val coupon: UUID = UUID.randomUUID(),
+    val coupon: UUID? = null,
     val boxType: BoxType,
     val discount: Long,
     val price: BigDecimal,
@@ -59,6 +59,27 @@ val TicketDto.toMealData: List<Meal>
             price = it.price,
             processed = it.processed,
             createdAt = it.createdAt
+        )
+    }
+
+data class DrinkDto(
+    val name: String,
+    val width: Long,
+    val height: Long,
+    val shape: String,
+    val volume: Long,
+    val price: BigDecimal,
+)
+
+val TicketDto.toDrinkData: List<Drink>
+    get() = this.drinks.map {
+        Drink(
+            name = it.name,
+            width = it.width,
+            height = it.height,
+            shape = it.shape,
+            volume = it.volume,
+            price = it.price
         )
     }
 
