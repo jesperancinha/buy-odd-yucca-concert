@@ -61,8 +61,7 @@ update-snyk:
 	npm i -g snyk
 update:
 	curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
-	npx browserslist --update-db
 	npm install -g npm-check-updates
 	cd buy-odd-yucca-gui && ncu -u && yarn
 audit:
-	cd buy-odd-yucca-gui && npm audit fix && yarn
+	cd buy-odd-yucca-gui && npx browserslist --update-db && npm audit fix && yarn
