@@ -1,19 +1,33 @@
+# buy-oyc-api-service
+
+Buy Odd Yucca Concert Gateway API service
+---
+
+---
+
 ## Micronaut 3.2.0 Documentation
 
 -   [User Guide](https://docs.micronaut.io/3.2.0/guide/index.html)
 -   [API Reference](https://docs.micronaut.io/3.2.0/api/index.html)
 -   [Configuration Reference](https://docs.micronaut.io/3.2.0/guide/configurationreference.html)
 -   [Micronaut Guides](https://guides.micronaut.io/index.html)
+
 ---
 
 ## Feature http-client documentation
 
 - [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
 
+---
+
 ## References
 
 - [Kotlin Symbol Processing: Early Thoughts](https://www.zacsweers.dev/kotlin-symbol-processor-early-thoughts/#:~:text=Google%20announced%20Kotlin%20Symbol%20Processing,first%20party%20tool%20for%20this.)
 - [What is CoroutineContext and how does it work?](https://kt.academy/article/cc-coroutine-context)
+- [Top 6 Queuing Systems for Backend Developers](https://geekflare.com/queuing-systems-for-backend-developers/)
+- [Getting started with Spring Data Redis with Kotlin](https://www.geekyhacker.com/2019/07/09/getting-started-with-spring-data-redis-with-kotlin/)
+
+---
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 
