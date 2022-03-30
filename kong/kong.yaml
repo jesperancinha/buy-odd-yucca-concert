@@ -27,3 +27,11 @@ services:
           - /api/yucca-catering
         strip_path: true
 
+  - name: buy-oyc-api-service
+    url: http://buy-oyc-api:8088
+    routes:
+      - name: buy-oyc-api-service-routes
+        paths:
+          - /api/yucca-api
+        strip_path: true
+

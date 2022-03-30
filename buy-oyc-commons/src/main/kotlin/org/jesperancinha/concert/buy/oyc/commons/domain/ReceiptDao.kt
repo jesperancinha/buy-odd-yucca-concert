@@ -17,6 +17,7 @@ data class Receipt(
     @field: Id
     @field: AutoPopulated
     val id: UUID? = null,
+    val reference: UUID = UUID.randomUUID(),
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now(),
     @field: Relation(value = Relation.Kind.ONE_TO_ONE, cascade = [Relation.Cascade.PERSIST])

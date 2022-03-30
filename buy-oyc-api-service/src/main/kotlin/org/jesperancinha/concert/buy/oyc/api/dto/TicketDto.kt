@@ -1,4 +1,4 @@
-package org.jesperancinha.concert.buy.oyc.ticket.dto
+package org.jesperancinha.concert.buy.oyc.api.dto
 
 import org.jesperancinha.concert.buy.oyc.commons.domain.*
 import java.math.BigDecimal
@@ -89,9 +89,17 @@ data class ParkingReservationDto(
     val createdAt: LocalDateTime? = LocalDateTime.now()
 )
 
+
 val ParkingReservationDto.toParkingReservationData: ParkingReservation
     get() = ParkingReservation(
         reference = reference
+    )
+
+val ParkingReservation.toDto: ParkingReservationDto
+    get() = ParkingReservationDto(
+        reference = reference,
+        carParkingId = carParking?.parkingNumber ?: -1,
+        createdAt = createdAt
     )
 
 val TicketReservation.toDto: TicketDto
@@ -101,3 +109,13 @@ val TicketReservation.toDto: TicketDto
         birthDate = birthDate
     )
 
+data class ReceiptDto(
+    val reference: UUID = UUID.randomUUID(),
+    val createdAt: LocalDateTime? = LocalDateTime.now(),
+)
+
+val Receipt.toDto: ReceiptDto
+    get() = ReceiptDto(
+        reference = reference,
+        createdAt = createdAt
+    )

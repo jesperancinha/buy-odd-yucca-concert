@@ -1,4 +1,4 @@
-package org.jesperancinha.concert.buy.oyc.ticket.rest
+package org.jesperancinha.concert.buy.oyc.api.rest
 
 import io.micronaut.http.MediaType
 import io.micronaut.http.annotation.Controller
@@ -7,8 +7,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.jesperancinha.concert.buy.oyc.commons.domain.TicketRepository
 import org.jesperancinha.concert.buy.oyc.commons.domain.TicketReservation
-import org.jesperancinha.concert.buy.oyc.ticket.dto.TicketDto
-import org.jesperancinha.concert.buy.oyc.ticket.dto.toDto
+import org.jesperancinha.concert.buy.oyc.api.dto.TicketDto
+import org.jesperancinha.concert.buy.oyc.api.dto.toDto
 
 @Controller("/")
 open class WelcomeController(
