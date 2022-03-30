@@ -24,3 +24,7 @@ jackson:
     writeDatesAsTimestamps: false
   deserialization:
     failOnUnknownProperties: false
+
+redis:
+    uri: redis://localhost
+    timeout: 30s

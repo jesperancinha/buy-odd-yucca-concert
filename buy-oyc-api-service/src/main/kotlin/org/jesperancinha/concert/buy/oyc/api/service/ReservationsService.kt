@@ -1,5 +1,6 @@
 package org.jesperancinha.concert.buy.oyc.api.service
 
+import io.lettuce.core.api.StatefulRedisConnection
 import jakarta.inject.Singleton
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -16,12 +17,12 @@ import javax.validation.Valid
  */
 @Singleton
 class ReservationsService(
-    private val reservationRepository: ReceiptRepository
+    private val reservationRepository: ReceiptRepository,
+    private val connection: StatefulRedisConnection<String, String>
 ) {
     @OptIn(DelicateCoroutinesApi::class)
     fun createTicket(ticketDto: @Valid TicketDto) = GlobalScope.launch {
         val ticketReservation = ticketDto.toTicketData
-
     }
 
     fun getAll(): Flow<Receipt> = reservationRepository.findAll()
