@@ -13,7 +13,7 @@ data class TicketDto(
     val concertDays: List<ConcertDayDto> = emptyList(),
     val meals: List<MealDto> = emptyList(),
     val drinks: List<DrinkDto> = emptyList(),
-    val parkingReservation: ParkingReservation? = null,
+    val parkingReservation: ParkingReservationDto? = null,
     val createdAt: LocalDateTime? = LocalDateTime.now(),
 )
 
@@ -83,6 +83,17 @@ val TicketDto.toDrinkData: List<Drink>
         )
     }
 
+data class ParkingReservationDto(
+    val reference: UUID = UUID.randomUUID(),
+    var carParkingId: Long,
+    val createdAt: LocalDateTime? = LocalDateTime.now()
+)
+
+val ParkingReservationDto.toParkingReservationData: ParkingReservation
+    get() = ParkingReservation(
+        reference = reference
+    )
+
 val TicketReservation.toDto: TicketDto
     get() = TicketDto(
         name = name,
@@ -90,8 +101,3 @@ val TicketReservation.toDto: TicketDto
         birthDate = birthDate
     )
 
-data class ParkingReservationDto(
-    val reference: UUID = UUID.randomUUID(),
-    var carParkingId: Long,
-    val createdAt: LocalDateTime? = LocalDateTime.now()
-)
