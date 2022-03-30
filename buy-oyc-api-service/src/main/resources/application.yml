@@ -16,7 +16,7 @@ r2dbc:
 flyway:
   datasources:
     default:
-      enabled: false
+      enabled: true
 
 jackson:
   serialization:

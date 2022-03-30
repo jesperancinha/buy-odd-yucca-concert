@@ -1,4 +1,4 @@
-package org.jesperancinha.concert.buy.oyc.containers
+package org.jesperancinha.concert.buy.oyc.api.containers
 
 import com.github.dockerjava.api.model.ExposedPort
 import com.github.dockerjava.api.model.HostConfig
@@ -9,8 +9,7 @@ import org.testcontainers.junit.jupiter.Container
 
 class TestPostgresSQLContainer(imageName: String) : PostgreSQLContainer<TestPostgresSQLContainer>(imageName)
 
-abstract class AbstractBuyOddYuccaConcertContainerTest(
-) {
+abstract class AbstractBuyOddYuccaConcertContainerTest {
     companion object {
         @Container
         @JvmField

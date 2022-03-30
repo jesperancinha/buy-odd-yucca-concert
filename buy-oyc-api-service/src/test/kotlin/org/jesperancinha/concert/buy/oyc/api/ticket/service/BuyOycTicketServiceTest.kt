@@ -1,4 +1,4 @@
-package org.jesperancinha.concert.buy.oyc.ticket.service
+package org.jesperancinha.concert.buy.oyc.api.ticket.service
 
 import io.kotest.matchers.booleans.shouldBeTrue
 import io.micronaut.runtime.EmbeddedApplication

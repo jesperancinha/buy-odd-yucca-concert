@@ -1,4 +1,4 @@
-package org.jesperancinha.concert.buy.oyc.containers
+package org.jesperancinha.concert.buy.oyc.commons.containers
 
 import com.github.dockerjava.api.model.ExposedPort
 import com.github.dockerjava.api.model.HostConfig
