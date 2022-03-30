@@ -3,14 +3,20 @@ package org.jesperancinha.concert.buy.oyc.containers
 import com.github.dockerjava.api.model.ExposedPort
 import com.github.dockerjava.api.model.HostConfig
 import com.github.dockerjava.api.model.PortBinding
-import com.github.dockerjava.api.model.Ports
+import com.github.dockerjava.api.model.Ports.Binding.bindPort
+import org.flywaydb.core.Flyway
+import org.flywaydb.core.api.configuration.ClassicConfiguration
+import org.testcontainers.containers.GenericContainer
 import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.junit.jupiter.Container
+import org.testcontainers.utility.DockerImageName
+
 
 class TestPostgresSQLContainer(imageName: String) : PostgreSQLContainer<TestPostgresSQLContainer>(imageName)
 
-abstract class AbstractBuyOddYuccaConcertContainerTest(
-) {
+private const val POSTGRESQL_PORT = 5432
+
+abstract class AbstractBuyOddYuccaConcertContainerTest {
     companion object {
         @Container
         @JvmField
@@ -18,16 +24,37 @@ abstract class AbstractBuyOddYuccaConcertContainerTest(
             .withUsername("kong")
             .withPassword("kong")
             .withDatabaseName("yucca")
-            .withExposedPorts(5432)
+            .withExposedPorts(POSTGRESQL_PORT)
             .withCreateContainerCmdModifier { cmd ->
                 cmd.withHostConfig(
-                    HostConfig().withPortBindings(PortBinding(Ports.Binding.bindPort(5432), ExposedPort(5432)))
+                    HostConfig().withPortBindings(
+                        PortBinding(
+                            bindPort(POSTGRESQL_PORT),
+                            ExposedPort(POSTGRESQL_PORT)
+                        )
+                    )
                 )
             }
 
+        @Container
+        @JvmField
+        val redis: GenericContainer<*> = GenericContainer(
+            DockerImageName
+            .parse("redis:5.0.3-alpine"))
+            .withExposedPorts(6379)
+
+        private val config = ClassicConfiguration()
+
         init {
             postgreSQLContainer.start()
-
+            redis.start()
+            config.setDataSource(
+                postgreSQLContainer.jdbcUrl,
+                postgreSQLContainer.username,
+                postgreSQLContainer.password
+            )
+            config.schemas = arrayOf("ticket")
+            Flyway(config).migrate()
         }
     }
 
