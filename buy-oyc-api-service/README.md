@@ -22,6 +22,7 @@ Buy Odd Yucca Concert Gateway API service
 
 ## References
 
+- [Micronaut Redis](https://micronaut-projects.github.io/micronaut-redis/latest/guide/#introduction)
 - [Kotlin Symbol Processing: Early Thoughts](https://www.zacsweers.dev/kotlin-symbol-processor-early-thoughts/#:~:text=Google%20announced%20Kotlin%20Symbol%20Processing,first%20party%20tool%20for%20this.)
 - [What is CoroutineContext and how does it work?](https://kt.academy/article/cc-coroutine-context)
 - [Top 6 Queuing Systems for Backend Developers](https://geekflare.com/queuing-systems-for-backend-developers/)
