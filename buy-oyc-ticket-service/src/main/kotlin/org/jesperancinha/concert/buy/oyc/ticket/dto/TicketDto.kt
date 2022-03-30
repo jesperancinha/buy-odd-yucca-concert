@@ -89,3 +89,9 @@ val TicketReservation.toDto: TicketDto
         address = address,
         birthDate = birthDate
     )
+
+data class ParkingReservationDto(
+    val reference: UUID = UUID.randomUUID(),
+    var carParkingId: Long,
+    val createdAt: LocalDateTime? = LocalDateTime.now()
+)

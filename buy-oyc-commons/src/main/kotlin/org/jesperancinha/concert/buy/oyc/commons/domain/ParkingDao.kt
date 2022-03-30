@@ -15,7 +15,6 @@ data class CarParking(
     @field: Id
     @field: AutoPopulated
     val id: UUID? = null,
-    val reference: UUID = UUID.randomUUID(),
     val parkingNumber: Long,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now()

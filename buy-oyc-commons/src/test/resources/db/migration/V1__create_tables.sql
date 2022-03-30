@@ -13,7 +13,6 @@ drop table if exists ticket.drink;
 create table if not exists ticket.car_parking
 (
     id             UUID               DEFAULT gen_random_uuid(),
-    reference      UUID      NOT NULL UNIQUE,
     parking_number bigint    NOT NULL,
     created_at     TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id)
