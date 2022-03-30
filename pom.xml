@@ -13,6 +13,7 @@
         <module>buy-oyc-parking-service</module>
         <module>buy-oyc-ticket-service</module>
         <module>buy-oyc-catering-service</module>
+        <module>buy-oyc-api-service</module>
     </modules>
 
     <packaging>pom</packaging>

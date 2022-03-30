@@ -1,0 +1,26 @@
+micronaut:
+  application:
+    name: buyOycTicketService
+  server:
+    port: 8086
+
+r2dbc:
+  datasources:
+    default:
+      schema-generate: NONE
+      dialect: POSTGRES
+      url: r2dbc:postgresql://kong@localhost:5432/yucca?currentSchema=ticket
+      username: kong
+      password: kong
+
+flyway:
+  datasources:
+    default:
+      enabled: false
+
+jackson:
+  serialization:
+    indentOutput: true
+    writeDatesAsTimestamps: false
+  deserialization:
+    failOnUnknownProperties: false
