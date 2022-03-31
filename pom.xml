@@ -47,7 +47,7 @@
         <kotlinx-coroutines-test.version>1.6.0-native-mt</kotlinx-coroutines-test.version>
         <testcontainers.version>1.16.3</testcontainers.version>
         <micronaut-flyway.version>5.2.0</micronaut-flyway.version>
-        <dependency-check-maven.version>7.0.3</dependency-check-maven.version>
+        <dependency-check-maven.version>7.0.4</dependency-check-maven.version>
     </properties>
 
     <profiles>
