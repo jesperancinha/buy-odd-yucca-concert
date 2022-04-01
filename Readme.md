@@ -26,7 +26,7 @@
 
 ---
 
-## 1. - Technologies used
+## 1.  - Technologies used
 
 ---
 
@@ -37,11 +37,11 @@
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/apache-maven-50.png "Maven")](https://maven.apache.org/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/postgres-50.png "PostgreSQL")](https://www.postgresql.org/)
 
-## 2. -  Introduction 🌴
+## 2.  -  Introduction 🌴
 
 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧 !!! UNDER CONSTRUCTION !!! 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧 
 
-## 3. - Installing NVM
+## 3.  - Installing NVM
 
 You don't need to install NVM per se. This may only be need if you are running a non LTS version of nodejs. In that case, just run:
 
@@ -50,7 +50,7 @@ nvm-install.sh
 node -v
 ```
 
-## 4. - How to run
+## 4.  - How to run
 
 ### 4.1 - Run docker
 
@@ -131,7 +131,7 @@ Read report after running:
 -   [buy-oyc-parking-service](buy-oyc-parking-service/target/dependency-check-report.html)
 -   [buy-oyc-ticket-service](buy-oyc-ticket-service/target/dependency-check-report.html)
 
-## 5. - References
+## 5.  - References
 
 #### 5.1. - Online
 
