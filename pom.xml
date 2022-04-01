@@ -28,7 +28,7 @@
         <kotlin.version>1.6.10</kotlin.version>
         <micronaut.runtime>netty</micronaut.runtime>
         <micronaut-parent.version>3.4.1</micronaut-parent.version>
-        <jakarta.annotation-api.version>2.1.0-B1</jakarta.annotation-api.version>
+        <jakarta.annotation-api.version>2.1.0</jakarta.annotation-api.version>
         <jakarta.persistence-api.version>3.0.0</jakarta.persistence-api.version>
         <mockk.version>1.12.3</mockk.version>
         <kotest.version>5.0.3</kotest.version>
