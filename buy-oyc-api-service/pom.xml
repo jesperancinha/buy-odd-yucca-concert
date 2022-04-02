@@ -67,7 +67,6 @@
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-core</artifactId>
-            <version>3.4.1</version>
         </dependency>
         <dependency>
             <groupId>io.micronaut.kotlin</groupId>
