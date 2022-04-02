@@ -6,9 +6,11 @@ import jakarta.inject.Inject
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.runBlocking
 import org.jesperancinha.concert.buy.oyc.api.containers.AbstractBuyOddYuccaConcertContainerTest
+import org.jesperancinha.concert.buy.oyc.api.dto.TicketDto
 import org.jesperancinha.concert.buy.oyc.api.service.ReservationsService
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
+import java.time.LocalDate
 
 
 @MicronautTest
@@ -19,6 +21,15 @@ internal class ReservationsServiceTest @Inject constructor(
     @Test
     fun `should get all reservations`(): Unit = runBlocking {
         reservationsService.getAll().toList().shouldNotBeNull()
+    }
+
+    @Test
+    fun `should publish test`() :Unit = runBlocking { 
+        reservationsService.createTicket(TicketDto(
+            name = "name",
+            address = "address",
+            birthDate = LocalDate.now()
+        ))
     }
 
     companion object {

@@ -2,6 +2,8 @@ package org.jesperancinha.concert.buy.oyc.api.service
 
 import io.lettuce.core.RedisClient
 import io.lettuce.core.pubsub.RedisPubSubAdapter
+import io.lettuce.core.pubsub.api.async.RedisPubSubAsyncCommands
+import io.micronaut.context.annotation.Factory
 import jakarta.inject.Singleton
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
@@ -19,8 +21,10 @@ import javax.validation.Valid
 @Singleton
 class ReservationsService(
     private val receiptRepository: ReceiptRepository,
-    private val redisClient: RedisClient
+    private val redisClient: RedisClient,
+    val pubSubCommands: RedisPubSubAsyncCommands<String, String>
 ) {
+
     init {
         val statefulRedisPubSubConnection = redisClient.connectPubSub()
         statefulRedisPubSubConnection.addListener(Listener())
@@ -31,10 +35,18 @@ class ReservationsService(
 
     @OptIn(DelicateCoroutinesApi::class)
     suspend fun createTicket(ticketDto: @Valid TicketDto) = GlobalScope.launch {
+        pubSubCommands.publish("channel1", "test")
         receiptRepository.save(Receipt()).toDto
     }
 
     fun getAll(): Flow<Receipt> = receiptRepository.findAll()
+}
+
+@Factory
+class RedisBeanFactory {
+    @Singleton
+    fun pubSubCommands(redisClient: RedisClient): RedisPubSubAsyncCommands<String, String> =
+        redisClient.connectPubSub().async()
 }
 
 class Listener : RedisPubSubAdapter<String, String>() {
