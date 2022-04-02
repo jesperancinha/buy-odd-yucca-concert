@@ -30,7 +30,6 @@ class ReservationsService(
         statefulRedisPubSubConnection.addListener(Listener())
         val redisPubSubAsyncCommands = statefulRedisPubSubConnection.async()
         redisPubSubAsyncCommands.subscribe("channel1")
-        redisClient.connectPubSub().async().publish("channel1", "test")
     }
 
     @OptIn(DelicateCoroutinesApi::class)
