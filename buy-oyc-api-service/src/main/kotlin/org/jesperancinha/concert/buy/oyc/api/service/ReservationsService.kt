@@ -13,6 +13,7 @@ import org.jesperancinha.concert.buy.oyc.api.dto.toDto
 import org.jesperancinha.concert.buy.oyc.commons.domain.BuyOycCodec
 import org.jesperancinha.concert.buy.oyc.commons.domain.Receipt
 import org.jesperancinha.concert.buy.oyc.commons.domain.ReceiptRepository
+import org.jesperancinha.concert.buy.oyc.commons.domain.readTypedObject
 import java.io.ObjectInputStream
 import javax.validation.Valid
 

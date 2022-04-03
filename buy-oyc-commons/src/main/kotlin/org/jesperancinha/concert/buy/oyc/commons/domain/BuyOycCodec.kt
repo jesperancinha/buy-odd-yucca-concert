@@ -38,15 +38,13 @@ abstract class BuyOycCodec<T> : RedisCodec<String, T> {
 
     companion object {
         val byteArrayCodec = ByteArrayCodec()
-
-        @JvmStatic
-        protected inline fun <reified T : Any> ObjectInputStream.readTypedObject(): T =
-            readObject().let {
-                when (it) {
-                    it is T -> it as T
-                    else -> throw java.lang.RuntimeException()
-                }
-            }
     }
 }
 
+inline fun <reified T : Any> ObjectInputStream.readTypedObject(): T =
+    readObject().let {
+        when (it) {
+            it is T -> it as T
+            else -> throw java.lang.RuntimeException()
+        }
+    }
