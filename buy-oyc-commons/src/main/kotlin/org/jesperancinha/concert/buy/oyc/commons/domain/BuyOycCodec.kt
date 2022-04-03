@@ -20,7 +20,8 @@ abstract class BuyOycCodec<T> : RedisCodec<String, T> {
     override fun decodeValue(byteBuffer: ByteBuffer): T =
         ObjectInputStream(
             ByteArrayInputStream(byteArrayCodec.decodeValue(byteBuffer))
-        ).use { readCodecObject(it) }
+        ).use {
+            readCodecObject(it) }
 
     abstract fun readCodecObject(it: ObjectInputStream): T
 
@@ -41,10 +42,4 @@ abstract class BuyOycCodec<T> : RedisCodec<String, T> {
     }
 }
 
-inline fun <reified T : Any> ObjectInputStream.readTypedObject(): T =
-    readObject().let {
-        when (it) {
-            it is T -> it as T
-            else -> throw java.lang.RuntimeException()
-        }
-    }
+inline fun <reified T : Any> ObjectInputStream.readTypedObject(): T = readObject() as T

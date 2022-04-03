@@ -59,7 +59,6 @@ class Listener : RedisPubSubAdapter<String, TicketDto>() {
     }
 }
 
-
 class TicketCodec : BuyOycCodec<TicketDto>() {
     override fun readCodecObject(it: ObjectInputStream): TicketDto = it.readTypedObject()
 }
