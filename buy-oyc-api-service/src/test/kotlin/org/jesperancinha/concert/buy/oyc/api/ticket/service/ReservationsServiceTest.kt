@@ -24,12 +24,14 @@ internal class ReservationsServiceTest @Inject constructor(
     }
 
     @Test
-    fun `should publish test`() :Unit = runBlocking { 
-        reservationsService.createTicket(TicketDto(
-            name = "name",
-            address = "address",
-            birthDate = LocalDate.now()
-        ))
+    fun `should publish test`(): Unit = runBlocking {
+        reservationsService.createTicket(
+            TicketDto(
+                name = "name",
+                address = "address",
+                birthDate = LocalDate.now()
+            )
+        )
     }
 
     companion object {

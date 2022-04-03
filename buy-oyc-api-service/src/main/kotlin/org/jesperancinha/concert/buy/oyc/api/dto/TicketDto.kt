@@ -1,6 +1,7 @@
 package org.jesperancinha.concert.buy.oyc.api.dto
 
 import org.jesperancinha.concert.buy.oyc.commons.domain.*
+import java.io.Serializable
 import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -15,7 +16,7 @@ data class TicketDto(
     val drinks: List<DrinkDto> = emptyList(),
     val parkingReservation: ParkingReservationDto? = null,
     val createdAt: LocalDateTime? = LocalDateTime.now(),
-)
+) : Serializable
 
 val TicketDto.toTicketData: TicketReservation
     get() = TicketReservation(
