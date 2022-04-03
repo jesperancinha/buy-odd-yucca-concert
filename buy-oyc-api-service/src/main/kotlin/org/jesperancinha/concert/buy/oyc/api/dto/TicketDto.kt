@@ -16,7 +16,7 @@ data class TicketDto(
     val drinks: List<DrinkDto> = emptyList(),
     val parkingReservation: ParkingReservationDto? = null,
     val createdAt: LocalDateTime? = LocalDateTime.now(),
-) : Serializable
+) : Serializable, BuyOycType
 
 val TicketDto.toTicketData: TicketReservation
     get() = TicketReservation(

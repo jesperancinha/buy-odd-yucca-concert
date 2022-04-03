@@ -48,6 +48,7 @@
         <testcontainers.version>1.16.3</testcontainers.version>
         <micronaut-flyway.version>5.2.0</micronaut-flyway.version>
         <dependency-check-maven.version>7.0.4</dependency-check-maven.version>
+        <micronaut-redis-lettuce.version>5.2.0</micronaut-redis-lettuce.version>
     </properties>
 
     <profiles>
@@ -165,6 +166,11 @@
                 <version>${micronaut-parent.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.micronaut.redis</groupId>
+                <artifactId>micronaut-redis-lettuce</artifactId>
+                <version>${micronaut-redis-lettuce.version}</version>
             </dependency>
             <dependency>
                 <groupId>jakarta.annotation</groupId>

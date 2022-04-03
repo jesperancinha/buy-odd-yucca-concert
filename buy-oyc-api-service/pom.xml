@@ -73,11 +73,6 @@
             <artifactId>micronaut-kotlin-runtime</artifactId>
         </dependency>
         <dependency>
-            <groupId>io.micronaut.redis</groupId>
-            <artifactId>micronaut-redis-lettuce</artifactId>
-            <version>5.2.0</version>
-        </dependency>
-        <dependency>
             <groupId>javax.annotation</groupId>
             <artifactId>javax.annotation-api</artifactId>
         </dependency>
@@ -85,7 +80,6 @@
             <groupId>org.jetbrains.kotlin</groupId>
             <artifactId>kotlin-reflect</artifactId>
             <version>${kotlin.version}</version>
-
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
