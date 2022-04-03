@@ -30,7 +30,7 @@ import javax.validation.Valid
 class ReservationsService(
     private val receiptRepository: ReceiptRepository,
     private val redisClient: RedisClient,
-    val pubSubCommands: RedisPubSubAsyncCommands<String, String>
+    val pubSubCommands: RedisPubSubAsyncCommands<String, TicketDto>
 ) {
 
     init {
