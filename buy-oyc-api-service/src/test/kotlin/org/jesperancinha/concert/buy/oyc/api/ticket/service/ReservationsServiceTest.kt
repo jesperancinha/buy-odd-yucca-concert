@@ -19,6 +19,7 @@ import java.time.LocalDate
 import javax.transaction.Transactional
 
 
+@ExperimentalCoroutinesApi
 @Testcontainers
 @MicronautTest
 internal class ReservationsServiceTest @Inject constructor(
