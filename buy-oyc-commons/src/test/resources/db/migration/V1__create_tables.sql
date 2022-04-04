@@ -9,6 +9,7 @@ drop table if exists ticket.ticket_reservation;
 drop table if exists ticket.drink;
 
 drop table if exists ticket.receipt;
+drop table if exists receipt;
 
 create table if not exists ticket.car_parking
 (
@@ -20,11 +21,11 @@ create table if not exists ticket.car_parking
 
 create table if not exists ticket.parking_reservation
 (
-    id_pr          UUID      NOT NULL,
+    id          UUID      NOT NULL,
     reference      UUID      NOT NULL UNIQUE,
     car_parking_id UUID      NULL,
     created_at     TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
-    PRIMARY KEY (id_pr),
+    PRIMARY KEY (id),
     CONSTRAINT fk_car_parking
         FOREIGN KEY (car_parking_id)
             REFERENCES ticket.car_parking (id)
@@ -70,7 +71,7 @@ create table if not exists ticket.meal
 
 create table if not exists ticket.ticket_reservation
 (
-    id                     UUID      DEFAULT gen_random_uuid(),
+    id                     UUID               DEFAULT gen_random_uuid(),
     reference              UUID      NOT NULL UNIQUE,
     name                   varchar,
     address                varchar,
@@ -80,15 +81,15 @@ create table if not exists ticket.ticket_reservation
     PRIMARY KEY (id),
     CONSTRAINT fk_parking_reservation
         FOREIGN KEY (parking_reservation_id)
-            REFERENCES ticket.parking_reservation (id_pr)
+            REFERENCES ticket.parking_reservation (id)
 );
 
-create table if not exists ticket.receipt
+create table ticket.receipt
 (
-    id                    UUID               DEFAULT gen_random_uuid(),
+    id               UUID               DEFAULT gen_random_uuid(),
     reference             UUID      NOT NULL UNIQUE,
-    ticket_reservation_id UUID      NULL,
     created_at            TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
+    ticket_reservation_id UUID      NULL,
     PRIMARY KEY (id),
     CONSTRAINT fk_ticket_reservation
         FOREIGN KEY (ticket_reservation_id)

@@ -16,10 +16,10 @@ import java.util.*
  * Created by jofisaes on 19/12/2021
  */
 @MappedEntity(value = "ticket_reservation", namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
-data class TicketReservation(
+data class  TicketReservation(
     @field: Id
     @field: AutoPopulated
-    val id: UUID? = null,
+    var id: UUID? = null,
     val reference: UUID = UUID.randomUUID(),
     val name: String,
     val address: String,

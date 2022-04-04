@@ -7,6 +7,7 @@ drop table if exists ticket.parking_reservation;
 drop table if exists ticket.ticket_reservation;
 
 drop table if exists ticket.receipt;
+drop table if exists receipt;
 
 create table if not exists ticket.car_parking
 (

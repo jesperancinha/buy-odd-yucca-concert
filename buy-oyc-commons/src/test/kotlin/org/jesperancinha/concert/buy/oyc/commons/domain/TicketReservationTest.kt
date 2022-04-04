@@ -167,7 +167,7 @@ class TicketReservationTest @Inject constructor(
         firstMeal.price shouldBe BigDecimal(80)
         createdAt.shouldNotBeNull()
         carParkingTicketResult.shouldNotBeNull()
-        carParkingTicketResult.idPR.shouldNotBeNull()
+        carParkingTicketResult.id.shouldNotBeNull()
         parkingReservationRepository.findAll().toList().shouldNotBeEmpty()
         idParkingTicket.shouldNotBeNull()
         carParkingOnReservation.shouldNotBeNull()

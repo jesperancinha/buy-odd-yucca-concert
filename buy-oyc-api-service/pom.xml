@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>buy-odd-yucca-concert</artifactId>
         <groupId>org.jesperancinha.concert</groupId>
+        <artifactId>buy-odd-yucca-concert</artifactId>
         <version>0.0.0-SNAPSHOT</version>
     </parent>
 
@@ -25,17 +25,101 @@
             <artifactId>buy-oyc-commons</artifactId>
         </dependency>
         <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut.data</groupId>
+            <artifactId>micronaut-data-r2dbc</artifactId>
+        </dependency>
+        <dependency>
             <groupId>io.micronaut</groupId>
-            <artifactId>micronaut-inject</artifactId>
+            <artifactId>micronaut-http-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut</groupId>
+            <artifactId>micronaut-http-server-netty</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut</groupId>
+            <artifactId>micronaut-runtime</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut.kotlin</groupId>
+            <artifactId>micronaut-kotlin-runtime</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut.kotlin</groupId>
+            <artifactId>micronaut-kotlin-extension-functions</artifactId>
         </dependency>
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-validation</artifactId>
         </dependency>
         <dependency>
+            <groupId>io.r2dbc</groupId>
+            <artifactId>r2dbc-postgresql</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-reflect</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-kotlin</artifactId>
-            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut.flyway</groupId>
+            <artifactId>micronaut-flyway</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut.test</groupId>
+            <artifactId>micronaut-test-kotest</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.kotest</groupId>
+            <artifactId>kotest-runner-junit5-jvm</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.kotest</groupId>
+            <artifactId>kotest-assertions-core-jvm</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>r2dbc</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut</groupId>
+            <artifactId>micronaut-inject</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.micronaut.redis</groupId>
+            <artifactId>micronaut-redis-lettuce</artifactId>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -53,68 +137,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>io.micronaut</groupId>
-            <artifactId>micronaut-http-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.micronaut</groupId>
-            <artifactId>micronaut-http-server-netty</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.micronaut</groupId>
-            <artifactId>micronaut-runtime</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.micronaut</groupId>
-            <artifactId>micronaut-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.micronaut.kotlin</groupId>
-            <artifactId>micronaut-kotlin-runtime</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>javax.annotation</groupId>
-            <artifactId>javax.annotation-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-reflect</artifactId>
-            <version>${kotlin.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
-            <version>${kotlin.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.micronaut.test</groupId>
-            <artifactId>micronaut-test-kotest</artifactId>
+            <groupId>io.mockk</groupId>
+            <artifactId>mockk</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.kotest</groupId>
-            <artifactId>kotest-runner-junit5-jvm</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.kotest</groupId>
-            <artifactId>kotest-assertions-core-jvm</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.jetbrains.kotlinx</groupId>
-            <artifactId>kotlinx-coroutines-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.micronaut.flyway</groupId>
-            <artifactId>micronaut-flyway</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
@@ -136,45 +161,12 @@
             <artifactId>junit-jupiter</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>io.mockk</groupId>
-            <artifactId>mockk</artifactId>
-        </dependency>
     </dependencies>
 
     <build>
-        <finalName>${project.name}</finalName>
+        <finalName>${project.artifactId}</finalName>
         <sourceDirectory>src/main/kotlin</sourceDirectory>
         <plugins>
-            <plugin>
-                <groupId>io.micronaut.build</groupId>
-                <artifactId>micronaut-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>${maven-shade-plugin.version}</version>
-                <configuration>
-                    <transformers>
-                        <transformer
-                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-                            <manifestEntries>
-                                <Main-Class>org.jesperancinha.concert.buy.oyc.TicketServiceLauncher</Main-Class>
-                            </manifestEntries>
-                        </transformer>
-                        <transformer
-                                implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
-                    </transformers>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
             <plugin>
                 <artifactId>kotlin-maven-plugin</artifactId>
                 <groupId>org.jetbrains.kotlin</groupId>
@@ -183,6 +175,7 @@
                     <jvmTarget>${java.version}</jvmTarget>
                     <compilerPlugins>
                         <plugin>all-open</plugin>
+                        <plugin>no-arg</plugin>
                     </compilerPlugins>
                     <pluginOptions>
                         <option>all-open:annotation=io.micronaut.aop.Around</option>
@@ -198,7 +191,12 @@
                             <sourceDirs>
                                 <sourceDir>${project.basedir}/src/main/kotlin</sourceDir>
                             </sourceDirs>
-                            <annotationProcessorPaths combine.self="override">
+                            <annotationProcessorPaths combine.self="append">
+                                <annotationProcessorPath>
+                                    <groupId>io.micronaut.data</groupId>
+                                    <artifactId>micronaut-data-processor</artifactId>
+                                    <version>${micronaut.version}</version>
+                                </annotationProcessorPath>
                                 <annotationProcessorPath>
                                     <groupId>io.micronaut</groupId>
                                     <artifactId>micronaut-graal</artifactId>
@@ -226,9 +224,9 @@
                                 </annotationProcessorPath>
                             </annotationProcessorPaths>
                             <annotationProcessorArgs>
-                                <annotationProcessorArg>micronaut.processing.group=buy.oyc.ticket.service
+                                <annotationProcessorArg>micronaut.processing.group=org.jesperancinha.concert.buy.oyc
                                 </annotationProcessorArg>
-                                <annotationProcessorArg>micronaut.processing.module=buyOycTicketService
+                                <annotationProcessorArg>micronaut.processing.module=buyOycAPIService
                                 </annotationProcessorArg>
                             </annotationProcessorArgs>
                         </configuration>
@@ -277,8 +275,8 @@
                         </goals>
                         <configuration>
                             <sourceDirs>
-                                <source>target/generated-sources/kapt/test</source>
                                 <source>src/test/kotlin</source>
+                                <source>target/generated-sources/kapt/test</source>
                             </sourceDirs>
                         </configuration>
                     </execution>
@@ -289,11 +287,22 @@
                         <artifactId>kotlin-maven-allopen</artifactId>
                         <version>${kotlin.version}</version>
                     </dependency>
+                    <dependency>
+                        <groupId>org.jetbrains.kotlin</groupId>
+                        <artifactId>kotlin-maven-noarg</artifactId>
+                        <version>${kotlin.version}</version>
+                    </dependency>
                 </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>io.micronaut.build</groupId>
+                <artifactId>micronaut-maven-plugin</artifactId>
+                <version>3.2.1</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.10.1</version>
                 <configuration>
                     <proc>none</proc>
                     <source>${jdk.version}</source>
@@ -339,6 +348,36 @@
                         <phase>test</phase>
                         <goals>
                             <goal>report</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${maven-shade-plugin.version}</version>
+                <configuration>
+                    <transformers>
+                        <transformer
+                                implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                            <manifestEntries>
+                                <Main-Class>org.jesperancinha.concert.buy.oyc.TicketServiceLauncher</Main-Class>
+                            </manifestEntries>
+                        </transformer>
+                        <transformer
+                                implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
+                    </transformers>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
                         </goals>
                     </execution>
                 </executions>

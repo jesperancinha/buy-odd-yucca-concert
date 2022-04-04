@@ -12,16 +12,16 @@ import java.util.*
 /**
  * Created by jofisaes on 30/03/2022
  */
-@MappedEntity("receipt", namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
+@MappedEntity(value = "receipt", namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
 data class Receipt(
     @field: Id
     @field: AutoPopulated
-    val id: UUID? = null,
+    var id: UUID? = null,
     val reference: UUID = UUID.randomUUID(),
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now(),
     @field: Relation(value = Relation.Kind.ONE_TO_ONE, cascade = [Relation.Cascade.PERSIST])
-    val ticketReservation: TicketReservation?= null
+    val ticketReservation: TicketReservation? = null
 )
 
 @R2dbcRepository(dialect = Dialect.POSTGRES)

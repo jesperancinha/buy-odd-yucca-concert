@@ -24,7 +24,7 @@ data class CarParking(
 data class ParkingReservation(
     @field: Id
     @field: AutoPopulated
-    var idPR: UUID? = null,
+    var id: UUID? = null,
     val reference: UUID = UUID.randomUUID(),
     @field: Relation(value = ONE_TO_ONE, cascade = [Relation.Cascade.PERSIST])
     var carParking: CarParking? = null,

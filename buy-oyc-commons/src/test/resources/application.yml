@@ -1,6 +1,6 @@
 micronaut:
   application:
-    name: buyOycTicketService
+    name: buyOycCommons
   server:
     port: 8086
 

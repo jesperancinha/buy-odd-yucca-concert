@@ -35,9 +35,10 @@ class ReservationsService(
         redisPubSubAsyncCommands.subscribe("ticketsChannel")
     }
 
-    @OptIn(DelicateCoroutinesApi::class)
     suspend fun createTicket(ticketDto: @Valid TicketDto): ReceiptDto {
-//        val receiptDto = receiptRepository.save(Receipt()).toDto
+        val save = receiptRepository.save(Receipt())
+        val receiptDto = save.toDto
+        println(receiptDto)
         pubSubCommands.publish("ticketsChannel", ticketDto)
         return Receipt().toDto
     }

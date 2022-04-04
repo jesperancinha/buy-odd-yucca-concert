@@ -84,15 +84,9 @@
             <groupId>io.micronaut.flyway</groupId>
             <artifactId>micronaut-flyway</artifactId>
         </dependency>
-
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>io.mockk</groupId>
-            <artifactId>mockk</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -139,9 +133,13 @@
             <scope>test</scope>
         </dependency>
         <dependency>
+            <groupId>io.mockk</groupId>
+            <artifactId>mockk</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-test</artifactId>
-            <version>${kotlin.version}</version>
+            <artifactId>kotlin-test-junit</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -162,7 +160,7 @@
     </dependencies>
 
     <build>
-        <finalName>${artifactId}</finalName>
+        <finalName>${project.artifactId}</finalName>
         <sourceDirectory>src/main/kotlin</sourceDirectory>
         <plugins>
             <plugin>
@@ -237,8 +235,8 @@
                         </goals>
                         <configuration>
                             <sourceDirs>
-                                <source>target/generated-sources/kaptKotlin</source>
                                 <source>src/main/kotlin</source>
+                                <source>target/generated-sources/kaptKotlin</source>
                             </sourceDirs>
                         </configuration>
                     </execution>
