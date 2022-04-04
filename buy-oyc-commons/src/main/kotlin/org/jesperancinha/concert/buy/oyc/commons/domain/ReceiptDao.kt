@@ -6,7 +6,6 @@ import io.micronaut.data.model.query.builder.sql.Dialect
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository
 import io.micronaut.data.repository.jpa.kotlin.CoroutineJpaSpecificationExecutor
 import io.micronaut.data.repository.kotlin.CoroutineCrudRepository
-import jakarta.inject.Singleton
 import java.time.LocalDateTime
 import java.util.*
 
@@ -25,7 +24,6 @@ data class Receipt(
     val ticketReservation: TicketReservation?= null
 )
 
-@Singleton
 @R2dbcRepository(dialect = Dialect.POSTGRES)
 interface ReceiptRepository : CoroutineCrudRepository<Receipt, UUID>,
     CoroutineJpaSpecificationExecutor<Receipt>

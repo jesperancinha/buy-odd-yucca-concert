@@ -11,6 +11,7 @@ import org.jesperancinha.concert.buy.oyc.api.service.ReservationsService
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import java.time.LocalDate
+import javax.transaction.Transactional
 
 
 @MicronautTest
@@ -24,6 +25,7 @@ internal class ReservationsServiceTest @Inject constructor(
     }
 
     @Test
+    @Transactional
     fun `should publish test`(): Unit = runBlocking {
         reservationsService.createTicket(
             TicketDto(

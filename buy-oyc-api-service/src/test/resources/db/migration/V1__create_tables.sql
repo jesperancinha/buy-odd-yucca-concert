@@ -1,11 +1,8 @@
-drop schema if exists parking;
-
 create schema if not exists ticket;
 
 drop table if exists ticket.car_parking;
 
 drop table if exists ticket.parking_reservation;
-drop table if exists parking_reservation;
 
 drop table if exists ticket.ticket_reservation;
 

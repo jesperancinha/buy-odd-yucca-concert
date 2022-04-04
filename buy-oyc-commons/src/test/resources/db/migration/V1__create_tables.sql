@@ -1,5 +1,3 @@
-drop schema if exists parking;
-
 create schema if not exists ticket;
 
 drop table if exists ticket.car_parking;
@@ -9,6 +7,8 @@ drop table if exists ticket.parking_reservation;
 drop table if exists ticket.ticket_reservation;
 
 drop table if exists ticket.drink;
+
+drop table if exists ticket.receipt;
 
 create table if not exists ticket.car_parking
 (
@@ -70,7 +70,7 @@ create table if not exists ticket.meal
 
 create table if not exists ticket.ticket_reservation
 (
-    id                     UUID      NOT NULL DEFAULT gen_random_uuid(),
+    id                     UUID      DEFAULT gen_random_uuid(),
     reference              UUID      NOT NULL UNIQUE,
     name                   varchar,
     address                varchar,
@@ -81,4 +81,16 @@ create table if not exists ticket.ticket_reservation
     CONSTRAINT fk_parking_reservation
         FOREIGN KEY (parking_reservation_id)
             REFERENCES ticket.parking_reservation (id_pr)
+);
+
+create table if not exists ticket.receipt
+(
+    id                    UUID               DEFAULT gen_random_uuid(),
+    reference             UUID      NOT NULL UNIQUE,
+    ticket_reservation_id UUID      NULL,
+    created_at            TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
+    PRIMARY KEY (id),
+    CONSTRAINT fk_ticket_reservation
+        FOREIGN KEY (ticket_reservation_id)
+            REFERENCES ticket.ticket_reservation (id)
 );

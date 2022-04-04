@@ -25,7 +25,7 @@ import javax.validation.Valid
 class ReservationsService(
     private val receiptRepository: ReceiptRepository,
     private val redisClient: RedisClient,
-    val pubSubCommands: RedisPubSubAsyncCommands<String, TicketDto>
+    private val pubSubCommands: RedisPubSubAsyncCommands<String, TicketDto>
 ) {
 
     init {
@@ -38,7 +38,7 @@ class ReservationsService(
     @OptIn(DelicateCoroutinesApi::class)
     suspend fun createTicket(ticketDto: @Valid TicketDto): ReceiptDto {
 //        val receiptDto = receiptRepository.save(Receipt()).toDto
-        redisClient.connectPubSub(TicketCodec()).async().publish("ticketsChannel", ticketDto)
+        pubSubCommands.publish("ticketsChannel", ticketDto)
         return Receipt().toDto
     }
 
