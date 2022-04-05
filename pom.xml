@@ -32,7 +32,7 @@
         <jakarta.persistence-api.version>3.0.0</jakarta.persistence-api.version>
         <mockk.version>1.12.3</mockk.version>
         <kotest.version>5.0.3</kotest.version>
-        <kotlinx-coroutines-core-jvm.version>1.6.0</kotlinx-coroutines-core-jvm.version>
+        <kotlinx-coroutines-core-jvm.version>1.6.1</kotlinx-coroutines-core-jvm.version>
         <kotlinx.version>1.6.0-native-mt</kotlinx.version>
         <postgresql.version>42.3.3</postgresql.version>
         <flyway-core.version>8.5.5</flyway-core.version>
