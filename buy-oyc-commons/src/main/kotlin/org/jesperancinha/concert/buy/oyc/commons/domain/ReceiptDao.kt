@@ -1,6 +1,8 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
 import io.micronaut.data.annotation.*
+import io.micronaut.data.annotation.Relation.Cascade.PERSIST
+import io.micronaut.data.annotation.Relation.Kind.ONE_TO_ONE
 import io.micronaut.data.model.naming.NamingStrategies
 import io.micronaut.data.model.query.builder.sql.Dialect
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository
@@ -20,7 +22,7 @@ data class Receipt(
     val reference: UUID = UUID.randomUUID(),
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now(),
-    @field: Relation(value = Relation.Kind.ONE_TO_ONE, cascade = [Relation.Cascade.PERSIST])
+    @field: Relation(value = ONE_TO_ONE, cascade = [PERSIST])
     val ticketReservation: TicketReservation? = null
 )
 

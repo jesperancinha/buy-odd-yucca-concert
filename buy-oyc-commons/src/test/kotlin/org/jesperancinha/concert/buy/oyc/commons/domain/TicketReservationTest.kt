@@ -17,8 +17,8 @@ import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
 import org.flywaydb.core.Flyway
 import org.flywaydb.core.api.configuration.ClassicConfiguration
-import org.jesperancinha.concert.buy.oyc.commons.domain.BoxType.XL
 import org.jesperancinha.concert.buy.oyc.commons.containers.AbstractContainerTest
+import org.jesperancinha.concert.buy.oyc.commons.domain.BoxType.XL
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -38,7 +38,8 @@ class TicketReservationTest @Inject constructor(
     private val carParkingRepository: CarParkingRepository,
     private val concertDayRepository: ConcertDayRepository,
     private val drinkRepository: DrinkRepository,
-    private val mealRepository: MealRepository
+    private val mealRepository: MealRepository,
+    private val ticketReservationConcertRepository: TicketReservationConcertRepository
 ) : AbstractContainerTest() {
 
     private val config = ClassicConfiguration()
@@ -65,7 +66,7 @@ class TicketReservationTest @Inject constructor(
             birthDate = birthDate,
             address = "Road to nowhere"
         )
-        val (id, reference, name, address, birthDateResult, concertDays, meals, drinks, carParkingTicket, createdAt) = ticketRepository.save(
+        val (id, reference, name, address, birthDateResult, meals, drinks, carParkingTicket, createdAt) = ticketRepository.save(
             ticketReservation
         )
         id.shouldNotBeNull()
@@ -73,7 +74,6 @@ class TicketReservationTest @Inject constructor(
         reference.shouldNotBeNull()
         address shouldBe "Road to nowhere"
         birthDateResult shouldBeEqualComparingTo birthDate
-        concertDays.shouldBeEmpty()
         meals.shouldBeEmpty()
         drinks.shouldBeEmpty()
         carParkingTicket.shouldBeNull()
@@ -127,30 +127,45 @@ class TicketReservationTest @Inject constructor(
 
             )
         )
+
         val birthDate = LocalDate.now()
         val ticketReservation = TicketReservation(
             name = "João",
             birthDate = birthDate,
             address = "Road to nowhere",
             parkingReservation = savedParkingReservation,
-            concertDays = listOf(concertDay),
             drinks = listOf(drink),
             meals = listOf(meal)
         )
-        val (id, reference, name, address, birthDateResult, concertDays, meals, drinks, carParkingTicketResult, createdAt) = ticketRepository.save(
+        val (id, reference, name, address, birthDateResult, meals, drinks, carParkingTicketResult, createdAt) = ticketRepository.save(
             ticketReservation
         )
+        val reservation = id?.let {
+            ticketRepository.findById(id)
+        }
+
+        concertDay.shouldNotBeNull()
+        reservation.shouldNotBeNull()
+
+        val ticketReservationConcert = ticketReservationConcertRepository
+            .save(
+                TicketReservationConcert(
+                    ticketReservation = reservation,
+                    concertDay = concertDay
+                )
+            )
+        ticketReservationConcert.shouldNotBeNull()
+        ticketReservationConcert.ticketReservation shouldBe reservation
+        ticketReservationConcert.concertDay shouldBe concertDay
+        reservation.shouldNotBeNull()
+        reservation.id.shouldNotBeNull()
+        reservation.meals.shouldNotBeNull()
+        reservation.parkingReservation.shouldNotBeNull()
         id.shouldNotBeNull()
         name shouldBe "João"
         reference.shouldNotBeNull()
         address shouldBe "Road to nowhere"
         birthDateResult shouldBeEqualComparingTo birthDate
-        concertDays.shouldHaveSize(1)
-        val firstConcertDay = concertDays.first()
-        firstConcertDay.shouldNotBeNull()
-        firstConcertDay.name shouldBe concertDay.name
-        firstConcertDay.description shouldBe concertDay.description
-        firstConcertDay.date shouldBe concertDay.date
         drinks.shouldHaveSize(1)
         val firstDrink = drinks.first()
         firstDrink.shouldNotBeNull()
