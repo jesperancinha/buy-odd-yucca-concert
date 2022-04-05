@@ -3,8 +3,6 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
 import io.kotest.matchers.collections.shouldBeEmpty
-import io.kotest.matchers.collections.shouldHaveSize
-import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.comparables.shouldBeEqualComparingTo
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields
 import io.kotest.matchers.nulls.shouldBeNull
@@ -146,7 +144,16 @@ class TicketReservationTest @Inject constructor(
             )
         )
 
-        val meal = mealRepository.save(
+        val meal1 = mealRepository.save(
+            Meal(
+                boxType = XL,
+                discount = 10,
+                price = BigDecimal(80),
+                ticketReservation = reservation
+            )
+        )
+
+        val meal2 = mealRepository.save(
             Meal(
                 boxType = XL,
                 discount = 10,
@@ -158,11 +165,15 @@ class TicketReservationTest @Inject constructor(
         val finalDrink = drink.id?.let {
             drinkRepository.findById(it)
         }
-        val finalMeal = meal.id?.let {
+        val finalMeal1 = meal1.id?.let {
+            mealRepository.findById(it)
+        }
+        val finalMeal2 = meal2.id?.let {
             mealRepository.findById(it)
         }
         finalDrink.shouldNotBeNull()
-        finalMeal.shouldNotBeNull()
+        finalMeal1.shouldNotBeNull()
+        finalMeal2.shouldNotBeNull()
         reservation.shouldNotBeNull()
         reservation.id.shouldNotBeNull()
         reservation.parkingReservation.shouldNotBeNull()
@@ -188,6 +199,7 @@ class TicketReservationTest @Inject constructor(
         val finalTicketReservation =
             newTicketReservation.id?.let { ticketRepository.findById(it) }
         finalTicketReservation.shouldNotBeNull()
+        finalTicketReservation.parkingReservation.shouldNotBeNull()
     }
 
     @AfterEach

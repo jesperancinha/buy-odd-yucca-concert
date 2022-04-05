@@ -27,7 +27,6 @@ data class Drink(
     val shape: String,
     val volume: Long,
     val price: BigDecimal,
-    @Relation(value = MANY_TO_ONE)
     val ticketReservation: TicketReservation,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now(),
@@ -47,7 +46,6 @@ data class Meal(
     val discount: Long,
     val price: BigDecimal,
     val processed: Boolean = false,
-    @Relation(value = MANY_TO_ONE)
     val ticketReservation: TicketReservation,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now(),

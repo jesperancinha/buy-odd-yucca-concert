@@ -1,9 +1,6 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
-import io.micronaut.core.annotation.Nullable
 import io.micronaut.data.annotation.*
-import io.micronaut.data.annotation.Relation.Kind.ONE_TO_MANY
-import io.micronaut.data.annotation.Relation.Kind.ONE_TO_ONE
 import io.micronaut.data.model.naming.NamingStrategies
 import io.micronaut.data.model.query.builder.sql.Dialect.POSTGRES
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository
@@ -25,7 +22,6 @@ data class TicketReservation(
     val name: String,
     val address: String,
     val birthDate: LocalDate,
-    @field: Relation(value = ONE_TO_ONE, cascade = [Relation.Cascade.PERSIST])
     val parkingReservation: ParkingReservation? = null,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now(),
@@ -33,4 +29,8 @@ data class TicketReservation(
 
 @R2dbcRepository(dialect = POSTGRES)
 interface TicketRepository : CoroutineCrudRepository<TicketReservation, UUID>,
-    CoroutineJpaSpecificationExecutor<TicketReservation>
+    CoroutineJpaSpecificationExecutor<TicketReservation> {
+
+    @Join(value = "parkingReservation", type = Join.Type.FETCH)
+    override suspend fun findById(id: UUID): TicketReservation
+}
