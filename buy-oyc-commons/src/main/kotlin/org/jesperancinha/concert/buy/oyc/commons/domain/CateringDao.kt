@@ -55,7 +55,10 @@ data class Meal(
 
 @R2dbcRepository(dialect = Dialect.POSTGRES)
 interface DrinkRepository : CoroutineCrudRepository<Drink, UUID>,
-    CoroutineJpaSpecificationExecutor<Drink>
+    CoroutineJpaSpecificationExecutor<Drink> {
+    @Join(value = "ticketReservation", type = Join.Type.FETCH)
+    override suspend fun findById(id: UUID): Drink
+}
 
 @R2dbcRepository(dialect = Dialect.POSTGRES)
 interface MealRepository : CoroutineCrudRepository<Meal, UUID>,

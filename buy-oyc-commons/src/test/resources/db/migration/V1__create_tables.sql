@@ -62,7 +62,7 @@ create table if not exists ticket.drink
 (
     id                    UUID                  DEFAULT gen_random_uuid(),
     reference             UUID         NOT NULL UNIQUE,
-    ticket_reservation_id UUID         not null,
+    ticket_reservation_id UUID         NOT NULL,
     name                  varchar(255) NULL,
     width                 bigint,
     height                bigint,
@@ -81,7 +81,7 @@ create table if not exists ticket.meal
     id                    UUID                  DEFAULT gen_random_uuid(),
     reference             UUID         NOT NULL UNIQUE,
     coupon                UUID         NULL,
-    ticket_reservation_id UUID         not null,
+    ticket_reservation_id UUID         NOT NULL,
     box_type              varchar(255) NULL,
     discount              bigint,
     price                 numeric,
@@ -109,13 +109,30 @@ create table ticket.ticket_reservation_concert_day
 (
     id                    UUID DEFAULT gen_random_uuid(),
     reference             UUID NOT NULL UNIQUE,
-    ticket_reservation_id UUID not null,
-    concert_day_id        UUID not null,
+    ticket_reservation_id UUID NOT NULL,
+    concert_day_id        UUID NOT NULL,
     CONSTRAINT fk_many_ticket_reservation
         FOREIGN KEY (ticket_reservation_id)
             REFERENCES ticket.ticket_reservation (id),
     CONSTRAINT fk__many_concert
         FOREIGN KEY (concert_day_id)
             REFERENCES ticket.concert_day (id)
+);
+
+create table ticket.ticket_reservation_meal
+(
+    id                    UUID DEFAULT gen_random_uuid(),
+    ticket_reservation_id UUID NOT NULL,
+    meal_id               UUID NOT NULL,
+    PRIMARY KEY (id)
+);
+
+
+create table ticket.ticket_reservation_drink
+(
+    id                    UUID DEFAULT gen_random_uuid(),
+    ticket_reservation_id UUID NULL,
+    drink_id              UUID NULL,
+    PRIMARY KEY (id)
 );
 

@@ -3,6 +3,7 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
 import io.kotest.matchers.collections.shouldBeEmpty
+import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.comparables.shouldBeEqualComparingTo
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields
@@ -66,7 +67,7 @@ class TicketReservationTest @Inject constructor(
             birthDate = birthDate,
             address = "Road to nowhere"
         )
-        val (id, reference, name, address, birthDateResult, meals, drinks, carParkingTicket, createdAt) = ticketRepository.save(
+        val (id, reference, name, address, birthDateResult, carParkingTicket, createdAt) = ticketRepository.save(
             ticketReservation
         )
         id.shouldNotBeNull()
@@ -76,8 +77,6 @@ class TicketReservationTest @Inject constructor(
         birthDateResult shouldBeEqualComparingTo birthDate
         carParkingTicket.shouldBeNull()
         createdAt.shouldNotBeNull()
-        meals.shouldBeEmpty()
-        drinks.shouldBeEmpty()
     }
 
     @Test
@@ -115,7 +114,7 @@ class TicketReservationTest @Inject constructor(
             address = "Road to nowhere",
             parkingReservation = savedParkingReservation,
         )
-        val (id, reference, name, address, birthDateResult, meals, drinks, carParkingTicketResult, createdAt) = ticketRepository.save(
+        val (id, reference, name, address, birthDateResult, carParkingTicketResult, createdAt) = ticketRepository.save(
             ticketReservation
         )
         id.shouldNotBeNull()
@@ -156,9 +155,13 @@ class TicketReservationTest @Inject constructor(
             )
         )
 
+        val finalDrink = drink.id?.let {
+            drinkRepository.findById(it)
+        }
         val finalMeal = meal.id?.let {
             mealRepository.findById(it)
         }
+        finalDrink.shouldNotBeNull()
         finalMeal.shouldNotBeNull()
         reservation.shouldNotBeNull()
         reservation.id.shouldNotBeNull()
@@ -172,7 +175,6 @@ class TicketReservationTest @Inject constructor(
         createdAt.shouldNotBeNull()
         carParkingTicketResult.shouldNotBeNull()
         carParkingTicketResult.id.shouldNotBeNull()
-        parkingReservationRepository.findAll().toList().shouldNotBeEmpty()
         idParkingTicket.shouldNotBeNull()
         carParkingOnReservation.shouldNotBeNull()
         carParkingOnReservation.parkingNumber shouldBe 10
@@ -180,21 +182,12 @@ class TicketReservationTest @Inject constructor(
         val newTicketReservation =
             ticketRepository.update(
                 reservation.copy(
-                    meals = listOf(meal),
-                    drinks = listOf(drink),
                     createdAt = LocalDateTime.now()
                 )
             )
         val finalTicketReservation =
             newTicketReservation.id?.let { ticketRepository.findById(it) }
         finalTicketReservation.shouldNotBeNull()
-//        val finalMeals = finalTicketReservation.meals
-//        finalMeals.shouldNotBeNull()
-//        finalMeals.shouldHaveSize(1)
-//        val finalDrinks = finalTicketReservation.drinks
-//        finalDrinks.shouldNotBeNull()
-//        finalDrinks.shouldHaveSize(1)
-
     }
 
     @AfterEach

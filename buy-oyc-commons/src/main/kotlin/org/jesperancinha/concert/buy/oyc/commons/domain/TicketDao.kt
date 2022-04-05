@@ -25,12 +25,6 @@ data class TicketReservation(
     val name: String,
     val address: String,
     val birthDate: LocalDate,
-    @Relation(value = ONE_TO_MANY, mappedBy = "ticket_reservation", cascade = [Relation.Cascade.ALL])
-    @Nullable
-    var meals: List<Meal>? = emptyList(),
-    @Relation(value = ONE_TO_MANY, mappedBy = "ticket_reservation", cascade = [Relation.Cascade.ALL])
-    @Nullable
-    var drinks: List<Drink>? = emptyList(),
     @field: Relation(value = ONE_TO_ONE, cascade = [Relation.Cascade.PERSIST])
     val parkingReservation: ParkingReservation? = null,
     @field:DateCreated
