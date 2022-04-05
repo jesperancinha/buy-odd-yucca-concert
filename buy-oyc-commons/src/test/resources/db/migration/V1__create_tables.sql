@@ -43,33 +43,6 @@ create table if not exists ticket.concert_day
     PRIMARY KEY (id)
 );
 
-create table if not exists ticket.drink
-(
-    id         UUID                  DEFAULT gen_random_uuid(),
-    reference  UUID         NOT NULL UNIQUE,
-    name       varchar(255) NULL,
-    width      bigint,
-    height     bigint,
-    shape      varchar(255),
-    volume     bigint,
-    price      numeric,
-    created_at TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
-    PRIMARY KEY (id)
-);
-
-create table if not exists ticket.meal
-(
-    id         UUID                  DEFAULT gen_random_uuid(),
-    reference  UUID         NOT NULL UNIQUE,
-    coupon     UUID         NULL,
-    box_type   varchar(255) NULL,
-    discount   bigint,
-    price      numeric,
-    processed  boolean,
-    created_at TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
-    PRIMARY KEY (id)
-);
-
 create table if not exists ticket.ticket_reservation
 (
     id                     UUID               DEFAULT gen_random_uuid(),
@@ -83,6 +56,41 @@ create table if not exists ticket.ticket_reservation
     CONSTRAINT fk_parking_reservation
         FOREIGN KEY (parking_reservation_id)
             REFERENCES ticket.parking_reservation (id)
+);
+
+create table if not exists ticket.drink
+(
+    id                    UUID                  DEFAULT gen_random_uuid(),
+    reference             UUID         NOT NULL UNIQUE,
+    ticket_reservation_id UUID         not null,
+    name                  varchar(255) NULL,
+    width                 bigint,
+    height                bigint,
+    shape                 varchar(255),
+    volume                bigint,
+    price                 numeric,
+    created_at            TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
+    PRIMARY KEY (id),
+    CONSTRAINT fk_drink_ticket_reservation
+        FOREIGN KEY (ticket_reservation_id)
+            REFERENCES ticket.ticket_reservation (id)
+);
+
+create table if not exists ticket.meal
+(
+    id                    UUID                  DEFAULT gen_random_uuid(),
+    reference             UUID         NOT NULL UNIQUE,
+    coupon                UUID         NULL,
+    ticket_reservation_id UUID         not null,
+    box_type              varchar(255) NULL,
+    discount              bigint,
+    price                 numeric,
+    processed             boolean,
+    created_at            TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
+    PRIMARY KEY (id),
+    CONSTRAINT fk_meal_ticket_reservation
+        FOREIGN KEY (ticket_reservation_id)
+            REFERENCES ticket.ticket_reservation (id)
 );
 
 create table ticket.receipt

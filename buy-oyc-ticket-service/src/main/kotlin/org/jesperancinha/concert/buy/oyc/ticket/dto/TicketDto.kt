@@ -50,9 +50,9 @@ data class MealDto(
     val createdAt: LocalDateTime? = LocalDateTime.now(),
 )
 
-val TicketDto.toMealData: List<Meal>
+val TicketDto.toMealDataDto: List<MealDto>
     get() = this.meals.map {
-        Meal(
+        MealDto(
             coupon = it.coupon,
             boxType = it.boxType,
             discount = it.discount,
@@ -71,9 +71,9 @@ data class DrinkDto(
     val price: BigDecimal,
 )
 
-val TicketDto.toDrinkData: List<Drink>
+val TicketDto.toDrinkDto: List<DrinkDto>
     get() = this.drinks.map {
-        Drink(
+        DrinkDto(
             name = it.name,
             width = it.width,
             height = it.height,

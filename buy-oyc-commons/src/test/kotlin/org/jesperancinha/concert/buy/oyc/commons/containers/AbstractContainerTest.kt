@@ -27,7 +27,6 @@ abstract class AbstractContainerTest(
 
         init {
             postgreSQLContainer.start()
-
         }
     }
 

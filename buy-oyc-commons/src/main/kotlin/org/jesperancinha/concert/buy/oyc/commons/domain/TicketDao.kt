@@ -1,7 +1,9 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
+import io.micronaut.core.annotation.Nullable
 import io.micronaut.data.annotation.*
-import io.micronaut.data.annotation.Relation.Kind.*
+import io.micronaut.data.annotation.Relation.Kind.ONE_TO_MANY
+import io.micronaut.data.annotation.Relation.Kind.ONE_TO_ONE
 import io.micronaut.data.model.naming.NamingStrategies
 import io.micronaut.data.model.query.builder.sql.Dialect.POSTGRES
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository
@@ -23,10 +25,12 @@ data class TicketReservation(
     val name: String,
     val address: String,
     val birthDate: LocalDate,
-    @field: Relation(value = ONE_TO_MANY, mappedBy = "meal")
-    val meals: List<Meal> = emptyList(),
-    @field: Relation(value = ONE_TO_MANY, mappedBy = "drink")
-    val drinks: List<Drink> = emptyList(),
+    @Relation(value = ONE_TO_MANY, mappedBy = "ticket_reservation", cascade = [Relation.Cascade.ALL])
+    @Nullable
+    var meals: List<Meal>? = emptyList(),
+    @Relation(value = ONE_TO_MANY, mappedBy = "ticket_reservation", cascade = [Relation.Cascade.ALL])
+    @Nullable
+    var drinks: List<Drink>? = emptyList(),
     @field: Relation(value = ONE_TO_ONE, cascade = [Relation.Cascade.PERSIST])
     val parkingReservation: ParkingReservation? = null,
     @field:DateCreated

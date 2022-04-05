@@ -1,9 +1,7 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
-import io.micronaut.data.annotation.AutoPopulated
-import io.micronaut.data.annotation.DateCreated
-import io.micronaut.data.annotation.Id
-import io.micronaut.data.annotation.MappedEntity
+import io.micronaut.data.annotation.*
+import io.micronaut.data.annotation.Relation.Kind.MANY_TO_ONE
 import io.micronaut.data.model.naming.NamingStrategies
 import io.micronaut.data.model.query.builder.sql.Dialect
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository
@@ -28,7 +26,11 @@ data class Drink(
     val height: Long,
     val shape: String,
     val volume: Long,
-    val price: BigDecimal
+    val price: BigDecimal,
+    @Relation(value = MANY_TO_ONE)
+    val ticketReservation: TicketReservation,
+    @field:DateCreated
+    val createdAt: LocalDateTime? = LocalDateTime.now(),
 )
 
 /**
@@ -45,6 +47,8 @@ data class Meal(
     val discount: Long,
     val price: BigDecimal,
     val processed: Boolean = false,
+    @Relation(value = MANY_TO_ONE)
+    val ticketReservation: TicketReservation,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now(),
 )
@@ -55,4 +59,8 @@ interface DrinkRepository : CoroutineCrudRepository<Drink, UUID>,
 
 @R2dbcRepository(dialect = Dialect.POSTGRES)
 interface MealRepository : CoroutineCrudRepository<Meal, UUID>,
-    CoroutineJpaSpecificationExecutor<Meal>
+    CoroutineJpaSpecificationExecutor<Meal> {
+
+    @Join(value = "ticketReservation", type = Join.Type.FETCH)
+    override suspend fun findById(id: UUID): Meal
+}

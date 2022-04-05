@@ -3,7 +3,6 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
 import io.kotest.matchers.collections.shouldBeEmpty
-import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.collections.shouldNotBeEmpty
 import io.kotest.matchers.comparables.shouldBeEqualComparingTo
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields
@@ -25,6 +24,7 @@ import org.junit.jupiter.api.Test
 import org.testcontainers.junit.jupiter.Testcontainers
 import java.math.BigDecimal
 import java.time.LocalDate
+import java.time.LocalDateTime
 import javax.transaction.Transactional
 
 /**
@@ -74,10 +74,10 @@ class TicketReservationTest @Inject constructor(
         reference.shouldNotBeNull()
         address shouldBe "Road to nowhere"
         birthDateResult shouldBeEqualComparingTo birthDate
-        meals.shouldBeEmpty()
-        drinks.shouldBeEmpty()
         carParkingTicket.shouldBeNull()
         createdAt.shouldNotBeNull()
+        meals.shouldBeEmpty()
+        drinks.shouldBeEmpty()
     }
 
     @Test
@@ -108,41 +108,18 @@ class TicketReservationTest @Inject constructor(
             )
         )
 
-        val drink = drinkRepository.save(
-            Drink(
-                name = "Orange Flavour",
-                width = 5,
-                height = 10,
-                shape = "bottle",
-                volume = 33,
-                price = BigDecimal(10)
-            )
-        )
-
-        val meal = mealRepository.save(
-            Meal(
-                boxType = XL,
-                discount = 10,
-                price = BigDecimal(80)
-
-            )
-        )
-
         val birthDate = LocalDate.now()
         val ticketReservation = TicketReservation(
             name = "João",
             birthDate = birthDate,
             address = "Road to nowhere",
             parkingReservation = savedParkingReservation,
-            drinks = listOf(drink),
-            meals = listOf(meal)
         )
         val (id, reference, name, address, birthDateResult, meals, drinks, carParkingTicketResult, createdAt) = ticketRepository.save(
             ticketReservation
         )
-        val reservation = id?.let {
-            ticketRepository.findById(id)
-        }
+        id.shouldNotBeNull()
+        val reservation = ticketRepository.findById(id)
 
         concertDay.shouldNotBeNull()
         reservation.shouldNotBeNull()
@@ -157,29 +134,41 @@ class TicketReservationTest @Inject constructor(
         ticketReservationConcert.shouldNotBeNull()
         ticketReservationConcert.ticketReservation shouldBe reservation
         ticketReservationConcert.concertDay shouldBe concertDay
+
+        val drink = drinkRepository.save(
+            Drink(
+                name = "Orange Flavour",
+                width = 5,
+                height = 10,
+                shape = "bottle",
+                volume = 33,
+                price = BigDecimal(10),
+                ticketReservation = reservation
+            )
+        )
+
+        val meal = mealRepository.save(
+            Meal(
+                boxType = XL,
+                discount = 10,
+                price = BigDecimal(80),
+                ticketReservation = reservation
+            )
+        )
+
+        val finalMeal = meal.id?.let {
+            mealRepository.findById(it)
+        }
+        finalMeal.shouldNotBeNull()
         reservation.shouldNotBeNull()
         reservation.id.shouldNotBeNull()
-        reservation.meals.shouldNotBeNull()
         reservation.parkingReservation.shouldNotBeNull()
+
         id.shouldNotBeNull()
         name shouldBe "João"
         reference.shouldNotBeNull()
         address shouldBe "Road to nowhere"
         birthDateResult shouldBeEqualComparingTo birthDate
-        drinks.shouldHaveSize(1)
-        val firstDrink = drinks.first()
-        firstDrink.shouldNotBeNull()
-        firstDrink.name shouldBe "Orange Flavour"
-        firstDrink.height shouldBe 10
-        firstDrink.shape shouldBe "bottle"
-        firstDrink.volume shouldBe 33
-        firstDrink.price shouldBe BigDecimal(10)
-        meals.shouldHaveSize(1)
-        val firstMeal = meals.first()
-        firstMeal.shouldNotBeNull()
-        firstMeal.boxType shouldBe XL
-        firstMeal.discount shouldBe 10
-        firstMeal.price shouldBe BigDecimal(80)
         createdAt.shouldNotBeNull()
         carParkingTicketResult.shouldNotBeNull()
         carParkingTicketResult.id.shouldNotBeNull()
@@ -187,6 +176,25 @@ class TicketReservationTest @Inject constructor(
         idParkingTicket.shouldNotBeNull()
         carParkingOnReservation.shouldNotBeNull()
         carParkingOnReservation.parkingNumber shouldBe 10
+
+        val newTicketReservation =
+            ticketRepository.update(
+                reservation.copy(
+                    meals = listOf(meal),
+                    drinks = listOf(drink),
+                    createdAt = LocalDateTime.now()
+                )
+            )
+        val finalTicketReservation =
+            newTicketReservation.id?.let { ticketRepository.findById(it) }
+        finalTicketReservation.shouldNotBeNull()
+//        val finalMeals = finalTicketReservation.meals
+//        finalMeals.shouldNotBeNull()
+//        finalMeals.shouldHaveSize(1)
+//        val finalDrinks = finalTicketReservation.drinks
+//        finalDrinks.shouldNotBeNull()
+//        finalDrinks.shouldHaveSize(1)
+
     }
 
     @AfterEach
