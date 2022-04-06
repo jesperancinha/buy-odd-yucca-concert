@@ -42,7 +42,7 @@
         <micronaut-maven-plugin.version>3.2.2</micronaut-maven-plugin.version>
         <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M6</maven-surefire-plugin.version>
-        <jacoco-maven-plugin.version>0.8.7</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <kotlin.version>1.6.20-RC</kotlin.version>
         <kotlinx-coroutines-test.version>1.6.1-native-mt</kotlinx-coroutines-test.version>
         <testcontainers.version>1.16.3</testcontainers.version>
