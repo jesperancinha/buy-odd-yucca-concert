@@ -13,7 +13,7 @@ import java.util.*
 /**
  * Created by jofisaes on 19/12/2021
  */
-@MappedEntity(value = "ticket_reservation", namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
+@MappedEntity(namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
 data class TicketReservation(
     @field: Id
     @field: AutoPopulated
@@ -22,6 +22,7 @@ data class TicketReservation(
     val name: String,
     val address: String,
     val birthDate: LocalDate,
+    @field: Relation(value = Relation.Kind.ONE_TO_ONE, cascade = [Relation.Cascade.ALL])
     val parkingReservation: ParkingReservation? = null,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now(),
@@ -31,6 +32,6 @@ data class TicketReservation(
 interface TicketRepository : CoroutineCrudRepository<TicketReservation, UUID>,
     CoroutineJpaSpecificationExecutor<TicketReservation> {
 
-    @Join(value = "parkingReservation", type = Join.Type.FETCH)
+    @Join(value = "parkingReservation", type = Join.Type.OUTER)
     override suspend fun findById(id: UUID): TicketReservation
 }

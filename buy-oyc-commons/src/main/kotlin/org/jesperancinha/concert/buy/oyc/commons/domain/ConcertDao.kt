@@ -6,7 +6,6 @@ import io.micronaut.data.model.query.builder.sql.Dialect
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository
 import io.micronaut.data.repository.jpa.kotlin.CoroutineJpaSpecificationExecutor
 import io.micronaut.data.repository.kotlin.CoroutineCrudRepository
-import jakarta.persistence.ManyToOne
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
@@ -14,7 +13,7 @@ import java.util.*
 /**
  * Created by jofisaes on 25/02/2022
  */
-@MappedEntity(value = "concert_day", namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
+@MappedEntity(namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
 data class ConcertDay(
     @field: Id
     @field: AutoPopulated
@@ -23,10 +22,10 @@ data class ConcertDay(
     val name: String,
     val description: String,
     @field:DateCreated
-    val date: LocalDate,
+    val concert_date: LocalDate,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now()
-)
+) :java.io.Serializable
 
 @R2dbcRepository(dialect = Dialect.POSTGRES)
 interface ConcertDayRepository : CoroutineCrudRepository<ConcertDay, UUID>,

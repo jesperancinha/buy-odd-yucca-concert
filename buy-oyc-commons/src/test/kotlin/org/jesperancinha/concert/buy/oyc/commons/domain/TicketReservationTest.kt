@@ -101,7 +101,7 @@ class TicketReservationTest @Inject constructor(
             ConcertDay(
                 name = "Cabbage Maniacs",
                 description = "Soul Music",
-                date = LocalDate.now()
+                concert_date = LocalDate.now()
             )
         )
 
@@ -121,16 +121,31 @@ class TicketReservationTest @Inject constructor(
         concertDay.shouldNotBeNull()
         reservation.shouldNotBeNull()
 
-        val ticketReservationConcert = ticketReservationConcertRepository
+        val ticketReservationConcertDay = ticketReservationConcertRepository
             .save(
-                TicketReservationConcert(
+                TicketReservationConcertDay(
                     ticketReservation = reservation,
                     concertDay = concertDay
                 )
             )
-        ticketReservationConcert.shouldNotBeNull()
-        ticketReservationConcert.ticketReservation shouldBe reservation
-        ticketReservationConcert.concertDay shouldBe concertDay
+        ticketReservationConcertDay.shouldNotBeNull()
+        ticketReservationConcertDay.ticketReservation shouldBe reservation
+        ticketReservationConcertDay.concertDay shouldBe concertDay
+
+        val ticketReservationId = ticketReservationConcertDay.id
+        ticketReservationId.shouldNotBeNull()
+        val finalTicketReservationConcert = ticketReservationConcertRepository.update(ticketReservationConcertDay)
+        val final2TicketReservation =
+            finalTicketReservationConcert.id?.let {
+                ticketReservationConcertRepository.findById(it)
+            }
+        final2TicketReservation.shouldNotBeNull()
+        final2TicketReservation.ticketReservation.shouldNotBeNull()
+        final2TicketReservation.concertDay.shouldNotBeNull()
+
+        finalTicketReservationConcert.shouldNotBeNull()
+        finalTicketReservationConcert.ticketReservation.shouldNotBeNull()
+        finalTicketReservationConcert.concertDay.shouldNotBeNull()
 
         val drink = drinkRepository.save(
             Drink(
@@ -200,6 +215,14 @@ class TicketReservationTest @Inject constructor(
             newTicketReservation.id?.let { ticketRepository.findById(it) }
         finalTicketReservation.shouldNotBeNull()
         finalTicketReservation.parkingReservation.shouldNotBeNull()
+
+//        val ticketReservationConcertFinal =
+//            ticketReservationConcertRepository.findByTicketReservation(reservation).id?.let {
+//                ticketReservationConcertRepository.findById(it)
+//            }
+//        ticketReservationConcertFinal.shouldNotBeNull()
+//        ticketReservationConcertFinal.ticketReservation.shouldNotBeNull()
+//        ticketReservationConcertFinal.concertDay.shouldNotBeNull()
     }
 
     @AfterEach

@@ -1,5 +1,6 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
+import io.micronaut.core.annotation.Nullable
 import io.micronaut.data.annotation.*
 import io.micronaut.data.model.naming.NamingStrategies
 import io.micronaut.data.model.query.builder.sql.Dialect
@@ -11,21 +12,22 @@ import java.util.*
 /**
  * Created by jofisaes on 05/04/2022
  */
-@MappedEntity(
-    value = "ticket_reservation_concert_day",
-    namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class
-)
-data class TicketReservationConcert(
+@MappedEntity(namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
+data class TicketReservationConcertDay(
     @field: Id
     @field: AutoPopulated
-    val id: UUID? = null,
-    val reference: UUID = UUID.randomUUID(),
-    @field: Relation(value = Relation.Kind.ONE_TO_ONE, cascade = [Relation.Cascade.PERSIST])
+    var id: UUID? = null,
+    @field: Relation(value = Relation.Kind.ONE_TO_ONE, cascade = [Relation.Cascade.ALL])
     val ticketReservation: TicketReservation,
-    @field: Relation(value = Relation.Kind.ONE_TO_ONE, cascade = [Relation.Cascade.PERSIST])
+    @field: Relation(value = Relation.Kind.ONE_TO_ONE, cascade = [Relation.Cascade.ALL])
     val concertDay: ConcertDay
 )
 
 @R2dbcRepository(dialect = Dialect.POSTGRES)
-interface TicketReservationConcertRepository : CoroutineCrudRepository<TicketReservationConcert, UUID>,
-    CoroutineJpaSpecificationExecutor<TicketReservationConcert>
+interface TicketReservationConcertRepository : CoroutineCrudRepository<TicketReservationConcertDay, UUID>,
+    CoroutineJpaSpecificationExecutor<TicketReservationConcertDay> {
+
+    @Join(value = "ticketReservation", type = Join.Type.FETCH)
+    @Join(value = "concertDay", type = Join.Type.FETCH)
+    override suspend fun findById(id: UUID): TicketReservationConcertDay
+}

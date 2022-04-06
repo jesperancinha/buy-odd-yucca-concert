@@ -34,18 +34,18 @@ create table if not exists ticket.parking_reservation
 
 create table if not exists ticket.concert_day
 (
-    id          UUID                  DEFAULT gen_random_uuid(),
-    reference   UUID         NOT NULL UNIQUE,
-    name        varchar(255) NULL,
-    description varchar(255) NULL,
-    date        TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
-    created_at  TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
+    id           UUID         NOT NULL,
+    reference    UUID         NOT NULL UNIQUE,
+    name         varchar(255) NULL,
+    description  varchar(255) NULL,
+    concert_date TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
+    created_at   TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id)
 );
 
 create table if not exists ticket.ticket_reservation
 (
-    id                     UUID               DEFAULT gen_random_uuid(),
+    id                     UUID      NOT NULL,
     reference              UUID      NOT NULL UNIQUE,
     name                   varchar,
     address                varchar,
@@ -107,14 +107,13 @@ create table ticket.receipt
 
 create table ticket.ticket_reservation_concert_day
 (
-    id                    UUID DEFAULT gen_random_uuid(),
-    reference             UUID NOT NULL UNIQUE,
-    ticket_reservation_id UUID NOT NULL,
-    concert_day_id        UUID NOT NULL,
-    CONSTRAINT fk_many_ticket_reservation
+    id                    UUID NOT NULL,
+    ticket_reservation_id UUID,
+    concert_day_id        UUID,
+    CONSTRAINT fk_ticket_reservation
         FOREIGN KEY (ticket_reservation_id)
             REFERENCES ticket.ticket_reservation (id),
-    CONSTRAINT fk__many_concert
+    CONSTRAINT fk_concert_day
         FOREIGN KEY (concert_day_id)
             REFERENCES ticket.concert_day (id)
 );

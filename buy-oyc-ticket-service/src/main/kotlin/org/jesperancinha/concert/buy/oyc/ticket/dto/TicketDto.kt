@@ -36,7 +36,7 @@ val TicketDto.toConcertData: List<ConcertDay>
         ConcertDay(
             name = it.name,
             description = it.description,
-            date = it.date,
+            concert_date = it.date,
             createdAt = it.createdAt
         )
     }
