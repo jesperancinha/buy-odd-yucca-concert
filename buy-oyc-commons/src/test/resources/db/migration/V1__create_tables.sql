@@ -117,21 +117,3 @@ create table ticket.ticket_reservation_concert_day
         FOREIGN KEY (concert_day_id)
             REFERENCES ticket.concert_day (id)
 );
-
-create table ticket.ticket_reservation_meal
-(
-    id                    UUID DEFAULT gen_random_uuid(),
-    ticket_reservation_id UUID NOT NULL,
-    meal_id               UUID NOT NULL,
-    PRIMARY KEY (id)
-);
-
-
-create table ticket.ticket_reservation_drink
-(
-    id                    UUID DEFAULT gen_random_uuid(),
-    ticket_reservation_id UUID NULL,
-    drink_id              UUID NULL,
-    PRIMARY KEY (id)
-);
-
