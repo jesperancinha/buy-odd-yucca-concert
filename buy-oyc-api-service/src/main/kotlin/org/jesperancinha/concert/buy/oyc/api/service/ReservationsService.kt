@@ -37,7 +37,7 @@ class ReservationsService(
     suspend fun createTicket(ticketDto: @Valid TicketDto): ReceiptDto {
         val save = receiptRepository.save(Receipt())
         val receiptDto = save.toDto
-        pubSubCommands.publish("ticketsChannel", ticketDto)
+        pubSubCommands.publish("ticketsChannel", ticketDto.copy(reference = receiptDto.reference))
         return receiptDto
     }
 

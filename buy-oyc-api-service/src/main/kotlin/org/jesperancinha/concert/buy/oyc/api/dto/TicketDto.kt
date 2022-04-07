@@ -9,6 +9,7 @@ import java.util.*
 
 data class TicketDto(
     val name: String,
+    val reference: UUID? = null,
     val address: String,
     val birthDate: LocalDate,
     val concertDays: List<ConcertDayDto> = emptyList(),

@@ -18,7 +18,7 @@ import javax.validation.Valid
 
 @Controller("/api")
 class ReceiptController(
-    val reservationsService: ReservationsService
+    private val reservationsService: ReservationsService
 ) {
     @Post
     suspend fun postReservation(@Body ticketDto: @Valid TicketDto?): MutableHttpResponse<Pair<Int, String>> =
