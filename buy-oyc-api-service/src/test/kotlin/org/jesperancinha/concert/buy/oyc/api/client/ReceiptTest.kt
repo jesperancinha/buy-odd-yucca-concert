@@ -1,5 +1,6 @@
 package org.jesperancinha.concert.buy.oyc.api.client
 
+import io.kotest.matchers.longs.shouldBeLessThan
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
@@ -14,6 +15,8 @@ import org.jesperancinha.concert.buy.oyc.commons.domain.ReceiptRepository
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import java.time.temporal.ChronoUnit
+import java.time.temporal.ChronoUnit.NANOS
 import javax.transaction.Transactional
 
 
@@ -23,8 +26,7 @@ import javax.transaction.Transactional
 @ExperimentalCoroutinesApi
 @MicronautTest
 class ReceiptTest @Inject constructor(
-    private val receiptRepository: ReceiptRepository,
-    private val receiptReactiveClient: ReceiptReactiveClient
+    private val receiptRepository: ReceiptRepository, private val receiptReactiveClient: ReceiptReactiveClient
 ) : AbstractBuyOddYuccaConcertContainerTest() {
 
     @BeforeEach
@@ -40,11 +42,11 @@ class ReceiptTest @Inject constructor(
         findAll.shouldNotBeNull()
         findAll.subscribe {
             it.reference shouldBe referenceSaved
-            it.createdAt shouldBe createdDate
+            NANOS.between(it.createdAt, createdDate) shouldBeLessThan 1000
         }
         val awaitFirstReceiptDto = findAll.awaitFirst()
         awaitFirstReceiptDto.reference shouldBe referenceSaved
-        awaitFirstReceiptDto.createdAt shouldBe createdDate
+        NANOS.between(awaitFirstReceiptDto.createdAt, createdDate) shouldBeLessThan 1000
     }
 
     companion object {
@@ -54,9 +56,7 @@ class ReceiptTest @Inject constructor(
             postgreSQLContainer.start()
             redis.start()
             config.setDataSource(
-                postgreSQLContainer.jdbcUrl,
-                postgreSQLContainer.username,
-                postgreSQLContainer.password
+                postgreSQLContainer.jdbcUrl, postgreSQLContainer.username, postgreSQLContainer.password
             )
             config.schemas = arrayOf("ticket")
             Flyway(config).migrate()
