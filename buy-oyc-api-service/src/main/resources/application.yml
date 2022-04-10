@@ -2,7 +2,7 @@ micronaut:
   application:
     name: buyOycAPIService
   server:
-    port: 8086
+    port: 8088
 
 r2dbc:
   datasources:
@@ -28,3 +28,8 @@ jackson:
 redis:
     uri: redis://localhost
     timeout: 30s
+
+buy.oyc.ticket:
+    url: /api/yucca-ticket
+    port: 8000
+    host: localhost

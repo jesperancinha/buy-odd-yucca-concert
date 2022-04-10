@@ -4,6 +4,10 @@ import io.lettuce.core.RedisClient
 import io.lettuce.core.pubsub.RedisPubSubAdapter
 import io.lettuce.core.pubsub.api.async.RedisPubSubAsyncCommands
 import io.micronaut.context.annotation.Factory
+import io.micronaut.context.annotation.Value
+import io.micronaut.http.HttpRequest
+import io.micronaut.rxjava3.http.client.Rx3StreamingHttpClient
+import io.reactivex.rxjava3.core.Single
 import jakarta.inject.Singleton
 import kotlinx.coroutines.flow.Flow
 import org.jesperancinha.concert.buy.oyc.api.dto.ReceiptDto
@@ -14,6 +18,7 @@ import org.jesperancinha.concert.buy.oyc.commons.domain.Receipt
 import org.jesperancinha.concert.buy.oyc.commons.domain.ReceiptRepository
 import org.jesperancinha.concert.buy.oyc.commons.domain.readTypedObject
 import java.io.ObjectInputStream
+import java.net.URL
 import javax.validation.Valid
 
 
@@ -24,12 +29,18 @@ import javax.validation.Valid
 class ReservationsService(
     private val receiptRepository: ReceiptRepository,
     private val pubSubCommands: RedisPubSubAsyncCommands<String, TicketDto>,
-    redisClient: RedisClient
+    redisClient: RedisClient,
+    @Value("\${buy.oyc.ticket.host}")
+    val host: String,
+    @Value("\${buy.oyc.ticket.url}")
+    val url: String,
+    @Value("\${buy.oyc.ticket.port}")
+    val port: Long
 ) {
 
     init {
         val statefulRedisPubSubConnection = redisClient.connectPubSub(TicketCodec())
-        statefulRedisPubSubConnection.addListener(Listener())
+        statefulRedisPubSubConnection.addListener(Listener(host, url, port))
         val redisPubSubAsyncCommands = statefulRedisPubSubConnection.async()
         redisPubSubAsyncCommands.subscribe("ticketsChannel")
     }
@@ -51,10 +62,20 @@ class RedisBeanFactory {
         redisClient.connectPubSub(TicketCodec()).async()
 }
 
-class Listener : RedisPubSubAdapter<String, TicketDto>() {
+class Listener(
+    private val host: String,
+    private val url: String,
+    private val port: Long
+) : RedisPubSubAdapter<String, TicketDto>() {
     override fun message(key: String, ticketDto: TicketDto) {
         println(key)
         println(ticketDto)
+        val client: Rx3StreamingHttpClient =
+            Rx3StreamingHttpClient.create(URL("http://" + host + ":" + port))
+        val s: Single<TicketDto> =
+            client.retrieve(HttpRequest.POST(url, ticketDto), TicketDto::class.java).firstOrError()
+        s.subscribe()
+        print(s.blockingGet())
     }
 }
 
