@@ -6,7 +6,6 @@ import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.reactive.awaitFirst
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.flywaydb.core.Flyway
 import org.jesperancinha.concert.buy.oyc.api.containers.AbstractBuyOddYuccaConcertContainerTest
@@ -29,10 +28,8 @@ class ReceiptTest @Inject constructor(
 ) : AbstractBuyOddYuccaConcertContainerTest() {
 
     @BeforeEach
-    fun setUpEach() {
-        runBlocking {
-            receiptRepository.deleteAll()
-        }
+    fun setUpEach() = runTest {
+        receiptRepository.deleteAll()
     }
 
     @Test
