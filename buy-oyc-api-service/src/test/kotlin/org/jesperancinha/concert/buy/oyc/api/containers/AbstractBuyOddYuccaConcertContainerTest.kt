@@ -52,7 +52,7 @@ abstract class AbstractBuyOddYuccaConcertContainerTest {
                 )
             }
 
-        private val config = ClassicConfiguration()
+        val config = ClassicConfiguration()
 
         init {
             postgreSQLContainer.start()

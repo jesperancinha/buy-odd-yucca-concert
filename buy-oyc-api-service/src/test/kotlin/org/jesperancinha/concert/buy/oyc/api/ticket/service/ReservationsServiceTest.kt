@@ -54,7 +54,7 @@ internal class ReservationsServiceTest @Inject constructor(
     companion object {
         @JvmStatic
         @BeforeAll
-        fun setup() {
+        fun setUp() {
             redis.start()
             postgreSQLContainer.start()
         }
