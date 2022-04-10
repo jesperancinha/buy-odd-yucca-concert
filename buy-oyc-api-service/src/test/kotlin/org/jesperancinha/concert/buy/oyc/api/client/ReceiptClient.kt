@@ -6,10 +6,9 @@ import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.PathVariable
 import io.micronaut.http.annotation.Post
 import io.micronaut.http.client.annotation.Client
-import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Single
-import org.jesperancinha.concert.buy.oyc.api.dto.TicketDto
+import org.jesperancinha.concert.buy.oyc.api.dto.ReceiptDto
 import reactor.core.publisher.Flux
 
 
@@ -19,11 +18,11 @@ import reactor.core.publisher.Flux
 @Client("/api")
 interface ReceiptReactiveClient {
     @Post
-    fun add(@Body ticket: TicketDto?): Single<TicketDto>
+    fun add(@Body ticket: ReceiptDto): Single<ReceiptDto>
 
     @Get("/{id}")
-    fun findById(@PathVariable id: Int?): Maybe<TicketDto>
+    fun findById(@PathVariable id: Int?): Maybe<ReceiptDto>
 
     @Get(value = "/", produces = [MediaType.APPLICATION_JSON_STREAM])
-    fun findAll(): Flux<TicketDto>
+    fun findAll(): Flux<ReceiptDto>
 }

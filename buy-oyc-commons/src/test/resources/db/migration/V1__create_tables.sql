@@ -14,7 +14,7 @@ drop table if exists ticket.ticket_reservation_concert_day;
 
 create table if not exists ticket.car_parking
 (
-    id             UUID               DEFAULT gen_random_uuid(),
+    id             UUID,
     parking_number bigint    NOT NULL,
     created_at     TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id)
@@ -60,7 +60,7 @@ create table if not exists ticket.ticket_reservation
 
 create table if not exists ticket.drink
 (
-    id                    UUID                  DEFAULT gen_random_uuid(),
+    id                    UUID,
     reference             UUID         NOT NULL UNIQUE,
     ticket_reservation_id UUID         NOT NULL,
     name                  varchar(255) NULL,
@@ -78,7 +78,7 @@ create table if not exists ticket.drink
 
 create table if not exists ticket.meal
 (
-    id                    UUID                  DEFAULT gen_random_uuid(),
+    id                    UUID,
     reference             UUID         NOT NULL UNIQUE,
     coupon                UUID         NULL,
     ticket_reservation_id UUID         NOT NULL,
@@ -95,9 +95,9 @@ create table if not exists ticket.meal
 
 create table ticket.receipt
 (
-    id                    UUID               DEFAULT gen_random_uuid(),
-    reference             UUID      NOT NULL UNIQUE,
-    created_at            TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
+    id                    UUID,
+    reference             UUID,
+    created_at            TIMESTAMP DEFAULT LOCALTIMESTAMP,
     ticket_reservation_id UUID      NULL,
     PRIMARY KEY (id),
     CONSTRAINT fk_ticket_reservation

@@ -112,12 +112,12 @@ val TicketReservation.toDto: TicketDto
     )
 
 data class ReceiptDto(
-    val reference: UUID = UUID.randomUUID(),
-    val createdAt: LocalDateTime? = LocalDateTime.now(),
+    val reference: UUID,
+    val createdAt: LocalDateTime,
 )
 
 val Receipt.toDto: ReceiptDto
     get() = ReceiptDto(
-        reference = reference,
-        createdAt = createdAt
+        reference = reference ?: throw RuntimeException("No reference found for this Receipt!"),
+        createdAt = createdAt ?: throw RuntimeException("This Receipt does not have a created date!")
     )

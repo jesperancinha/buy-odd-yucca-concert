@@ -19,9 +19,10 @@ data class Receipt(
     @field: Id
     @field: AutoPopulated
     var id: UUID? = null,
-    val reference: UUID = UUID.randomUUID(),
+    @field: AutoPopulated
+    var reference: UUID? = null,
     @field:DateCreated
-    val createdAt: LocalDateTime? = LocalDateTime.now(),
+    var createdAt: LocalDateTime? = null,
     @field: Relation(value = ONE_TO_ONE, cascade = [PERSIST])
     val ticketReservation: TicketReservation? = null
 )

@@ -1,10 +1,13 @@
 package org.jesperancinha.concert.buy.oyc.api.client
 
 import io.kotest.matchers.nulls.shouldNotBeNull
+import io.kotest.matchers.shouldBe
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.test.runTest
 import org.flywaydb.core.Flyway
 import org.jesperancinha.concert.buy.oyc.api.containers.AbstractBuyOddYuccaConcertContainerTest
 import org.jesperancinha.concert.buy.oyc.commons.domain.Receipt
@@ -12,6 +15,7 @@ import org.jesperancinha.concert.buy.oyc.commons.domain.ReceiptRepository
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import javax.transaction.Transactional
 
 
 /**
@@ -25,24 +29,27 @@ class ReceiptTest @Inject constructor(
 ) : AbstractBuyOddYuccaConcertContainerTest() {
 
     @BeforeEach
-    fun setUpEach(){
+    fun setUpEach() {
         runBlocking {
             receiptRepository.deleteAll()
         }
     }
 
     @Test
-    fun `should find all with an empty list`() {
-//        runBlocking {
-//            receiptRepository.save(Receipt())
-//        }
-        val findById = receiptReactiveClient.findAll()
-
-        findById.shouldNotBeNull()
-        findById.subscribe {
-            print(it)
+    @Transactional
+    fun `should find all with an empty list`() = runTest {
+        val (_, referenceSaved, createdDate) = receiptRepository.save(Receipt())
+        val findAll = receiptReactiveClient.findAll()
+        findAll.shouldNotBeNull()
+        findAll.subscribe {
+            it.reference shouldBe referenceSaved
+            it.createdAt shouldBe createdDate
         }
+        val awaitFirstReceiptDto = findAll.awaitFirst()
+        awaitFirstReceiptDto.reference shouldBe referenceSaved
+        awaitFirstReceiptDto.createdAt shouldBe createdDate
     }
+
     companion object {
         @JvmStatic
         @BeforeAll
