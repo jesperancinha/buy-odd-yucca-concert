@@ -54,3 +54,11 @@ create table if not exists ticket.receipt
         FOREIGN KEY (ticket_reservation_id)
             REFERENCES ticket.ticket_reservation (id)
 );
+
+create table ticket.audit_log
+(
+    id             UUID NOT NULL,
+    audit_log_type VARCHAR,
+    payload       VARCHAR,
+    created_at     TIMESTAMP DEFAULT LOCALTIMESTAMP
+)

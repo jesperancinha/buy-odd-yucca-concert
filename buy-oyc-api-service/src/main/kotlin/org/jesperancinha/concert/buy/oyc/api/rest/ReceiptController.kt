@@ -8,6 +8,7 @@ import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.Post
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.jesperancinha.concert.buy.oyc.api.dto.ReceiptDto
@@ -17,6 +18,7 @@ import org.jesperancinha.concert.buy.oyc.api.service.ReservationsService
 import javax.validation.Valid
 
 @Controller("/api")
+@DelicateCoroutinesApi
 class ReceiptController(
     private val reservationsService: ReservationsService
 ) {

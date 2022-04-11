@@ -8,15 +8,16 @@ import io.micronaut.context.annotation.Value
 import io.micronaut.http.HttpRequest
 import io.micronaut.rxjava3.http.client.Rx3StreamingHttpClient
 import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.internal.schedulers.SingleScheduler
 import jakarta.inject.Singleton
+import kotlinx.coroutines.DelicateCoroutinesApi
+import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.launch
 import org.jesperancinha.concert.buy.oyc.api.dto.ReceiptDto
 import org.jesperancinha.concert.buy.oyc.api.dto.TicketDto
 import org.jesperancinha.concert.buy.oyc.api.dto.toDto
-import org.jesperancinha.concert.buy.oyc.commons.domain.BuyOycCodec
-import org.jesperancinha.concert.buy.oyc.commons.domain.Receipt
-import org.jesperancinha.concert.buy.oyc.commons.domain.ReceiptRepository
-import org.jesperancinha.concert.buy.oyc.commons.domain.readTypedObject
+import org.jesperancinha.concert.buy.oyc.commons.domain.*
 import java.io.ObjectInputStream
 import java.net.URL
 import javax.validation.Valid
@@ -26,21 +27,20 @@ import javax.validation.Valid
  * Created by jofisaes on 30/03/2022
  */
 @Singleton
+@DelicateCoroutinesApi
 class ReservationsService(
     private val receiptRepository: ReceiptRepository,
+    auditLogRepository: AuditLogRepository,
     private val pubSubCommands: RedisPubSubAsyncCommands<String, TicketDto>,
     redisClient: RedisClient,
-    @Value("\${buy.oyc.ticket.host}")
-    val host: String,
     @Value("\${buy.oyc.ticket.url}")
     val url: String,
-    @Value("\${buy.oyc.ticket.port}")
-    val port: Long
+    httpClient: Rx3StreamingHttpClient
 ) {
 
     init {
         val statefulRedisPubSubConnection = redisClient.connectPubSub(TicketCodec())
-        statefulRedisPubSubConnection.addListener(Listener(host, url, port))
+        statefulRedisPubSubConnection.addListener(Listener(url, auditLogRepository, httpClient))
         val redisPubSubAsyncCommands = statefulRedisPubSubConnection.async()
         redisPubSubAsyncCommands.subscribe("ticketsChannel")
     }
@@ -60,22 +60,39 @@ class RedisBeanFactory {
     @Singleton
     fun pubSubCommands(redisClient: RedisClient): RedisPubSubAsyncCommands<String, TicketDto> =
         redisClient.connectPubSub(TicketCodec()).async()
+
+    @Singleton
+    fun httpClient(
+        @Value("\${buy.oyc.ticket.host}")
+        host: String,
+        @Value("\${buy.oyc.ticket.port}")
+        port: Long
+    ): Rx3StreamingHttpClient =
+        Rx3StreamingHttpClient.create(URL("http://" + host + ":" + port))
 }
 
+@DelicateCoroutinesApi
 class Listener(
-    private val host: String,
     private val url: String,
-    private val port: Long
+    private val auditLogRepository: AuditLogRepository,
+    private val client: Rx3StreamingHttpClient
 ) : RedisPubSubAdapter<String, TicketDto>() {
     override fun message(key: String, ticketDto: TicketDto) {
-        println(key)
-        println(ticketDto)
-        val client: Rx3StreamingHttpClient =
-            Rx3StreamingHttpClient.create(URL("http://" + host + ":" + port))
-        val s: Single<TicketDto> =
+        val ticketDtoSingle: Single<TicketDto> =
             client.retrieve(HttpRequest.POST(url, ticketDto), TicketDto::class.java).firstOrError()
-        s.subscribe()
-        print(s.blockingGet())
+        val singleScheduler = SingleScheduler()
+        ticketDtoSingle.subscribeOn(singleScheduler).doOnSuccess {
+            GlobalScope.launch {
+                auditLogRepository.save(
+                    AuditLog(
+                        auditLogType = AuditLogType.TICKET,
+                        payload = ticketDto.toString()
+                    )
+                )
+            }
+
+        }.subscribe()
+        singleScheduler.start()
     }
 }
 

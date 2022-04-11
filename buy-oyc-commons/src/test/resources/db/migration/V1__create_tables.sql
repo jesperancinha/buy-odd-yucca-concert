@@ -12,6 +12,8 @@ drop table if exists ticket.receipt;
 
 drop table if exists ticket.ticket_reservation_concert_day;
 
+drop table if exists ticket.audit_log;
+
 create table if not exists ticket.car_parking
 (
     id             UUID,
@@ -98,7 +100,7 @@ create table ticket.receipt
     id                    UUID,
     reference             UUID,
     created_at            TIMESTAMP DEFAULT LOCALTIMESTAMP,
-    ticket_reservation_id UUID      NULL,
+    ticket_reservation_id UUID NULL,
     PRIMARY KEY (id),
     CONSTRAINT fk_ticket_reservation
         FOREIGN KEY (ticket_reservation_id)
@@ -117,3 +119,11 @@ create table ticket.ticket_reservation_concert_day
         FOREIGN KEY (concert_day_id)
             REFERENCES ticket.concert_day (id)
 );
+
+create table ticket.audit_log
+(
+    id             UUID NOT NULL,
+    audit_log_type VARCHAR,
+    payload       VARCHAR,
+    created_at     TIMESTAMP DEFAULT LOCALTIMESTAMP
+)
