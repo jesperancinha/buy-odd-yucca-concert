@@ -1,6 +1,7 @@
 package org.jesperancinha.concert.buy.oyc.api.client
 
 import io.micronaut.http.MediaType
+import io.micronaut.http.MutableHttpResponse
 import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.PathVariable
@@ -9,6 +10,7 @@ import io.micronaut.http.client.annotation.Client
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Single
 import org.jesperancinha.concert.buy.oyc.api.dto.ReceiptDto
+import org.jesperancinha.concert.buy.oyc.api.dto.TicketDto
 import reactor.core.publisher.Flux
 
 
@@ -18,7 +20,7 @@ import reactor.core.publisher.Flux
 @Client("/api")
 interface ReceiptReactiveClient {
     @Post
-    fun add(@Body ticket: ReceiptDto): Single<ReceiptDto>
+    fun add(@Body ticket: TicketDto): Single<LinkedHashMap<String, String>>
 
     @Get("/{id}")
     fun findById(@PathVariable id: Int?): Maybe<ReceiptDto>
