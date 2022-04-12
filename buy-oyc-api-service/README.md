@@ -18,7 +18,9 @@ sequenceDiagram
     
     REST Customer Service CLIENT->>API REST Service: Request Ticket Reservation (POST)
     API REST Service ->> Postgres Database: Generate Reservation Reference Number
-    Postgres Database ->> Redit Pub Sub: Set Ticket to be processed in the queue
+    Postgres Database ->> API REST Service: Returns reference number
+    API REST Service  ->> Redit Pub Sub: Set Ticket to be processed in the queue
+    API REST Service ->> REST Customer Service CLIENT: Returns ticket number to client
     Redit Pub Sub ->> REST Ticket Client: Receives Ticket 
     REST Ticket Client ->> Internal REST Ticket Service: posts it to internal Ticket service (POST)
     end
