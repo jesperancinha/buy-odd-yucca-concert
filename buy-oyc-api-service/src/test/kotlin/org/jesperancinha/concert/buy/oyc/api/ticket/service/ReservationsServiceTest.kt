@@ -20,12 +20,14 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
+import org.jesperancinha.concert.buy.oyc.api.client.ReceiptTest
 import org.jesperancinha.concert.buy.oyc.api.containers.AbstractBuyOddYuccaConcertContainerTest
 import org.jesperancinha.concert.buy.oyc.api.dto.TicketDto
 import org.jesperancinha.concert.buy.oyc.api.service.ReservationsService
 import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogRepository
 import org.jesperancinha.concert.buy.oyc.commons.domain.Receipt
 import org.jesperancinha.concert.buy.oyc.commons.domain.ReceiptRepository
+import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -96,6 +98,11 @@ internal class ReservationsServiceTest @Inject constructor(
             redis.start()
             postgreSQLContainer.start()
             wireMockServer.start()
+        }
+        @JvmStatic
+        @AfterAll
+        fun tearDown() {
+            wireMockServer.stop()
         }
     }
 

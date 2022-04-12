@@ -1,6 +1,5 @@
 package org.jesperancinha.concert.buy.oyc.api.client
 
-import com.fasterxml.jackson.databind.SerializationFeature
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.github.tomakehurst.wiremock.WireMockServer
@@ -18,6 +17,7 @@ import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
@@ -27,9 +27,11 @@ import org.jesperancinha.concert.buy.oyc.api.dto.TicketDto
 import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogRepository
 import org.jesperancinha.concert.buy.oyc.commons.domain.Receipt
 import org.jesperancinha.concert.buy.oyc.commons.domain.ReceiptRepository
+import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import java.lang.Thread.sleep
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit.NANOS
 import javax.transaction.Transactional
@@ -52,7 +54,6 @@ class ReceiptTest @Inject constructor(
 
     private val jacksonMapper = jacksonObjectMapper()
         .registerModule(JavaTimeModule())
-        .disable(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS)
 
     @BeforeEach
     fun setUpEach() = runTest {
@@ -62,6 +63,7 @@ class ReceiptTest @Inject constructor(
             API_YUCCA_TICKET, jacksonMapper
                 .writeValueAsString(ticketDto), 200
         )
+        wireMockServer.start()
     }
 
     @Test
@@ -96,6 +98,10 @@ class ReceiptTest @Inject constructor(
             findAll2.toIterable()
         }.toList()
         awaitFirstReceiptDto2.shouldHaveSize(2)
+        withContext(Dispatchers.IO) {
+            sleep(1000)
+        }
+        auditLogRepository.findAll().toList().shouldHaveSize(1)
     }
 
     companion object {
@@ -111,6 +117,11 @@ class ReceiptTest @Inject constructor(
             )
             config.schemas = arrayOf("ticket")
             Flyway(config).migrate()
+        }
+        @JvmStatic
+        @AfterAll
+        fun tearDown() {
+            wireMockServer.stop()
         }
     }
 

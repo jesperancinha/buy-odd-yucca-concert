@@ -3,9 +3,9 @@
 Buy Odd Yucca Concert Gateway API service
 ---
 
-## Sequence diagram
-```mermaid
+## [Sequence diagrame](https://mermaid-js.github.io/mermaid)
 
+```mermaid
 sequenceDiagram
     participant REST Customer Service CLIENT
     participant API REST Endpoint
