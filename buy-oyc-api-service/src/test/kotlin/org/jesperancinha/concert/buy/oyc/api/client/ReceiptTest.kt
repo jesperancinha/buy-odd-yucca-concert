@@ -118,6 +118,7 @@ class ReceiptTest @Inject constructor(
             config.schemas = arrayOf("ticket")
             Flyway(config).migrate()
         }
+
         @JvmStatic
         @AfterAll
         fun tearDown() {
@@ -125,14 +126,21 @@ class ReceiptTest @Inject constructor(
         }
     }
 
-    private fun stubResponse(url: String, responseBody: String, responseStatus: Int = HttpStatus.OK.code) {
+    private fun stubResponse(
+        url: String,
+        body: String,
+        status: Int = HttpStatus.OK.code
+    ) {
         wireMockServer.stubFor(
             WireMock.post(url)
                 .willReturn(
                     WireMock.aResponse()
-                        .withStatus(responseStatus)
-                        .withHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
-                        .withBody(responseBody)
+                        .withStatus(status)
+                        .withHeader(
+                            HttpHeaders.CONTENT_TYPE,
+                            MediaType.APPLICATION_JSON
+                        )
+                        .withBody(body)
                 )
         )
     }
