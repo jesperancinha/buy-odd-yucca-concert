@@ -18,7 +18,6 @@ import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
@@ -31,7 +30,6 @@ import org.jesperancinha.concert.buy.oyc.commons.domain.ReceiptRepository
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import reactor.core.publisher.toFlux
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit.NANOS
 import javax.transaction.Transactional

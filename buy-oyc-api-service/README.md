@@ -3,6 +3,27 @@
 Buy Odd Yucca Concert Gateway API service
 ---
 
+## Sequence diagram
+```mermaid
+
+sequenceDiagram
+    participant REST Customer Service CLIENT
+    participant API REST Service
+    participant Redit Pub Sub
+    participant Postgres Database
+    participant REST Ticket Client
+    participant Internal REST Ticket Service
+    
+    rect rgb(1,130,25)
+    
+    REST Customer Service CLIENT->>API REST Service: Request Ticket Reservation (POST)
+    API REST Service ->> Postgres Database: Generate Reservation Reference Number
+    Postgres Database ->> Redit Pub Sub: Set Ticket to be processed in the queue
+    Redit Pub Sub ->> REST Ticket Client: Receives Ticket 
+    REST Ticket Client ->> Internal REST Ticket Service: posts it to internal Ticket service (POST)
+    end
+```
+
 ---
 
 ## Micronaut 3.2.0 Documentation
