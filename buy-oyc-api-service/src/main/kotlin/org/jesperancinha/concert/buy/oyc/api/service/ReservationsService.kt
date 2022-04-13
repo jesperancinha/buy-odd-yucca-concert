@@ -14,9 +14,9 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
-import org.jesperancinha.concert.buy.oyc.api.dto.ReceiptDto
-import org.jesperancinha.concert.buy.oyc.api.dto.TicketDto
-import org.jesperancinha.concert.buy.oyc.api.dto.toDto
+import org.jesperancinha.concert.buy.oyc.commons.dto.ReceiptDto
+import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
+import org.jesperancinha.concert.buy.oyc.commons.dto.toDto
 import org.jesperancinha.concert.buy.oyc.commons.domain.*
 import java.io.ObjectInputStream
 import java.net.URL

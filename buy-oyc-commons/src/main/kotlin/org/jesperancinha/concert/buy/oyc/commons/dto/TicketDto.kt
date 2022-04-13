@@ -1,4 +1,4 @@
-package org.jesperancinha.concert.buy.oyc.api.dto
+package org.jesperancinha.concert.buy.oyc.commons.dto
 
 import org.jesperancinha.concert.buy.oyc.commons.domain.*
 import java.io.Serializable

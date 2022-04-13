@@ -6,9 +6,8 @@ import io.micronaut.http.annotation.Get
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.jesperancinha.concert.buy.oyc.commons.domain.TicketRepository
-import org.jesperancinha.concert.buy.oyc.commons.domain.TicketReservation
-import org.jesperancinha.concert.buy.oyc.ticket.dto.TicketDto
-import org.jesperancinha.concert.buy.oyc.ticket.dto.toDto
+import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
+import org.jesperancinha.concert.buy.oyc.commons.dto.toDto
 
 @Controller("/")
 open class WelcomeController(

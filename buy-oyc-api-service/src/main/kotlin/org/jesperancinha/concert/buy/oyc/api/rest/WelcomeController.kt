@@ -5,11 +5,8 @@ import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import org.jesperancinha.concert.buy.oyc.api.dto.ReceiptDto
-import org.jesperancinha.concert.buy.oyc.commons.domain.TicketRepository
-import org.jesperancinha.concert.buy.oyc.commons.domain.TicketReservation
-import org.jesperancinha.concert.buy.oyc.api.dto.TicketDto
-import org.jesperancinha.concert.buy.oyc.api.dto.toDto
+    import org.jesperancinha.concert.buy.oyc.commons.dto.ReceiptDto
+import org.jesperancinha.concert.buy.oyc.commons.dto.toDto
 import org.jesperancinha.concert.buy.oyc.commons.domain.ReceiptRepository
 
 @Controller("/")

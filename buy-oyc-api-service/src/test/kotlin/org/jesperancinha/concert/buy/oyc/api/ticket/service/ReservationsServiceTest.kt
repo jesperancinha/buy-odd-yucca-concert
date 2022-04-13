@@ -7,7 +7,6 @@ import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.client.WireMock.aResponse
 import com.github.tomakehurst.wiremock.client.WireMock.post
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration
-import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.micronaut.context.annotation.Property
 import io.micronaut.http.HttpHeaders
@@ -20,9 +19,8 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
-import org.jesperancinha.concert.buy.oyc.api.client.ReceiptTest
 import org.jesperancinha.concert.buy.oyc.api.containers.AbstractBuyOddYuccaConcertContainerTest
-import org.jesperancinha.concert.buy.oyc.api.dto.TicketDto
+import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
 import org.jesperancinha.concert.buy.oyc.api.service.ReservationsService
 import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogRepository
 import org.jesperancinha.concert.buy.oyc.commons.domain.Receipt

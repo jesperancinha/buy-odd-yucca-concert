@@ -23,7 +23,7 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import org.flywaydb.core.Flyway
 import org.jesperancinha.concert.buy.oyc.api.containers.AbstractBuyOddYuccaConcertContainerTest
-import org.jesperancinha.concert.buy.oyc.api.dto.TicketDto
+import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
 import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogRepository
 import org.jesperancinha.concert.buy.oyc.commons.domain.Receipt
 import org.jesperancinha.concert.buy.oyc.commons.domain.ReceiptRepository
