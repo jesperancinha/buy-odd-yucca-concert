@@ -45,7 +45,7 @@
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <kotlin.version>1.6.20-RC</kotlin.version>
         <kotlinx-coroutines-test.version>1.6.1-native-mt</kotlinx-coroutines-test.version>
-        <testcontainers.version>1.17.0</testcontainers.version>
+        <testcontainers.version>1.17.1</testcontainers.version>
         <micronaut-flyway.version>5.2.0</micronaut-flyway.version>
         <dependency-check-maven.version>7.0.4</dependency-check-maven.version>
         <micronaut-redis-lettuce.version>5.2.0</micronaut-redis-lettuce.version>
