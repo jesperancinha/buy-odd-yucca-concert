@@ -76,7 +76,7 @@ class Listener(
     override fun message(key: String, ticketDto: TicketDto) {
         val ticketData = ticketDto.toTicketData
         val concertDays = ticketDto.toConcertData
-        val parkingReservation = ticketDto.parkingReservation?.toParkingReservationData
+        val parkingReservation = ticketDto.toParkingData
         val ticketDtoSingle: Single<TicketDto> =
             client.retrieve(HttpRequest.POST(url, ticketDto), TicketDto::class.java).firstOrError()
         val singleScheduler = SingleScheduler()

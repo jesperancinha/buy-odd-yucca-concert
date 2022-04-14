@@ -19,29 +19,12 @@ data class TicketDto(
     val createdAt: LocalDateTime? = LocalDateTime.now(),
 ) : Serializable, BuyOycType
 
-val TicketDto.toTicketData: TicketReservation
-    get() = TicketReservation(
-        name = name,
-        address = address,
-        birthDate = birthDate,
-    )
-
 data class ConcertDayDto(
     val name: String,
     val description: String,
     val date: LocalDate,
     val createdAt: LocalDateTime? = LocalDateTime.now()
 )
-
-val TicketDto.toConcertData: List<ConcertDay>
-    get() = this.concertDays.map {
-        ConcertDay(
-            name = it.name,
-            description = it.description,
-            concert_date = it.date,
-            createdAt = it.createdAt
-        )
-    }
 
 data class MealDto(
     val coupon: UUID? = null,
@@ -92,11 +75,6 @@ data class ParkingReservationDto(
 )
 
 
-val ParkingReservationDto.toParkingReservationData: ParkingReservation
-    get() = ParkingReservation(
-        reference = reference
-    )
-
 val ParkingReservation.toDto: ParkingReservationDto
     get() = ParkingReservationDto(
         reference = reference,
@@ -121,3 +99,31 @@ val Receipt.toDto: ReceiptDto
         reference = reference ?: throw RuntimeException("No reference found for this Receipt!"),
         createdAt = createdAt ?: throw RuntimeException("This Receipt does not have a created date!")
     )
+
+/**
+ * Data converters
+ */
+
+val TicketDto.toTicketData: TicketReservation
+    get() = TicketReservation(
+        name = name,
+        address = address,
+        birthDate = birthDate,
+    )
+
+val TicketDto.toConcertData: List<ConcertDay>
+    get() = this.concertDays.map {
+        ConcertDay(
+            name = it.name,
+            description = it.description,
+            concert_date = it.date,
+            createdAt = it.createdAt
+        )
+    }
+
+val TicketDto.toParkingData: ParkingReservation?
+    get() = parkingReservation?.let {
+        ParkingReservation(
+            reference = it.reference
+        )
+    }
