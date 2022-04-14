@@ -13,7 +13,10 @@ import jakarta.inject.Singleton
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import org.jesperancinha.concert.buy.oyc.commons.domain.*
-import org.jesperancinha.concert.buy.oyc.commons.dto.*
+import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
+import org.jesperancinha.concert.buy.oyc.commons.dto.toConcertData
+import org.jesperancinha.concert.buy.oyc.commons.dto.toParkingData
+import org.jesperancinha.concert.buy.oyc.commons.dto.toTicketData
 import org.jesperancinha.concert.buy.oyc.commons.pubsub.initPubSub
 import java.io.ObjectInputStream
 import java.net.URL
@@ -40,7 +43,7 @@ class TicketService(
         redisClient.initPubSub(
             channelName = TICKET_PERSIST_CHANNEL,
             redisCodec = TicketCodec(),
-            redisPubSubAdapter = Listener(url, auditLogRepository, httpClient)
+            redisPubSubAdapter = Listener(url, auditLogRepository, httpClient, ticketRepository)
         )
     }
 
@@ -58,10 +61,19 @@ class RedisBeanFactory {
         redisClient.connectPubSub(TicketCodec()).async()
 
     @Singleton
-    fun httpClient(
-        @Value("\${buy.oyc.ticket.host}")
+    fun httpConcertClient(
+        @Value("\${buy.oyc.concert.host}")
         host: String,
-        @Value("\${buy.oyc.ticket.port}")
+        @Value("\${buy.oyc.concert.port}")
+        port: Long
+    ): Rx3StreamingHttpClient =
+        Rx3StreamingHttpClient.create(URL("http://" + host + ":" + port))
+
+    @Singleton
+    fun httpParkingClient(
+        @Value("\${buy.oyc.parking.host}")
+        host: String,
+        @Value("\${buy.oyc.parking.port}")
         port: Long
     ): Rx3StreamingHttpClient =
         Rx3StreamingHttpClient.create(URL("http://" + host + ":" + port))
@@ -71,17 +83,21 @@ class RedisBeanFactory {
 class Listener(
     private val url: String,
     private val auditLogRepository: AuditLogRepository,
-    private val client: Rx3StreamingHttpClient
+    private val httpConcertClient: Rx3StreamingHttpClient,
+    private val ticketRepository: TicketRepository,
 ) : RedisPubSubAdapter<String, TicketDto>() {
     override fun message(key: String, ticketDto: TicketDto) {
         val ticketData = ticketDto.toTicketData
+        CoroutineScope(Dispatchers.IO).launch {
+            ticketRepository.save(ticketData)
+        }
         val concertDays = ticketDto.toConcertData
         val parkingReservation = ticketDto.toParkingData
         val ticketDtoSingle: Single<TicketDto> =
-            client.retrieve(HttpRequest.POST(url, ticketDto), TicketDto::class.java).firstOrError()
+            httpConcertClient.retrieve(HttpRequest.POST(url, ticketDto), TicketDto::class.java).firstOrError()
         val singleScheduler = SingleScheduler()
         ticketDtoSingle.subscribeOn(singleScheduler).doOnSuccess {
-            GlobalScope.launch {
+            CoroutineScope(Dispatchers.IO).launch {
                 auditLogRepository.save(
                     AuditLog(
                         auditLogType = AuditLogType.TICKET,
