@@ -11,6 +11,7 @@
 
     <artifactId>buy-oyc-parking-service</artifactId>
     <packaging>${packaging}</packaging>
+    <name>Concert Parking Internal Service</name>
 
     <repositories>
         <repository>

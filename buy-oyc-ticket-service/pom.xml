@@ -11,6 +11,7 @@
 
     <artifactId>buy-oyc-ticket-service</artifactId>
     <packaging>${packaging}</packaging>
+    <name>Concert Ticket Internal Service</name>
 
     <repositories>
         <repository>

@@ -1,0 +1,21 @@
+micronaut:
+  application:
+    name: buyOycParkingService
+  server:
+    port: 8085
+
+r2dbc:
+  datasources:
+    default:
+      schema-generate: NONE
+      dialect: POSTGRES
+      url: r2dbc:postgresql://kong@localhost:5432/yucca?currentSchema=parking
+      username: kong
+      password: kong
+
+jackson:
+  serialization:
+    indentOutput: true
+    writeDatesAsTimestamps: false
+  deserialization:
+    failOnUnknownProperties: false

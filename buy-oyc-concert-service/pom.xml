@@ -9,9 +9,9 @@
         <version>0.0.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>buy-oyc-catering-service</artifactId>
+    <artifactId>buy-oyc-concert-service</artifactId>
     <packaging>${packaging}</packaging>
-    <name>Concert Catering Internal Service</name>
+    <name>Concert Day Internal Service</name>
 
     <repositories>
         <repository>
@@ -56,6 +56,7 @@
         <dependency>
             <groupId>io.micronaut.data</groupId>
             <artifactId>micronaut-data-r2dbc</artifactId>
+
         </dependency>
         <dependency>
             <groupId>io.micronaut.kotlin</groupId>
@@ -135,12 +136,12 @@
             <artifactId>kotlin-reflect</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
-        </dependency>
-        <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains.kotlin</groupId>
+            <artifactId>kotlin-stdlib-jdk8</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlin</groupId>
@@ -162,7 +163,7 @@
                         <transformer
                                 implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                             <manifestEntries>
-                                <Main-Class>org.jesperancinha.concert.buy.oyc.CateringServiceLauncher</Main-Class>
+                                <Main-Class>org.jesperancinha.concert.buy.oyc.ParkingServiceLauncherKt</Main-Class>
                             </manifestEntries>
                         </transformer>
                         <transformer
@@ -251,9 +252,9 @@
                                 </annotationProcessorPath>
                             </annotationProcessorPaths>
                             <annotationProcessorArgs>
-                                <annotationProcessorArg>micronaut.processing.group=buy.oyc.catering.service
+                                <annotationProcessorArg>micronaut.processing.group=org.jesperancinha.concert
                                 </annotationProcessorArg>
-                                <annotationProcessorArg>micronaut.processing.module=buyOycCateringService
+                                <annotationProcessorArg>micronaut.processing.module=buyOycParkingService
                                 </annotationProcessorArg>
                             </annotationProcessorArgs>
                         </configuration>
@@ -266,8 +267,8 @@
                         </goals>
                         <configuration>
                             <sourceDirs>
-                                <source>src/main/kotlin</source>
                                 <source>target/generated-sources/kaptKotlin</source>
+                                <source>src/main/kotlin</source>
                             </sourceDirs>
                         </configuration>
                     </execution>
@@ -302,8 +303,8 @@
                         </goals>
                         <configuration>
                             <sourceDirs>
-                                <source>target/generated-sources/kapt/test</source>
                                 <source>src/test/kotlin</source>
+                                <source>target/generated-sources/kapt/test</source>
                             </sourceDirs>
                         </configuration>
                     </execution>
@@ -360,6 +361,11 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>${maven-surefire-plugin.version}</version>
             </plugin>
         </plugins>
     </build>

@@ -11,6 +11,7 @@
 
     <artifactId>buy-oyc-commons</artifactId>
     <packaging>${packaging}</packaging>
+    <name>Concert Commons DSL</name>
 
     <repositories>
         <repository>
