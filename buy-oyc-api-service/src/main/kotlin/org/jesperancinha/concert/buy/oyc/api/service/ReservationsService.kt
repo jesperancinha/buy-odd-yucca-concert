@@ -14,10 +14,11 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
+import org.jesperancinha.concert.buy.oyc.commons.domain.*
 import org.jesperancinha.concert.buy.oyc.commons.dto.ReceiptDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.toDto
-import org.jesperancinha.concert.buy.oyc.commons.domain.*
+import org.jesperancinha.concert.buy.oyc.commons.pubsub.initPubSub
 import java.io.ObjectInputStream
 import java.net.URL
 import javax.validation.Valid
@@ -39,10 +40,11 @@ class ReservationsService(
 ) {
 
     init {
-        val statefulRedisPubSubConnection = redisClient.connectPubSub(TicketCodec())
-        statefulRedisPubSubConnection.addListener(Listener(url, auditLogRepository, httpClient))
-        val redisPubSubAsyncCommands = statefulRedisPubSubConnection.async()
-        redisPubSubAsyncCommands.subscribe("ticketsChannel")
+        redisClient.initPubSub(
+            channelName = "ticketsChannel",
+            redisCodec = TicketCodec(),
+            redisPubSubAdapter = Listener(url, auditLogRepository, httpClient)
+        )
     }
 
     suspend fun createTicket(ticketDto: @Valid TicketDto): ReceiptDto {
