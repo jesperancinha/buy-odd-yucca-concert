@@ -9,7 +9,9 @@ import java.io.ObjectOutputStream
 import java.nio.ByteBuffer
 import java.nio.charset.Charset
 
-interface BuyOycType
+interface BuyOycType {
+    val type: AuditLogType
+}
 
 abstract class BuyOycCodec<T> : RedisCodec<String, T> {
 

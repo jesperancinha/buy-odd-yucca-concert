@@ -18,6 +18,7 @@ import org.jesperancinha.concert.buy.oyc.commons.dto.toConcertData
 import org.jesperancinha.concert.buy.oyc.commons.dto.toParkingData
 import org.jesperancinha.concert.buy.oyc.commons.dto.toTicketData
 import org.jesperancinha.concert.buy.oyc.commons.pubsub.initPubSub
+import org.jesperancinha.concert.buy.oyc.commons.rest.sendObject
 import java.io.ObjectInputStream
 import java.net.URL
 import javax.validation.Valid
@@ -93,22 +94,9 @@ class Listener(
         }
         val concertDays = ticketDto.toConcertData
         val parkingReservation = ticketDto.toParkingData
-        val ticketDtoSingle: Single<TicketDto> =
-            httpConcertClient.retrieve(HttpRequest.POST(url, ticketDto), TicketDto::class.java).firstOrError()
-        val singleScheduler = SingleScheduler()
-        ticketDtoSingle.subscribeOn(singleScheduler).doOnSuccess {
-            CoroutineScope(Dispatchers.IO).launch {
-                auditLogRepository.save(
-                    AuditLog(
-                        auditLogType = AuditLogType.TICKET,
-                        payload = ticketDto.toString()
-                    )
-                )
-            }
-
-        }.subscribe()
-        singleScheduler.start()
+        httpConcertClient.sendObject(ticketDto, url, auditLogRepository)
     }
+
 }
 
 class TicketCodec : BuyOycCodec<TicketDto>() {

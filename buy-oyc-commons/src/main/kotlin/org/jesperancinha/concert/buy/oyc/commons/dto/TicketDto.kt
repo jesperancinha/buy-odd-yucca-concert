@@ -17,6 +17,7 @@ data class TicketDto(
     val drinks: List<DrinkDto> = emptyList(),
     val parkingReservation: ParkingReservationDto? = null,
     val createdAt: LocalDateTime? = LocalDateTime.now(),
+    override val type: AuditLogType = AuditLogType.TICKET,
 ) : Serializable, BuyOycType
 
 data class ConcertDayDto(

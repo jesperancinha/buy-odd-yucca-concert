@@ -5,20 +5,16 @@ import io.lettuce.core.pubsub.RedisPubSubAdapter
 import io.lettuce.core.pubsub.api.async.RedisPubSubAsyncCommands
 import io.micronaut.context.annotation.Factory
 import io.micronaut.context.annotation.Value
-import io.micronaut.http.HttpRequest
 import io.micronaut.rxjava3.http.client.Rx3StreamingHttpClient
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.internal.schedulers.SingleScheduler
 import jakarta.inject.Singleton
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 import org.jesperancinha.concert.buy.oyc.commons.domain.*
 import org.jesperancinha.concert.buy.oyc.commons.dto.ReceiptDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.toDto
 import org.jesperancinha.concert.buy.oyc.commons.pubsub.initPubSub
+import org.jesperancinha.concert.buy.oyc.commons.rest.sendObject
 import java.io.ObjectInputStream
 import java.net.URL
 import javax.validation.Valid
@@ -80,21 +76,7 @@ class Listener(
     private val client: Rx3StreamingHttpClient
 ) : RedisPubSubAdapter<String, TicketDto>() {
     override fun message(key: String, ticketDto: TicketDto) {
-        val ticketDtoSingle: Single<TicketDto> =
-            client.retrieve(HttpRequest.POST(url, ticketDto), TicketDto::class.java).firstOrError()
-        val singleScheduler = SingleScheduler()
-        ticketDtoSingle.subscribeOn(singleScheduler).doOnSuccess {
-            GlobalScope.launch {
-                auditLogRepository.save(
-                    AuditLog(
-                        auditLogType = AuditLogType.TICKET,
-                        payload = ticketDto.toString()
-                    )
-                )
-            }
-
-        }.subscribe()
-        singleScheduler.start()
+        client.sendObject(ticketDto, url, auditLogRepository)
     }
 }
 
