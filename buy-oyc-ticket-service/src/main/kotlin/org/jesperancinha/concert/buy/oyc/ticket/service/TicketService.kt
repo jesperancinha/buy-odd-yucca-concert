@@ -5,17 +5,14 @@ import io.lettuce.core.pubsub.RedisPubSubAdapter
 import io.lettuce.core.pubsub.api.async.RedisPubSubAsyncCommands
 import io.micronaut.context.annotation.Factory
 import io.micronaut.context.annotation.Value
-import io.micronaut.http.HttpRequest
 import io.micronaut.rxjava3.http.client.Rx3StreamingHttpClient
-import io.reactivex.rxjava3.core.Single
-import io.reactivex.rxjava3.internal.schedulers.SingleScheduler
 import jakarta.inject.Singleton
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import org.jesperancinha.concert.buy.oyc.commons.domain.*
 import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
-import org.jesperancinha.concert.buy.oyc.commons.dto.toConcertData
-import org.jesperancinha.concert.buy.oyc.commons.dto.toParkingData
+import org.jesperancinha.concert.buy.oyc.commons.dto.toConcertDto
+import org.jesperancinha.concert.buy.oyc.commons.dto.toParkingDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.toTicketData
 import org.jesperancinha.concert.buy.oyc.commons.pubsub.initPubSub
 import org.jesperancinha.concert.buy.oyc.commons.rest.sendObject
@@ -35,16 +32,20 @@ class TicketService(
     auditLogRepository: AuditLogRepository,
     private val pubSubCommands: RedisPubSubAsyncCommands<String, TicketDto>,
     redisClient: RedisClient,
-    @Value("\${buy.oyc.ticket.url}")
-    val url: String,
-    httpClient: Rx3StreamingHttpClient
+    httpClient: Rx3StreamingHttpClient,
+    ticketServiceHttpConfiguration: TicketServiceHttpConfiguration
 ) {
 
     init {
         redisClient.initPubSub(
             channelName = TICKET_PERSIST_CHANNEL,
             redisCodec = TicketCodec(),
-            redisPubSubAdapter = Listener(url, auditLogRepository, httpClient, ticketRepository)
+            redisPubSubAdapter = Listener(
+                ticketServiceHttpConfiguration,
+                auditLogRepository,
+                httpClient,
+                ticketRepository
+            )
         )
     }
 
@@ -82,7 +83,7 @@ class RedisBeanFactory {
 
 @DelicateCoroutinesApi
 class Listener(
-    private val url: String,
+    private val ticketServiceHttpConfiguration: TicketServiceHttpConfiguration,
     private val auditLogRepository: AuditLogRepository,
     private val httpConcertClient: Rx3StreamingHttpClient,
     private val ticketRepository: TicketRepository,
@@ -92,9 +93,18 @@ class Listener(
         CoroutineScope(Dispatchers.IO).launch {
             ticketRepository.save(ticketData)
         }
-        val concertDays = ticketDto.toConcertData
-        val parkingReservation = ticketDto.toParkingData
-        httpConcertClient.sendObject(ticketDto, url, auditLogRepository)
+        val concertDays = ticketDto.toConcertDto
+        concertDays.forEach {
+            httpConcertClient.sendObject(it, ticketServiceHttpConfiguration.concertUrl, auditLogRepository)
+        }
+        val parkingReservation = ticketDto.toParkingDto
+        parkingReservation?.let {
+            httpConcertClient.sendObject(
+                parkingReservation,
+                ticketServiceHttpConfiguration.concertUrl,
+                auditLogRepository
+            )
+        }
     }
 
 }
@@ -102,3 +112,11 @@ class Listener(
 class TicketCodec : BuyOycCodec<TicketDto>() {
     override fun readCodecObject(it: ObjectInputStream): TicketDto = it.readTypedObject()
 }
+
+@Singleton
+data class TicketServiceHttpConfiguration(
+    @Value("\${buy.oyc.concert.url}")
+    val concertUrl: String,
+    @Value("\${buy.oyc.parking.url}")
+    val parkingUrl: String,
+)

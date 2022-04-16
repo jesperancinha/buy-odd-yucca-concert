@@ -23,9 +23,10 @@ data class TicketDto(
 data class ConcertDayDto(
     val name: String,
     val description: String,
-    val date: LocalDate,
-    val createdAt: LocalDateTime? = LocalDateTime.now()
-)
+    val concertDate: LocalDate,
+    val createdAt: LocalDateTime? = LocalDateTime.now(),
+    override val type: AuditLogType = AuditLogType.CONCERT_DAY
+) : Serializable, BuyOycType
 
 data class MealDto(
     val coupon: UUID? = null,
@@ -72,8 +73,9 @@ val TicketDto.toDrinkDto: List<DrinkDto>
 data class ParkingReservationDto(
     val reference: UUID = UUID.randomUUID(),
     var carParkingId: Long,
-    val createdAt: LocalDateTime? = LocalDateTime.now()
-)
+    val createdAt: LocalDateTime? = LocalDateTime.now(),
+    override val type: AuditLogType = AuditLogType.PARKING
+): Serializable, BuyOycType
 
 
 val ParkingReservation.toDto: ParkingReservationDto
@@ -112,19 +114,21 @@ val TicketDto.toTicketData: TicketReservation
         birthDate = birthDate,
     )
 
-val TicketDto.toConcertData: List<ConcertDay>
+val TicketDto.toConcertDto: List<ConcertDayDto>
     get() = this.concertDays.map {
-        ConcertDay(
+        ConcertDayDto(
             name = it.name,
             description = it.description,
-            concert_date = it.date,
+            concertDate = it.concertDate,
             createdAt = it.createdAt
         )
     }
 
-val TicketDto.toParkingData: ParkingReservation?
+val TicketDto.toParkingDto: ParkingReservationDto?
     get() = parkingReservation?.let {
-        ParkingReservation(
-            reference = it.reference
+        ParkingReservationDto(
+            reference = it.reference,
+            carParkingId = it.carParkingId,
+            createdAt = it.createdAt
         )
     }

@@ -29,6 +29,7 @@ enum class AuditLogType {
     TICKET,
     DRINK,
     MEAL,
+    PARKING,
     CONCERT_DAY,
     RECEIPT
 }
