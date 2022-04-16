@@ -61,7 +61,7 @@
     "react-svg-loader": "^3.0.3",
     "snyk": "^1.883.0",
     "storybook": "6.4.19",
-    "styled-components": "^5.3.3",
+    "styled-components": "^5.3.5",
     "webpack": "^5.69.1",
     "webpack-dev-server": "^4.7.4"
   },
