@@ -38,6 +38,8 @@ class TicketReservationTest @Inject constructor(
     private val concertDayRepository: ConcertDayRepository,
     private val drinkRepository: DrinkRepository,
     private val mealRepository: MealRepository,
+    private val drinkReservationRepository: DrinkReservationRepository,
+    private val mealReservationRepository: MealReservationRepository,
     private val ticketReservationConcertRepository: TicketReservationConcertRepository
 ) : AbstractContainerTest() {
 
@@ -155,7 +157,6 @@ class TicketReservationTest @Inject constructor(
                 shape = "bottle",
                 volume = 33,
                 price = BigDecimal(10),
-                ticketReservation = reservation
             )
         )
 
@@ -164,7 +165,6 @@ class TicketReservationTest @Inject constructor(
                 boxType = XL,
                 discount = 10,
                 price = BigDecimal(80),
-                ticketReservation = reservation
             )
         )
 
@@ -173,7 +173,6 @@ class TicketReservationTest @Inject constructor(
                 boxType = XL,
                 discount = 10,
                 price = BigDecimal(80),
-                ticketReservation = reservation
             )
         )
 

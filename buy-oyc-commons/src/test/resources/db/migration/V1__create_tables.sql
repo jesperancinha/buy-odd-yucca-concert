@@ -62,37 +62,60 @@ create table if not exists ticket.ticket_reservation
 
 create table if not exists ticket.drink
 (
-    id                    UUID,
-    reference             UUID         NOT NULL UNIQUE,
-    ticket_reservation_id UUID         NOT NULL,
-    name                  varchar(255) NULL,
-    width                 bigint,
-    height                bigint,
-    shape                 varchar(255),
-    volume                bigint,
-    price                 numeric,
-    created_at            TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
-    PRIMARY KEY (id),
-    CONSTRAINT fk_drink_ticket_reservation
-        FOREIGN KEY (ticket_reservation_id)
-            REFERENCES ticket.ticket_reservation (id)
+    id         UUID,
+    name       varchar(255) NULL,
+    width      bigint,
+    height     bigint,
+    shape      varchar(255),
+    volume     bigint,
+    price      numeric,
+    created_at TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
+    PRIMARY KEY (id)
 );
 
 create table if not exists ticket.meal
 (
+    id         UUID,
+    coupon     UUID         NULL,
+    box_type   varchar(255) NULL,
+    discount   bigint,
+    price      numeric,
+    processed  boolean,
+    created_at TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
+    PRIMARY KEY (id)
+);
+
+create table if not exists ticket.drink_reservation
+(
     id                    UUID,
-    reference             UUID         NOT NULL UNIQUE,
-    coupon                UUID         NULL,
-    ticket_reservation_id UUID         NOT NULL,
-    box_type              varchar(255) NULL,
-    discount              bigint,
-    price                 numeric,
-    processed             boolean,
-    created_at            TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
+    reference             UUID      NOT NULL UNIQUE,
+    ticket_reservation_id UUID      NOT NULL,
+    drink_id              UUID      NOT NULL,
+    created_at            TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
+    PRIMARY KEY (id),
+    CONSTRAINT fk_drink_ticket_reservation
+        FOREIGN KEY (ticket_reservation_id)
+            REFERENCES ticket.ticket_reservation (id),
+    CONSTRAINT fk_drink_reservation
+        FOREIGN KEY (drink_id)
+            REFERENCES ticket.drink (id)
+);
+
+create table if not exists ticket.meal_reservation
+(
+    id                    UUID,
+    reference             UUID      NOT NULL UNIQUE,
+    coupon                UUID      NULL,
+    ticket_reservation_id UUID      NOT NULL,
+    meal_id UUID      NOT NULL,
+    created_at            TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id),
     CONSTRAINT fk_meal_ticket_reservation
         FOREIGN KEY (ticket_reservation_id)
-            REFERENCES ticket.ticket_reservation (id)
+            REFERENCES ticket.ticket_reservation (id),
+    CONSTRAINT fk_meal_reservation
+        FOREIGN KEY (meal_id)
+            REFERENCES ticket.meal (id)
 );
 
 create table ticket.receipt
@@ -124,6 +147,6 @@ create table ticket.audit_log
 (
     id             UUID NOT NULL,
     audit_log_type VARCHAR,
-    payload       VARCHAR,
+    payload        VARCHAR,
     created_at     TIMESTAMP DEFAULT LOCALTIMESTAMP
 )
