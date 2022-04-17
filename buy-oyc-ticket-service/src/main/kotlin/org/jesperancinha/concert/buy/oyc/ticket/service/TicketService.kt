@@ -93,6 +93,13 @@ class Listener(
         CoroutineScope(Dispatchers.IO).launch {
             ticketRepository.save(ticketData)
         }
+
+        ticketDto.drinks.forEach {
+            httpConcertClient.sendObject(it, ticketServiceHttpConfiguration.drinkUrl, auditLogRepository)
+        }
+        ticketDto.meals.forEach {
+            httpConcertClient.sendObject(it, ticketServiceHttpConfiguration.mealUrl, auditLogRepository)
+        }
         val concertDays = ticketDto.toConcertDto
         concertDays.forEach {
             httpConcertClient.sendObject(it, ticketServiceHttpConfiguration.concertUrl, auditLogRepository)
@@ -115,6 +122,10 @@ class TicketCodec : BuyOycCodec<TicketDto>() {
 
 @Singleton
 data class TicketServiceHttpConfiguration(
+    @Value("\${buy.oyc.drink.url}")
+    val drinkUrl: String,
+    @Value("\${buy.oyc.meal.url}")
+    val mealUrl: String,
     @Value("\${buy.oyc.concert.url}")
     val concertUrl: String,
     @Value("\${buy.oyc.parking.url}")

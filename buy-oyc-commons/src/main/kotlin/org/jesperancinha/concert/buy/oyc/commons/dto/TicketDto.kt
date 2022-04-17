@@ -28,48 +28,6 @@ data class ConcertDayDto(
     override val type: AuditLogType = AuditLogType.CONCERT_DAY
 ) : Serializable, BuyOycType
 
-data class MealDto(
-    val coupon: UUID? = null,
-    val boxType: BoxType,
-    val discount: Long,
-    val price: BigDecimal,
-    val processed: Boolean = false,
-    val createdAt: LocalDateTime? = LocalDateTime.now(),
-)
-
-val TicketDto.toMealDto: List<MealDto>
-    get() = this.meals.map {
-        MealDto(
-            coupon = it.coupon,
-            boxType = it.boxType,
-            discount = it.discount,
-            price = it.price,
-            processed = it.processed,
-            createdAt = it.createdAt
-        )
-    }
-
-data class DrinkDto(
-    val name: String,
-    val width: Long,
-    val height: Long,
-    val shape: String,
-    val volume: Long,
-    val price: BigDecimal,
-)
-
-val TicketDto.toDrinkDto: List<DrinkDto>
-    get() = this.drinks.map {
-        DrinkDto(
-            name = it.name,
-            width = it.width,
-            height = it.height,
-            shape = it.shape,
-            volume = it.volume,
-            price = it.price
-        )
-    }
-
 data class ParkingReservationDto(
     val reference: UUID = UUID.randomUUID(),
     var carParkingId: Long,
