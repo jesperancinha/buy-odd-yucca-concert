@@ -11,13 +11,13 @@ import java.util.*
  * Created by jofisaes on 17/04/2022
  */
 data class MealDto(
-    val reference: UUID,
+    var reference: UUID? = null,
     val drink: UUID,
     override val type: AuditLogType = MEAL
 ) : Serializable, BuyOycType
 
 data class DrinkDto(
-    val reference: UUID,
+    var reference: UUID? = null,
     val drink: UUID,
     override val type: AuditLogType = DRINK
 ) : Serializable, BuyOycType

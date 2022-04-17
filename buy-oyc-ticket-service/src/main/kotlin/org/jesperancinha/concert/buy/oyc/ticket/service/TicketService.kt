@@ -95,10 +95,10 @@ class Listener(
         }
 
         ticketDto.drinks.forEach {
-            httpConcertClient.sendObject(it, ticketServiceHttpConfiguration.drinkUrl, auditLogRepository)
+            httpConcertClient.sendObject(it.apply { reference = ticketDto.reference }, ticketServiceHttpConfiguration.drinkUrl, auditLogRepository)
         }
         ticketDto.meals.forEach {
-            httpConcertClient.sendObject(it, ticketServiceHttpConfiguration.mealUrl, auditLogRepository)
+            httpConcertClient.sendObject(it.apply { reference = ticketDto.reference }, ticketServiceHttpConfiguration.mealUrl, auditLogRepository)
         }
         val concertDays = ticketDto.toConcertDto
         concertDays.forEach {
