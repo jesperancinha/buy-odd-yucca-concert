@@ -2,7 +2,7 @@ package org.jesperancinha.concert.buy.oyc
 
 import io.micronaut.runtime.Micronaut.*
 
-object TicketServiceLauncher {
+object ApiServiceLauncher {
 	@JvmStatic
 	fun main(args: Array<String>) {
 		build()

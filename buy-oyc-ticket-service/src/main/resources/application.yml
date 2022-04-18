@@ -16,7 +16,7 @@ r2dbc:
 flyway:
   datasources:
     default:
-      enabled: false
+      enabled: true
 
 jackson:
   serialization:
@@ -25,11 +25,26 @@ jackson:
   deserialization:
     failOnUnknownProperties: false
 
-
 redis:
     uri: redis://localhost
-    io-thread-pool-size: 5
-    computation-thread-pool-size: 4
-    caches:
-        my-cache:
-            expire-after-write: 1h
+    timeout: 30s
+
+buy.oyc.drink:
+    url: /api/yucca-catering
+    port: 8000
+    host: localhost
+
+buy.oyc.meal:
+    url: /api/yucca-catering
+    port: 8000
+    host: localhost
+
+buy.oyc.concert:
+    url: /api/yucca-concert
+    port: 8000
+    host: localhost
+
+buy.oyc.parking:
+    url: /api/yucca-parking
+    port: 8000
+    host: localhost

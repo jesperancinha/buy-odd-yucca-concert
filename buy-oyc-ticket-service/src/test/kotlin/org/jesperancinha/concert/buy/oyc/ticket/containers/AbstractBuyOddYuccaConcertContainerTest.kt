@@ -1,4 +1,4 @@
-package org.jesperancinha.concert.buy.oyc.containers
+package org.jesperancinha.concert.buy.oyc.ticket.containers
 
 import com.github.dockerjava.api.model.ExposedPort
 import com.github.dockerjava.api.model.HostConfig
@@ -15,6 +15,7 @@ import org.testcontainers.utility.DockerImageName
 class TestPostgresSQLContainer(imageName: String) : PostgreSQLContainer<TestPostgresSQLContainer>(imageName)
 
 private const val POSTGRESQL_PORT = 5432
+private const val REDIS_PORT = 6379
 
 abstract class AbstractBuyOddYuccaConcertContainerTest {
     companion object {
@@ -36,14 +37,23 @@ abstract class AbstractBuyOddYuccaConcertContainerTest {
                 )
             }
 
+
         @Container
         @JvmField
-        val redis: GenericContainer<*> = GenericContainer(
-            DockerImageName
-            .parse("redis:5.0.3-alpine"))
-            .withExposedPorts(6379)
+        val redis: GenericContainer<*> = GenericContainer(DockerImageName.parse("redis:5.0.3-alpine"))
+            .withExposedPorts(REDIS_PORT)
+            .withCreateContainerCmdModifier { cmd ->
+                cmd.withHostConfig(
+                    HostConfig().withPortBindings(
+                        PortBinding(
+                            bindPort(REDIS_PORT),
+                            ExposedPort(REDIS_PORT)
+                        )
+                    )
+                )
+            }
 
-        private val config = ClassicConfiguration()
+        val config = ClassicConfiguration()
 
         init {
             postgreSQLContainer.start()
@@ -57,5 +67,4 @@ abstract class AbstractBuyOddYuccaConcertContainerTest {
             Flyway(config).migrate()
         }
     }
-
 }

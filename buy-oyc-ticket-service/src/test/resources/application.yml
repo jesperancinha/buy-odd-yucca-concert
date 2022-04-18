@@ -24,3 +24,23 @@ jackson:
     writeDatesAsTimestamps: false
   deserialization:
     failOnUnknownProperties: false
+
+buy.oyc.drink:
+    url: /api/yucca-catering
+    port: 8000
+    host: localhost
+
+buy.oyc.meal:
+    url: /api/yucca-catering
+    port: 8000
+    host: localhost
+
+buy.oyc.concert:
+    url: /api/yucca-concert
+    port: 8000
+    host: localhost
+
+buy.oyc.parking:
+    url: /api/yucca-parking
+    port: 8000
+    host: localhost
