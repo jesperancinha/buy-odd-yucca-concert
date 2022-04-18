@@ -11,8 +11,6 @@ import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
 import org.jesperancinha.concert.buy.oyc.commons.domain.*
 import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
-import org.jesperancinha.concert.buy.oyc.commons.dto.toConcertDto
-import org.jesperancinha.concert.buy.oyc.commons.dto.toParkingDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.toTicketData
 import org.jesperancinha.concert.buy.oyc.commons.pubsub.initPubSub
 import org.jesperancinha.concert.buy.oyc.commons.rest.sendObject
@@ -95,19 +93,29 @@ class Listener(
         }
 
         ticketDto.drinks.forEach {
-            httpConcertClient.sendObject(it.apply { reference = ticketDto.reference }, ticketServiceHttpConfiguration.drinkUrl, auditLogRepository)
+            httpConcertClient.sendObject(
+                it.apply { reference = ticketDto.reference },
+                ticketServiceHttpConfiguration.drinkUrl,
+                auditLogRepository
+            )
         }
         ticketDto.meals.forEach {
-            httpConcertClient.sendObject(it.apply { reference = ticketDto.reference }, ticketServiceHttpConfiguration.mealUrl, auditLogRepository)
-        }
-        val concertDays = ticketDto.toConcertDto
-        concertDays.forEach {
-            httpConcertClient.sendObject(it.apply { reference = ticketDto.reference }, ticketServiceHttpConfiguration.concertUrl, auditLogRepository)
-        }
-        val parkingReservation = ticketDto.toParkingDto
-        parkingReservation?.let {
             httpConcertClient.sendObject(
-                parkingReservation,
+                it.apply { reference = ticketDto.reference },
+                ticketServiceHttpConfiguration.mealUrl,
+                auditLogRepository
+            )
+        }
+        ticketDto.concertDays.forEach {
+            httpConcertClient.sendObject(
+                it.apply { reference = ticketDto.reference },
+                ticketServiceHttpConfiguration.concertUrl,
+                auditLogRepository
+            )
+        }
+        ticketDto.parkingReservation?.let {
+            httpConcertClient.sendObject(
+                it.apply { reference= ticketDto.reference },
                 ticketServiceHttpConfiguration.concertUrl,
                 auditLogRepository
             )
