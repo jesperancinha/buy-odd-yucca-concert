@@ -102,7 +102,7 @@ class Listener(
         }
         val concertDays = ticketDto.toConcertDto
         concertDays.forEach {
-            httpConcertClient.sendObject(it, ticketServiceHttpConfiguration.concertUrl, auditLogRepository)
+            httpConcertClient.sendObject(it.apply { reference = ticketDto.reference }, ticketServiceHttpConfiguration.concertUrl, auditLogRepository)
         }
         val parkingReservation = ticketDto.toParkingDto
         parkingReservation?.let {

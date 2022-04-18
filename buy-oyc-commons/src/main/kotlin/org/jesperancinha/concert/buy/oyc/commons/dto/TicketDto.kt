@@ -22,6 +22,7 @@ data class TicketDto(
 
 data class ConcertDayDto(
     val name: String,
+    var reference: UUID? = null,
     val description: String,
     val concertDate: LocalDate,
     val createdAt: LocalDateTime? = LocalDateTime.now(),
