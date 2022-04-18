@@ -1,8 +1,9 @@
 package org.jesperancinha.concert.buy.oyc.commons.dto
 
-import org.jesperancinha.concert.buy.oyc.commons.domain.*
+import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogType
+import org.jesperancinha.concert.buy.oyc.commons.domain.BuyOycType
+import org.jesperancinha.concert.buy.oyc.commons.domain.TicketReservation
 import java.io.Serializable
-import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
@@ -38,9 +39,11 @@ data class ConcertDayDto(
     val createdAt: LocalDateTime? = LocalDateTime.now(),
     override val type: AuditLogType = AuditLogType.CONCERT_DAY
 ) : Serializable, BuyOycType
+
 val TicketReservation.toDto: TicketDto
     get() = TicketDto(
         name = name,
+        reference = reference,
         address = address,
         birthDate = birthDate
     )

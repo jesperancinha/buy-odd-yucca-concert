@@ -25,6 +25,10 @@ jackson:
   deserialization:
     failOnUnknownProperties: false
 
+redis:
+    uri: redis://localhost
+    timeout: 30s
+
 buy.oyc.drink:
     url: /api/yucca-catering
     port: 8000

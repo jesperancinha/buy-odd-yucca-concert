@@ -6,6 +6,7 @@ import io.lettuce.core.pubsub.api.async.RedisPubSubAsyncCommands
 import io.micronaut.context.annotation.Factory
 import io.micronaut.context.annotation.Value
 import io.micronaut.rxjava3.http.client.Rx3StreamingHttpClient
+import jakarta.inject.Qualifier
 import jakarta.inject.Singleton
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.Flow
@@ -17,6 +18,7 @@ import org.jesperancinha.concert.buy.oyc.commons.rest.sendObject
 import java.io.ObjectInputStream
 import java.net.URL
 import javax.validation.Valid
+import kotlin.annotation.AnnotationRetention.RUNTIME
 
 private const val TICKET_PERSIST_CHANNEL = "ticketPersistChannel"
 
@@ -30,7 +32,8 @@ class TicketService(
     auditLogRepository: AuditLogRepository,
     private val pubSubCommands: RedisPubSubAsyncCommands<String, TicketDto>,
     redisClient: RedisClient,
-    httpClient: Rx3StreamingHttpClient,
+    @ConcertClient
+    httpConcertClient: Rx3StreamingHttpClient,
     ticketServiceHttpConfiguration: TicketServiceHttpConfiguration
 ) {
 
@@ -41,7 +44,7 @@ class TicketService(
             redisPubSubAdapter = Listener(
                 ticketServiceHttpConfiguration,
                 auditLogRepository,
-                httpClient,
+                httpConcertClient,
                 ticketRepository
             )
         )
@@ -61,6 +64,7 @@ class RedisBeanFactory {
         redisClient.connectPubSub(TicketCodec()).async()
 
     @Singleton
+    @ConcertClient
     fun httpConcertClient(
         @Value("\${buy.oyc.concert.host}")
         host: String,
@@ -70,6 +74,7 @@ class RedisBeanFactory {
         Rx3StreamingHttpClient.create(URL("http://" + host + ":" + port))
 
     @Singleton
+    @ParkingClient
     fun httpParkingClient(
         @Value("\${buy.oyc.parking.host}")
         host: String,
@@ -139,3 +144,11 @@ data class TicketServiceHttpConfiguration(
     @Value("\${buy.oyc.parking.url}")
     val parkingUrl: String,
 )
+
+@Qualifier
+@Retention(RUNTIME)
+annotation class ConcertClient
+
+@Qualifier
+@Retention(RUNTIME)
+annotation class ParkingClient
