@@ -24,6 +24,7 @@ import org.flywaydb.core.Flyway
 import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogRepository
 import org.jesperancinha.concert.buy.oyc.commons.domain.TicketRepository
 import org.jesperancinha.concert.buy.oyc.commons.dto.ConcertDayDto
+import org.jesperancinha.concert.buy.oyc.commons.dto.DrinkDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
 import org.jesperancinha.concert.buy.oyc.ticket.containers.AbstractBuyOddYuccaConcertContainerTest
 import org.junit.jupiter.api.AfterAll
@@ -64,7 +65,10 @@ class TicketTest @Inject constructor(
         val ticketDto = TicketDto(name = "name", address = "address", birthDate = LocalDate.now())
         wireMockServerCatering.stubResponse(
             API_YUCCA_CATERING, jacksonMapper
-                .writeValueAsString(ticketDto), 200
+                .writeValueAsString(DrinkDto(
+                    reference = UUID.randomUUID(),
+                    drink = UUID.randomUUID()
+                )), 200
         )
         wireMockServerConcert.stubResponse(
             API_YUCCA_CONCERT, jacksonMapper
@@ -96,14 +100,17 @@ class TicketTest @Inject constructor(
             concertDate = LocalDate.now(),
             description = "Camping with the campers"
         )
+        val drinkDto = DrinkDto(
+            reference = UUID.randomUUID(),
+            drink = UUID.randomUUID()
+        )
         val testTicket = TicketDto(
             name = "name",
             reference = reference,
             address = "address",
             birthDate = LocalDate.now(),
-            concertDays = listOf(
-                concertDayDto
-            )
+            concertDays = listOf(concertDayDto),
+            drinks = listOf(drinkDto)
         )
         val add = ticketReactiveClient.add(
             testTicket
@@ -127,7 +134,7 @@ class TicketTest @Inject constructor(
         withContext(Dispatchers.IO) {
             sleep(1000)
         }
-        auditLogRepository.findAll().toList().shouldHaveSize(1)
+        auditLogRepository.findAll().toList().shouldHaveSize(2)
     }
 
     companion object {
