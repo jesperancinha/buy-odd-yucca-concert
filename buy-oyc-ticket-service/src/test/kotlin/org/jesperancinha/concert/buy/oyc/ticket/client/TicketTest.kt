@@ -23,6 +23,7 @@ import kotlinx.coroutines.withContext
 import org.flywaydb.core.Flyway
 import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogRepository
 import org.jesperancinha.concert.buy.oyc.commons.domain.TicketRepository
+import org.jesperancinha.concert.buy.oyc.commons.dto.ConcertDayDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
 import org.jesperancinha.concert.buy.oyc.ticket.containers.AbstractBuyOddYuccaConcertContainerTest
 import org.junit.jupiter.api.AfterAll
@@ -34,7 +35,9 @@ import java.time.LocalDate
 import java.util.*
 import javax.transaction.Transactional
 
-private const val API_YUCCA_TICKET = "/api/yucca-ticket"
+private const val API_YUCCA_CATERING = "/api/yucca-catering"
+private const val API_YUCCA_CONCERT = "/api/yucca-concert"
+private const val API_YUCCA_PARKING = "/api/yucca-parking"
 
 
 /**
@@ -59,24 +62,48 @@ class TicketTest @Inject constructor(
     fun setUpEach() = runTest {
         ticketRepository.deleteAll()
         val ticketDto = TicketDto(name = "name", address = "address", birthDate = LocalDate.now())
-        stubResponse(
-            API_YUCCA_TICKET, jacksonMapper
+        wireMockServerCatering.stubResponse(
+            API_YUCCA_CATERING, jacksonMapper
                 .writeValueAsString(ticketDto), 200
         )
-        wireMockServer1.start()
-        wireMockServer2.start()
-        wireMockServer3.start()
+        wireMockServerConcert.stubResponse(
+            API_YUCCA_CONCERT, jacksonMapper
+                .writeValueAsString(
+                    ConcertDayDto(
+                        name = "concert",
+                        reference = UUID.randomUUID(),
+                        concertDate = LocalDate.now(),
+                        description = "Camping with the campers"
+                    )
+                ), 200
+        )
+        wireMockServerParking.stubResponse(
+            API_YUCCA_PARKING, jacksonMapper
+                .writeValueAsString(ticketDto), 200
+        )
+        wireMockServerCatering.start()
+        wireMockServerConcert.start()
+        wireMockServerParking.start()
     }
 
     @Test
     @Transactional
     fun `should find all with an empty list`() = runTest {
         val reference = UUID.randomUUID()
+        val concertDayDto = ConcertDayDto(
+            name = "concert",
+            reference = reference,
+            concertDate = LocalDate.now(),
+            description = "Camping with the campers"
+        )
         val testTicket = TicketDto(
             name = "name",
             reference = reference,
             address = "address",
-            birthDate = LocalDate.now()
+            birthDate = LocalDate.now(),
+            concertDays = listOf(
+                concertDayDto
+            )
         )
         val add = ticketReactiveClient.add(
             testTicket
@@ -91,19 +118,22 @@ class TicketTest @Inject constructor(
         findAll.subscribe {
             it.reference shouldBe reference
         }
+        withContext(Dispatchers.IO) {
+            sleep(1000)
+        }
         val awaitFirstTicketDto = findAll.awaitFirst()
         awaitFirstTicketDto.reference shouldBe reference
 
         withContext(Dispatchers.IO) {
             sleep(1000)
         }
-        auditLogRepository.findAll().toList().shouldHaveSize(0)
+        auditLogRepository.findAll().toList().shouldHaveSize(1)
     }
 
     companion object {
-        private val wireMockServer1 = WireMockServer(WireMockConfiguration().port(7999))
-        private val wireMockServer2 = WireMockServer(WireMockConfiguration().port(7998))
-        private val wireMockServer3 = WireMockServer(WireMockConfiguration().port(7997))
+        private val wireMockServerCatering = WireMockServer(WireMockConfiguration().port(7999))
+        private val wireMockServerConcert = WireMockServer(WireMockConfiguration().port(7998))
+        private val wireMockServerParking = WireMockServer(WireMockConfiguration().port(7997))
 
         @JvmStatic
         @BeforeAll
@@ -120,28 +150,28 @@ class TicketTest @Inject constructor(
         @JvmStatic
         @AfterAll
         fun tearDown() {
-            wireMockServer1.stop()
-            wireMockServer2.stop()
-            wireMockServer3.stop()
+            wireMockServerCatering.stop()
+            wireMockServerConcert.stop()
+            wireMockServerParking.stop()
         }
     }
+}
 
-    private fun stubResponse(
-        url: String,
-        body: String,
-        status: Int = HttpStatus.OK.code
-    ) {
-        wireMockServer1.stubFor(
-            WireMock.post(url)
-                .willReturn(
-                    WireMock.aResponse()
-                        .withStatus(status)
-                        .withHeader(
-                            HttpHeaders.CONTENT_TYPE,
-                            MediaType.APPLICATION_JSON
-                        )
-                        .withBody(body)
-                )
-        )
-    }
+private fun WireMockServer.stubResponse(
+    url: String,
+    body: String,
+    status: Int = HttpStatus.OK.code
+) {
+    stubFor(
+        WireMock.post(url)
+            .willReturn(
+                WireMock.aResponse()
+                    .withStatus(status)
+                    .withHeader(
+                        HttpHeaders.CONTENT_TYPE,
+                        MediaType.APPLICATION_JSON
+                    )
+                    .withBody(body)
+            )
+    )
 }
