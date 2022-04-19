@@ -5,7 +5,6 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.client.WireMock
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration
-import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.longs.shouldBeLessThan
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
@@ -17,7 +16,6 @@ import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
@@ -29,8 +27,8 @@ import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import java.lang.Thread.sleep
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.time.temporal.ChronoUnit.NANOS
 import java.util.*
 import javax.transaction.Transactional
@@ -74,30 +72,29 @@ class TicketTest @Inject constructor(
     @Test
     @Transactional
     fun `should find all with an empty list`() = runTest {
-         val (id, reference, name, address, birthDate, parkingReservation, createdAt) = ticketRepository.save(
-             TicketReservation(
-                 name = "name",
-                 reference = UUID.randomUUID(),
-                 address = "address",
-                 birthDate = LocalDate.now()
-             )
-         )
+        val reference = UUID.randomUUID()
+        val testTicket = TicketDto(
+            name = "name",
+            reference = reference,
+            address = "address",
+            birthDate = LocalDate.now()
+        )
+        val add = ticketReactiveClient.add(
+            testTicket
+        )
+        val result = withContext(Dispatchers.IO) {
+            add.blockingGet()
+        }
+        result["second"].shouldBe("Saved successfully !")
+
         val findAll = ticketReactiveClient.getAllTickets()
         findAll.shouldNotBeNull()
         findAll.subscribe {
             it.reference shouldBe reference
-            NANOS.between(it.createdAt, createdAt) shouldBeLessThan 1000
         }
-        val awaitFirstReceiptDto = findAll.awaitFirst()
-        awaitFirstReceiptDto.reference shouldBe reference
-//        NANOS.between(awaitFirstReceiptDto.createdAt, createdAt) shouldBeLessThan 1000
-//
-//        val testTicketDto = TicketDto(
-//            name = "name",
-//            address = "address",
-//            birthDate = LocalDate.now()
-//        )
-//
+        val awaitFirstTicketDto = findAll.awaitFirst()
+        awaitFirstTicketDto.reference shouldBe reference
+
 //        val add = ticketReactiveClient.add(testTicketDto)
 //        val blockingGet = withContext(Dispatchers.IO) {
 //            add.blockingGet()

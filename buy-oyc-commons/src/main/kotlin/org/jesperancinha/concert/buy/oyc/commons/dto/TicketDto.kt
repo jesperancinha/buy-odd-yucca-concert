@@ -14,6 +14,7 @@ import java.util.*
 val TicketDto.toTicketData: TicketReservation
     get() = TicketReservation(
         name = name,
+        reference = reference,
         address = address,
         birthDate = birthDate,
     )
@@ -45,7 +46,8 @@ val TicketReservation.toDto: TicketDto
         name = name,
         reference = reference,
         address = address,
-        birthDate = birthDate
+        birthDate = birthDate,
+        createdAt = createdAt
     )
 
 val TicketDto.toParkingDto: ParkingReservationDto?

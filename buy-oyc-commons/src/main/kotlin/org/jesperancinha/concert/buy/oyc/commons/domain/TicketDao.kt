@@ -18,7 +18,7 @@ data class TicketReservation(
     @field: Id
     @field: AutoPopulated
     var id: UUID? = null,
-    val reference: UUID = UUID.randomUUID(),
+    val reference: UUID? = UUID.randomUUID(),
     val name: String,
     val address: String,
     val birthDate: LocalDate,
