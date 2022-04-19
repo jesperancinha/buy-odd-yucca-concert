@@ -34,6 +34,10 @@ class TicketService(
     redisClient: RedisClient,
     @ConcertClient
     httpConcertClient: Rx3StreamingHttpClient,
+    @ParkingClient
+    httpParkingClient: Rx3StreamingHttpClient,
+    @CateringClient
+    httpCateringClient: Rx3StreamingHttpClient,
     ticketServiceHttpConfiguration: TicketServiceHttpConfiguration
 ) {
 
@@ -45,6 +49,8 @@ class TicketService(
                 ticketServiceHttpConfiguration,
                 auditLogRepository,
                 httpConcertClient,
+                httpParkingClient,
+                httpCateringClient,
                 ticketRepository
             )
         )
@@ -82,6 +88,16 @@ class RedisBeanFactory {
         port: Long
     ): Rx3StreamingHttpClient =
         Rx3StreamingHttpClient.create(URL("http://" + host + ":" + port))
+
+    @Singleton
+    @CateringClient
+    fun httpCateringClient(
+        @Value("\${buy.oyc.catering.host}")
+        host: String,
+        @Value("\${buy.oyc.catering.port}")
+        port: Long
+    ): Rx3StreamingHttpClient =
+        Rx3StreamingHttpClient.create(URL("http://" + host + ":" + port))
 }
 
 @DelicateCoroutinesApi
@@ -89,6 +105,8 @@ class Listener(
     private val ticketServiceHttpConfiguration: TicketServiceHttpConfiguration,
     private val auditLogRepository: AuditLogRepository,
     private val httpConcertClient: Rx3StreamingHttpClient,
+    private val httpParkingClient: Rx3StreamingHttpClient,
+    private val httpCateringClient: Rx3StreamingHttpClient,
     private val ticketRepository: TicketRepository,
 ) : RedisPubSubAdapter<String, TicketDto>() {
     override fun message(key: String, ticketDto: TicketDto) {
@@ -98,16 +116,16 @@ class Listener(
         }
 
         ticketDto.drinks.forEach {
-            httpConcertClient.sendObject(
+            httpCateringClient.sendObject(
                 it.apply { reference = ticketDto.reference },
-                ticketServiceHttpConfiguration.drinkUrl,
+                ticketServiceHttpConfiguration.cateringUrl,
                 auditLogRepository
             )
         }
         ticketDto.meals.forEach {
-            httpConcertClient.sendObject(
+            httpCateringClient.sendObject(
                 it.apply { reference = ticketDto.reference },
-                ticketServiceHttpConfiguration.mealUrl,
+                ticketServiceHttpConfiguration.cateringUrl,
                 auditLogRepository
             )
         }
@@ -119,8 +137,8 @@ class Listener(
             )
         }
         ticketDto.parkingReservation?.let {
-            httpConcertClient.sendObject(
-                it.apply { reference= ticketDto.reference },
+            httpParkingClient.sendObject(
+                it.apply { reference = ticketDto.reference },
                 ticketServiceHttpConfiguration.concertUrl,
                 auditLogRepository
             )
@@ -135,10 +153,8 @@ class TicketCodec : BuyOycCodec<TicketDto>() {
 
 @Singleton
 data class TicketServiceHttpConfiguration(
-    @Value("\${buy.oyc.drink.url}")
-    val drinkUrl: String,
-    @Value("\${buy.oyc.meal.url}")
-    val mealUrl: String,
+    @Value("\${buy.oyc.catering.url}")
+    val cateringUrl: String,
     @Value("\${buy.oyc.concert.url}")
     val concertUrl: String,
     @Value("\${buy.oyc.parking.url}")
@@ -152,3 +168,7 @@ annotation class ConcertClient
 @Qualifier
 @Retention(RUNTIME)
 annotation class ParkingClient
+
+@Qualifier
+@Retention(RUNTIME)
+annotation class CateringClient
