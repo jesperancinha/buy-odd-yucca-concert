@@ -118,14 +118,14 @@ class Listener(
         ticketDto.drinks.forEach {
             httpCateringClient.sendObject(
                 it.apply { reference = ticketDto.reference },
-                ticketServiceHttpConfiguration.cateringUrl,
+                ticketServiceHttpConfiguration.cateringDrinkUrl,
                 auditLogRepository
             )
         }
         ticketDto.meals.forEach {
             httpCateringClient.sendObject(
                 it.apply { reference = ticketDto.reference },
-                ticketServiceHttpConfiguration.cateringUrl,
+                ticketServiceHttpConfiguration.cateringMealUrl,
                 auditLogRepository
             )
         }
@@ -153,8 +153,10 @@ class TicketCodec : BuyOycCodec<TicketDto>() {
 
 @Singleton
 data class TicketServiceHttpConfiguration(
-    @Value("\${buy.oyc.catering.url}")
-    val cateringUrl: String,
+    @Value("\${buy.oyc.catering.url.drink}")
+    val cateringDrinkUrl: String,
+    @Value("\${buy.oyc.catering.url.meal}")
+    val cateringMealUrl: String,
     @Value("\${buy.oyc.concert.url}")
     val concertUrl: String,
     @Value("\${buy.oyc.parking.url}")

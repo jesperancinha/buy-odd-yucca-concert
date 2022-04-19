@@ -25,6 +25,7 @@ import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogRepository
 import org.jesperancinha.concert.buy.oyc.commons.domain.TicketRepository
 import org.jesperancinha.concert.buy.oyc.commons.dto.ConcertDayDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.DrinkDto
+import org.jesperancinha.concert.buy.oyc.commons.dto.MealDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
 import org.jesperancinha.concert.buy.oyc.ticket.containers.AbstractBuyOddYuccaConcertContainerTest
 import org.junit.jupiter.api.AfterAll
@@ -36,7 +37,8 @@ import java.time.LocalDate
 import java.util.*
 import javax.transaction.Transactional
 
-private const val API_YUCCA_CATERING = "/api/yucca-catering"
+private const val API_YUCCA_CATERING_DRINK = "/api/yucca-catering/drink"
+private const val API_YUCCA_CATERING_MEAL = "/api/yucca-catering/meal"
 private const val API_YUCCA_CONCERT = "/api/yucca-concert"
 private const val API_YUCCA_PARKING = "/api/yucca-parking"
 
@@ -64,11 +66,22 @@ class TicketTest @Inject constructor(
         ticketRepository.deleteAll()
         val ticketDto = TicketDto(name = "name", address = "address", birthDate = LocalDate.now())
         wireMockServerCatering.stubResponse(
-            API_YUCCA_CATERING, jacksonMapper
-                .writeValueAsString(DrinkDto(
-                    reference = UUID.randomUUID(),
-                    drink = UUID.randomUUID()
-                )), 200
+            API_YUCCA_CATERING_DRINK, jacksonMapper
+                .writeValueAsString(
+                    DrinkDto(
+                        reference = UUID.randomUUID(),
+                        drink = UUID.randomUUID()
+                    )
+                ), 200
+        )
+        wireMockServerCatering.stubResponse(
+            API_YUCCA_CATERING_MEAL, jacksonMapper
+                .writeValueAsString(
+                    MealDto(
+                        reference = UUID.randomUUID(),
+                        drink = UUID.randomUUID()
+                    )
+                ), 200
         )
         wireMockServerConcert.stubResponse(
             API_YUCCA_CONCERT, jacksonMapper
@@ -104,13 +117,18 @@ class TicketTest @Inject constructor(
             reference = UUID.randomUUID(),
             drink = UUID.randomUUID()
         )
+        val mealDto = MealDto(
+            reference = UUID.randomUUID(),
+            drink = UUID.randomUUID()
+        )
         val testTicket = TicketDto(
             name = "name",
             reference = reference,
             address = "address",
             birthDate = LocalDate.now(),
             concertDays = listOf(concertDayDto),
-            drinks = listOf(drinkDto)
+            drinks = listOf(drinkDto),
+            meals = listOf(mealDto)
         )
         val add = ticketReactiveClient.add(
             testTicket
@@ -134,7 +152,7 @@ class TicketTest @Inject constructor(
         withContext(Dispatchers.IO) {
             sleep(1000)
         }
-        auditLogRepository.findAll().toList().shouldHaveSize(2)
+        auditLogRepository.findAll().toList().shouldHaveSize(3)
     }
 
     companion object {

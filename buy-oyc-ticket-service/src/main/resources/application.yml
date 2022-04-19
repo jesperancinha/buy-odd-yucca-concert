@@ -30,7 +30,9 @@ redis:
     timeout: 30s
 
 buy.oyc.catering:
-    url: /api/yucca-catering
+    url:
+     drink: /api/yucca-catering/drink
+     meal: /api/yucca-catering/meal
     port: 8000
     host: localhost
 
