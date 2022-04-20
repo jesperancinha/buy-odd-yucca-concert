@@ -8,26 +8,26 @@ import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.Post
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.flow.Flow
-import org.jesperancinha.concert.buy.oyc.commons.domain.ParkingReservation
-import org.jesperancinha.concert.buy.oyc.commons.domain.ParkingReservationRepository
-import org.jesperancinha.concert.buy.oyc.parking.dto.ParkingReservationDto
-import org.jesperancinha.concert.buy.oyc.parking.dto.toData
+import org.jesperancinha.concert.buy.oyc.commons.dto.ParkingReservationDto
+import org.jesperancinha.concert.buy.oyc.parking.service.ParkingReservationService
 import javax.validation.Valid
 
 @Controller("/api")
+@DelicateCoroutinesApi
 class ParkingController(
-    private val parkingReservationRepository: ParkingReservationRepository,
+    private val parkingReservationService: ParkingReservationService
 ) {
     @Post
-    suspend fun saveParkingReservation(@Body parkingReservation: @Valid ParkingReservationDto?): MutableHttpResponse<Pair<Int, String>> =
+    suspend fun createParkingReservation(@Body parkingReservation: @Valid ParkingReservationDto?): MutableHttpResponse<Pair<Int, String>> =
         parkingReservation?.let {
-            parkingReservationRepository.save(parkingReservation.toData)
+            parkingReservationService.createParkingReservation(parkingReservation)
             status<Map<Int, String>>(HttpStatus.CREATED).body(HttpStatus.CREATED.code to "Saved successfully !")
         } ?: status(HttpStatus.NOT_FOUND)
 
     @Get(value = "/", produces = [MediaType.APPLICATION_JSON])
-    fun getAllParkingReservations(): Flow<ParkingReservation> {
-        return parkingReservationRepository.findAll()
+    fun getAllParkingReservations(): Flow<ParkingReservationDto> {
+        return parkingReservationService.getAll()
     }
 }

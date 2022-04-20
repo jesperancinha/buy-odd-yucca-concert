@@ -2,6 +2,7 @@ package org.jesperancinha.concert.buy.oyc.commons.dto
 
 import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogType
 import org.jesperancinha.concert.buy.oyc.commons.domain.BuyOycType
+import org.jesperancinha.concert.buy.oyc.commons.domain.CarParking
 import org.jesperancinha.concert.buy.oyc.commons.domain.ParkingReservation
 import java.io.Serializable
 import java.time.LocalDateTime
@@ -24,3 +25,9 @@ val ParkingReservation.toDto: ParkingReservationDto
         carParkingId = carParking?.parkingNumber ?: -1,
         createdAt = createdAt
     )
+
+fun ParkingReservationDto.toData(carParking: CarParking): ParkingReservation = ParkingReservation(
+    reference = reference,
+    carParking = carParking,
+    createdAt = createdAt
+)

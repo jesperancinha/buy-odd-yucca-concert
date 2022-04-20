@@ -108,7 +108,7 @@ class Listener(
     private val httpParkingClient: Rx3StreamingHttpClient,
     private val httpCateringClient: Rx3StreamingHttpClient,
     private val ticketRepository: TicketRepository,
-) : RedisPubSubAdapter<String, TicketDto>() {
+) : RedisPubSubAdapter<String, TicketDto>(), TicketServiceHttpConfigurationInterface by ticketServiceHttpConfiguration {
     override fun message(key: String, ticketDto: TicketDto) {
         val ticketData = ticketDto.toTicketData
         CoroutineScope(Dispatchers.IO).launch {
@@ -118,21 +118,21 @@ class Listener(
         ticketDto.drinks.forEach {
             httpCateringClient.sendObject(
                 it.apply { reference = ticketDto.reference },
-                ticketServiceHttpConfiguration.cateringDrinkUrl,
+                cateringDrinkUrl,
                 auditLogRepository
             )
         }
         ticketDto.meals.forEach {
             httpCateringClient.sendObject(
                 it.apply { reference = ticketDto.reference },
-                ticketServiceHttpConfiguration.cateringMealUrl,
+                cateringMealUrl,
                 auditLogRepository
             )
         }
         ticketDto.concertDays.forEach {
             httpConcertClient.sendObject(
                 it.apply { reference = ticketDto.reference },
-                ticketServiceHttpConfiguration.concertUrl,
+                concertUrl,
                 auditLogRepository
             )
         }
@@ -147,6 +147,13 @@ class Listener(
 
 }
 
+interface TicketServiceHttpConfigurationInterface {
+    val cateringDrinkUrl: String
+    val cateringMealUrl: String
+    val concertUrl: String
+    val parkingUrl: String
+}
+
 class TicketCodec : BuyOycCodec<TicketDto>() {
     override fun readCodecObject(it: ObjectInputStream): TicketDto = it.readTypedObject()
 }
@@ -154,14 +161,14 @@ class TicketCodec : BuyOycCodec<TicketDto>() {
 @Singleton
 data class TicketServiceHttpConfiguration(
     @Value("\${buy.oyc.catering.url.drink}")
-    val cateringDrinkUrl: String,
+    override val cateringDrinkUrl: String,
     @Value("\${buy.oyc.catering.url.meal}")
-    val cateringMealUrl: String,
+    override val cateringMealUrl: String,
     @Value("\${buy.oyc.concert.url}")
-    val concertUrl: String,
+    override val concertUrl: String,
     @Value("\${buy.oyc.parking.url}")
-    val parkingUrl: String,
-)
+    override val parkingUrl: String,
+) : TicketServiceHttpConfigurationInterface
 
 @Qualifier
 @Retention(RUNTIME)

@@ -25,7 +25,7 @@ data class ParkingReservation(
     @field: Id
     @field: AutoPopulated
     var id: UUID? = null,
-    val reference: UUID = UUID.randomUUID(),
+    val reference: UUID? = UUID.randomUUID(),
     @field: Relation(value = ONE_TO_ONE, cascade = [Relation.Cascade.PERSIST])
     var carParking: CarParking? = null,
     @field:DateCreated
@@ -38,4 +38,6 @@ interface ParkingReservationRepository : CoroutineCrudRepository<ParkingReservat
 
 @R2dbcRepository(dialect = Dialect.POSTGRES)
 interface CarParkingRepository : CoroutineCrudRepository<CarParking, UUID>,
-    CoroutineJpaSpecificationExecutor<CarParking>
+    CoroutineJpaSpecificationExecutor<CarParking> {
+    fun findByParkingNumber(parkingNumber: Long): CarParking
+}
