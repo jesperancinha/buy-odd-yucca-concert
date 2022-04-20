@@ -6,18 +6,29 @@ import io.micronaut.http.MutableHttpResponse
 import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Post
-import org.jesperancinha.concert.buy.oyc.catering.dto.MealDto
-import org.jesperancinha.concert.buy.oyc.commons.domain.MealReservationRepository
+import jakarta.inject.Inject
+import kotlinx.coroutines.DelicateCoroutinesApi
+import org.jesperancinha.concert.buy.oyc.catering.service.CateringService
+import org.jesperancinha.concert.buy.oyc.commons.dto.DrinkDto
+import org.jesperancinha.concert.buy.oyc.commons.dto.MealDto
 import javax.validation.Valid
 
-@Controller("/api")
-class CateringController(
-    private val mealReservationRepository: MealReservationRepository
+@Controller("api")
+@DelicateCoroutinesApi
+class CateringController @Inject constructor(
+    private val cateringService: CateringService
 ) {
-    @Post
-    suspend fun saveParkingReservation(@Body mealDto: @Valid MealDto?): MutableHttpResponse<Pair<Int, String>> =
+    @Post("meal")
+    suspend fun createMeal(@Body mealDto: @Valid MealDto?): MutableHttpResponse<Pair<Int, String>> =
         mealDto?.let {
-//            mealRepository.save(mealDto.toData)
+            cateringService.createMeal(mealDto)
+            status<Map<Int, String>>(HttpStatus.CREATED).body(HttpStatus.CREATED.code to "Saved successfully !")
+        } ?: status(HttpStatus.NOT_FOUND)
+
+    @Post("drink")
+    suspend fun createDrink(@Body drinkDto: @Valid DrinkDto?): MutableHttpResponse<Pair<Int, String>> =
+        drinkDto?.let {
+            cateringService.createDrink(drinkDto)
             status<Map<Int, String>>(HttpStatus.CREATED).body(HttpStatus.CREATED.code to "Saved successfully !")
         } ?: status(HttpStatus.NOT_FOUND)
 }

@@ -51,7 +51,7 @@ data class DrinkReservation(
     @field: Id
     @field: AutoPopulated
     val id: UUID? = null,
-    val reference: UUID = UUID.randomUUID(),
+    val reference: UUID? = UUID.randomUUID(),
     val ticketReservation: TicketReservation,
     val drink: Drink
 )
@@ -61,7 +61,7 @@ data class MealReservation(
     @field: Id
     @field: AutoPopulated
     val id: UUID? = null,
-    val reference: UUID = UUID.randomUUID(),
+    val reference: UUID? = UUID.randomUUID(),
     val ticketReservation: TicketReservation,
     val meal: Meal
 )

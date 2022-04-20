@@ -10,6 +10,10 @@
 
 -   [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
 
+## References
+
+-  [9 Java Patterns That Kotlin Made Obsolete?](https://medium.com/@spitzbueb/9-java-patterns-in-kotlin-eac0cca1599f)
+
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/JEOrgLogo-20.png "João Esperancinha Homepage")](http://joaofilipesabinoesperancinha.nl)

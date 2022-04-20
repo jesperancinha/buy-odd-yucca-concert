@@ -63,13 +63,13 @@ class TicketTest @Inject constructor(
     @BeforeEach
     fun setUpEach() = runTest {
         ticketRepository.deleteAll()
-        val ticketDto = TicketDto(name = "name", address = "address", birthDate = LocalDate.now())
         wireMockServerCatering.stubResponse(
             API_YUCCA_CATERING_DRINK, jacksonMapper
                 .writeValueAsString(
                     DrinkDto(
                         reference = UUID.randomUUID(),
-                        drink = UUID.randomUUID()
+                        drinkId = UUID.randomUUID(),
+                        ticketReservationId = UUID.randomUUID()
                     )
                 ), 200
         )
@@ -78,7 +78,8 @@ class TicketTest @Inject constructor(
                 .writeValueAsString(
                     MealDto(
                         reference = UUID.randomUUID(),
-                        drink = UUID.randomUUID()
+                        mealId = UUID.randomUUID(),
+                        ticketReservationId = UUID.randomUUID()
                     )
                 ), 200
         )
@@ -120,11 +121,13 @@ class TicketTest @Inject constructor(
         )
         val drinkDto = DrinkDto(
             reference = UUID.randomUUID(),
-            drink = UUID.randomUUID()
+            drinkId = UUID.randomUUID(),
+            ticketReservationId = UUID.randomUUID()
         )
         val mealDto = MealDto(
             reference = UUID.randomUUID(),
-            drink = UUID.randomUUID()
+            mealId = UUID.randomUUID(),
+            ticketReservationId = UUID.randomUUID()
         )
         val parkingReservation = ParkingReservationDto(
             reference = reference,

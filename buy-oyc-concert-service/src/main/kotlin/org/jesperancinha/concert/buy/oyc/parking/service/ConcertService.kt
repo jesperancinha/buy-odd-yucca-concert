@@ -23,9 +23,6 @@ import javax.validation.Valid
  */
 private const val PARKING_CHANNEL = "parkingChannel"
 
-/**
- * Created by jofisaes on 20/04/2022
- */
 @DelicateCoroutinesApi
 @Singleton
 class ConcertDayService(
