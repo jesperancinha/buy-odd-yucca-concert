@@ -139,7 +139,7 @@ class Listener(
         ticketDto.parkingReservation?.let {
             httpParkingClient.sendObject(
                 it.apply { reference = ticketDto.reference },
-                ticketServiceHttpConfiguration.concertUrl,
+                ticketServiceHttpConfiguration.parkingUrl,
                 auditLogRepository
             )
         }

@@ -22,11 +22,9 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import org.flywaydb.core.Flyway
 import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogRepository
+import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogType.*
 import org.jesperancinha.concert.buy.oyc.commons.domain.TicketRepository
-import org.jesperancinha.concert.buy.oyc.commons.dto.ConcertDayDto
-import org.jesperancinha.concert.buy.oyc.commons.dto.DrinkDto
-import org.jesperancinha.concert.buy.oyc.commons.dto.MealDto
-import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
+import org.jesperancinha.concert.buy.oyc.commons.dto.*
 import org.jesperancinha.concert.buy.oyc.ticket.containers.AbstractBuyOddYuccaConcertContainerTest
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
@@ -34,6 +32,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.lang.Thread.sleep
 import java.time.LocalDate
+import java.time.LocalDateTime
 import java.util.*
 import javax.transaction.Transactional
 
@@ -96,7 +95,13 @@ class TicketTest @Inject constructor(
         )
         wireMockServerParking.stubResponse(
             API_YUCCA_PARKING, jacksonMapper
-                .writeValueAsString(ticketDto), 200
+                .writeValueAsString(
+                    ParkingReservationDto(
+                        reference = UUID.randomUUID(),
+                        carParkingId = 10,
+                        createdAt = LocalDateTime.now()
+                    )
+                ), 200
         )
         wireMockServerCatering.start()
         wireMockServerConcert.start()
@@ -121,6 +126,11 @@ class TicketTest @Inject constructor(
             reference = UUID.randomUUID(),
             drink = UUID.randomUUID()
         )
+        val parkingReservation = ParkingReservationDto(
+            reference = reference,
+            carParkingId = 10,
+            createdAt = LocalDateTime.now()
+        )
         val testTicket = TicketDto(
             name = "name",
             reference = reference,
@@ -128,7 +138,8 @@ class TicketTest @Inject constructor(
             birthDate = LocalDate.now(),
             concertDays = listOf(concertDayDto),
             drinks = listOf(drinkDto),
-            meals = listOf(mealDto)
+            meals = listOf(mealDto),
+            parkingReservation = parkingReservation
         )
         val add = ticketReactiveClient.add(
             testTicket
@@ -152,7 +163,13 @@ class TicketTest @Inject constructor(
         withContext(Dispatchers.IO) {
             sleep(1000)
         }
-        auditLogRepository.findAll().toList().shouldHaveSize(3)
+        val allAudits = auditLogRepository.findAll().toList()
+        allAudits.shouldHaveSize(4)
+        allAudits.filter { it.auditLogType == DRINK }.shouldHaveSize(1)
+        allAudits.filter { it.auditLogType == MEAL }.shouldHaveSize(1)
+        allAudits.filter { it.auditLogType == PARKING }.shouldHaveSize(1)
+        allAudits.filter { it.auditLogType == CONCERT_DAY }.shouldHaveSize(1)
+
     }
 
     companion object {
