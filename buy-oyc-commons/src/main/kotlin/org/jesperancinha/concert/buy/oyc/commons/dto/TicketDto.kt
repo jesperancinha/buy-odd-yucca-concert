@@ -32,15 +32,6 @@ data class TicketDto(
     override val type: AuditLogType = AuditLogType.TICKET,
 ) : Serializable, BuyOycType
 
-data class ConcertDayDto(
-    val name: String,
-    var reference: UUID? = null,
-    val description: String,
-    val concertDate: LocalDate,
-    val createdAt: LocalDateTime? = LocalDateTime.now(),
-    override val type: AuditLogType = AuditLogType.CONCERT_DAY
-) : Serializable, BuyOycType
-
 val TicketReservation.toDto: TicketDto
     get() = TicketDto(
         name = name,
@@ -50,11 +41,3 @@ val TicketReservation.toDto: TicketDto
         createdAt = createdAt
     )
 
-val TicketDto.toParkingDto: ParkingReservationDto?
-    get() = parkingReservation?.let {
-        ParkingReservationDto(
-            reference = it.reference,
-            carParkingId = it.carParkingId,
-            createdAt = it.createdAt
-        )
-    }

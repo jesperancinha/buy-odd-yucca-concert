@@ -1,6 +1,9 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
-import io.micronaut.data.annotation.*
+import io.micronaut.data.annotation.AutoPopulated
+import io.micronaut.data.annotation.DateCreated
+import io.micronaut.data.annotation.Id
+import io.micronaut.data.annotation.MappedEntity
 import io.micronaut.data.model.naming.NamingStrategies
 import io.micronaut.data.model.query.builder.sql.Dialect
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository
@@ -18,14 +21,14 @@ data class ConcertDay(
     @field: Id
     @field: AutoPopulated
     val id: UUID? = null,
-    val reference: UUID = UUID.randomUUID(),
+    val reference: UUID? = UUID.randomUUID(),
     val name: String,
     val description: String,
     @field:DateCreated
-    val concert_date: LocalDate,
+    val concertDate: LocalDate,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now()
-) :java.io.Serializable
+) : java.io.Serializable
 
 @R2dbcRepository(dialect = Dialect.POSTGRES)
 interface ConcertDayRepository : CoroutineCrudRepository<ConcertDay, UUID>,

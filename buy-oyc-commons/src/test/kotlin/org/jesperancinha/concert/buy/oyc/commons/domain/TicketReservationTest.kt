@@ -103,7 +103,7 @@ class TicketReservationTest @Inject constructor(
             ConcertDay(
                 name = "Cabbage Maniacs",
                 description = "Soul Music",
-                concert_date = LocalDate.now()
+                concertDate = LocalDate.now()
             )
         )
 
