@@ -1,12 +1,11 @@
 package org.jesperancinha.concert.buy.oyc.catering.client
 
 import io.kotest.matchers.collections.shouldHaveSize
-import io.kotest.matchers.nulls.shouldNotBeNull
-import io.kotest.matchers.shouldBe
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import org.flywaydb.core.Flyway
@@ -48,6 +47,15 @@ class CateringTest @Inject constructor(
     @Test
     @Transactional
     fun `should find all with an empty list`() = runTest {
+        val (idTicket, reference, _, _, _, _, _) = ticketRepository.save(
+            TicketReservation(
+                reference = UUID.randomUUID(),
+                name = "name",
+                address = "address",
+                birthDate = LocalDate.now()
+            )
+        )
+
         val (idDrink, _, _, _, _, _, _, _) = drinkRepository.save(
             Drink(
                 name = "Loca Cola",
@@ -68,16 +76,10 @@ class CateringTest @Inject constructor(
             )
         )
 
-        val (idTicket, _, _, _, _, _, _) = ticketRepository.save(
-            TicketReservation(
-                reference = UUID.randomUUID(),
-                name = "name",
-                address = "address",
-                birthDate = LocalDate.now()
-            )
-        )
+
         val addMeal = cateringReactiveClient.createMeal(
             MealDto(
+                reference = reference,
                 mealId = idMeal,
                 ticketReservationId = idTicket
             )
@@ -85,11 +87,19 @@ class CateringTest @Inject constructor(
         addMeal.subscribe()
         val addDrink = cateringReactiveClient.createDrink(
             DrinkDto(
+                reference = reference,
                 drinkId = idDrink,
                 ticketReservationId = idTicket
             )
         )
         addDrink.subscribe()
+
+        withContext(Dispatchers.IO) {
+            sleep(2000)
+        }
+
+        drinkReservationRepository.findAll().toList().shouldHaveSize(1)
+        mealReservationRepository.findAll().toList().shouldHaveSize(1)
     }
 
     companion object {

@@ -50,20 +50,20 @@ data class Meal(
 data class DrinkReservation(
     @field: Id
     @field: AutoPopulated
-    val id: UUID? = null,
+    var id: UUID? = null,
     val reference: UUID? = UUID.randomUUID(),
-    val ticketReservation: TicketReservation,
-    val drink: Drink
+    var ticketReservation: TicketReservation? = null,
+    var drink: Drink? = null
 )
 
 @MappedEntity(value = "meal_reservation", namingStrategy = UnderScoreSeparatedLowerCase::class)
 data class MealReservation(
     @field: Id
     @field: AutoPopulated
-    val id: UUID? = null,
+    var id: UUID? = null,
     val reference: UUID? = UUID.randomUUID(),
-    val ticketReservation: TicketReservation,
-    val meal: Meal
+    var ticketReservation: TicketReservation? = null,
+    var meal: Meal? = null
 )
 
 @R2dbcRepository(dialect = Dialect.POSTGRES)

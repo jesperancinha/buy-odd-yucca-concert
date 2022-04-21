@@ -26,8 +26,8 @@ data class DrinkDto(
 val DrinkReservation.toDto: DrinkDto
     get() = DrinkDto(
         reference = reference,
-        drinkId = drink.id,
-        ticketReservationId = ticketReservation.id
+        drinkId = drink?.id,
+        ticketReservationId = ticketReservation?.id
     )
 
 fun DrinkDto.toData(ticketReservation: TicketReservation, drink: Drink) = DrinkReservation(
@@ -39,8 +39,8 @@ fun DrinkDto.toData(ticketReservation: TicketReservation, drink: Drink) = DrinkR
 val MealReservation.toDto: MealDto
     get() = MealDto(
         reference = reference,
-        mealId = meal.id,
-        ticketReservationId = ticketReservation.id
+        mealId = meal?.id,
+        ticketReservationId = ticketReservation?.id
     )
 
 fun MealDto.toData(ticketReservation: TicketReservation, meal: Meal) = MealReservation(

@@ -6,13 +6,10 @@ import io.lettuce.core.pubsub.api.async.RedisPubSubAsyncCommands
 import io.micronaut.context.annotation.Factory
 import jakarta.inject.Singleton
 import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import org.jesperancinha.concert.buy.oyc.commons.domain.*
 import org.jesperancinha.concert.buy.oyc.commons.dto.DrinkDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.MealDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.toData
-import org.jesperancinha.concert.buy.oyc.commons.dto.toDto
 import org.jesperancinha.concert.buy.oyc.commons.pubsub.initPubSub
 import java.io.ObjectInputStream
 import javax.validation.Valid
@@ -65,14 +62,10 @@ class CateringService(
             pubSubDrinkCommands.publish(DRINK_CHANNEL, drinkDto)
         }
 
-    suspend fun createMeal(mealDto: @Valid MealDto?): Unit =
+    suspend fun  createMeal(mealDto: @Valid MealDto?): Unit =
         withContext(Dispatchers.Default) {
             pubSubMealCommands.publish(MEAL_CHANNEL, mealDto)
         }
-
-    fun getAllDrinks(): Flow<DrinkDto> = drinkReservationRepository.findAll().map { it.toDto }
-
-    fun getAllMeals(): Flow<MealDto> = mealReservationRepository.findAll().map { it.toDto }
 }
 
 @Factory
@@ -94,7 +87,7 @@ class DrinkListener(
 ) : RedisPubSubAdapter<String, DrinkDto>() {
     override fun message(key: String, drinkDto: DrinkDto) {
         CoroutineScope(Dispatchers.IO).launch {
-            val parkingReservation =
+            val drinkReservation =
                 drinkRepository.findById(drinkDto.drinkId ?: throw RuntimeException("Drink Not Sent"))?.let { drink ->
                     drinkDto.toData(
                         ticketRepository.findById(
@@ -103,7 +96,7 @@ class DrinkListener(
                         drink
                     )
                 } ?:  throw RuntimeException("Drink Not Found")
-            drinkReservationRepository.save(parkingReservation)
+            drinkReservationRepository.save(drinkReservation)
         }
     }
 }
@@ -116,7 +109,7 @@ class MealListener(
     ) : RedisPubSubAdapter<String, MealDto>() {
     override fun message(key: String, mealDto: MealDto) {
         CoroutineScope(Dispatchers.IO).launch {
-        val parkingReservation =
+        val mealReservation =
             mealRepository.findById(mealDto.mealId ?: throw RuntimeException("Meal Not Sent"))?.let { meal ->
                 mealDto.toData(
                     ticketRepository.findById(
@@ -125,7 +118,7 @@ class MealListener(
                     meal
                 )
             } ?:  throw RuntimeException("Meal Not Found")
-            mealReservationRepository.save(parkingReservation)
+            mealReservationRepository.save(mealReservation)
         }
     }
 }
