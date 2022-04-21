@@ -87,10 +87,8 @@ class TicketTest @Inject constructor(
             API_YUCCA_CONCERT, jacksonMapper
                 .writeValueAsString(
                     ConcertDayDto(
-                        name = "concert",
                         reference = UUID.randomUUID(),
                         concertDate = LocalDate.now(),
-                        description = "Camping with the campers"
                     )
                 ), 200
         )
@@ -114,10 +112,8 @@ class TicketTest @Inject constructor(
     fun `should find all with an empty list`() = runTest {
         val reference = UUID.randomUUID()
         val concertDayDto = ConcertDayDto(
-            name = "concert",
             reference = reference,
             concertDate = LocalDate.now(),
-            description = "Camping with the campers"
         )
         val drinkDto = DrinkDto(
             reference = UUID.randomUUID(),

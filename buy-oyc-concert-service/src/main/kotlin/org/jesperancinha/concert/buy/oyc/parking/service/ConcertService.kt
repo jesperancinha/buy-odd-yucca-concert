@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import org.jesperancinha.concert.buy.oyc.commons.domain.BuyOycCodec
 import org.jesperancinha.concert.buy.oyc.commons.domain.ConcertDayRepository
+import org.jesperancinha.concert.buy.oyc.commons.domain.ConcertDayReservationRepository
 import org.jesperancinha.concert.buy.oyc.commons.domain.readTypedObject
 import org.jesperancinha.concert.buy.oyc.commons.dto.ConcertDayDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.toData
@@ -27,6 +28,7 @@ private const val PARKING_CHANNEL = "parkingChannel"
 @Singleton
 class ConcertDayService(
     private val concertDayRepository: ConcertDayRepository,
+    private val concertDayReservationRepository: ConcertDayReservationRepository,
     redisClient: RedisClient,
     private val pubSubCommands: RedisPubSubAsyncCommands<String, ConcertDayDto>,
 ) {
@@ -36,7 +38,8 @@ class ConcertDayService(
             channelName = PARKING_CHANNEL,
             redisCodec = ConcertDayCodec(),
             redisPubSubAdapter = Listener(
-                concertDayRepository
+                concertDayRepository,
+                concertDayReservationRepository
             )
         )
     }
@@ -46,7 +49,7 @@ class ConcertDayService(
             pubSubCommands.publish(PARKING_CHANNEL, concertDayDto)
         }
 
-    fun getAll(): Flow<ConcertDayDto> = concertDayRepository.findAll().map { it.toDto }
+    fun getAll(): Flow<ConcertDayDto> = concertDayReservationRepository.findAll().map { it.toDto }
 }
 
 @Factory
@@ -59,12 +62,17 @@ class RedisBeanFactory {
 @DelicateCoroutinesApi
 class Listener(
     private val concertDayRepository: ConcertDayRepository,
+    private val concertDayReservationRepository: ConcertDayReservationRepository,
 ) : RedisPubSubAdapter<String, ConcertDayDto>() {
     override fun message(key: String, concertDayDto: ConcertDayDto) {
-        val parkingReservation =
-            concertDayDto.toData
         CoroutineScope(Dispatchers.IO).launch {
-            concertDayRepository.save(parkingReservation)
+            val parkingReservation =
+                concertDayDto.toData(
+                    concertDayRepository.findById(
+                        concertDayDto.concertId ?: throw RuntimeException("Concert not sent!")
+                    ) ?: throw RuntimeException("Concert Not found")
+                )
+            concertDayReservationRepository.save(parkingReservation)
         }
     }
 
