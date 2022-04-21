@@ -1,4 +1,4 @@
-package org.jesperancinha.concert.buy.oyc.concert.client
+package org.jesperancinha.concert.buy.oyc.parking.client
 
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.nulls.shouldBeNull
@@ -12,16 +12,14 @@ import kotlinx.coroutines.reactive.awaitFirstOrNull
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import org.flywaydb.core.Flyway
-import org.jesperancinha.concert.buy.oyc.commons.domain.ConcertDay
-import org.jesperancinha.concert.buy.oyc.commons.domain.ConcertDayRepository
-import org.jesperancinha.concert.buy.oyc.commons.domain.ConcertDayReservationRepository
+import org.jesperancinha.concert.buy.oyc.commons.domain.*
 import org.jesperancinha.concert.buy.oyc.commons.dto.ConcertDayDto
-import org.jesperancinha.concert.buy.oyc.concert.containers.AbstractBuyOddYuccaConcertContainerTest
+import org.jesperancinha.concert.buy.oyc.commons.dto.ParkingReservationDto
+import org.jesperancinha.concert.buy.oyc.parking.containers.AbstractBuyOddYuccaConcertContainerTest
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.lang.Thread.sleep
-import java.time.LocalDate
 import java.util.*
 import javax.transaction.Transactional
 
@@ -31,45 +29,43 @@ import javax.transaction.Transactional
 @ExperimentalCoroutinesApi
 @MicronautTest
 class ReceiptTest @Inject constructor(
-    private val concertRepository: ConcertDayRepository,
-    private val concertDayReservationRepository: ConcertDayReservationRepository,
-    private val concertReactiveClient: ConcertReactiveClient,
+    private val parkingRepository: CarParkingRepository,
+    private val parkingReservationRepository: ConcertDayReservationRepository,
+    private val parkingReactiveClient: ParkingReactiveClient,
 ) : AbstractBuyOddYuccaConcertContainerTest() {
     
     @BeforeEach
     fun setUpEach() = runTest {
-        concertRepository.deleteAll()
-        concertDayReservationRepository.deleteAll()
+        parkingRepository.deleteAll()
+        parkingReservationRepository.deleteAll()
     }
 
     @Test
     @Transactional
     fun `should find all with an empty list`() = runTest {
-        val (id, _, _, _, _) = concertRepository.save(
-            ConcertDay(
-                name = "The Sweet Potato Tour",
-                description = "A celebration of all potatoes of the World",
-                concertDate = LocalDate.now()
-            )
-        )
-        val findAll = concertReactiveClient.findAll()
+         val (_, parkingNumber, _) = parkingRepository.save(
+             CarParking(
+                 parkingNumber = 1
+             )
+         )
+        val findAll = parkingReactiveClient.findAll()
         findAll.shouldNotBeNull()
         findAll.subscribe()
 
         val awaitFirstReceiptDto = findAll.awaitFirstOrNull()
         awaitFirstReceiptDto.shouldBeNull()
 
-        val concertDayDto = ConcertDayDto(
+        val concertDayDto = ParkingReservationDto(
             reference = UUID.randomUUID(),
-            concertId = id
+            carParkingId = parkingNumber
         )
 
-        val add = concertReactiveClient.add(concertDayDto)
+        val add = parkingReactiveClient.add(concertDayDto)
         val blockingGet = withContext(Dispatchers.IO) {
             add.blockingGet()
         }
         blockingGet["second"].shouldBe("Saved successfully !")
-        val findAll2 = concertReactiveClient.findAll()
+        val findAll2 = parkingReactiveClient.findAll()
         findAll2.shouldNotBeNull()
         findAll2.subscribe()
         withContext(Dispatchers.IO) {

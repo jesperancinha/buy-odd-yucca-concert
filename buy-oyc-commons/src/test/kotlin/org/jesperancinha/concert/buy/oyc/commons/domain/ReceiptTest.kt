@@ -1,4 +1,3 @@
-@file:OptIn(ExperimentalCoroutinesApi::class)
 
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
@@ -22,6 +21,7 @@ import javax.transaction.Transactional
  */
 @Testcontainers
 @MicronautTest
+@ExperimentalCoroutinesApi
 class ReceiptTest @Inject constructor(
     private val receiptRepository: ReceiptRepository,
     private val ticketRepository: TicketRepository

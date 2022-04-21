@@ -21,6 +21,9 @@
     <packaging>pom</packaging>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
         <packaging>jar</packaging>
         <java.version>11</java.version>
         <jdk.version>${java.version}</jdk.version>

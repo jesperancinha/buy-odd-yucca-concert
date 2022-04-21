@@ -14,7 +14,7 @@ import java.util.*
 data class CarParking(
     @field: Id
     @field: AutoPopulated
-    val id: UUID? = null,
+    var id: UUID? = null,
     val parkingNumber: Long,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now()
