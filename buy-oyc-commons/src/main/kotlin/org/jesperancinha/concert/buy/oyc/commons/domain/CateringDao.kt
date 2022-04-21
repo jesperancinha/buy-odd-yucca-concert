@@ -68,11 +68,11 @@ data class MealReservation(
 
 @R2dbcRepository(dialect = Dialect.POSTGRES)
 interface DrinkRepository : CoroutineCrudRepository<Drink, UUID>,
-    CoroutineJpaSpecificationExecutor<DrinkReservation>
+    CoroutineJpaSpecificationExecutor<Drink>
 
 @R2dbcRepository(dialect = Dialect.POSTGRES)
 interface MealRepository : CoroutineCrudRepository<Meal, UUID>,
-    CoroutineJpaSpecificationExecutor<MealReservation>
+    CoroutineJpaSpecificationExecutor<Meal>
 
 @R2dbcRepository(dialect = Dialect.POSTGRES)
 interface DrinkReservationRepository : CoroutineCrudRepository<DrinkReservation, UUID>,

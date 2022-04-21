@@ -13,7 +13,6 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import org.flywaydb.core.Flyway
 import org.jesperancinha.concert.buy.oyc.commons.domain.*
-import org.jesperancinha.concert.buy.oyc.commons.dto.ConcertDayDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.ParkingReservationDto
 import org.jesperancinha.concert.buy.oyc.parking.containers.AbstractBuyOddYuccaConcertContainerTest
 import org.junit.jupiter.api.BeforeAll
@@ -28,7 +27,7 @@ import javax.transaction.Transactional
  */
 @ExperimentalCoroutinesApi
 @MicronautTest
-class ReceiptTest @Inject constructor(
+class ParkingTest @Inject constructor(
     private val parkingRepository: CarParkingRepository,
     private val parkingReservationRepository: ConcertDayReservationRepository,
     private val parkingReactiveClient: ParkingReactiveClient,
