@@ -1,4 +1,4 @@
-package org.jesperancinha.concert.buy.oyc.parking.service
+package org.jesperancinha.concert.buy.oyc.concert.service
 
 import org.junit.jupiter.api.Test
 

@@ -1,4 +1,4 @@
-package org.jesperancinha.concert.buy.oyc.parking.rest
+package org.jesperancinha.concert.buy.oyc.concert.rest
 
 import io.micronaut.http.HttpResponse.status
 import io.micronaut.http.HttpStatus
@@ -11,7 +11,7 @@ import io.micronaut.http.annotation.Post
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import org.jesperancinha.concert.buy.oyc.commons.dto.ConcertDayDto
-import org.jesperancinha.concert.buy.oyc.parking.service.ConcertDayService
+import org.jesperancinha.concert.buy.oyc.concert.service.ConcertDayService
 import javax.validation.Valid
 
 @DelicateCoroutinesApi

@@ -1,9 +1,6 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
-import io.micronaut.data.annotation.AutoPopulated
-import io.micronaut.data.annotation.DateCreated
-import io.micronaut.data.annotation.Id
-import io.micronaut.data.annotation.MappedEntity
+import io.micronaut.data.annotation.*
 import io.micronaut.data.model.naming.NamingStrategies
 import io.micronaut.data.model.query.builder.sql.Dialect
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository
@@ -20,8 +17,7 @@ import java.util.*
 data class ConcertDay(
     @field: Id
     @field: AutoPopulated
-    val id: UUID? = null,
-    val reference: UUID? = UUID.randomUUID(),
+    var id: UUID? = null,
     val name: String,
     val description: String,
     @field:DateCreated
@@ -30,18 +26,18 @@ data class ConcertDay(
     val createdAt: LocalDateTime? = LocalDateTime.now()
 )
 
-@MappedEntity
+@MappedEntity(namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
 data class ConcertDayReservation(
     @field: Id
     @field: AutoPopulated
-    val id: UUID? = null,
+    var id: UUID? = null,
     val reference: UUID? = UUID.randomUUID(),
-    val concert: ConcertDay,
-    @field:DateCreated
-    val concertDate: LocalDate,
+    @field: Relation(value = Relation.Kind.ONE_TO_ONE, cascade = [Relation.Cascade.ALL])
+    val concert: ConcertDay? = null,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now()
 )
+
 @R2dbcRepository(dialect = Dialect.POSTGRES)
 interface ConcertDayRepository : CoroutineCrudRepository<ConcertDay, UUID>,
     CoroutineJpaSpecificationExecutor<ConcertDay>

@@ -20,7 +20,7 @@ data class TicketReservationConcertDay(
     @field: Relation(value = Relation.Kind.ONE_TO_ONE, cascade = [Relation.Cascade.ALL])
     val ticketReservation: TicketReservation,
     @field: Relation(value = Relation.Kind.ONE_TO_ONE, cascade = [Relation.Cascade.ALL])
-    val concertDay: ConcertDay
+    val concertDay: ConcertDayReservation
 )
 
 @R2dbcRepository(dialect = Dialect.POSTGRES)

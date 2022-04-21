@@ -43,9 +43,7 @@ private const val API_YUCCA_TICKET = "/api/yucca-ticket"
 @DelicateCoroutinesApi
 internal class ReservationsServiceTest @Inject constructor(
     private val reservationsService: ReservationsService,
-    private val receiptRepository: ReceiptRepository,
-    private val auditLogRepository: AuditLogRepository,
-    private val httpClient: Rx3StreamingHttpClient
+    private val receiptRepository: ReceiptRepository
 ) : AbstractBuyOddYuccaConcertContainerTest() {
 
     private val jacksonMapper = jacksonObjectMapper()

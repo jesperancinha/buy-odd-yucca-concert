@@ -15,7 +15,6 @@ import java.util.*
 data class ConcertDayDto(
     var reference: UUID? = null,
     val concertId: UUID? = null,
-    val concertDate: LocalDate,
     val createdAt: LocalDateTime? = LocalDateTime.now(),
     override val type: AuditLogType = AuditLogType.CONCERT_DAY
 ) : Serializable, BuyOycType
@@ -23,14 +22,12 @@ data class ConcertDayDto(
 val ConcertDayReservation.toDto: ConcertDayDto
     get() = ConcertDayDto(
         reference = reference,
-        concertId = concert.id,
-        concertDate = concertDate,
+        concertId = concert?.id,
         createdAt = createdAt
     )
 
 fun ConcertDayDto.toData(concertDay: ConcertDay) = ConcertDayReservation(
     reference = reference,
     concert = concertDay,
-    concertDate = concertDate,
     createdAt = createdAt
 )

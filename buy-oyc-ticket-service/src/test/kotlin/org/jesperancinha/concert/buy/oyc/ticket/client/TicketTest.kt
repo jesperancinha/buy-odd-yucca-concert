@@ -87,8 +87,7 @@ class TicketTest @Inject constructor(
             API_YUCCA_CONCERT, jacksonMapper
                 .writeValueAsString(
                     ConcertDayDto(
-                        reference = UUID.randomUUID(),
-                        concertDate = LocalDate.now(),
+                        reference = UUID.randomUUID()
                     )
                 ), 200
         )
@@ -113,7 +112,6 @@ class TicketTest @Inject constructor(
         val reference = UUID.randomUUID()
         val concertDayDto = ConcertDayDto(
             reference = reference,
-            concertDate = LocalDate.now(),
         )
         val drinkDto = DrinkDto(
             reference = UUID.randomUUID(),

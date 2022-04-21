@@ -51,6 +51,7 @@
         <micronaut-flyway.version>5.2.0</micronaut-flyway.version>
         <dependency-check-maven.version>7.0.4</dependency-check-maven.version>
         <micronaut-redis-lettuce.version>5.2.0</micronaut-redis-lettuce.version>
+        <wiremock.version>2.27.2</wiremock.version>
     </properties>
 
     <profiles>
@@ -233,6 +234,12 @@
                 <groupId>io.mockk</groupId>
                 <artifactId>mockk</artifactId>
                 <version>${mockk.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.github.tomakehurst</groupId>
+                <artifactId>wiremock</artifactId>
+                <version>${wiremock.version}</version>
                 <scope>test</scope>
             </dependency>
         </dependencies>

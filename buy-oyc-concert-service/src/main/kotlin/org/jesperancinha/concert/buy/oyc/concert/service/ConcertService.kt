@@ -1,4 +1,4 @@
-package org.jesperancinha.concert.buy.oyc.parking.service
+package org.jesperancinha.concert.buy.oyc.concert.service
 
 import io.lettuce.core.RedisClient
 import io.lettuce.core.pubsub.RedisPubSubAdapter
@@ -66,13 +66,13 @@ class Listener(
 ) : RedisPubSubAdapter<String, ConcertDayDto>() {
     override fun message(key: String, concertDayDto: ConcertDayDto) {
         CoroutineScope(Dispatchers.IO).launch {
-            val parkingReservation =
+            val concertDayReservation =
                 concertDayDto.toData(
                     concertDayRepository.findById(
                         concertDayDto.concertId ?: throw RuntimeException("Concert not sent!")
                     ) ?: throw RuntimeException("Concert Not found")
                 )
-            concertDayReservationRepository.save(parkingReservation)
+            concertDayReservationRepository.save(concertDayReservation)
         }
     }
 

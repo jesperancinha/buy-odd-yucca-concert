@@ -1,4 +1,3 @@
-@file:OptIn(ExperimentalCoroutinesApi::class)
 
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
@@ -24,6 +23,7 @@ import org.testcontainers.junit.jupiter.Testcontainers
 import java.math.BigDecimal
 import java.time.LocalDate
 import java.time.LocalDateTime
+import java.util.*
 import javax.transaction.Transactional
 
 /**
@@ -31,10 +31,12 @@ import javax.transaction.Transactional
  */
 @Testcontainers
 @MicronautTest
+@ExperimentalCoroutinesApi
 class TicketReservationTest @Inject constructor(
     private val ticketRepository: TicketRepository,
     private val parkingReservationRepository: ParkingReservationRepository,
     private val carParkingRepository: CarParkingRepository,
+    private val concertDayReservationRepository: ConcertDayReservationRepository,
     private val concertDayRepository: ConcertDayRepository,
     private val drinkRepository: DrinkRepository,
     private val mealRepository: MealRepository,
@@ -99,11 +101,17 @@ class TicketReservationTest @Inject constructor(
         carParkingOnReservation.id shouldBe carParkingResult.id
         carParkingOnReservation.parkingNumber shouldBe carParkingResult.parkingNumber
 
-        val concertDay = concertDayRepository.save(
+        val concertDaySaved = concertDayRepository.save(
             ConcertDay(
-                name = "Cabbage Maniacs",
-                description = "Soul Music",
+                name = "Pumpkin Halloween Tour",
+                description = "The Veggies 4th Tour",
                 concertDate = LocalDate.now()
+            )
+        )
+        val concertDay = concertDayReservationRepository.save(
+            ConcertDayReservation(
+                reference = UUID.randomUUID(),
+                concert =concertDaySaved
             )
         )
 
