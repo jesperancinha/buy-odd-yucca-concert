@@ -28,8 +28,24 @@ data class ConcertDay(
     val concertDate: LocalDate,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now()
-) : java.io.Serializable
+)
 
+@MappedEntity
+data class ConcertDayReservation(
+    @field: Id
+    @field: AutoPopulated
+    val id: UUID? = null,
+    val reference: UUID? = UUID.randomUUID(),
+    val concert: ConcertDay,
+    @field:DateCreated
+    val concertDate: LocalDate,
+    @field:DateCreated
+    val createdAt: LocalDateTime? = LocalDateTime.now()
+)
 @R2dbcRepository(dialect = Dialect.POSTGRES)
 interface ConcertDayRepository : CoroutineCrudRepository<ConcertDay, UUID>,
     CoroutineJpaSpecificationExecutor<ConcertDay>
+
+@R2dbcRepository(dialect = Dialect.POSTGRES)
+interface ConcertDayReservationRepository : CoroutineCrudRepository<ConcertDayReservation, UUID>,
+    CoroutineJpaSpecificationExecutor<ConcertDayReservation>
