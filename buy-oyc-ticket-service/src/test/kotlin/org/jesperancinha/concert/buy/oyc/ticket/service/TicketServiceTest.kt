@@ -8,7 +8,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
 import org.flywaydb.core.Flyway
-import org.jesperancinha.concert.buy.oyc.ticket.containers.AbstractBuyOddYuccaConcertContainerTest
+import org.jesperancinha.concert.buy.oyc.containers.AbstractBuyOddYuccaConcertContainerTest
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 
@@ -20,7 +20,7 @@ internal class TicketServiceTest @Inject constructor(
 ) : AbstractBuyOddYuccaConcertContainerTest() {
 
     @Test
-    fun `should get all ticket`() = runTest {
+    fun `should get all tickets`() = runTest {
         ticketService.getAll().toList().shouldNotBeNull()
     }
 
@@ -34,7 +34,6 @@ internal class TicketServiceTest @Inject constructor(
                 postgreSQLContainer.jdbcUrl, postgreSQLContainer.username, postgreSQLContainer.password
             )
             config.schemas = arrayOf("ticket")
-            Flyway(config).migrate()
         }
     }
 }

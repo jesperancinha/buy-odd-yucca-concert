@@ -14,7 +14,7 @@ import kotlinx.coroutines.withContext
 import org.flywaydb.core.Flyway
 import org.jesperancinha.concert.buy.oyc.commons.domain.*
 import org.jesperancinha.concert.buy.oyc.commons.dto.ParkingReservationDto
-import org.jesperancinha.concert.buy.oyc.parking.containers.AbstractBuyOddYuccaConcertContainerTest
+import org.jesperancinha.concert.buy.oyc.containers.AbstractBuyOddYuccaConcertContainerTest
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -32,7 +32,7 @@ class ParkingTest @Inject constructor(
     private val parkingReservationRepository: ConcertDayReservationRepository,
     private val parkingReactiveClient: ParkingReactiveClient,
 ) : AbstractBuyOddYuccaConcertContainerTest() {
-    
+
     @BeforeEach
     fun setUpEach() = runTest {
         parkingRepository.deleteAll()
@@ -42,11 +42,11 @@ class ParkingTest @Inject constructor(
     @Test
     @Transactional
     fun `should create car parking reservation`() = runTest {
-         val (_, parkingNumber, _) = parkingRepository.save(
-             CarParking(
-                 parkingNumber = 1
-             )
-         )
+        val (_, parkingNumber, _) = parkingRepository.save(
+            CarParking(
+                parkingNumber = 1
+            )
+        )
         val findAll = parkingReactiveClient.findAll()
         findAll.shouldNotBeNull()
         findAll.subscribe()

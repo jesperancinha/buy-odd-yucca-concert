@@ -22,6 +22,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.jesperancinha.concert</groupId>
+            <artifactId>buy-oyc-chain-test</artifactId>
+        </dependency>
+        <dependency>
             <groupId>jakarta.annotation</groupId>
             <artifactId>jakarta.annotation-api</artifactId>
         </dependency>
@@ -74,20 +78,12 @@
             <artifactId>kotlin-stdlib-jdk8</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.fasterxml.jackson.module</groupId>
-            <artifactId>jackson-module-kotlin</artifactId>
-        </dependency>
-        <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
         </dependency>
         <dependency>
             <groupId>io.micronaut.flyway</groupId>
             <artifactId>micronaut-flyway</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.micronaut.redis</groupId>
-            <artifactId>micronaut-redis-lettuce</artifactId>
         </dependency>
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
@@ -126,23 +122,21 @@
         <dependency>
             <groupId>io.reactivex.rxjava3</groupId>
             <artifactId>rxjava</artifactId>
-            <version>3.1.4</version>
+            <version>${rxjava.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.micronaut.rxjava3/micronaut-rxjava3-http-client -->
         <dependency>
             <groupId>io.micronaut.rxjava3</groupId>
             <artifactId>micronaut-rxjava3-http-client</artifactId>
-            <version>2.2.1</version>
+            <version>${micronaut-rxjava3-http-client.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
-            <version>2.13.2</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-kotlin</artifactId>
-            <version>2.13.2</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>

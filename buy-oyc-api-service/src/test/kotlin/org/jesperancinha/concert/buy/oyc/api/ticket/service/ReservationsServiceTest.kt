@@ -12,19 +12,17 @@ import io.micronaut.context.annotation.Property
 import io.micronaut.http.HttpHeaders
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.MediaType
-import io.micronaut.rxjava3.http.client.Rx3StreamingHttpClient
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
-import org.jesperancinha.concert.buy.oyc.api.containers.AbstractBuyOddYuccaConcertContainerTest
-import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
 import org.jesperancinha.concert.buy.oyc.api.service.ReservationsService
-import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogRepository
 import org.jesperancinha.concert.buy.oyc.commons.domain.Receipt
 import org.jesperancinha.concert.buy.oyc.commons.domain.ReceiptRepository
+import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
+import org.jesperancinha.concert.buy.oyc.containers.AbstractBuyOddYuccaConcertContainerTest
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
@@ -95,6 +93,7 @@ internal class ReservationsServiceTest @Inject constructor(
             postgreSQLContainer.start()
             wireMockServer.start()
         }
+
         @JvmStatic
         @AfterAll
         fun tearDown() {

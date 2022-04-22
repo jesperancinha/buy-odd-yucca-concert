@@ -16,7 +16,7 @@ import org.jesperancinha.concert.buy.oyc.commons.domain.ConcertDay
 import org.jesperancinha.concert.buy.oyc.commons.domain.ConcertDayRepository
 import org.jesperancinha.concert.buy.oyc.commons.domain.ConcertDayReservationRepository
 import org.jesperancinha.concert.buy.oyc.commons.dto.ConcertDayDto
-import org.jesperancinha.concert.buy.oyc.concert.containers.AbstractBuyOddYuccaConcertContainerTest
+import org.jesperancinha.concert.buy.oyc.containers.AbstractBuyOddYuccaConcertContainerTest
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -35,7 +35,7 @@ class ReceiptTest @Inject constructor(
     private val concertDayReservationRepository: ConcertDayReservationRepository,
     private val concertReactiveClient: ConcertReactiveClient,
 ) : AbstractBuyOddYuccaConcertContainerTest() {
-    
+
     @BeforeEach
     fun setUpEach() = runTest {
         concertRepository.deleteAll()

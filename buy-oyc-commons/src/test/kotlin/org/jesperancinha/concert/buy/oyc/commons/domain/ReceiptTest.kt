@@ -1,4 +1,3 @@
-
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
 import io.kotest.matchers.nulls.shouldNotBeNull
@@ -8,7 +7,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.flywaydb.core.Flyway
 import org.flywaydb.core.api.configuration.ClassicConfiguration
-import org.jesperancinha.concert.buy.oyc.commons.containers.AbstractContainerTest
+import org.jesperancinha.concert.buy.oyc.containers.AbstractBuyOddYuccaConcertContainerTest
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -25,7 +24,7 @@ import javax.transaction.Transactional
 class ReceiptTest @Inject constructor(
     private val receiptRepository: ReceiptRepository,
     private val ticketRepository: TicketRepository
-) : AbstractContainerTest() {
+) : AbstractBuyOddYuccaConcertContainerTest() {
 
     private val config = ClassicConfiguration()
 

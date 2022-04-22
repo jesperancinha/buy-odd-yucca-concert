@@ -26,6 +26,10 @@
             <artifactId>buy-oyc-commons</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.jesperancinha.concert</groupId>
+            <artifactId>buy-oyc-chain-test</artifactId>
+        </dependency>
+        <dependency>
             <groupId>jakarta.annotation</groupId>
             <artifactId>jakarta.annotation-api</artifactId>
         </dependency>
@@ -93,13 +97,13 @@
         <dependency>
             <groupId>io.reactivex.rxjava3</groupId>
             <artifactId>rxjava</artifactId>
-            <version>3.1.4</version>
+            <version>${rxjava.version}</version>
         </dependency>
         <!-- https://mvnrepository.com/artifact/io.micronaut.rxjava3/micronaut-rxjava3-http-client -->
         <dependency>
             <groupId>io.micronaut.rxjava3</groupId>
             <artifactId>micronaut-rxjava3-http-client</artifactId>
-            <version>2.2.1</version>
+            <version>${micronaut-rxjava3-http-client.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>

@@ -10,13 +10,13 @@
     <name>Concert Parent POM</name>
 
     <modules>
+        <module>buy-oyc-chain-test</module>
         <module>buy-oyc-commons</module>
         <module>buy-oyc-parking-service</module>
         <module>buy-oyc-ticket-service</module>
         <module>buy-oyc-catering-service</module>
         <module>buy-oyc-concert-service</module>
         <module>buy-oyc-api-service</module>
-        <module>buy-oyc-chain-test</module>
     </modules>
 
     <packaging>pom</packaging>
@@ -56,6 +56,8 @@
         <dependency-check-maven.version>7.0.4</dependency-check-maven.version>
         <micronaut-redis-lettuce.version>5.2.0</micronaut-redis-lettuce.version>
         <wiremock.version>2.27.2</wiremock.version>
+        <rxjava.version>3.1.4</rxjava.version>
+        <micronaut-rxjava3-http-client.version>2.2.1</micronaut-rxjava3-http-client.version>
     </properties>
 
     <profiles>
@@ -168,6 +170,11 @@
                 <version>${project.version}</version>
             </dependency>
             <dependency>
+                <groupId>org.jesperancinha.concert</groupId>
+                <artifactId>buy-oyc-chain-test</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>io.micronaut</groupId>
                 <artifactId>micronaut-parent</artifactId>
                 <version>${micronaut-parent.version}</version>
@@ -208,6 +215,16 @@
                 <groupId>io.micronaut.flyway</groupId>
                 <artifactId>micronaut-flyway</artifactId>
                 <version>${micronaut-flyway.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.reactivex.rxjava3</groupId>
+                <artifactId>rxjava</artifactId>
+                <version>${rxjava.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.micronaut.rxjava3</groupId>
+                <artifactId>micronaut-rxjava3-http-client</artifactId>
+                <version>${micronaut-rxjava3-http-client.version}</version>
             </dependency>
 
             <dependency>

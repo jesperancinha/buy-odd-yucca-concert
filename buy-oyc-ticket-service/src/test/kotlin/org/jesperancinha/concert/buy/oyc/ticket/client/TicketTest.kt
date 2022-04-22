@@ -25,7 +25,7 @@ import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogRepository
 import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogType.*
 import org.jesperancinha.concert.buy.oyc.commons.domain.TicketRepository
 import org.jesperancinha.concert.buy.oyc.commons.dto.*
-import org.jesperancinha.concert.buy.oyc.ticket.containers.AbstractBuyOddYuccaConcertContainerTest
+import org.jesperancinha.concert.buy.oyc.containers.AbstractBuyOddYuccaConcertContainerTest
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
@@ -183,7 +183,6 @@ class TicketTest @Inject constructor(
                 postgreSQLContainer.jdbcUrl, postgreSQLContainer.username, postgreSQLContainer.password
             )
             config.schemas = arrayOf("ticket")
-            Flyway(config).migrate()
         }
 
         @JvmStatic
