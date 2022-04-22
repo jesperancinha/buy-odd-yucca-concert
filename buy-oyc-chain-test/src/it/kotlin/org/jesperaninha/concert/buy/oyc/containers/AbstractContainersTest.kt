@@ -12,8 +12,8 @@ private class DockerCompose(files: List<File>) : DockerComposeContainer<DockerCo
 abstract class AbstractContainersTest {
     companion object {
         init {
-            DockerCompose(listOf(File("../docker-compose.yml")))
-                .withExposedService("kong", 8000, Wait.defaultWaitStrategy())
+            DockerCompose(listOf(File("../docker-compose-it.yml")))
+//                .withExposedService("kong", 8000, Wait.defaultWaitStrategy())
                 .withLocalCompose(true)
                 .also { it.start() }
         }
