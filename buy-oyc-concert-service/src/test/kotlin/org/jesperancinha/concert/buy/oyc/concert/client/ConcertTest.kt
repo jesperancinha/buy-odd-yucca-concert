@@ -44,7 +44,7 @@ class ReceiptTest @Inject constructor(
 
     @Test
     @Transactional
-    fun `should find all with an empty list`() = runTest {
+    fun `should create concert day reservation`() = runTest {
         val (id, _, _, _, _) = concertRepository.save(
             ConcertDay(
                 name = "The Sweet Potato Tour",

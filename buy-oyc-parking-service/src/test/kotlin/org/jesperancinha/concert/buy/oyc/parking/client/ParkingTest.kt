@@ -41,7 +41,7 @@ class ParkingTest @Inject constructor(
 
     @Test
     @Transactional
-    fun `should find all with an empty list`() = runTest {
+    fun `should create car parking reservation`() = runTest {
          val (_, parkingNumber, _) = parkingRepository.save(
              CarParking(
                  parkingNumber = 1

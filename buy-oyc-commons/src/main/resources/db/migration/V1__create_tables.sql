@@ -156,7 +156,7 @@ create table ticket.ticket_reservation_concert_day
             REFERENCES ticket.ticket_reservation (id),
     CONSTRAINT fk_concert_day
         FOREIGN KEY (concert_day_id)
-            REFERENCES ticket.concert_day (id)
+            REFERENCES ticket.concert_day_reservation (id)
 );
 
 create table ticket.audit_log

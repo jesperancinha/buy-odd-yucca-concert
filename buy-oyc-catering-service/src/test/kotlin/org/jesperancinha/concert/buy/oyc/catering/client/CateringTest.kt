@@ -46,7 +46,7 @@ class CateringTest @Inject constructor(
 
     @Test
     @Transactional
-    fun `should find all with an empty list`() = runTest {
+    fun `Should reserve meals and drinks`() = runTest {
         val (idTicket, reference, _, _, _, _, _) = ticketRepository.save(
             TicketReservation(
                 reference = UUID.randomUUID(),

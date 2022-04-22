@@ -68,7 +68,7 @@ class ReceiptTest @Inject constructor(
 
     @Test
     @Transactional
-    fun `should find all with an empty list`() = runTest {
+    fun `should create a general reservation`() = runTest {
         val (_, referenceSaved, createdDate) = receiptRepository.save(Receipt())
         val findAll = receiptReactiveClient.findAll()
         findAll.shouldNotBeNull()

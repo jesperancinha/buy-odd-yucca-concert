@@ -16,6 +16,7 @@
         <module>buy-oyc-catering-service</module>
         <module>buy-oyc-concert-service</module>
         <module>buy-oyc-api-service</module>
+        <module>buy-oyc-chain-test</module>
     </modules>
 
     <packaging>pom</packaging>

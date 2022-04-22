@@ -1,6 +1,5 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
-import io.micronaut.core.annotation.Nullable
 import io.micronaut.data.annotation.*
 import io.micronaut.data.model.naming.NamingStrategies
 import io.micronaut.data.model.query.builder.sql.Dialect
