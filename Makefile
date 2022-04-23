@@ -68,3 +68,5 @@ audit:
 build-integration:
 	mvn clean install
 	cd buy-oyc-chain-test && mvn clean install -Dintegration
+integration:
+	cd buy-oyc-chain-test && mvn clean install -Pintegration
