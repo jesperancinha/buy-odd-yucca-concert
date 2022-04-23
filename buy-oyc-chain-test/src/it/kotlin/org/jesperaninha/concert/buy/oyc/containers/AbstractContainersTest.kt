@@ -11,7 +11,10 @@ class DockerCompose(files: List<File>) : DockerComposeContainer<DockerCompose>(f
  */
 abstract class AbstractContainersTest {
     companion object {
-        protected val dockerCompose: DockerCompose = DockerCompose(listOf(File("../docker-compose-it.yml")))
+        private val file1 = File("../docker-compose-it.yml")
+        private val file2 = File("docker-compose-it.yml")
+        private val finalFile = if(file1.exists()) file1 else file2
+        protected val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
             .withExposedService("buy-oyc-parking_1", 8085, Wait.defaultWaitStrategy())
             .withLocalCompose(true)
             .also {
