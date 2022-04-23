@@ -131,9 +131,15 @@ Read report after running:
 -   [buy-oyc-parking-service](buy-oyc-parking-service/target/dependency-check-report.html)
 -   [buy-oyc-ticket-service](buy-oyc-ticket-service/target/dependency-check-report.html)
 
-## 5.  - References
+## 5. Run chain tests
 
-#### 5.1. - Online
+```shell
+make build-integration
+```
+
+## 6.  - References
+
+#### 6.1. - Online
 
 -   [What kinds of bot attacks are stopped by rate limiting?](https://www.cloudflare.com/en-gb/learning/bots/what-is-rate-limiting/)
 -   [Using Micronaut Data, JDBC, R2DBC, TestContainers, and Flyway with multiple schemas](https://www.zsiegel.com/2022/01/25/Micronaut-JDBC-R2DBC-Flyway-multiple-schemas)
@@ -164,7 +170,7 @@ Read report after running:
 -   [Redhwan Nacef's Kong Tutorial On GitHub](https://github.com/redhwannacef/youtube-tutorials/tree/main/kong-gateway)
 -   [Lorem Picsum Phosots](https://picsum.photos/)
 
-#### 5.2. - Online videos
+#### 6.2. - Online videos
 
 <div align="center">
       <a title="Kong Gateway for Beginners: Adding a Service, Route and Plugins" href="https://www.youtube.com/watch?v=kGZyAEVioWg">
