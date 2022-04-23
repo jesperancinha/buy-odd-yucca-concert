@@ -39,6 +39,9 @@ jobs:
              CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
              CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
 
+        - name: Integration Chain Tests
+          run: make build-integration
+
         - name: Maven OWASP Security Check
           run: mvn clean install -Powasp
 
