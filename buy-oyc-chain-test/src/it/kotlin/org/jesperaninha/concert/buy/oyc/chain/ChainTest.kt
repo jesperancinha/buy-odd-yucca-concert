@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test
 class ChainTest : AbstractContainersTest() {
 
     @Test
-    fun `should run chain test and create a concert reservation`(){
+    fun `should run chain test and create a concert reservation`() {
 
     }
 }
