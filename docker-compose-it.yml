@@ -166,6 +166,21 @@ services:
       yucca-net:
         ipv4_address: ${YUCCA_CATERING_SERVICE_IP}
 
+  buy-oyc-concert:
+    hostname: buy-oyc-concert
+    build:
+      context: buy-oyc-concert-service/.
+    networks:
+      yucca-net:
+        ipv4_address: ${YUCCA_CONCERT_SERVICE_IP}
+
+  buy-oyc-api:
+    hostname: buy-oyc-api
+    build:
+      context: buy-oyc-api-service/.
+    networks:
+      yucca-net:
+        ipv4_address: ${YUCCA_API_SERVICE_IP}
 
   buy-oyc-nginx:
     hostname: buy-oyc-nginx

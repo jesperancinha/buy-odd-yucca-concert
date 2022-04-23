@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-java -jar buy-oyc-parking-service.jar
+java -jar buy-oyc-concert-service.jar

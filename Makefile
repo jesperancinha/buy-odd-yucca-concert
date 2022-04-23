@@ -67,6 +67,6 @@ audit:
 	cd buy-odd-yucca-gui && npx browserslist --update-db && npm audit fix && yarn
 build-integration:
 	mvn clean install
-	cd buy-oyc-chain-test && mvn clean install -Dintegration
+	cd buy-oyc-commons && mvn clean install -Pintegration
 integration:
-	cd buy-oyc-chain-test && mvn clean install -Pintegration
+	cd buy-oyc-commons && mvn clean install -Pintegration

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-java -jar buy-oyc-ticket-service.jar
+java -jar buy-oyc-api-service.jar

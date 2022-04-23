@@ -15,7 +15,12 @@ abstract class AbstractContainersTest {
         private val file2 = File("docker-compose-it.yml")
         private val finalFile = if(file1.exists()) file1 else file2
         protected val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
-            .withExposedService("buy-oyc-parking_1", 8085, Wait.defaultWaitStrategy())
+//            .withExposedService("kong_1", 8000, Wait.defaultWaitStrategy())
+            .withExposedService("buy-oyc-ticket_1", 8084, Wait.defaultWaitStrategy())
+            .withExposedService("buy-oyc-concert_1", 8085, Wait.defaultWaitStrategy())
+            .withExposedService("buy-oyc-parking_1", 8086, Wait.defaultWaitStrategy())
+            .withExposedService("buy-oyc-catering_1", 8087, Wait.defaultWaitStrategy())
+            .withExposedService("buy-oyc-api_1", 8088, Wait.defaultWaitStrategy())
             .withLocalCompose(true)
             .also {
                 it.start()

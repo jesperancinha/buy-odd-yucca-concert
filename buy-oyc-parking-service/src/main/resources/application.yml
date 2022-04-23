@@ -2,7 +2,7 @@ micronaut:
   application:
     name: buyOycParkingService
   server:
-    port: 8085
+    port: 8086
 
 r2dbc:
   datasources:
