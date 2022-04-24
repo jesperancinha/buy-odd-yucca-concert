@@ -4,12 +4,14 @@ import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
 import org.jesperancinha.concert.buy.oyc.commons.domain.*
 import org.jesperaninha.concert.buy.oyc.containers.AbstractContainersTest
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 /**
  * Created by jofisaes on 22/04/2022
  */
 @MicronautTest
+@Disabled
 class ChainTest @Inject constructor(
     val auditLogRepository: AuditLogRepository,
     val receiptRepository: ReceiptRepository,
