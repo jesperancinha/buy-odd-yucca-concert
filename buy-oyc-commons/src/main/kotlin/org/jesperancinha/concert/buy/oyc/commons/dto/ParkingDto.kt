@@ -12,7 +12,7 @@ import java.util.*
  * Created by jofisaes on 18/04/2022
  */
 data class ParkingReservationDto(
-    var reference: UUID? = UUID.randomUUID(),
+    var reference: UUID? = null,
     var carParkingId: Long,
     val createdAt: LocalDateTime? = LocalDateTime.now(),
     override val type: AuditLogType = AuditLogType.PARKING

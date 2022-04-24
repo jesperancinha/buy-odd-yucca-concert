@@ -1,0 +1,25 @@
+{
+  "name": "Budinok",
+  "address": "Aдреса Matin",
+  "birthDate": "1979/07/17",
+  "concertDays": [
+    {
+      "concertId": "2EE1ED71-58E1-49C0-B4F0-3FCBB22C51E9"
+    }
+  ],
+  "meals": [
+    {
+      "mealId": "59DD79B2-E344-469E-92D3-1AE8A5586526"
+    }
+  ],
+  "drinks": [
+    {
+      "drinkId": "99FD8FD6-7876-4C95-888F-2257BEDA8C0A"
+    }
+  ],
+  "parkingReservation": [
+    {
+      "carParkingId": 8
+    }
+  ]
+}
