@@ -179,7 +179,6 @@ services:
       yucca-net:
         ipv4_address: ${NGINX_SERVICE_IP}
   redis:
-    container_name: redis
     image: redis
     ports:
        - 6379
