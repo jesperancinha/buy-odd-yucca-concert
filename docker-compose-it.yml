@@ -121,12 +121,14 @@ services:
       - ./docker-images/docker-psql:/docker-entrypoint-initdb.d
       - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple
 
+
   buy-oyc-ticket:
     hostname: buy-oyc-ticket
     build:
       context: buy-oyc-ticket-service/.
-    ports:
-      - 8084:8084
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
     networks:
       yucca-net:
         ipv4_address: ${YUCCA_TICKET_SERVICE_IP}
@@ -135,8 +137,9 @@ services:
     hostname: buy-oyc-concert
     build:
       context: buy-oyc-concert-service/.
-    ports:
-      - 8085:8085
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
     networks:
       yucca-net:
         ipv4_address: ${YUCCA_CONCERT_SERVICE_IP}
@@ -145,8 +148,9 @@ services:
     hostname: buy-oyc-parking
     build:
       context: buy-oyc-parking-service/.
-    ports:
-      - 8086:8086
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
     networks:
       yucca-net:
         ipv4_address: ${YUCCA_PARKING_SERVICE_IP}
@@ -155,8 +159,9 @@ services:
     hostname: buy-oyc-catering
     build:
       context: buy-oyc-catering-service/.
-    ports:
-      - 8087:8087
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
     networks:
       yucca-net:
         ipv4_address: ${YUCCA_CATERING_SERVICE_IP}
@@ -165,8 +170,9 @@ services:
     hostname: buy-oyc-api
     build:
       context: buy-oyc-api-service/.
-    ports:
-      - 8088:8088
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
     networks:
       yucca-net:
         ipv4_address: ${YUCCA_API_SERVICE_IP}
