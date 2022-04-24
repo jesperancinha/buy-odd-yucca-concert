@@ -126,6 +126,29 @@ services:
       yucca-net:
         ipv4_address: ${POSTGRESQL_HOST}
 
+  buy-oyc-ticket:
+    hostname: buy-oyc-ticket
+    container_name: buy-oyc-ticket
+    build:
+      context: buy-oyc-ticket-service/.
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
+    networks:
+      yucca-net:
+        ipv4_address: ${YUCCA_TICKET_SERVICE_IP}
+
+  buy-oyc-concert:
+    hostname: buy-oyc-concert
+    build:
+      context: buy-oyc-concert-service/.
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
+    networks:
+      yucca-net:
+        ipv4_address: ${YUCCA_CONCERT_SERVICE_IP}
+
   buy-oyc-parking:
     hostname: buy-oyc-parking
     container_name: buy-oyc-parking
@@ -138,17 +161,6 @@ services:
       yucca-net:
         ipv4_address: ${YUCCA_PARKING_SERVICE_IP}
 
-  buy-oyc-ticket:
-    hostname: buy-oyc-ticket
-    container_name: buy-oyc-ticket
-    build:
-      context: buy-oyc-ticket-service/.
-    environment:
-      REDIS_HOST: ${REDIS_HOST}
-      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
-    networks:
-      yucca-net:
-        ipv4_address: ${YUCCA_TICKET_SERVICE_IP}
 
   buy-oyc-catering:
     hostname: buy-oyc-catering

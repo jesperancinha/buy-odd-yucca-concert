@@ -1,8 +1,6 @@
 micronaut:
   application:
     name: buyOycCommons
-  server:
-    port: 8086
 
 r2dbc:
   datasources:

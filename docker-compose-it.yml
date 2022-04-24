@@ -120,42 +120,52 @@ services:
       - ./docker-images/docker-psql:/docker-entrypoint-initdb.d
       - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple
 
-  buy-oyc-parking:
-    hostname: buy-oyc-parking
-    build:
-      context: buy-oyc-parking-service/.
-    networks:
-      yucca-net:
-        ipv4_address: ${YUCCA_PARKING_SERVICE_IP}
-
   buy-oyc-ticket:
     hostname: buy-oyc-ticket
     build:
       context: buy-oyc-ticket-service/.
+    ports:
+      - 8084:8084
     networks:
       yucca-net:
         ipv4_address: ${YUCCA_TICKET_SERVICE_IP}
-
-  buy-oyc-catering:
-    hostname: buy-oyc-catering
-    build:
-      context: buy-oyc-catering-service/.
-    networks:
-      yucca-net:
-        ipv4_address: ${YUCCA_CATERING_SERVICE_IP}
 
   buy-oyc-concert:
     hostname: buy-oyc-concert
     build:
       context: buy-oyc-concert-service/.
+    ports:
+      - 8085:8085
     networks:
       yucca-net:
         ipv4_address: ${YUCCA_CONCERT_SERVICE_IP}
+
+  buy-oyc-parking:
+    hostname: buy-oyc-parking
+    build:
+      context: buy-oyc-parking-service/.
+    ports:
+      - 8086:8086
+    networks:
+      yucca-net:
+        ipv4_address: ${YUCCA_PARKING_SERVICE_IP}
+
+  buy-oyc-catering:
+    hostname: buy-oyc-catering
+    build:
+      context: buy-oyc-catering-service/.
+    ports:
+      - 8087:8087
+    networks:
+      yucca-net:
+        ipv4_address: ${YUCCA_CATERING_SERVICE_IP}
 
   buy-oyc-api:
     hostname: buy-oyc-api
     build:
       context: buy-oyc-api-service/.
+    ports:
+      - 8088:8088
     networks:
       yucca-net:
         ipv4_address: ${YUCCA_API_SERVICE_IP}
@@ -181,7 +191,7 @@ services:
   redis:
     image: redis
     ports:
-       - 6379
+       - 6379:6379
     networks:
       yucca-net:
         ipv4_address: ${REDIS_HOST}

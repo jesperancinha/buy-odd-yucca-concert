@@ -1,6 +1,6 @@
 micronaut:
   application:
-    name: buyOycParkingService
+    name: buyOycConcertService
   server:
     port: 8085
 

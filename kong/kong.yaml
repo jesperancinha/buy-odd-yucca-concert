@@ -3,20 +3,20 @@ _format_version: "2.1"
 _transform: true
 
 services:
-  - name: buy-oyc-parking-service
-    url: http://buy-oyc-parking:8085
-    routes:
-      - name: buy-oyc-parking-service-routes
-        paths:
-          - /api/yucca-parking
-        strip_path: true
-
   - name: buy-oyc-ticket-service
-    url: http://buy-oyc-ticket:8086
+    url: http://buy-oyc-ticket:8084
     routes:
       - name: buy-oyc-ticket-service-routes
         paths:
           - /api/yucca-ticket
+        strip_path: true
+
+  - name: buy-oyc-concert-service
+    url: http://buy-oyc-concert:8085
+    routes:
+      - name: buy-oyc-concert-service-routes
+        paths:
+          - /api/yucca-concert
         strip_path: true
 
   - name: buy-oyc-catering-service
@@ -25,6 +25,14 @@ services:
       - name: buy-oyc-catering-service-routes
         paths:
           - /api/yucca-catering
+        strip_path: true
+
+  - name: buy-oyc-parking-service
+    url: http://buy-oyc-parking:8086
+    routes:
+      - name: buy-oyc-parking-service-routes
+        paths:
+          - /api/yucca-parking
         strip_path: true
 
   - name: buy-oyc-api-service
