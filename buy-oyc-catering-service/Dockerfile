@@ -8,4 +8,6 @@ COPY entrypoint.sh /root
 
 COPY target/buy-oyc-catering-service.jar /root/buy-oyc-catering-service.jar
 
+EXPOSE 8087
+
 ENTRYPOINT ["/root/entrypoint.sh"]

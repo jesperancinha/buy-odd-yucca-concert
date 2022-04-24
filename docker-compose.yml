@@ -99,6 +99,7 @@ services:
     container_name: db
     image: postgres:14.2
     user: "postgres"
+    command: postgres -c listen_addresses='*'
     environment:
       POSTGRES_DB: ${KONG_PG_DATABASE:-kong}
       POSTGRES_USER: ${KONG_PG_USER:-kong}
@@ -115,7 +116,7 @@ services:
     stdin_open: true
     tty: true
     ports:
-      - "5432:5432"
+      - 5432:5432
     networks:
       - yucca-net
     volumes:

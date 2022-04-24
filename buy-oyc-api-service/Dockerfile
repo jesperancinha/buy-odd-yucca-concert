@@ -12,4 +12,6 @@ COPY entrypoint.sh /root
 
 COPY target/buy-oyc-api-service.jar /root/buy-oyc-api-service.jar
 
+EXPOSE 8088
+
 ENTRYPOINT ["/root/entrypoint.sh"]

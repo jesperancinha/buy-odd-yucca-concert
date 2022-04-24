@@ -15,6 +15,7 @@ abstract class AbstractContainersTest {
         private val file2 = File("docker-compose-it.yml")
         private val finalFile = if(file1.exists()) file1 else file2
         protected val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
+            .withExposedService("db_1", 5432, Wait.defaultWaitStrategy())
             .withExposedService("buy-oyc-ticket_1", 8084, Wait.defaultWaitStrategy())
             .withExposedService("buy-oyc-concert_1", 8085, Wait.defaultWaitStrategy())
             .withExposedService("buy-oyc-parking_1", 8086, Wait.defaultWaitStrategy())
