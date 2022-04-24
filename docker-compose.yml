@@ -97,7 +97,7 @@ services:
   db:
     hostname: db
     container_name: db
-    image: postgres:14.1
+    image: postgres:14.2
     user: "postgres"
     environment:
       POSTGRES_DB: ${KONG_PG_DATABASE:-kong}
@@ -122,35 +122,18 @@ services:
       - ./kong_data:/var/lib/postgresql/data
       - ./docker-images/docker-psql:/docker-entrypoint-initdb.d
       - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple
-
-  localstack:
-    image: localstack/localstack:0.14.0
-    hostname: localstack
-    container_name: localstack
-    ports:
-      - "4566:4566"
-      - "4571:4571"
-      - "8090:8090"
-    environment:
-      - SERVICES=${AWS_SERVICES}
-      - DOCKER_HOST=unix:///var/run/docker.sock
-      - PORT_WEB_UI=8090
-      - DEFAULT_REGION=eu-central-1
-      - DATA_DIR=/tmp/localstack/data
-      - LAMBDA_EXECUTOR=local
-      - START_WEB=1
-    healthcheck:
-      test: ["CMD", "/usr/bin/curl", "http://localhost:4566/health"]
-    volumes:
-      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
     networks:
-      - yucca-net
+      yucca-net:
+        ipv4_address: ${POSTGRESQL_HOST}
 
   buy-oyc-parking:
     hostname: buy-oyc-parking
     container_name: buy-oyc-parking
     build:
       context: buy-oyc-parking-service/.
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
     networks:
       yucca-net:
         ipv4_address: ${YUCCA_PARKING_SERVICE_IP}
@@ -160,6 +143,9 @@ services:
     container_name: buy-oyc-ticket
     build:
       context: buy-oyc-ticket-service/.
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
     networks:
       yucca-net:
         ipv4_address: ${YUCCA_TICKET_SERVICE_IP}
@@ -169,6 +155,9 @@ services:
     container_name: buy-oyc-catering
     build:
       context: buy-oyc-catering-service/.
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
     networks:
       yucca-net:
         ipv4_address: ${YUCCA_CATERING_SERVICE_IP}
@@ -178,6 +167,9 @@ services:
     container_name: buy-oyc-api
     build:
       context: buy-oyc-api-service/.
+    environment:
+      REDIS_HOST: ${REDIS_HOST}
+      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
     networks:
       yucca-net:
         ipv4_address: ${YUCCA_API_SERVICE_IP}
@@ -201,6 +193,15 @@ services:
     networks:
       yucca-net:
         ipv4_address: ${NGINX_SERVICE_IP}
+
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+       - 6379
+    networks:
+      yucca-net:
+        ipv4_address: ${REDIS_HOST}
 
 secrets:
   kong_postgres_password:

@@ -3,3 +3,33 @@ micronaut:
     name: buyOycCateringService
   server:
     port: 8087
+
+r2dbc:
+  datasources:
+    default:
+      schema-generate: NONE
+      dialect: POSTGRES
+      url: r2dbc:postgresql://kong@${POSTGRESQL_HOST}:5432/yucca?currentSchema=ticket
+      username: kong
+      password: kong
+
+flyway:
+  datasources:
+    default:
+      enabled: true
+
+jackson:
+  serialization:
+    indentOutput: true
+    writeDatesAsTimestamps: false
+  deserialization:
+    failOnUnknownProperties: false
+
+redis:
+    uri: redis://${REDIS_HOST}
+    timeout: 30s
+
+buy.oyc.ticket:
+    url: /api/yucca-ticket
+    port: 8000
+    host: localhost

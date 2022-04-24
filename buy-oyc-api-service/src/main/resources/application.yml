@@ -9,7 +9,7 @@ r2dbc:
     default:
       schema-generate: NONE
       dialect: POSTGRES
-      url: r2dbc:postgresql://kong@localhost:5432/yucca?currentSchema=ticket
+      url: r2dbc:postgresql://kong@${POSTGRESQL_HOST}:5432/yucca?currentSchema=ticket
       username: kong
       password: kong
 
@@ -26,7 +26,7 @@ jackson:
     failOnUnknownProperties: false
 
 redis:
-    uri: redis://localhost
+    uri: redis://${REDIS_HOST}
     timeout: 30s
 
 buy.oyc.ticket:

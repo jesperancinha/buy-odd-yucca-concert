@@ -94,7 +94,7 @@ services:
 
   db:
     hostname: db
-    image: postgres:14.1
+    image: postgres:14.2
     user: "postgres"
     environment:
       POSTGRES_DB: ${KONG_PG_DATABASE:-kong}
@@ -119,28 +119,6 @@ services:
       - ./kong_data:/var/lib/postgresql/data
       - ./docker-images/docker-psql:/docker-entrypoint-initdb.d
       - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple
-
-  localstack:
-    image: localstack/localstack:0.14.0
-    hostname: localstack
-    ports:
-      - "4566:4566"
-      - "4571:4571"
-      - "8090:8090"
-    environment:
-      - SERVICES=${AWS_SERVICES}
-      - DOCKER_HOST=unix:///var/run/docker.sock
-      - PORT_WEB_UI=8090
-      - DEFAULT_REGION=eu-central-1
-      - DATA_DIR=/tmp/localstack/data
-      - LAMBDA_EXECUTOR=local
-      - START_WEB=1
-    healthcheck:
-      test: ["CMD", "/usr/bin/curl", "http://localhost:4566/health"]
-    volumes:
-      - "${TMPDIR:-/tmp/localstack}:/tmp/localstack"
-    networks:
-      - yucca-net
 
   buy-oyc-parking:
     hostname: buy-oyc-parking
@@ -200,6 +178,14 @@ services:
     networks:
       yucca-net:
         ipv4_address: ${NGINX_SERVICE_IP}
+  redis:
+    container_name: redis
+    image: redis
+    ports:
+       - 6379
+    networks:
+      yucca-net:
+        ipv4_address: ${REDIS_HOST}
 
 secrets:
   kong_postgres_password:
