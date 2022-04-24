@@ -211,7 +211,7 @@ services:
     container_name: redis
     image: redis
     ports:
-       - 6379
+       - 6379:6379
     networks:
       yucca-net:
         ipv4_address: ${REDIS_HOST}

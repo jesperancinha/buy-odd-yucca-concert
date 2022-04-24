@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test
  * Created by jofisaes on 22/04/2022
  */
 @MicronautTest
-@Disabled
 class ChainTest @Inject constructor(
     val auditLogRepository: AuditLogRepository,
     val receiptRepository: ReceiptRepository,
