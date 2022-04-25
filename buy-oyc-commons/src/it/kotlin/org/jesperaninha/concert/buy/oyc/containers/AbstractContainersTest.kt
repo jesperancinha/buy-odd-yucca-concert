@@ -1,7 +1,7 @@
 package org.jesperaninha.concert.buy.oyc.containers
 
+import org.slf4j.LoggerFactory
 import org.testcontainers.containers.DockerComposeContainer
-import org.testcontainers.containers.wait.strategy.Wait
 import org.testcontainers.containers.wait.strategy.Wait.defaultWaitStrategy
 import org.testcontainers.containers.wait.strategy.Wait.forHealthcheck
 import java.io.File
@@ -16,6 +16,7 @@ abstract class AbstractContainersTest {
         private val file1 = File("../docker-compose-it.yml")
         private val file2 = File("docker-compose-it.yml")
         private val finalFile = if (file1.exists()) file1 else file2
+        private val logger = LoggerFactory.getLogger(AbstractContainersTest::class.java)
         protected val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
             .withExposedService("redis_1", 6379, defaultWaitStrategy())
             .withExposedService("kong_1", 8001, defaultWaitStrategy())
@@ -28,6 +29,10 @@ abstract class AbstractContainersTest {
             .withLocalCompose(true)
             .also {
                 it.start()
+            }
+            .also {
+                val serviceHost = it.getServiceHost("db_1", 5432)
+                logger.info("Setting postgres host to $serviceHost")
             }
     }
 
