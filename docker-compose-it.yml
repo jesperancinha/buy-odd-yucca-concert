@@ -43,6 +43,8 @@ services:
   kong:
     hostname: kong
     image: "${KONG_DOCKER_TAG:-kong:2.7.1}"
+    depends_on:
+        - db
     user: "${KONG_USER:-kong}"
     environment:
       <<: *kong-env
@@ -50,7 +52,7 @@ services:
       KONG_ADMIN_ERROR_LOG: /dev/stderr
       KONG_PROXY_LISTEN: "${KONG_PROXY_LISTEN:-0.0.0.0:8000}"
       KONG_ADMIN_LISTEN: "${KONG_ADMIN_LISTEN:-0.0.0.0:8001}"
-      KONG_PROXY_ACCESS_LOG: /dev/stdout
+      KONG_PROXY_ACCESS_LOG: /dev/stdoutss
       KONG_PROXY_ERROR_LOG: /dev/stderr
       KONG_PREFIX: ${KONG_PREFIX:-/var/run/kong}
       KONG_DECLARATIVE_CONFIG: "/opt/kong/kong.yaml"
