@@ -12,7 +12,7 @@
     <artifactId>buy-oyc-chain-test</artifactId>
     <packaging>jar</packaging>
 
-    <name>org.jesperancinha.concert buy-oyc-chain-test</name>
+    <name>Concert Commons Chain Test</name>
 
     <dependencies>
         <dependency>
