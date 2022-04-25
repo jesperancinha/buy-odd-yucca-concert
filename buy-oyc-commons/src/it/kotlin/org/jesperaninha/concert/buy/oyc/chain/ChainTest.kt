@@ -4,7 +4,6 @@ import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
 import org.jesperancinha.concert.buy.oyc.commons.domain.*
 import org.jesperaninha.concert.buy.oyc.containers.AbstractContainersTest
-import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 
 /**
@@ -18,11 +17,10 @@ class ChainTest @Inject constructor(
     val concertDayReservationRepository: ConcertDayReservationRepository,
     val parkingReservationRepository: ParkingReservationRepository,
     val drinkReservationRepository: DrinkReservationRepository,
-    val mealReservationRepository: MealReservationRepository
+    val mealReservationRepository: MealReservationRepository,
 ) : AbstractContainersTest() {
 
     @Test
     fun `should run chain test and create a concert reservation`() {
-
     }
 }
