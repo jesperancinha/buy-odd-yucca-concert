@@ -125,7 +125,6 @@ services:
       - ./docker-images/docker-psql:/docker-entrypoint-initdb.d
       - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple
 
-
   buy-oyc-ticket:
     hostname: buy-oyc-ticket
     depends_on:
@@ -209,6 +208,7 @@ services:
     networks:
       yucca-net:
         ipv4_address: ${NGINX_SERVICE_IP}
+
   redis:
     image: redis
     ports:

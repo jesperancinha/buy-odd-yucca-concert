@@ -1,0 +1,24 @@
+r2dbc:
+  datasources:
+    default:
+      schema-generate: NONE
+      dialect: POSTGRES
+      url: r2dbc:postgresql://kong@localhost:5432/yucca?currentSchema=ticket
+      username: kong
+      password: kong
+
+flyway:
+  datasources:
+    default:
+      enabled: false
+
+jackson:
+  serialization:
+    indentOutput: true
+    writeDatesAsTimestamps: false
+  deserialization:
+    failOnUnknownProperties: false
+
+redis:
+    uri: redis://localhost
+    timeout: 30s
