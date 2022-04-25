@@ -31,7 +31,7 @@
         <release.version>${java.version}</release.version>
         <micronaut.version>3.2.0</micronaut.version>
         <exec.mainClass>buy.oyc.ticket.service.ApplicationKt</exec.mainClass>
-        <kotlin.version>1.6.20</kotlin.version>
+        <kotlin.version>1.6.21</kotlin.version>
         <micronaut.runtime>netty</micronaut.runtime>
         <micronaut-parent.version>3.4.2</micronaut-parent.version>
         <jakarta.annotation-api.version>2.1.0</jakarta.annotation-api.version>
