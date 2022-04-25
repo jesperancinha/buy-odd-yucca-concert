@@ -137,9 +137,18 @@ Read report after running:
 make build-integration
 ```
 
-## 6.  - References
+## 6. Related Blog Posts
 
-#### 6.1. - Online
+- [Pub-sub Redis in Micronaut](https://www.buymeacoffee.com/jesperancinha/pub-sub-redis-micronaut)
+- [Micronaut - Getting the basics](https://www.buymeacoffee.com/jesperancinha/micronaut-getting-basics)
+- [Redis Cache - A String story](https://www.buymeacoffee.com/jesperancinha/redis-cache-a-string-story)
+- [Kotlin's reified and why you should use it(or maybe not)](https://www.buymeacoffee.com/jesperancinha/kotlin-reified-use)
+- [Kotlin Data Modelling with Micronaut](https://www.buymeacoffee.com/jesperancinha/kotlin-data-modelling-micronaut)
+- [Micronaut and Kotlin - Making round trip integration tests](https://www.buymeacoffee.com/jesperancinha/round-trip-testing-micronaut)
+ 
+## 7.  - References
+
+#### 7.1. - Online
 
 -   [What kinds of bot attacks are stopped by rate limiting?](https://www.cloudflare.com/en-gb/learning/bots/what-is-rate-limiting/)
 -   [Using Micronaut Data, JDBC, R2DBC, TestContainers, and Flyway with multiple schemas](https://www.zsiegel.com/2022/01/25/Micronaut-JDBC-R2DBC-Flyway-multiple-schemas)
@@ -170,7 +179,7 @@ make build-integration
 -   [Redhwan Nacef's Kong Tutorial On GitHub](https://github.com/redhwannacef/youtube-tutorials/tree/main/kong-gateway)
 -   [Lorem Picsum Phosots](https://picsum.photos/)
 
-#### 6.2. - Online videos
+#### 7.2. - Online videos
 
 <div align="center">
       <a title="Kong Gateway for Beginners: Adding a Service, Route and Plugins" href="https://www.youtube.com/watch?v=kGZyAEVioWg">
