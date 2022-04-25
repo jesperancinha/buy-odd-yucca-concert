@@ -6,6 +6,7 @@ import jakarta.inject.Inject
 import org.jesperancinha.concert.buy.oyc.commons.domain.*
 import org.jesperaninha.concert.buy.oyc.containers.AbstractContainersTest
 import org.junit.jupiter.api.Test
+import org.slf4j.LoggerFactory
 
 /**
  * Created by jofisaes on 22/04/2022
@@ -33,6 +34,12 @@ class CustomContextBuilder : DefaultApplicationContextBuilder() {
         val props = mapOf(
             "r2dbc.datasources.default.url" to "r2dbc:postgresql://kong@$serviceHost:5432/yucca?currentSchema=ticket"
         )
+        logger.info("Database Host configuration is $props")
+
         properties(props)
+    }
+
+    companion object {
+        private val logger = LoggerFactory.getLogger(CustomContextBuilder::class.java)
     }
 }
