@@ -108,7 +108,7 @@ services:
       test: [ "CMD", "pg_isready", "-U", "${KONG_PG_USER:-kong}" ]
       interval: 30s
       timeout: 30s
-      retries: 3
+      retries: 10
     restart: on-failure
     stdin_open: true
     tty: true
@@ -198,7 +198,7 @@ services:
   redis:
     image: redis
     ports:
-       - 6379:6379
+           - 6379:6379
     networks:
       yucca-net:
         ipv4_address: ${REDIS_HOST}
