@@ -17,7 +17,8 @@ abstract class AbstractContainersTest {
         private val file2 = File("docker-compose-it.yml")
         private val finalFile = if (file1.exists()) file1 else file2
         private val logger = LoggerFactory.getLogger(AbstractContainersTest::class.java)
-        protected val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
+        @JvmStatic
+        val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
             .withExposedService("redis_1", 6379, defaultWaitStrategy())
             .withExposedService("kong_1", 8001, defaultWaitStrategy())
 //            .withExposedService("db_1", 5432, forHealthcheck())
