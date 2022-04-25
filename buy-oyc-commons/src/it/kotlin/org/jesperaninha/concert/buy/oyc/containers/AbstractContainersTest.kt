@@ -22,7 +22,7 @@ abstract class AbstractContainersTest {
         val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
             .withExposedService("redis_1", 6379, defaultWaitStrategy())
             .withExposedService("kong_1", 8001, defaultWaitStrategy())
-            .withExposedService("db_1", 5432, forHealthcheck())
+            .withExposedService("db_1", 5432, defaultWaitStrategy())
             .withExposedService("buy-oyc-ticket_1", 8084, defaultWaitStrategy())
             .withExposedService("buy-oyc-concert_1", 8085, defaultWaitStrategy())
             .withExposedService("buy-oyc-parking_1", 8086, defaultWaitStrategy())
