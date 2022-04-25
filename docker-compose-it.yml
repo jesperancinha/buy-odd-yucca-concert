@@ -83,6 +83,7 @@ services:
       interval: 10s
       timeout: 10s
       retries: 20
+      start_period: 10s
     volumes:
       - ./kong_prefix:${KONG_PREFIX:-/var/run/kong}
       - ./kong_tmp:/tmp
