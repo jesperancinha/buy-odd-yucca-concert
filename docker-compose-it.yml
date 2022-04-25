@@ -124,6 +124,7 @@ services:
 
   buy-oyc-ticket:
     hostname: buy-oyc-ticket
+    depends_on: db
     build:
       context: buy-oyc-ticket-service/.
     environment:
@@ -135,6 +136,7 @@ services:
 
   buy-oyc-concert:
     hostname: buy-oyc-concert
+    depends_on: db
     build:
       context: buy-oyc-concert-service/.
     environment:
@@ -146,6 +148,7 @@ services:
 
   buy-oyc-parking:
     hostname: buy-oyc-parking
+    depends_on: db
     build:
       context: buy-oyc-parking-service/.
     environment:
@@ -157,6 +160,7 @@ services:
 
   buy-oyc-catering:
     hostname: buy-oyc-catering
+    depends_on: db
     build:
       context: buy-oyc-catering-service/.
     environment:
@@ -168,6 +172,7 @@ services:
 
   buy-oyc-api:
     hostname: buy-oyc-api
+    depends_on: db
     build:
       context: buy-oyc-api-service/.
     environment:
