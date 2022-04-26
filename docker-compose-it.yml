@@ -67,7 +67,7 @@ services:
     ports:
       # The following two environment variables default to an insecure value (0.0.0.0)
       # according to the CIS Security test.
-      - "8000:8000"
+      - 8000:8000
       - "${KONG_INBOUND_SSL_PROXY_LISTEN:-0.0.0.0}:8443:8443/tcp"
       # Making them mandatory but undefined, like so would be backwards-breaking:
       # - "${KONG_INBOUND_PROXY_LISTEN?Missing inbound proxy host}:8000:8000/tcp"
