@@ -1,5 +1,6 @@
 package org.jesperaninha.concert.buy.oyc.chain
 
+import io.kotest.matchers.collections.shouldHaveAtMostSize
 import io.kotest.matchers.collections.shouldHaveSize
 import io.micronaut.http.HttpHeaders.ACCEPT
 import io.micronaut.http.HttpRequest
@@ -21,6 +22,7 @@ import org.jesperaninha.concert.buy.oyc.containers.CustomContextBuilder
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import java.lang.Thread.sleep
 import java.net.URL
 import java.time.LocalDate
 
@@ -61,9 +63,13 @@ class ChainTest @Inject constructor(
         dtoSingle.awaitFirst()
 
         withContext(Dispatchers.IO) {
+            sleep(5000)
+        }
+
+        withContext(Dispatchers.IO) {
             receiptRepository.findAll().toList().shouldHaveSize(1)
-            auditLogRepository.findAll().toList().shouldHaveSize(0)
-            ticketRepository.findAll().toList().shouldHaveSize(0)
+            auditLogRepository.findAll().toList().shouldHaveAtMostSize(1)
+            ticketRepository.findAll().toList().shouldHaveSize(1)
         }
     }
 
