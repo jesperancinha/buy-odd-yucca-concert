@@ -5,7 +5,7 @@ import io.lettuce.core.pubsub.RedisPubSubAdapter
 import io.lettuce.core.pubsub.api.async.RedisPubSubAsyncCommands
 import io.micronaut.context.annotation.Factory
 import io.micronaut.context.annotation.Value
-import io.micronaut.rxjava3.http.client.Rx3StreamingHttpClient
+import io.micronaut.rxjava3.http.client.Rx3HttpClient
 import jakarta.inject.Qualifier
 import jakarta.inject.Singleton
 import kotlinx.coroutines.*
@@ -33,11 +33,11 @@ class TicketService(
     private val pubSubCommands: RedisPubSubAsyncCommands<String, TicketDto>,
     redisClient: RedisClient,
     @ConcertClient
-    httpConcertClient: Rx3StreamingHttpClient,
+    httpConcertClient: Rx3HttpClient,
     @ParkingClient
-    httpParkingClient: Rx3StreamingHttpClient,
+    httpParkingClient: Rx3HttpClient,
     @CateringClient
-    httpCateringClient: Rx3StreamingHttpClient,
+    httpCateringClient: Rx3HttpClient,
     ticketServiceHttpConfiguration: TicketServiceHttpConfiguration
 ) {
 
@@ -76,8 +76,8 @@ class RedisBeanFactory {
         host: String,
         @Value("\${buy.oyc.concert.port}")
         port: Long
-    ): Rx3StreamingHttpClient =
-        Rx3StreamingHttpClient.create(URL("http://" + host + ":" + port))
+    ): Rx3HttpClient =
+        Rx3HttpClient.create(URL("http://" + host + ":" + port))
 
     @Singleton
     @ParkingClient
@@ -86,8 +86,8 @@ class RedisBeanFactory {
         host: String,
         @Value("\${buy.oyc.parking.port}")
         port: Long
-    ): Rx3StreamingHttpClient =
-        Rx3StreamingHttpClient.create(URL("http://" + host + ":" + port))
+    ): Rx3HttpClient =
+        Rx3HttpClient.create(URL("http://" + host + ":" + port))
 
     @Singleton
     @CateringClient
@@ -96,17 +96,17 @@ class RedisBeanFactory {
         host: String,
         @Value("\${buy.oyc.catering.port}")
         port: Long
-    ): Rx3StreamingHttpClient =
-        Rx3StreamingHttpClient.create(URL("http://" + host + ":" + port))
+    ): Rx3HttpClient =
+        Rx3HttpClient.create(URL("http://" + host + ":" + port))
 }
 
 @DelicateCoroutinesApi
 class Listener(
     private val ticketServiceHttpConfiguration: TicketServiceHttpConfiguration,
     private val auditLogRepository: AuditLogRepository,
-    private val httpConcertClient: Rx3StreamingHttpClient,
-    private val httpParkingClient: Rx3StreamingHttpClient,
-    private val httpCateringClient: Rx3StreamingHttpClient,
+    private val httpConcertClient: Rx3HttpClient,
+    private val httpParkingClient: Rx3HttpClient,
+    private val httpCateringClient: Rx3HttpClient,
     private val ticketRepository: TicketRepository,
 ) : RedisPubSubAdapter<String, TicketDto>(), TicketServiceHttpConfigurationInterface by ticketServiceHttpConfiguration {
     override fun message(key: String, ticketDto: TicketDto) {

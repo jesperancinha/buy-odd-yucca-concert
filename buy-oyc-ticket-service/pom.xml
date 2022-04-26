@@ -27,7 +27,7 @@
         </dependency>
         <dependency>
             <groupId>org.jesperancinha.concert</groupId>
-            <artifactId>buy-oyc-chain-test</artifactId>
+            <artifactId>buy-oyc-test</artifactId>
         </dependency>
         <dependency>
             <groupId>jakarta.annotation</groupId>

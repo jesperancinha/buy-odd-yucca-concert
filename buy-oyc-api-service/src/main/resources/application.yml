@@ -30,6 +30,6 @@ redis:
     timeout: 30s
 
 buy.oyc.ticket:
-    url: /api/yucca-ticket
+    url: /api/yucca-ticket/api
     port: 8000
     host: ${KONG_SERVICE_IP}

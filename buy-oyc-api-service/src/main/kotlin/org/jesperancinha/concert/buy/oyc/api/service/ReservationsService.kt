@@ -5,7 +5,7 @@ import io.lettuce.core.pubsub.RedisPubSubAdapter
 import io.lettuce.core.pubsub.api.async.RedisPubSubAsyncCommands
 import io.micronaut.context.annotation.Factory
 import io.micronaut.context.annotation.Value
-import io.micronaut.rxjava3.http.client.Rx3StreamingHttpClient
+import io.micronaut.rxjava3.http.client.Rx3HttpClient
 import jakarta.inject.Singleton
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.flow.Flow
@@ -32,7 +32,7 @@ class ReservationsService(
     redisClient: RedisClient,
     @Value("\${buy.oyc.ticket.url}")
     val url: String,
-    httpClient: Rx3StreamingHttpClient
+    httpClient: Rx3HttpClient
 ) {
 
     init {
@@ -65,15 +65,15 @@ class RedisBeanFactory {
         host: String,
         @Value("\${buy.oyc.ticket.port}")
         port: Long
-    ): Rx3StreamingHttpClient =
-        Rx3StreamingHttpClient.create(URL("http://" + host + ":" + port))
+    ): Rx3HttpClient =
+        Rx3HttpClient.create(URL("http://" + host + ":" + port))
 }
 
 @DelicateCoroutinesApi
 class Listener(
     private val url: String,
     private val auditLogRepository: AuditLogRepository,
-    private val client: Rx3StreamingHttpClient
+    private val client: Rx3HttpClient
 ) : RedisPubSubAdapter<String, TicketDto>() {
     override fun message(key: String, ticketDto: TicketDto) {
         client.sendObject(ticketDto, url, auditLogRepository)
