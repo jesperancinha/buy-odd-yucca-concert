@@ -6,6 +6,7 @@ import io.micronaut.http.annotation.Get
 import io.micronaut.http.annotation.Post
 import io.micronaut.http.client.annotation.Client
 import io.reactivex.rxjava3.core.Single
+import org.jesperancinha.concert.buy.oyc.commons.dto.ResponseDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
 import reactor.core.publisher.Flux
 
@@ -16,7 +17,7 @@ import reactor.core.publisher.Flux
 @Client("/api")
 interface TicketReactiveClient {
     @Post
-    fun add(@Body ticket: TicketDto): Single<LinkedHashMap<String, String>>
+    fun add(@Body ticket: TicketDto): Single<ResponseDto>
 
     @Get(value = "/", produces = [MediaType.APPLICATION_JSON_STREAM])
     fun getAllTickets(): Flux<TicketDto>

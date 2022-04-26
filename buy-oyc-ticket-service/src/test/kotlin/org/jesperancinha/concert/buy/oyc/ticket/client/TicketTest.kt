@@ -20,7 +20,6 @@ import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
-import org.flywaydb.core.Flyway
 import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogRepository
 import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogType.*
 import org.jesperancinha.concert.buy.oyc.commons.domain.TicketRepository
@@ -144,7 +143,7 @@ class TicketTest @Inject constructor(
         val result = withContext(Dispatchers.IO) {
             add.blockingGet()
         }
-        result["second"].shouldBe("Saved successfully !")
+        result.message.shouldBe("Saved successfully !")
 
         val findAll = ticketReactiveClient.getAllTickets()
         findAll.shouldNotBeNull()

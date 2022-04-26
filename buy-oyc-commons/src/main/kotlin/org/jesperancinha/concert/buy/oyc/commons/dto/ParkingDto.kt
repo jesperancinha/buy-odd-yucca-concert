@@ -16,7 +16,7 @@ data class ParkingReservationDto(
     var carParkingId: Long,
     val createdAt: LocalDateTime? = LocalDateTime.now(),
     override val type: AuditLogType = AuditLogType.PARKING
-) : Serializable, BuyOycType
+) : Serializable, BuyOycType()
 
 
 val ParkingReservation.toDto: ParkingReservationDto

@@ -68,7 +68,7 @@ class ReceiptTest @Inject constructor(
         val blockingGet = withContext(Dispatchers.IO) {
             add.blockingGet()
         }
-        blockingGet["second"].shouldBe("Saved successfully !")
+        blockingGet.message.shouldBe("Saved successfully !")
         val findAll2 = concertReactiveClient.findAll()
         findAll2.shouldNotBeNull()
         findAll2.subscribe()

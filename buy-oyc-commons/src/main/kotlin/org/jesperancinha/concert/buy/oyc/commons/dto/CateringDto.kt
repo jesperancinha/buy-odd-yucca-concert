@@ -14,14 +14,14 @@ data class MealDto(
     val mealId: UUID?,
     val ticketReservationId: UUID?,
     override val type: AuditLogType = MEAL
-) : Serializable, BuyOycType
+) : Serializable, BuyOycType()
 
 data class DrinkDto(
     var reference: UUID? = null,
     val drinkId: UUID?,
     val ticketReservationId: UUID?,
     override val type: AuditLogType = DRINK
-) : Serializable, BuyOycType
+) : Serializable, BuyOycType()
 
 val DrinkReservation.toDto: DrinkDto
     get() = DrinkDto(

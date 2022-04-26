@@ -30,7 +30,7 @@ data class TicketDto(
     val parkingReservation: ParkingReservationDto? = null,
     val createdAt: LocalDateTime? = LocalDateTime.now(),
     override val type: AuditLogType = AuditLogType.TICKET,
-) : Serializable, BuyOycType
+) : Serializable, BuyOycType()
 
 val TicketReservation.toDto: TicketDto
     get() = TicketDto(

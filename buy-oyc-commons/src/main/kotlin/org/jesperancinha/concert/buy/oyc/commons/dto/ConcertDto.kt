@@ -17,7 +17,7 @@ data class ConcertDayDto(
     val concertId: UUID? = null,
     val createdAt: LocalDateTime? = LocalDateTime.now(),
     override val type: AuditLogType = AuditLogType.CONCERT_DAY
-) : Serializable, BuyOycType
+) : Serializable, BuyOycType()
 
 val ConcertDayReservation.toDto: ConcertDayDto
     get() = ConcertDayDto(

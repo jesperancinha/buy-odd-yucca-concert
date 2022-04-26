@@ -2,6 +2,7 @@ package org.jesperaninha.concert.buy.oyc.containers
 
 import io.micronaut.context.DefaultApplicationContextBuilder
 import org.jesperaninha.concert.buy.oyc.containers.AbstractContainersTest.Companion.dockerCompose
+import org.junit.jupiter.api.AfterAll
 import org.slf4j.LoggerFactory
 import org.testcontainers.containers.DockerComposeContainer
 import org.testcontainers.containers.wait.strategy.Wait.defaultWaitStrategy
@@ -24,6 +25,7 @@ abstract class AbstractContainersTest {
         val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
             .withExposedService("redis_1", 6379, defaultWaitStrategy())
             .withExposedService("kong_1", 8001, defaultWaitStrategy())
+            .withExposedService("kong_1", 8000, defaultWaitStrategy())
             .withExposedService("buy-oyc-ticket_1", 8084, defaultWaitStrategy())
             .withExposedService("buy-oyc-concert_1", 8085, defaultWaitStrategy())
             .withExposedService("buy-oyc-parking_1", 8086, defaultWaitStrategy())
@@ -37,8 +39,12 @@ abstract class AbstractContainersTest {
                 val serviceHost = it.getServiceHost("db_1", 5432)
                 logger.info("Preconfigured service host is $serviceHost")
             }
-    }
 
+        @AfterAll
+        fun tearDown(){
+            dockerCompose.stop()
+        }
+    }
 }
 
 class CustomContextBuilder : DefaultApplicationContextBuilder() {

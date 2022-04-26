@@ -11,6 +11,7 @@ import io.micronaut.http.annotation.Post
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import org.jesperancinha.concert.buy.oyc.commons.dto.ParkingReservationDto
+import org.jesperancinha.concert.buy.oyc.commons.dto.ResponseDto
 import org.jesperancinha.concert.buy.oyc.parking.service.ParkingReservationService
 import javax.validation.Valid
 
@@ -20,11 +21,11 @@ class ParkingController(
     private val parkingReservationService: ParkingReservationService
 ) {
     @Post
-    suspend fun createParkingReservation(@Body parkingReservation: @Valid ParkingReservationDto?): MutableHttpResponse<Pair<Int, String>> =
+    suspend fun createParkingReservation(@Body parkingReservation: @Valid ParkingReservationDto?): ResponseDto =
         parkingReservation?.let {
             parkingReservationService.createParkingReservation(parkingReservation)
-            status<Map<Int, String>>(HttpStatus.CREATED).body(HttpStatus.CREATED.code to "Saved successfully !")
-        } ?: status(HttpStatus.NOT_FOUND)
+            ResponseDto(code= HttpStatus.CREATED.code, message =  "Saved successfully !")
+        } ?: ResponseDto(code = HttpStatus.NOT_FOUND.code)
 
     @Get(value = "/", produces = [MediaType.APPLICATION_JSON])
     fun getAllParkingReservations(): Flow<ParkingReservationDto> {

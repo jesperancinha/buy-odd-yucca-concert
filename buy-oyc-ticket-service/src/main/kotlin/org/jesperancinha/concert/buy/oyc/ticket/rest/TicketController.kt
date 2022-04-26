@@ -11,6 +11,7 @@ import io.micronaut.http.annotation.Post
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import org.jesperancinha.concert.buy.oyc.commons.dto.ResponseDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.toDto
 import org.jesperancinha.concert.buy.oyc.ticket.service.TicketService
@@ -22,11 +23,11 @@ class TicketController(
     private val ticketService: TicketService
 ) {
     @Post
-    suspend fun saveTicket(@Body ticketDto: @Valid TicketDto?): MutableHttpResponse<Pair<Int, String>> =
+    suspend fun saveTicket(@Body ticketDto: @Valid TicketDto?): ResponseDto =
         ticketDto?.let {
             ticketService.createTicket(ticketDto)
-            status<Map<Int, String>>(HttpStatus.CREATED).body(HttpStatus.CREATED.code to "Saved successfully !")
-        } ?: status(HttpStatus.NOT_FOUND)
+            ResponseDto(code= HttpStatus.CREATED.code, message =  "Saved successfully !")
+        } ?: ResponseDto(code = HttpStatus.NOT_FOUND.code)
 
     @Get(value = "/", produces = [MediaType.APPLICATION_JSON])
     fun getAllTickets(): Flow<TicketDto> =

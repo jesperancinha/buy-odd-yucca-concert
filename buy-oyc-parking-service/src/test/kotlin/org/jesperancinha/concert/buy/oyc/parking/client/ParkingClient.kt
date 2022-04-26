@@ -7,6 +7,7 @@ import io.micronaut.http.annotation.Post
 import io.micronaut.http.client.annotation.Client
 import io.reactivex.rxjava3.core.Single
 import org.jesperancinha.concert.buy.oyc.commons.dto.ParkingReservationDto
+import org.jesperancinha.concert.buy.oyc.commons.dto.ResponseDto
 import reactor.core.publisher.Flux
 
 
@@ -16,7 +17,7 @@ import reactor.core.publisher.Flux
 @Client("/api")
 interface ParkingReactiveClient {
     @Post
-    fun add(@Body parkingReservationDto: ParkingReservationDto): Single<LinkedHashMap<String, String>>
+    fun add(@Body parkingReservationDto: ParkingReservationDto): Single<ResponseDto>
 
     @Get(value = "/", produces = [MediaType.APPLICATION_JSON_STREAM])
     fun findAll(): Flux<ParkingReservationDto>

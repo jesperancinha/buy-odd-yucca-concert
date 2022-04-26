@@ -12,7 +12,9 @@ import kotlinx.coroutines.reactive.awaitFirstOrNull
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import org.flywaydb.core.Flyway
-import org.jesperancinha.concert.buy.oyc.commons.domain.*
+import org.jesperancinha.concert.buy.oyc.commons.domain.CarParking
+import org.jesperancinha.concert.buy.oyc.commons.domain.CarParkingRepository
+import org.jesperancinha.concert.buy.oyc.commons.domain.ConcertDayReservationRepository
 import org.jesperancinha.concert.buy.oyc.commons.dto.ParkingReservationDto
 import org.jesperancinha.concert.buy.oyc.containers.AbstractBuyOddYuccaConcertContainerTest
 import org.junit.jupiter.api.BeforeAll
@@ -63,7 +65,7 @@ class ParkingTest @Inject constructor(
         val blockingGet = withContext(Dispatchers.IO) {
             add.blockingGet()
         }
-        blockingGet["second"].shouldBe("Saved successfully !")
+        blockingGet.message.shouldBe("Saved successfully !")
         val findAll2 = parkingReactiveClient.findAll()
         findAll2.shouldNotBeNull()
         findAll2.subscribe()

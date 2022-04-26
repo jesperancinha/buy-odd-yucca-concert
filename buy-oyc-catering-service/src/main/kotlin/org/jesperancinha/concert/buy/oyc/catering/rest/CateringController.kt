@@ -11,6 +11,7 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import org.jesperancinha.concert.buy.oyc.catering.service.CateringService
 import org.jesperancinha.concert.buy.oyc.commons.dto.DrinkDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.MealDto
+import org.jesperancinha.concert.buy.oyc.commons.dto.ResponseDto
 import javax.validation.Valid
 
 @Controller("api")
@@ -19,16 +20,16 @@ class CateringController @Inject constructor(
     private val cateringService: CateringService
 ) {
     @Post("meal")
-    suspend fun createMeal(@Body mealDto: @Valid MealDto?): MutableHttpResponse<Pair<Int, String>> =
+    suspend fun createMeal(@Body mealDto: @Valid MealDto?): ResponseDto =
         mealDto?.let {
             cateringService.createMeal(mealDto)
-            status<Map<Int, String>>(HttpStatus.CREATED).body(HttpStatus.CREATED.code to "Saved successfully !")
-        } ?: status(HttpStatus.NOT_FOUND)
+            ResponseDto(code= HttpStatus.CREATED.code, message =  "Saved successfully !")
+        } ?: ResponseDto(code = HttpStatus.NOT_FOUND.code)
 
     @Post("drink")
-    suspend fun createDrink(@Body drinkDto: @Valid DrinkDto?): MutableHttpResponse<Pair<Int, String>> =
+    suspend fun createDrink(@Body drinkDto: @Valid DrinkDto?): ResponseDto =
         drinkDto?.let {
             cateringService.createDrink(drinkDto)
-            status<Map<Int, String>>(HttpStatus.CREATED).body(HttpStatus.CREATED.code to "Saved successfully !")
-        } ?: status(HttpStatus.NOT_FOUND)
+            ResponseDto(code= HttpStatus.CREATED.code, message =  "Saved successfully !")
+        } ?: ResponseDto(code = HttpStatus.NOT_FOUND.code)
 }

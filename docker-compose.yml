@@ -45,6 +45,8 @@ services:
     hostname: kong
     container_name: kong
     image: "${KONG_DOCKER_TAG:-kong:2.7.1}"
+    depends_on:
+        - db
     user: "${KONG_USER:-kong}"
     environment:
       <<: *kong-env
@@ -83,7 +85,9 @@ services:
       interval: 10s
       timeout: 10s
       retries: 20
+      start_period: 10s
     volumes:
+      - ./kong/kong.yaml:/opt/kong/kong.yaml
       - ./kong_prefix:${KONG_PREFIX:-/var/run/kong}
       - ./kong_tmp:/tmp
       - ./kong:/opt/kong
@@ -111,7 +115,8 @@ services:
       test: [ "CMD", "pg_isready", "-U", "${KONG_PG_USER:-kong}" ]
       interval: 30s
       timeout: 30s
-      retries: 3
+      retries: 10
+      start_period: 10s
     restart: on-failure
     stdin_open: true
     tty: true
@@ -130,6 +135,8 @@ services:
   buy-oyc-ticket:
     hostname: buy-oyc-ticket
     container_name: buy-oyc-ticket
+    depends_on:
+        - db
     build:
       context: buy-oyc-ticket-service/.
     environment:
@@ -141,6 +148,8 @@ services:
 
   buy-oyc-concert:
     hostname: buy-oyc-concert
+    depends_on:
+        - db
     build:
       context: buy-oyc-concert-service/.
     environment:
@@ -153,6 +162,8 @@ services:
   buy-oyc-parking:
     hostname: buy-oyc-parking
     container_name: buy-oyc-parking
+    depends_on:
+        - db
     build:
       context: buy-oyc-parking-service/.
     environment:
@@ -162,10 +173,11 @@ services:
       yucca-net:
         ipv4_address: ${YUCCA_PARKING_SERVICE_IP}
 
-
   buy-oyc-catering:
     hostname: buy-oyc-catering
     container_name: buy-oyc-catering
+    depends_on:
+        - db
     build:
       context: buy-oyc-catering-service/.
     environment:
@@ -178,6 +190,8 @@ services:
   buy-oyc-api:
     hostname: buy-oyc-api
     container_name: buy-oyc-api
+    depends_on:
+        - db
     build:
       context: buy-oyc-api-service/.
     environment:

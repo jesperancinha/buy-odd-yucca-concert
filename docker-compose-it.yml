@@ -52,7 +52,7 @@ services:
       KONG_ADMIN_ERROR_LOG: /dev/stderr
       KONG_PROXY_LISTEN: "${KONG_PROXY_LISTEN:-0.0.0.0:8000}"
       KONG_ADMIN_LISTEN: "${KONG_ADMIN_LISTEN:-0.0.0.0:8001}"
-      KONG_PROXY_ACCESS_LOG: /dev/stdoutss
+      KONG_PROXY_ACCESS_LOG: /dev/stdout
       KONG_PROXY_ERROR_LOG: /dev/stderr
       KONG_PREFIX: ${KONG_PREFIX:-/var/run/kong}
       KONG_DECLARATIVE_CONFIG: "/opt/kong/kong.yaml"
@@ -83,7 +83,7 @@ services:
       interval: 10s
       timeout: 10s
       retries: 20
-      start_period: 10s
+      start_period: 0s
     volumes:
       - ./kong_prefix:${KONG_PREFIX:-/var/run/kong}
       - ./kong_tmp:/tmp
@@ -112,7 +112,7 @@ services:
       interval: 30s
       timeout: 30s
       retries: 10
-      start_period: 10s
+      start_period: 0s
     restart: on-failure
     stdin_open: true
     tty: true
@@ -124,6 +124,9 @@ services:
       - ./kong_data:/var/lib/postgresql/data
       - ./docker-images/docker-psql:/docker-entrypoint-initdb.d
       - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple
+    networks:
+      yucca-net:
+        ipv4_address: ${POSTGRESQL_HOST}
 
   buy-oyc-ticket:
     hostname: buy-oyc-ticket
@@ -212,7 +215,7 @@ services:
   redis:
     image: redis
     ports:
-           - 6379:6379
+       - 6379:6379
     networks:
       yucca-net:
         ipv4_address: ${REDIS_HOST}

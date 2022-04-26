@@ -2,16 +2,18 @@ package org.jesperancinha.concert.buy.oyc.commons.domain
 
 import io.lettuce.core.codec.ByteArrayCodec
 import io.lettuce.core.codec.RedisCodec
+import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogType.RECEIPT
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
+import java.io.Serializable
 import java.nio.ByteBuffer
 import java.nio.charset.Charset
 
-interface BuyOycType {
-    val type: AuditLogType
-}
+abstract class BuyOycType(
+    open val type: AuditLogType = RECEIPT
+) : Serializable
 
 abstract class BuyOycCodec<T> : RedisCodec<String, T> {
 
