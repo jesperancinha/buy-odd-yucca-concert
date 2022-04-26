@@ -85,7 +85,7 @@ services:
       interval: 10s
       timeout: 10s
       retries: 20
-      start_period: 10s
+      start_period: 0s
     volumes:
       - ./kong/kong.yaml:/opt/kong/kong.yaml
       - ./kong_prefix:${KONG_PREFIX:-/var/run/kong}
@@ -116,7 +116,7 @@ services:
       interval: 30s
       timeout: 30s
       retries: 10
-      start_period: 10s
+      start_period: 0s
     restart: on-failure
     stdin_open: true
     tty: true
@@ -197,6 +197,7 @@ services:
     environment:
       REDIS_HOST: ${REDIS_HOST}
       POSTGRESQL_HOST: ${POSTGRESQL_HOST}
+      KONG_SERVICE_IP: ${KONG_SERVICE_IP}
     networks:
       yucca-net:
         ipv4_address: ${YUCCA_API_SERVICE_IP}
