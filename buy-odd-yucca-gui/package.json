@@ -60,7 +60,7 @@
        "^.+.(svg|css)$": "jest-transform-stub"
     },
     "setupFilesAfterEnv": [
-      "<rootDir>/src/setupTests.ts"
+      "<rootDir>/src/setuptests.ts"
     ]
   }
 }

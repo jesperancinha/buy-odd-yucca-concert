@@ -31,17 +31,17 @@ redis:
 
 buy.oyc.catering:
     url:
-     drink: /api/yucca-catering/drink
-     meal: /api/yucca-catering/meal
+     drink: /api/yucca-catering/api/drink
+     meal: /api/yucca-catering/api/meal
     port: 8000
     host: localhost
 
 buy.oyc.concert:
-    url: /api/yucca-concert
+    url: /api/yucca-concert/api
     port: 8000
     host: localhost
 
 buy.oyc.parking:
-    url: /api/yucca-parking
+    url: /api/yucca-parking/api
     port: 8000
     host: localhost
