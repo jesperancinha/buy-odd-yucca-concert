@@ -52,8 +52,5 @@
     "jest-transform-stub": "^2.0.0",
     "react-scripts": "5.0.1",
     "snyk": "^1.912.0"
-  },
-  "jest": {
-    "testEnvironment": "jsdom"
   }
 }
