@@ -43,6 +43,7 @@ class ChainTest @Inject constructor(
     fun `setup project`() = runTest {
         receiptRepository.deleteAll()
         auditLogRepository.deleteAll()
+        ticketRepository.deleteAll()
     }
 
     @Test
@@ -62,6 +63,7 @@ class ChainTest @Inject constructor(
         withContext(Dispatchers.IO) {
             receiptRepository.findAll().toList().shouldHaveSize(1)
             auditLogRepository.findAll().toList().shouldHaveSize(0)
+            ticketRepository.findAll().toList().shouldHaveSize(0)
         }
     }
 

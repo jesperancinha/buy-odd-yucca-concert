@@ -157,7 +157,7 @@ class TicketTest @Inject constructor(
         awaitFirstTicketDto.reference shouldBe reference
 
         withContext(Dispatchers.IO) {
-            sleep(1000)
+            sleep(2000)
         }
         val allAudits = auditLogRepository.findAll().toList()
         allAudits.shouldHaveSize(4)

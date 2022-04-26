@@ -32,4 +32,4 @@ redis:
 buy.oyc.ticket:
     url: /api/yucca-ticket
     port: 8000
-    host: localhost
+    host: ${KONG_SERVICE_IP}

@@ -27,7 +27,7 @@ inline fun <reified T : BuyOycType> Rx3StreamingHttpClient.sendObject(
     auditLogRepository: AuditLogRepository
 ): Single<ResponseDto> {
     val retrieve =
-        jsonStream(HttpRequest.POST(url, buyOycType).header(ACCEPT, APPLICATION_JSON), ResponseDto::class.java)
+        retrieve(HttpRequest.POST(url, buyOycType).header(ACCEPT, APPLICATION_JSON), ResponseDto::class.java)
     retrieve.doOnError {
         logger.error("ERROR", it)
     }.subscribe()

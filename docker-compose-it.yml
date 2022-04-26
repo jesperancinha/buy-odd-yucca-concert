@@ -189,6 +189,7 @@ services:
     environment:
       REDIS_HOST: ${REDIS_HOST}
       POSTGRESQL_HOST: ${POSTGRESQL_HOST}
+      KONG_SERVICE_IP: ${KONG_SERVICE_IP}
     networks:
       yucca-net:
         ipv4_address: ${YUCCA_API_SERVICE_IP}
