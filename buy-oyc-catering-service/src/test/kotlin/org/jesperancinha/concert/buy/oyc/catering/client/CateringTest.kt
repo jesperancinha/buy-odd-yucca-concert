@@ -95,7 +95,7 @@ class CateringTest @Inject constructor(
         addDrink.subscribe()
 
         withContext(Dispatchers.IO) {
-            sleep(2000)
+            sleep(5000)
         }
 
         drinkReservationRepository.findAll().toList().shouldHaveSize(1)
