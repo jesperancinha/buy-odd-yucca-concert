@@ -8,6 +8,7 @@ import org.testcontainers.containers.DockerComposeContainer
 import org.testcontainers.containers.wait.strategy.Wait.defaultWaitStrategy
 import java.io.File
 import java.time.Duration
+import java.time.Duration.ofMinutes
 
 
 class DockerCompose(files: List<File>) : DockerComposeContainer<DockerCompose>(files)
@@ -26,7 +27,7 @@ abstract class AbstractContainersTest {
         val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
             .withExposedService(
                 "db_1", 5432, defaultWaitStrategy()
-                    .withStartupTimeout(Duration.ofMinutes(2))
+                    .withStartupTimeout(ofMinutes(2))
             )
             .withExposedService("redis_1", 6379, defaultWaitStrategy())
             .withExposedService("kong_1", 8000, defaultWaitStrategy())
@@ -55,9 +56,8 @@ class CustomContextBuilder : DefaultApplicationContextBuilder() {
     init {
         eagerInitSingletons(true)
         val serviceHost = dockerCompose.getServiceHost("db_1", 5432)
-        val servicePort = dockerCompose.getServicePort("db_1", 5432)
         val props = mapOf(
-            "r2dbc.datasources.default.url" to "r2dbc:postgresql://kong@$serviceHost:$servicePort/yucca?currentSchema=ticket"
+            "r2dbc.datasources.default.url" to "r2dbc:postgresql://kong@$serviceHost:5432/yucca?currentSchema=ticket"
         )
         logger.info("Database Host configuration is $props")
         properties(props)
