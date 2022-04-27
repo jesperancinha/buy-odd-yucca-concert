@@ -139,6 +139,7 @@ make build-integration
 
 ## 6. Related Blog Posts
 
+- [Making Regression/Chain tests in Micronaut](https://www.buymeacoffee.com/jesperancinha/coroutines-kotest-engine-brawl)
 - [Pub-sub Redis in Micronaut](https://www.buymeacoffee.com/jesperancinha/pub-sub-redis-micronaut)
 - [Micronaut - Getting the basics](https://www.buymeacoffee.com/jesperancinha/micronaut-getting-basics)
 - [Redis Cache - A String story](https://www.buymeacoffee.com/jesperancinha/redis-cache-a-string-story)
