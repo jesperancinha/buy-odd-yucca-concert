@@ -42,10 +42,6 @@ abstract class AbstractContainersTest {
             .also {
                 it.start()
             }
-            .also {
-                val serviceHost = it.getServiceHost("db_1", 5432)
-                logger.info("Preconfigured service host is $serviceHost")
-            }
 
         @AfterAll
         fun tearDown() {
