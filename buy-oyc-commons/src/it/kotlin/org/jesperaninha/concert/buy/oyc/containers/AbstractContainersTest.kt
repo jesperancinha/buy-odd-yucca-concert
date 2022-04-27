@@ -5,9 +5,10 @@ import org.jesperaninha.concert.buy.oyc.containers.AbstractContainersTest.Compan
 import org.junit.jupiter.api.AfterAll
 import org.slf4j.LoggerFactory
 import org.testcontainers.containers.DockerComposeContainer
+import org.testcontainers.containers.wait.strategy.Wait
 import org.testcontainers.containers.wait.strategy.Wait.defaultWaitStrategy
+import org.testcontainers.containers.wait.strategy.Wait.forHealthcheck
 import java.io.File
-import java.lang.Thread.sleep
 import java.time.Duration.ofMinutes
 
 
@@ -26,12 +27,13 @@ abstract class AbstractContainersTest {
         @JvmStatic
         val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
             .withExposedService(
-                "db_1", 5432, defaultWaitStrategy()
+                "db_1", 5432, forHealthcheck()
                     .withStartupTimeout(ofMinutes(5))
             )
             .withExposedService("redis_1", 6379, defaultWaitStrategy())
-            .withExposedService("kong_1", 8000, defaultWaitStrategy()
-                .withStartupTimeout(ofMinutes(2))
+            .withExposedService(
+                "kong_1", 8000, defaultWaitStrategy()
+                    .withStartupTimeout(ofMinutes(2))
             )
             .withExposedService("buy-oyc-ticket_1", 8084, defaultWaitStrategy())
             .withExposedService("buy-oyc-concert_1", 8085, defaultWaitStrategy())
