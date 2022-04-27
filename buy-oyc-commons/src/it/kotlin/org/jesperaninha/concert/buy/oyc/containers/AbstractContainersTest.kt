@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory
 import org.testcontainers.containers.DockerComposeContainer
 import org.testcontainers.containers.wait.strategy.Wait.defaultWaitStrategy
 import java.io.File
+import java.time.Duration
 
 
 class DockerCompose(files: List<File>) : DockerComposeContainer<DockerCompose>(files)
@@ -23,7 +24,10 @@ abstract class AbstractContainersTest {
 
         @JvmStatic
         val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
-            .withExposedService("db_1", 5432, defaultWaitStrategy())
+            .withExposedService(
+                "db_1", 5432, defaultWaitStrategy()
+                    .withStartupTimeout(Duration.ofMinutes(2))
+            )
             .withExposedService("redis_1", 6379, defaultWaitStrategy())
             .withExposedService("kong_1", 8000, defaultWaitStrategy())
             .withExposedService("buy-oyc-ticket_1", 8084, defaultWaitStrategy())
@@ -41,7 +45,7 @@ abstract class AbstractContainersTest {
             }
 
         @AfterAll
-        fun tearDown(){
+        fun tearDown() {
             dockerCompose.stop()
         }
     }
