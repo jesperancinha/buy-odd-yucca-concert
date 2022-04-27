@@ -39,13 +39,6 @@ abstract class AbstractContainersTest {
             .withExposedService("buy-oyc-catering_1", 8087, defaultWaitStrategy())
             .withExposedService("buy-oyc-api_1", 8088, defaultWaitStrategy())
             .withLocalCompose(true)
-            .also {
-                it.start()
-            }
-            .also {
-                val serviceHost = it.getServiceHost("db_1", 5432)
-                logger.info("Preconfigured service host is $serviceHost")
-            }
 
         @AfterAll
         fun tearDown() {
@@ -57,6 +50,14 @@ abstract class AbstractContainersTest {
 class CustomContextBuilder : DefaultApplicationContextBuilder() {
     init {
         eagerInitSingletons(true)
+        dockerCompose
+            .also {
+                it.start()
+            }
+            .also {
+                val serviceHost = it.getServiceHost("db_1", 5432)
+                logger.info("Preconfigured service host is $serviceHost")
+            }
         val containerByServiceName = dockerCompose.getContainerByServiceName("db_1")
         val containerState = containerByServiceName.get()
         val servicePort = containerState.firstMappedPort
