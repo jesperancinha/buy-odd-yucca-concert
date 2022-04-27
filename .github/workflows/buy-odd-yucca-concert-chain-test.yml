@@ -1,0 +1,25 @@
+name: buy-odd-yucca-concert-chain-test
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build-chain-regression-test:
+    runs-on: ubuntu-latest
+    steps:
+        - uses: actions/checkout@v2
+        - name: Set up JDK 17
+          uses: actions/setup-java@v2
+          with:
+            java-version: '17'
+            distribution: 'adopt'
+        - uses: actions/setup-node@v2
+          with:
+            node-version: '16'
+
+        - name: Install Jest
+          run: cd buy-odd-yucca-gui && yarn && yarn add jest --dev
+
+        - name: Integration Chain Tests
+          run: make build-integration
