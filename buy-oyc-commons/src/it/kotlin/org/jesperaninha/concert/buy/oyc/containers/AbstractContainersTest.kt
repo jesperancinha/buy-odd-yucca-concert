@@ -27,7 +27,7 @@ abstract class AbstractContainersTest {
         val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
             .withExposedService(
                 "db_1", 5432, defaultWaitStrategy()
-                    .withStartupTimeout(ofMinutes(2))
+                    .withStartupTimeout(ofMinutes(5))
             )
             .withExposedService("redis_1", 6379, defaultWaitStrategy())
             .withExposedService("kong_1", 8000, defaultWaitStrategy()
