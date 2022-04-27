@@ -1,4 +1,4 @@
-name: buy-odd-yucca-concert
+name: Build, Test, Coverage and Report
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: buy-odd-yucca-concert-chain-test
+name: Build and Chain Test
 
 on:
   push:
