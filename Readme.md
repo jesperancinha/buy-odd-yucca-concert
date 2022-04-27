@@ -8,7 +8,7 @@
 [![GitHub License](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
 
 [![CircleCI](https://circleci.com/gh/jesperancinha/buy-odd-yucca-concert/tree/master.svg?style=svg)](https://circleci.com/gh/jesperancinha/buy-odd-yucca-concert/tree/master)
-[![buy-odd-yucca-concert](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert.yml/badge.svg)](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert.yml)
+[![Build, Test, Coverage and Report](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert.yml/badge.svg)](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert.yml)
 [![Build status](https://ci.appveyor.com/api/projects/status/v9i0hi26hj0ny3u9?svg=true)](https://ci.appveyor.com/project/jesperancinha/buy-odd-yucca-concert)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/6a3c3910140f433e9092239a88b73de6)](https://www.codacy.com/gh/jesperancinha/buy-odd-yucca-concert/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/buy-odd-yucca-concert&amp;utm_campaign=Badge_Grade)
