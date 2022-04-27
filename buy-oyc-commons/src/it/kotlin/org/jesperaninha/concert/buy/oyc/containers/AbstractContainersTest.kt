@@ -50,8 +50,9 @@ class CustomContextBuilder : DefaultApplicationContextBuilder() {
     init {
         eagerInitSingletons(true)
         val serviceHost = dockerCompose.getServiceHost("db_1", 5432)
+        val servicePort = dockerCompose.getServicePort("db_1", 5432)
         val props = mapOf(
-            "r2dbc.datasources.default.url" to "r2dbc:postgresql://kong@$serviceHost:5432/yucca?currentSchema=ticket"
+            "r2dbc.datasources.default.url" to "r2dbc:postgresql://kong@$serviceHost:$servicePort/yucca?currentSchema=ticket"
         )
         logger.info("Database Host configuration is $props")
         properties(props)
