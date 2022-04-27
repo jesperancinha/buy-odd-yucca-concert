@@ -42,6 +42,10 @@ abstract class AbstractContainersTest {
             .also {
                 it.start()
             }
+            .also {
+                val serviceHost = it.getServiceHost("db_1", 5432)
+                logger.info("Preconfigured service host is $serviceHost")
+            }
 
         @AfterAll
         fun tearDown() {
@@ -52,11 +56,13 @@ abstract class AbstractContainersTest {
 
 class CustomContextBuilder : DefaultApplicationContextBuilder() {
     init {
-        sleep(5000)
         eagerInitSingletons(true)
-        val serviceHost = dockerCompose.getServiceHost("db_1", 5432)
+        val containerByServiceName = dockerCompose.getContainerByServiceName("db_1")
+        val containerState = containerByServiceName.get()
+        val servicePort = containerState.firstMappedPort
+        val serviceHost = containerState.host
         val props = mapOf(
-            "r2dbc.datasources.default.url" to "r2dbc:postgresql://kong@$serviceHost:5432/yucca?currentSchema=ticket"
+            "r2dbc.datasources.default.url" to "r2dbc:postgresql://kong@$serviceHost:$servicePort/yucca?currentSchema=ticket"
         )
         logger.info("Database Host configuration is $props")
         properties(props)
