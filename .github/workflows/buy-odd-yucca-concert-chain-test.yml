@@ -19,7 +19,7 @@ jobs:
             node-version: '16'
 
         - name: Install Jest
-          run: cd buy-odd-yucca-gui && yarn && yarn add jest --dev
+          run: cd buy-odd-yucca-gui && yarn
 
         - name: Integration Chain Tests
           run: make build-integration
