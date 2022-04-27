@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory
 import org.testcontainers.containers.DockerComposeContainer
 import org.testcontainers.containers.wait.strategy.Wait.defaultWaitStrategy
 import java.io.File
-import java.time.Duration
+import java.lang.Thread.sleep
 import java.time.Duration.ofMinutes
 
 
@@ -30,7 +30,12 @@ abstract class AbstractContainersTest {
                     .withStartupTimeout(ofMinutes(2))
             )
             .withExposedService("redis_1", 6379, defaultWaitStrategy())
-            .withExposedService("kong_1", 8000, defaultWaitStrategy())
+            .withExposedService("kong_1", 8000, defaultWaitStrategy()
+                .withStartupTimeout(ofMinutes(2))
+            )
+            .withExposedService("kong_1", 8001, defaultWaitStrategy()
+                .withStartupTimeout(ofMinutes(2))
+            )
             .withExposedService("buy-oyc-ticket_1", 8084, defaultWaitStrategy())
             .withExposedService("buy-oyc-concert_1", 8085, defaultWaitStrategy())
             .withExposedService("buy-oyc-parking_1", 8086, defaultWaitStrategy())
@@ -54,6 +59,7 @@ abstract class AbstractContainersTest {
 
 class CustomContextBuilder : DefaultApplicationContextBuilder() {
     init {
+        sleep(5000)
         eagerInitSingletons(true)
         val serviceHost = dockerCompose.getServiceHost("db_1", 5432)
         val props = mapOf(
