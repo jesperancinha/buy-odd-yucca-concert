@@ -24,7 +24,6 @@ abstract class AbstractContainersTest {
         @JvmStatic
         val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
             .withExposedService("redis_1", 6379, defaultWaitStrategy())
-            .withExposedService("kong_1", 8001, defaultWaitStrategy())
             .withExposedService("kong_1", 8000, defaultWaitStrategy())
             .withExposedService("buy-oyc-ticket_1", 8084, defaultWaitStrategy())
             .withExposedService("buy-oyc-concert_1", 8085, defaultWaitStrategy())
