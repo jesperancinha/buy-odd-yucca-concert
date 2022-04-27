@@ -44,10 +44,10 @@ docker-clean:
 docker-clean-build-start: docker-clean b docker
 docker-delete-apps: stop
 prune-all: docker-delete
-	docker network prune
-	docker system prune --all
-	docker builder prune
-	docker system prune --all --volumes
+	docker network prune -f
+	docker system prune --all -f
+	docker builder prune -f
+	docker system prune --all --volumes -f
 stop:
 	docker-compose down --remove-orphans
 install:
@@ -67,6 +67,7 @@ audit:
 	cd buy-odd-yucca-gui && npx browserslist --update-db && npm audit fix && yarn
 build-integration: build-npm
 	mvn clean install -DskipTests
+	make prune-all
 	cd buy-oyc-commons && mvn clean install -Pintegration
 integration:
 	cd buy-oyc-commons && mvn clean install -Pintegration
