@@ -50,11 +50,20 @@ class ChainTest @Inject constructor(
 
     @Test
     fun `should run chain test and create a concert reservation`() = runTest {
+        withContext(Dispatchers.IO) {
+            sleep(5000)
+        }
 
         val (serviceHost, servicePort) = dockerCompose.getContainerByServiceName("kong_1").get().let {
             it.host to it.firstMappedPort
         }
+
         val httpClient = HttpClient.create(URL("http://$serviceHost:$servicePort"))
+
+
+        withContext(Dispatchers.IO) {
+            sleep(5000)
+        }
 
         val ticketDto = TicketDto(name = "name", address = "address", birthDate = LocalDate.now())
         val dtoSingle = httpClient.retrieve(
