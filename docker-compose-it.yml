@@ -108,7 +108,7 @@ services:
     secrets:
       - kong_postgres_password
     healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "${KONG_PG_USER:-kong}" ]
+      test: [ "CMD", "pg_isready", "-U", "${KONG_PG_USER:-postgres}" ]
       interval: 5s
       timeout: 180s
       retries: 20
@@ -116,8 +116,6 @@ services:
     restart: on-failure
     ports:
       - 5432
-    networks:
-      - yucca-net
     volumes:
       - ./kong_data:/var/lib/postgresql/data
       - ./docker-images/docker-psql:/docker-entrypoint-initdb.d
