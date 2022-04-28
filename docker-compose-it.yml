@@ -85,8 +85,8 @@ services:
       retries: 20
       start_period: 0s
     volumes:
-      - ./kong_prefix:${KONG_PREFIX:-/var/run/kong}
-      - ./kong_tmp:/tmp
+      - ./kong_prefix:${KONG_PREFIX:-/var/run/kong}:z
+      - ./kong_tmp:/tmp:z
       - ./kong:/opt/kong
       - ./kong/kong-migration.sh:/opt/kong/kong-migration.sh
     security_opt:
