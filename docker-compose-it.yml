@@ -98,7 +98,6 @@ services:
   yucca-db:
     hostname: yucca-db
     image: postgres:14.2
-    user: "postgres"
     command: postgres -c listen_addresses='*'
     environment:
       POSTGRES_DB: ${KONG_PG_DATABASE:-kong}

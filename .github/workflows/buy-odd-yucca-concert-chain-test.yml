@@ -18,7 +18,7 @@ jobs:
           with:
             node-version: '16'
 
-        - name: Install Jest
+        - name: Build Front End Application
           run: cd buy-odd-yucca-gui && yarn
 
         - name: Integration Chain Tests
