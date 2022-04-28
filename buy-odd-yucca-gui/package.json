@@ -48,7 +48,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "coverage": "^0.4.1",
     "jest": "^28.0.2",
-    "jest-environment-jsdom": "^28.0.1",
+    "jest-environment-jsdom": "^28.0.2",
     "jest-svg-transformer": "^1.0.0",
     "jest-transform-stub": "^2.0.0",
     "react-scripts": "5.0.1",
