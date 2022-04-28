@@ -121,7 +121,7 @@ services:
       - ./kong_data:/var/lib/postgresql/data
       - ./docker-images/docker-psql:/docker-entrypoint-initdb.d
       - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple
-    privileges: true
+    privileged: true
     networks:
       yucca-net:
         ipv4_address: ${POSTGRESQL_HOST}
