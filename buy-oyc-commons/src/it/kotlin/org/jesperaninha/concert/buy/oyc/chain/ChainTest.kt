@@ -80,8 +80,8 @@ class ChainTest @Inject constructor(
 
         withContext(Dispatchers.IO) {
             receiptRepository.findAll().toList().shouldHaveSize(1)
-            auditLogRepository.findAll().toList().shouldHaveAtMostSize(1)
-            ticketRepository.findAll().toList().shouldHaveAtMostSize(1)
+            auditLogRepository.findAll().toList().shouldHaveSize(1)
+            ticketRepository.findAll().toList().shouldHaveSize(1)
         }
     }
 
