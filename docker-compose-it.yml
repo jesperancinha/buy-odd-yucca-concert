@@ -106,6 +106,7 @@ services:
       POSTGRES_USER: ${KONG_PG_USER:-kong}
       POSTGRES_PASSWORD_FILE: /run/secrets/kong_postgres_password
       POSTGRES_MULTIPLE_DATABASES: yucca
+      PGDATA: /home/postgres_data
     secrets:
       - kong_postgres_password
     healthcheck:
@@ -118,7 +119,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./kong_data:/var/lib/postgresql/data
+      - ./kong_data:/home/postgres_data
       - ./docker-images/docker-psql:/docker-entrypoint-initdb.d
       - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple
     privileged: true
