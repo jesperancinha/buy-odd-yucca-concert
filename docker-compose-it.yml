@@ -8,7 +8,6 @@ x-kong-config: &kong-env
   KONG_PG_PASSWORD_FILE: /run/secrets/kong_postgres_password
 
 volumes:
-  kong_data: { }
   kong_prefix_vol:
     driver_opts:
       type: tmpfs
@@ -106,7 +105,6 @@ services:
       POSTGRES_USER: ${KONG_PG_USER:-kong}
       POSTGRES_PASSWORD_FILE: /run/secrets/kong_postgres_password
       POSTGRES_MULTIPLE_DATABASES: yucca
-      PGDATA: /home/data/pgdata
     secrets:
       - kong_postgres_password
     healthcheck:
@@ -119,7 +117,6 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./kong_data:/home/data
       - ./docker-images/docker-psql:/docker-entrypoint-initdb.d
       - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple
     privileged: true
