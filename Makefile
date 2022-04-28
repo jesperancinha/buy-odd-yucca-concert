@@ -69,6 +69,7 @@ audit:
 #	mvn clean install
 #	cd buy-oyc-commons && mvn clean install -Pintegration
 build-integration:
+	mvn clean install -DskipTests
 	docker-compose up
 integration:
 	cd buy-oyc-commons && mvn clean install -Pintegration
