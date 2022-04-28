@@ -98,7 +98,7 @@ services:
   yucca-db:
     hostname: yucca-db
     image: postgres:14.2
-    user: "postgres"
+    user: "kong"
     command: postgres -c listen_addresses='*'
     environment:
       POSTGRES_DB: ${KONG_PG_DATABASE:-kong}
@@ -118,8 +118,8 @@ services:
       - "5432:5432"
     volumes:
       - ./kong_data:/var/lib/postgresql/data:z
-      - ./docker-images/docker-psql:/docker-entrypoint-initdb.d
-      - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple
+      - ./docker-images/docker-psql:/docker-entrypoint-initdb.d:z
+      - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple:z
     networks:
       yucca-net:
         ipv4_address: ${POSTGRESQL_HOST}
