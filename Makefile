@@ -67,6 +67,7 @@ audit:
 	cd buy-odd-yucca-gui && npx browserslist --update-db && npm audit fix && yarn
 build-integration: build-npm
 	mvn clean install
+	mkdir -p kong_prefix kong_tmp kong_data
 	docker-compose up
 	cd buy-oyc-commons && mvn clean install -Pintegration
 integration:
