@@ -50,6 +50,7 @@ services:
       KONG_PROXY_ACCESS_LOG: /dev/stdout
       KONG_PROXY_ERROR_LOG: /dev/stderr
       KONG_PREFIX: ${KONG_PREFIX:-/var/run/kong}
+      KONG_DATABASE: "off"
       KONG_DECLARATIVE_CONFIG: "/opt/kong/kong.yaml"
       KONG_ADMIN_GUI_URL: "http://0.0.0.0:8002"
       KONG_PORTAL_GUI_HOST: "0.0.0.0:8003"
@@ -80,8 +81,7 @@ services:
       retries: 20
       start_period: 0s
     volumes:
-      - ./kong/kong.yaml:/opt/kong/kong.yaml
-      - ./kong_prefix:${KONG_PREFIX:-/var/run/kong}
+      - ./kong_prefix_vol:${KONG_PREFIX:-/var/run/kong}
       - ./kong:/opt/kong
       - ./kong/kong-migration.sh:/opt/kong/kong-migration.sh
     security_opt:
