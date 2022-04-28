@@ -74,9 +74,10 @@ services:
       retries: 20
       start_period: 0s
     volumes:
-      - ./kong_prefix:${KONG_PREFIX:-/var/run/kong}:z
-      - ./kong_tmp:/tmp:z
-      - ./kong:/opt/kong:z
+      - ./kong/kong.yaml:/opt/kong/kong.yaml
+      - ./kong_prefix:${KONG_PREFIX:-/var/run/kong}
+      - ./kong_tmp:/tmp
+      - ./kong:/opt/kong
       - ./kong/kong-migration.sh:/opt/kong/kong-migration.sh
     security_opt:
       - no-new-privileges
@@ -87,7 +88,7 @@ services:
   yucca-db:
     hostname: yucca-db
     image: postgres:14.2
-    user: "${POSTGRES_UID}:${POSTGRES_GID}"
+    user: "${POSTGRES_UID}:${POSTGRES_GID}"`
     command: postgres -c listen_addresses='*'
     environment:
       POSTGRES_DB: ${KONG_PG_DATABASE:-kong}
@@ -106,9 +107,9 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./kong_data:/var/lib/postgresql/data:z
-      - ./docker-images/docker-psql:/docker-entrypoint-initdb.d:z
-      - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple:z
+      - ./kong_data:/var/lib/postgresql/data
+      - ./docker-images/docker-psql:/docker-entrypoint-initdb.d
+      - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple
     networks:
       yucca-net:
         ipv4_address: ${POSTGRESQL_HOST}
