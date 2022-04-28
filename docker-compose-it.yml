@@ -40,6 +40,11 @@ services:
     image: "${KONG_DOCKER_TAG:-kong:2.7.1}"
     depends_on:
         - yucca-db
+        - buy-oyc-api
+        - buy-oyc-ticket
+        - buy-oyc-concert
+        - buy-oyc-catering
+        - buy-oyc-parking
     user: "${KONG_USER:-kong}"
     environment:
       <<: *kong-env

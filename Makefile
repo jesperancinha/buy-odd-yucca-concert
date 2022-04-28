@@ -19,6 +19,8 @@ docker:
 	mkdir -p kong_prefix kong_tmp kong_data
 	docker-compose up -d --build --remove-orphans
 	chmod -R 777 kong_tmp
+	bash kong_wait.sh
+	cd kong && deck sync
 kong-setup:
 	cd kong && deck sync
 docker-databases: stop local

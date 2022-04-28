@@ -50,9 +50,12 @@ kong.conf
 kong_prefix_vol
 kong_tmp_vol
 kong_*
-
+s
 # Generated files
 dependency-reduced-pom.xml
 
 # Draw IO
 *.dtmp
+
+# Logs
+logs
