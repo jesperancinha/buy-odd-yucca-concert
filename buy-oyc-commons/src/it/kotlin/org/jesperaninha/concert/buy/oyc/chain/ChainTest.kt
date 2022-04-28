@@ -36,16 +36,17 @@ private const val DELAY: Long = 20
 @ExperimentalCoroutinesApi
 @MicronautTest(contextBuilder = [CustomContextBuilder::class])
 class ChainTest @Inject constructor(
-    val auditLogRepository: AuditLogRepository,
-    val receiptRepository: ReceiptRepository,
-    val ticketRepository: TicketRepository,
-    val concertDayRepository: ConcertDayRepository,
-    val concertDayReservationRepository: ConcertDayReservationRepository,
-    val parkingReservationRepository: ParkingReservationRepository,
-    val drinkRepository: DrinkRepository,
-    val drinkReservationRepository: DrinkReservationRepository,
-    val mealRepository: MealRepository,
-    val mealReservationRepository: MealReservationRepository,
+    private val auditLogRepository: AuditLogRepository,
+    private val receiptRepository: ReceiptRepository,
+    private val ticketRepository: TicketRepository,
+    private val concertDayRepository: ConcertDayRepository,
+    private val concertDayReservationRepository: ConcertDayReservationRepository,
+    private val parkingRepository: CarParkingRepository,
+    private val parkingReservationRepository: ParkingReservationRepository,
+    private val drinkRepository: DrinkRepository,
+    private val drinkReservationRepository: DrinkReservationRepository,
+    private val mealRepository: MealRepository,
+    private val mealReservationRepository: MealReservationRepository,
 ) : AbstractContainersTest() {
 
     @BeforeEach
@@ -55,6 +56,8 @@ class ChainTest @Inject constructor(
         ticketRepository.deleteAll()
         concertDayRepository.deleteAll()
         concertDayReservationRepository.deleteAll()
+        parkingRepository.deleteAll()
+        parkingReservationRepository.deleteAll()
         drinkRepository.deleteAll()
         drinkReservationRepository.deleteAll()
         mealRepository.deleteAll()
@@ -106,6 +109,11 @@ class ChainTest @Inject constructor(
             )
         )
 
+        val carParking = parkingRepository.save(
+            CarParking(
+                parkingNumber = 8
+            )
+        )
         val ticketDto = TicketDto(
             name = "name", address = "address", birthDate = LocalDate.now(),
             drinks = listOf(
@@ -122,6 +130,9 @@ class ChainTest @Inject constructor(
                 ConcertDayDto(
                     concertId = concertDay.id
                 )
+            ),
+            parkingReservation = ParkingReservationDto(
+                carParkingId = carParking.parkingNumber
             )
         )
         val dtoSingle = httpClient.retrieve(
@@ -143,7 +154,8 @@ class ChainTest @Inject constructor(
             drinkReservationRepository.findAll().toList().shouldHaveSize(1)
             mealReservationRepository.findAll().toList().shouldHaveSize(1)
             concertDayReservationRepository.findAll().toList().shouldHaveSize(1)
-            auditLogRepository.findAll().toList().shouldHaveAtMostSize(4)
+            parkingReservationRepository.findAll().toList().shouldHaveSize(1)
+            auditLogRepository.findAll().toList().shouldHaveAtMostSize(5)
         }
     }
 
