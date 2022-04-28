@@ -119,7 +119,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./kong_data:/var/lib/postgresql/data/pgdata
+      - ./kong_data:/var/lib/postgresql/data
       - ./docker-images/docker-psql:/docker-entrypoint-initdb.d
       - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple
     privileged: true
