@@ -68,7 +68,7 @@ audit:
 build-integration: build-npm
 	mvn clean install -DskipTests
 	mkdir -p kong_prefix kong_tmp kong_data
-	docker-compose up
+	docker-compose -f docker-compose-it.yml up
 	cd buy-oyc-commons && mvn clean install -Pintegration
 integration:
 	cd buy-oyc-commons && mvn clean install -Pintegration

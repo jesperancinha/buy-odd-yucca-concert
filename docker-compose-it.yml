@@ -7,6 +7,17 @@ x-kong-config: &kong-env
   KONG_PG_USER: ${KONG_PG_USER:-kong}
   KONG_PG_PASSWORD_FILE: /run/secrets/kong_postgres_password
 
+volumes:
+  kong_data: { }
+  kong_prefix_vol:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
+  kong_tmp_vol:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
+
 networks:
   yucca-net:
     external: false
@@ -34,7 +45,7 @@ services:
     image: "${KONG_DOCKER_TAG:-kong:2.7.1}"
     depends_on:
         - yucca-db
-    user: "${POSTGRES_UID}:${POSTGRES_GID}"`
+    user: "${KONG_USER:-kong}"
     environment:
       <<: *kong-env
       KONG_ADMIN_ACCESS_LOG: /dev/stdout
@@ -88,7 +99,7 @@ services:
   yucca-db:
     hostname: yucca-db
     image: postgres:14.2
-    user: "${POSTGRES_UID}:${POSTGRES_GID}"`
+    user: "postgres"
     command: postgres -c listen_addresses='*'
     environment:
       POSTGRES_DB: ${KONG_PG_DATABASE:-kong}
@@ -98,7 +109,7 @@ services:
     secrets:
       - kong_postgres_password
     healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "${KONG_PG_USER:-postgres}" ]
+      test: [ "CMD", "pg_isready", "-U", "${KONG_PG_USER:-kong}" ]
       interval: 5s
       timeout: 180s
       retries: 20
