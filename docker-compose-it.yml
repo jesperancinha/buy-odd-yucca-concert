@@ -34,7 +34,7 @@ services:
     image: "${KONG_DOCKER_TAG:-kong:2.7.1}"
     depends_on:
         - yucca-db
-    user: postgres
+    user: "${POSTGRES_UID}:${POSTGRES_GID}"`
     environment:
       <<: *kong-env
       KONG_ADMIN_ACCESS_LOG: /dev/stdout
