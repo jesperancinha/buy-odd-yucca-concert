@@ -7,17 +7,6 @@ x-kong-config: &kong-env
   KONG_PG_USER: ${KONG_PG_USER:-kong}
   KONG_PG_PASSWORD_FILE: /run/secrets/kong_postgres_password
 
-volumes:
-  kong_data: { }
-  kong_prefix_vol:
-    driver_opts:
-      type: tmpfs
-      device: tmpfs
-  kong_tmp_vol:
-    driver_opts:
-      type: tmpfs
-      device: tmpfs
-
 networks:
   yucca-net:
     external: false
