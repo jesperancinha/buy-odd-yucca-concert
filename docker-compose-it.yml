@@ -87,7 +87,7 @@ services:
     volumes:
       - ./kong_prefix:${KONG_PREFIX:-/var/run/kong}:z
       - ./kong_tmp:/tmp:z
-      - ./kong:/opt/kong
+      - ./kong:/opt/kong:z
       - ./kong/kong-migration.sh:/opt/kong/kong-migration.sh
     security_opt:
       - no-new-privileges
@@ -98,6 +98,7 @@ services:
   yucca-db:
     hostname: yucca-db
     image: postgres:14.2
+    user: "postgres"
     command: postgres -c listen_addresses='*'
     environment:
       POSTGRES_DB: ${KONG_PG_DATABASE:-kong}
