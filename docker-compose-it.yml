@@ -12,10 +12,6 @@ volumes:
     driver_opts:
       type: tmpfs
       device: tmpfs
-  kong_tmp_vol:
-    driver_opts:
-      type: tmpfs
-      device: tmpfs
 
 networks:
   yucca-net:
@@ -86,7 +82,6 @@ services:
     volumes:
       - ./kong/kong.yaml:/opt/kong/kong.yaml
       - ./kong_prefix:${KONG_PREFIX:-/var/run/kong}
-      - ./kong_tmp:/tmp
       - ./kong:/opt/kong
       - ./kong/kong-migration.sh:/opt/kong/kong-migration.sh
     security_opt:
