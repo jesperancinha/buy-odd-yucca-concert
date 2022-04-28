@@ -1,8 +1,6 @@
 package org.jesperancinha.concert.buy.oyc.catering.rest
 
-import io.micronaut.http.HttpResponse.status
 import io.micronaut.http.HttpStatus
-import io.micronaut.http.MutableHttpResponse
 import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Post
@@ -23,13 +21,13 @@ class CateringController @Inject constructor(
     suspend fun createMeal(@Body mealDto: @Valid MealDto?): ResponseDto =
         mealDto?.let {
             cateringService.createMeal(mealDto)
-            ResponseDto(code= HttpStatus.CREATED.code, message =  "Saved successfully !")
+            ResponseDto(code = HttpStatus.CREATED.code, message = "Saved successfully !")
         } ?: ResponseDto(code = HttpStatus.NOT_FOUND.code)
 
     @Post("drink")
     suspend fun createDrink(@Body drinkDto: @Valid DrinkDto?): ResponseDto =
         drinkDto?.let {
             cateringService.createDrink(drinkDto)
-            ResponseDto(code= HttpStatus.CREATED.code, message =  "Saved successfully !")
+            ResponseDto(code = HttpStatus.CREATED.code, message = "Saved successfully !")
         } ?: ResponseDto(code = HttpStatus.NOT_FOUND.code)
 }

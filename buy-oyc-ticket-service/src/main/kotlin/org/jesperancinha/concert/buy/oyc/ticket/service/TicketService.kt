@@ -112,36 +112,43 @@ class Listener(
     override fun message(key: String, ticketDto: TicketDto) {
         val ticketData = ticketDto.toTicketData
         CoroutineScope(Dispatchers.IO).launch {
-            ticketRepository.save(ticketData)
-        }
-
-        ticketDto.drinks.forEach {
-            httpCateringClient.sendObject(
-                it.apply { reference = ticketDto.reference },
-                cateringDrinkUrl,
-                auditLogRepository
-            )
-        }
-        ticketDto.meals.forEach {
-            httpCateringClient.sendObject(
-                it.apply { reference = ticketDto.reference },
-                cateringMealUrl,
-                auditLogRepository
-            )
-        }
-        ticketDto.concertDays.forEach {
-            httpConcertClient.sendObject(
-                it.apply { reference = ticketDto.reference },
-                concertUrl,
-                auditLogRepository
-            )
-        }
-        ticketDto.parkingReservation?.let {
-            httpParkingClient.sendObject(
-                it.apply { reference = ticketDto.reference },
-                ticketServiceHttpConfiguration.parkingUrl,
-                auditLogRepository
-            )
+            val ticketReservation = ticketRepository.save(ticketData)
+            ticketDto.drinks.forEach {
+                httpCateringClient.sendObject(
+                    it.apply {
+                        reference = ticketDto.reference
+                        ticketReservationId = ticketReservation.id
+                    },
+                    cateringDrinkUrl,
+                    auditLogRepository
+                )
+            }
+            ticketDto.meals.forEach {
+                httpCateringClient.sendObject(
+                    it.apply {
+                        reference = ticketDto.reference
+                        ticketReservationId = ticketReservation.id
+                    },
+                    cateringMealUrl,
+                    auditLogRepository
+                )
+            }
+            ticketDto.concertDays.forEach {
+                httpConcertClient.sendObject(
+                    it.apply {
+                        reference = ticketDto.reference
+                    },
+                    concertUrl,
+                    auditLogRepository
+                )
+            }
+            ticketDto.parkingReservation?.let {
+                httpParkingClient.sendObject(
+                    it.apply { reference = ticketDto.reference },
+                    ticketServiceHttpConfiguration.parkingUrl,
+                    auditLogRepository
+                )
+            }
         }
     }
 

@@ -34,14 +34,14 @@ buy.oyc.catering:
      drink: /api/yucca-catering/api/drink
      meal: /api/yucca-catering/api/meal
     port: 8000
-    host: localhost
+    host: ${KONG_SERVICE_IP}
 
 buy.oyc.concert:
     url: /api/yucca-concert/api
     port: 8000
-    host: localhost
+    host: ${KONG_SERVICE_IP}
 
 buy.oyc.parking:
     url: /api/yucca-parking/api
     port: 8000
-    host: localhost
+    host: ${KONG_SERVICE_IP}

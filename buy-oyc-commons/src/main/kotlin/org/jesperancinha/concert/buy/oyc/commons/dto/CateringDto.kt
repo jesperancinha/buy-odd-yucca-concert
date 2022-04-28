@@ -12,14 +12,14 @@ import java.util.*
 data class MealDto(
     var reference: UUID? = null,
     val mealId: UUID?,
-    val ticketReservationId: UUID?,
+    var ticketReservationId: UUID?,
     override val type: AuditLogType = MEAL
 ) : Serializable, BuyOycType()
 
 data class DrinkDto(
     var reference: UUID? = null,
     val drinkId: UUID?,
-    val ticketReservationId: UUID?,
+    var ticketReservationId: UUID? = null,
     override val type: AuditLogType = DRINK
 ) : Serializable, BuyOycType()
 
