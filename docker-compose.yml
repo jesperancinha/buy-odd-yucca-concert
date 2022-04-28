@@ -98,9 +98,9 @@ services:
       yucca-net:
         ipv4_address: ${KONG_SERVICE_IP}
 
-  db:
-    hostname: db
-    container_name: db
+  yucca-db:
+    hostname: yucca-db
+    container_name: yucca-db
     image: postgres:14.2
     user: "postgres"
     command: postgres -c listen_addresses='*'

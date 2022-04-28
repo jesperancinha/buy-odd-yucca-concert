@@ -27,7 +27,7 @@ abstract class AbstractContainersTest {
         @JvmStatic
         val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
             .withExposedService(
-                "db_1", 5432, forHealthcheck()
+                "yucca-db_1", 5432, forHealthcheck()
                     .withStartupTimeout(ofMinutes(5))
             )
             .withExposedService("redis_1", 6379, defaultWaitStrategy())
@@ -57,10 +57,10 @@ class CustomContextBuilder : DefaultApplicationContextBuilder() {
                 it.start()
             }
             .also {
-                val serviceHost = it.getServiceHost("db_1", 5432)
+                val serviceHost = it.getServiceHost("yucca-db_1", 5432)
                 logger.info("Preconfigured service host is $serviceHost")
             }
-        val containerByServiceName = dockerCompose.getContainerByServiceName("db_1")
+        val containerByServiceName = dockerCompose.getContainerByServiceName("yucca-db_1")
         val containerState = containerByServiceName.get()
         val servicePort = containerState.firstMappedPort
         val serviceHost = containerState.host
