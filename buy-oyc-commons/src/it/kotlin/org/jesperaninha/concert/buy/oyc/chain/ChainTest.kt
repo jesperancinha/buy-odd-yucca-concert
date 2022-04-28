@@ -1,5 +1,6 @@
 package org.jesperaninha.concert.buy.oyc.chain
 
+import io.kotest.matchers.collections.shouldHaveAtMostSize
 import io.kotest.matchers.collections.shouldHaveSize
 import io.micronaut.http.HttpHeaders.ACCEPT
 import io.micronaut.http.HttpRequest
@@ -16,6 +17,7 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import org.jesperancinha.concert.buy.oyc.commons.domain.*
 import org.jesperancinha.concert.buy.oyc.commons.dto.DrinkDto
+import org.jesperancinha.concert.buy.oyc.commons.dto.MealDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.ResponseDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
 import org.jesperaninha.concert.buy.oyc.containers.AbstractContainersTest
@@ -44,6 +46,7 @@ class ChainTest @Inject constructor(
     val parkingReservationRepository: ParkingReservationRepository,
     val drinkRepository: DrinkRepository,
     val drinkReservationRepository: DrinkReservationRepository,
+    val mealRepository: MealRepository,
     val mealReservationRepository: MealReservationRepository,
 ) : AbstractContainersTest() {
 
@@ -82,11 +85,24 @@ class ChainTest @Inject constructor(
             )
         )
 
+        val meal = mealRepository.save(
+            Meal(
+                boxType = BoxType.XS,
+                discount = 10,
+                price = BigDecimal.TEN
+            )
+        )
+
         val ticketDto = TicketDto(
             name = "name", address = "address", birthDate = LocalDate.now(),
             drinks = listOf(
                 DrinkDto(
                     drinkId = drink.id
+                )
+            ),
+            meals = listOf(
+                MealDto(
+                    mealId = meal.id
                 )
             )
         )
@@ -107,7 +123,8 @@ class ChainTest @Inject constructor(
             receiptRepository.findAll().toList().shouldHaveSize(1)
             ticketRepository.findAll().toList().shouldHaveSize(1)
             drinkReservationRepository.findAll().toList().shouldHaveSize(1)
-            auditLogRepository.findAll().toList().shouldHaveSize(2)
+            mealReservationRepository.findAll().toList().shouldHaveSize(1)
+            auditLogRepository.findAll().toList().shouldHaveAtMostSize(2)
         }
     }
 
