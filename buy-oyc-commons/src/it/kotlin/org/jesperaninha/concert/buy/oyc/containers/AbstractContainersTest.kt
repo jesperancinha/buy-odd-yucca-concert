@@ -5,9 +5,7 @@ import org.jesperaninha.concert.buy.oyc.containers.AbstractContainersTest.Compan
 import org.junit.jupiter.api.AfterAll
 import org.slf4j.LoggerFactory
 import org.testcontainers.containers.DockerComposeContainer
-import org.testcontainers.containers.wait.strategy.Wait
 import org.testcontainers.containers.wait.strategy.Wait.defaultWaitStrategy
-import org.testcontainers.containers.wait.strategy.Wait.forHealthcheck
 import java.io.File
 import java.time.Duration.ofMinutes
 
@@ -27,7 +25,7 @@ abstract class AbstractContainersTest {
         @JvmStatic
         val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
             .withExposedService(
-                "yucca-db_1", 5432, forHealthcheck()
+                "yucca-db_1", 5432, defaultWaitStrategy()
                     .withStartupTimeout(ofMinutes(5))
             )
             .withExposedService("redis_1", 6379, defaultWaitStrategy())
