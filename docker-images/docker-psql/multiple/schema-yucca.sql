@@ -48,7 +48,6 @@ create table if not exists ticket.concert_day
     PRIMARY KEY (id)
 );
 
-
 create table if not exists ticket.concert_day_reservation
 (
     id         UUID      NOT NULL,

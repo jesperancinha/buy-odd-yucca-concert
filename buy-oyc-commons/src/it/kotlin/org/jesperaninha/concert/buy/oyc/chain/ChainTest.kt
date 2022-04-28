@@ -16,10 +16,7 @@ import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import org.jesperancinha.concert.buy.oyc.commons.domain.*
-import org.jesperancinha.concert.buy.oyc.commons.dto.DrinkDto
-import org.jesperancinha.concert.buy.oyc.commons.dto.MealDto
-import org.jesperancinha.concert.buy.oyc.commons.dto.ResponseDto
-import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
+import org.jesperancinha.concert.buy.oyc.commons.dto.*
 import org.jesperaninha.concert.buy.oyc.containers.AbstractContainersTest
 import org.jesperaninha.concert.buy.oyc.containers.CustomContextBuilder
 import org.junit.jupiter.api.AfterAll
@@ -42,6 +39,7 @@ class ChainTest @Inject constructor(
     val auditLogRepository: AuditLogRepository,
     val receiptRepository: ReceiptRepository,
     val ticketRepository: TicketRepository,
+    val concertDayRepository: ConcertDayRepository,
     val concertDayReservationRepository: ConcertDayReservationRepository,
     val parkingReservationRepository: ParkingReservationRepository,
     val drinkRepository: DrinkRepository,
@@ -55,6 +53,12 @@ class ChainTest @Inject constructor(
         receiptRepository.deleteAll()
         auditLogRepository.deleteAll()
         ticketRepository.deleteAll()
+        concertDayRepository.deleteAll()
+        concertDayReservationRepository.deleteAll()
+        drinkRepository.deleteAll()
+        drinkReservationRepository.deleteAll()
+        mealRepository.deleteAll()
+        mealReservationRepository.deleteAll()
     }
 
     @Test
@@ -93,6 +97,15 @@ class ChainTest @Inject constructor(
             )
         )
 
+
+        val concertDay = concertDayRepository.save(
+            ConcertDay(
+                name = "Kyiv Symphony Orchestra",
+                description = "Peace concert",
+                concertDate = LocalDate.now()
+            )
+        )
+
         val ticketDto = TicketDto(
             name = "name", address = "address", birthDate = LocalDate.now(),
             drinks = listOf(
@@ -103,6 +116,11 @@ class ChainTest @Inject constructor(
             meals = listOf(
                 MealDto(
                     mealId = meal.id
+                )
+            ),
+            concertDays = listOf(
+                ConcertDayDto(
+                    concertId = concertDay.id
                 )
             )
         )
@@ -124,7 +142,8 @@ class ChainTest @Inject constructor(
             ticketRepository.findAll().toList().shouldHaveSize(1)
             drinkReservationRepository.findAll().toList().shouldHaveSize(1)
             mealReservationRepository.findAll().toList().shouldHaveSize(1)
-            auditLogRepository.findAll().toList().shouldHaveAtMostSize(3)
+            concertDayReservationRepository.findAll().toList().shouldHaveSize(1)
+            auditLogRepository.findAll().toList().shouldHaveAtMostSize(4)
         }
     }
 

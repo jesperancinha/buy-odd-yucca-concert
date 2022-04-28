@@ -5,7 +5,6 @@ import org.jesperancinha.concert.buy.oyc.commons.domain.BuyOycType
 import org.jesperancinha.concert.buy.oyc.commons.domain.ConcertDay
 import org.jesperancinha.concert.buy.oyc.commons.domain.ConcertDayReservation
 import java.io.Serializable
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
 
@@ -14,8 +13,8 @@ import java.util.*
  */
 data class ConcertDayDto(
     var reference: UUID? = null,
-    val concertId: UUID? = null,
-    val createdAt: LocalDateTime? = LocalDateTime.now(),
+    var concertId: UUID? = null,
+    val createdAt: LocalDateTime? = null,
     override val type: AuditLogType = AuditLogType.CONCERT_DAY
 ) : Serializable, BuyOycType()
 
@@ -28,6 +27,5 @@ val ConcertDayReservation.toDto: ConcertDayDto
 
 fun ConcertDayDto.toData(concertDay: ConcertDay) = ConcertDayReservation(
     reference = reference,
-    concert = concertDay,
-    createdAt = createdAt
+    concert = concertDay
 )

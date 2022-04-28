@@ -1,9 +1,7 @@
 package org.jesperancinha.concert.buy.oyc.concert.rest
 
-import io.micronaut.http.HttpResponse.status
 import io.micronaut.http.HttpStatus
 import io.micronaut.http.MediaType
-import io.micronaut.http.MutableHttpResponse
 import io.micronaut.http.annotation.Body
 import io.micronaut.http.annotation.Controller
 import io.micronaut.http.annotation.Get
@@ -24,7 +22,7 @@ class ConcertController(
     suspend fun createConcertDay(@Body concertDayDto: @Valid ConcertDayDto?): ResponseDto =
         concertDayDto?.let {
             concertDayService.createConcertDayReservation(concertDayDto)
-            ResponseDto(code= HttpStatus.CREATED.code, message =  "Saved successfully !")
+            ResponseDto(code = HttpStatus.CREATED.code, message = "Saved successfully !")
         } ?: ResponseDto(code = HttpStatus.NOT_FOUND.code)
 
     @Get(value = "/", produces = [MediaType.APPLICATION_JSON])

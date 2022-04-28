@@ -9,7 +9,7 @@ r2dbc:
     default:
       schema-generate: NONE
       dialect: POSTGRES
-      url: r2dbc:postgresql://kong@${POSTGRESQL_HOST}:5432/yucca?currentSchema=parking
+      url: r2dbc:postgresql://kong@${POSTGRESQL_HOST}:5432/yucca?currentSchema=ticket
       username: kong
       password: kong
 

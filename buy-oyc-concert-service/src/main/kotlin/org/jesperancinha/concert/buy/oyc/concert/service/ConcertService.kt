@@ -22,7 +22,7 @@ import javax.validation.Valid
 /**
  * Created by jofisaes on 20/04/2022
  */
-private const val PARKING_CHANNEL = "parkingChannel"
+private const val CONCERT_CHANNEL = "concertChannel"
 
 @DelicateCoroutinesApi
 @Singleton
@@ -35,7 +35,7 @@ class ConcertDayService(
 
     init {
         redisClient.initPubSub(
-            channelName = PARKING_CHANNEL,
+            channelName = CONCERT_CHANNEL,
             redisCodec = ConcertDayCodec(),
             redisPubSubAdapter = Listener(
                 concertDayRepository,
@@ -46,7 +46,7 @@ class ConcertDayService(
 
     suspend fun createConcertDayReservation(concertDayDto: @Valid ConcertDayDto?): Unit =
         withContext(Dispatchers.Default) {
-            pubSubCommands.publish(PARKING_CHANNEL, concertDayDto)
+            pubSubCommands.publish(CONCERT_CHANNEL, concertDayDto)
         }
 
     fun getAll(): Flow<ConcertDayDto> = concertDayReservationRepository.findAll().map { it.toDto }
