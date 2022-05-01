@@ -28,5 +28,6 @@ interface TicketReservationConcertRepository : CoroutineCrudRepository<TicketRes
 
     @Join(value = "ticketReservation", type = Join.Type.FETCH)
     @Join(value = "concertDay", type = Join.Type.FETCH)
+    @Join(value = "concertDay.concert", type = Join.Type.FETCH)
     override suspend fun findById(id: UUID): TicketReservationConcertDay
 }
