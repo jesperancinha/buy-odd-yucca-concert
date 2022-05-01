@@ -1,9 +1,6 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
-import io.micronaut.data.annotation.AutoPopulated
-import io.micronaut.data.annotation.DateCreated
-import io.micronaut.data.annotation.Id
-import io.micronaut.data.annotation.MappedEntity
+import io.micronaut.data.annotation.*
 import io.micronaut.data.model.naming.NamingStrategies.UnderScoreSeparatedLowerCase
 import io.micronaut.data.model.query.builder.sql.Dialect
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository
@@ -35,7 +32,10 @@ data class ParkingReservation(
 
 @R2dbcRepository(dialect = Dialect.POSTGRES)
 interface ParkingReservationRepository : CoroutineCrudRepository<ParkingReservation, UUID>,
-    CoroutineJpaSpecificationExecutor<ParkingReservation>
+    CoroutineJpaSpecificationExecutor<ParkingReservation> {
+    @Join(value = "carParking", type = Join.Type.FETCH)
+    override suspend fun findById(id: UUID): ParkingReservation
+}
 
 @R2dbcRepository(dialect = Dialect.POSTGRES)
 interface CarParkingRepository : CoroutineCrudRepository<CarParking, UUID>,
