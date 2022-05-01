@@ -32,7 +32,6 @@ data class ConcertDayReservation(
     @field: AutoPopulated
     var id: UUID? = null,
     val reference: UUID? = UUID.randomUUID(),
-    @field: Relation(value = Relation.Kind.ONE_TO_ONE, cascade = [Relation.Cascade.ALL])
     val concert: ConcertDay? = null,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now()
