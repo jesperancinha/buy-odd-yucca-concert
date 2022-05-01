@@ -32,7 +32,7 @@ class CateringService(
     private val pubSubMealCommands: RedisPubSubAsyncCommands<String, MealDto>,
     drinkRepository: DrinkRepository,
     mealRepository: MealRepository,
-    ticketRepository: TicketRepository,
+    ticketReservationRepository: TicketReservationRepository,
 
     ) {
 
@@ -43,7 +43,7 @@ class CateringService(
             redisPubSubAdapter = DrinkListener(
                 drinkReservationRepository,
                 drinkRepository,
-                ticketRepository
+                ticketReservationRepository
             )
         )
         redisClient.initPubSub(
@@ -52,7 +52,7 @@ class CateringService(
             redisPubSubAdapter = MealListener(
                 mealReservationRepository,
                 mealRepository,
-                ticketRepository
+                ticketReservationRepository
             )
         )
     }
@@ -83,14 +83,14 @@ class RedisBeanFactory {
 class DrinkListener(
     private val drinkReservationRepository: DrinkReservationRepository,
     private val drinkRepository: DrinkRepository,
-    private val ticketRepository: TicketRepository,
+    private val ticketReservationRepository: TicketReservationRepository,
 ) : RedisPubSubAdapter<String, DrinkDto>() {
     override fun message(key: String, drinkDto: DrinkDto) {
         CoroutineScope(Dispatchers.IO).launch {
             val drinkReservation =
                 drinkRepository.findById(drinkDto.drinkId ?: throw RuntimeException("Drink Not Sent"))?.let { drink ->
                     drinkDto.toData(
-                        ticketRepository.findById(
+                        ticketReservationRepository.findById(
                             drinkDto.ticketReservationId ?: throw RuntimeException("Ticket Not Sent")
                         ),
                         drink
@@ -105,14 +105,14 @@ class DrinkListener(
 class MealListener(
     private val mealReservationRepository: MealReservationRepository,
     private val mealRepository: MealRepository,
-    private val ticketRepository: TicketRepository,
+    private val ticketReservationRepository: TicketReservationRepository,
     ) : RedisPubSubAdapter<String, MealDto>() {
     override fun message(key: String, mealDto: MealDto) {
         CoroutineScope(Dispatchers.IO).launch {
         val mealReservation =
             mealRepository.findById(mealDto.mealId ?: throw RuntimeException("Meal Not Sent"))?.let { meal ->
                 mealDto.toData(
-                    ticketRepository.findById(
+                    ticketReservationRepository.findById(
                         mealDto.ticketReservationId ?: throw RuntimeException("Ticket Not Sent")
                     ),
                     meal

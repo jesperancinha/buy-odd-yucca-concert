@@ -23,7 +23,7 @@ import javax.transaction.Transactional
 @ExperimentalCoroutinesApi
 class ReceiptTest @Inject constructor(
     private val receiptRepository: ReceiptRepository,
-    private val ticketRepository: TicketRepository
+    private val ticketReservationRepository: TicketReservationRepository
 ) : AbstractBuyOddYuccaConcertContainerTest() {
 
     private val config = ClassicConfiguration()
@@ -45,7 +45,7 @@ class ReceiptTest @Inject constructor(
             birthDate = birthDate,
             address = "Road to nowhere"
         )
-        val ticketReservationSaved = ticketRepository.save(
+        val ticketReservationSaved = ticketReservationRepository.save(
             ticketReservation
         )
         val entity = Receipt(ticketReservation = ticketReservationSaved)

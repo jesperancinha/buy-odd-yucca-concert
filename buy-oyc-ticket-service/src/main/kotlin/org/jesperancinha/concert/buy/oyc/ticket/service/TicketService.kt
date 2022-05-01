@@ -28,7 +28,7 @@ private const val TICKET_PERSIST_CHANNEL = "ticketPersistChannel"
 @DelicateCoroutinesApi
 @Singleton
 class TicketService(
-    private val ticketRepository: TicketRepository,
+    private val ticketReservationRepository: TicketReservationRepository,
     auditLogRepository: AuditLogRepository,
     private val pubSubCommands: RedisPubSubAsyncCommands<String, TicketDto>,
     redisClient: RedisClient,
@@ -51,7 +51,7 @@ class TicketService(
                 httpConcertClient,
                 httpParkingClient,
                 httpCateringClient,
-                ticketRepository
+                ticketReservationRepository
             )
         )
     }
@@ -60,7 +60,7 @@ class TicketService(
         pubSubCommands.publish(TICKET_PERSIST_CHANNEL, ticketDto)
     }
 
-    fun getAll(): Flow<TicketReservation> = ticketRepository.findAll()
+    fun getAll(): Flow<TicketReservation> = ticketReservationRepository.findAll()
 }
 
 @Factory
@@ -107,12 +107,12 @@ class Listener(
     private val httpConcertClient: Rx3HttpClient,
     private val httpParkingClient: Rx3HttpClient,
     private val httpCateringClient: Rx3HttpClient,
-    private val ticketRepository: TicketRepository,
+    private val ticketReservationRepository: TicketReservationRepository,
 ) : RedisPubSubAdapter<String, TicketDto>(), TicketServiceHttpConfigurationInterface by ticketServiceHttpConfiguration {
     override fun message(key: String, ticketDto: TicketDto) {
         val ticketData = ticketDto.toTicketData
         CoroutineScope(Dispatchers.IO).launch {
-            val ticketReservation = ticketRepository.save(ticketData)
+            val ticketReservation = ticketReservationRepository.save(ticketData)
             ticketDto.drinks.forEach {
                 httpCateringClient.sendObject(
                     it.apply {

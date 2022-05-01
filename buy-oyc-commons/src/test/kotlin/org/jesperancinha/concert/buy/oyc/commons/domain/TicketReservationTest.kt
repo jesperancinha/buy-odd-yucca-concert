@@ -32,7 +32,7 @@ import javax.transaction.Transactional
 @MicronautTest
 @ExperimentalCoroutinesApi
 class TicketReservationTest @Inject constructor(
-    private val ticketRepository: TicketRepository,
+    private val ticketReservationRepository: TicketReservationRepository,
     private val parkingReservationRepository: ParkingReservationRepository,
     private val carParkingRepository: CarParkingRepository,
     private val concertDayReservationRepository: ConcertDayReservationRepository,
@@ -54,7 +54,7 @@ class TicketReservationTest @Inject constructor(
 
     @Test
     fun `should read an empty ticket list from repository`() = runTest {
-        ticketRepository.findAll().toList().shouldBeEmpty()
+        ticketReservationRepository.findAll().toList().shouldBeEmpty()
     }
 
     @Test
@@ -66,7 +66,7 @@ class TicketReservationTest @Inject constructor(
             birthDate = birthDate,
             address = "Road to nowhere"
         )
-        val (id, reference, name, address, birthDateResult, carParkingTicket, createdAt) = ticketRepository.save(
+        val (id, reference, name, address, birthDateResult, carParkingTicket, createdAt) = ticketReservationRepository.save(
             ticketReservation
         )
         id.shouldNotBeNull()
@@ -105,12 +105,17 @@ class TicketReservationTest @Inject constructor(
                 concertDate = LocalDate.now()
             )
         )
+
+        concertDaySaved.shouldNotBeNull()
+
         val concertDayReservation = concertDayReservationRepository.save(
             ConcertDayReservation(
                 reference = UUID.randomUUID(),
                 concert = concertDaySaved
             )
         )
+
+        concertDayReservation.shouldNotBeNull()
 
         val birthDate = LocalDate.now()
         val ticketReservation = TicketReservation(
@@ -119,11 +124,11 @@ class TicketReservationTest @Inject constructor(
             address = "Road to nowhere",
             parkingReservation = savedParkingReservation,
         )
-        val (id, reference, name, address, birthDateResult, carParkingTicketResult, createdAt) = ticketRepository.save(
+        val (id, reference, name, address, birthDateResult, carParkingTicketResult, createdAt) = ticketReservationRepository.save(
             ticketReservation
         )
         id.shouldNotBeNull()
-        val reservation = ticketRepository.findById(id)
+        val reservation = ticketReservationRepository.findById(id)
 
         concertDayReservation.shouldNotBeNull()
         reservation.shouldNotBeNull()
@@ -142,8 +147,9 @@ class TicketReservationTest @Inject constructor(
         val ticketReservationId = ticketReservationConcertDay.id
         ticketReservationId.shouldNotBeNull()
         val finalTicketReservationConcert = ticketReservationConcertRepository.update(ticketReservationConcertDay)
+        val finalTicketReservationConcertId = finalTicketReservationConcert.id
         val final2TicketReservation =
-            finalTicketReservationConcert.id?.let {
+            finalTicketReservationConcertId?.let {
                 ticketReservationConcertRepository.findById(it)
             }
         final2TicketReservation.shouldNotBeNull()
@@ -194,7 +200,8 @@ class TicketReservationTest @Inject constructor(
         finalMeal1.shouldNotBeNull()
         finalMeal2.shouldNotBeNull()
         reservation.shouldNotBeNull()
-        reservation.id.shouldNotBeNull()
+        val ticketReservationFinalId = reservation.id
+        ticketReservationFinalId.shouldNotBeNull()
         reservation.parkingReservation.shouldNotBeNull()
 
         id.shouldNotBeNull()
@@ -210,28 +217,29 @@ class TicketReservationTest @Inject constructor(
         carParkingOnReservation.parkingNumber shouldBe 10
 
         val newTicketReservation =
-            ticketRepository.update(
+            ticketReservationRepository.update(
                 reservation.copy(
                     createdAt = LocalDateTime.now()
                 )
             )
         val finalTicketReservation =
-            newTicketReservation.id?.let { ticketRepository.findById(it) }
+            newTicketReservation.id?.let { ticketReservationRepository.findById(it) }
         finalTicketReservation.shouldNotBeNull()
         finalTicketReservation.parkingReservation.shouldNotBeNull()
-
 
         concertDayReservation.shouldNotBeNull()
         val concertDayReservationId = concertDayReservation.id
         concertDayReservationId.shouldNotBeNull()
+        val concertDayReservationFinal = concertDayReservationRepository.findById(concertDayReservationId)
+        concertDayReservationFinal.shouldNotBeNull()
+        concertDayReservationFinal.concert.shouldNotBeNull()
 
-//        val ticketReservationConcertFinal =
-//            ticketReservationConcertRepository.findByTicketReservation(reservation).id?.let {
-//                ticketReservationConcertRepository.findById(it)
-//            }
-//        ticketReservationConcertFinal.shouldNotBeNull()
-//        ticketReservationConcertFinal.ticketReservation.shouldNotBeNull()
-//        ticketReservationConcertFinal.concertDay.shouldNotBeNull()
+        finalTicketReservationConcertId.shouldNotBeNull()
+        val ticketReservationConcertFinal =
+            ticketReservationConcertRepository.findById(finalTicketReservationConcertId)
+        ticketReservationConcertFinal.shouldNotBeNull()
+        ticketReservationConcertFinal.ticketReservation.shouldNotBeNull()
+        ticketReservationConcertFinal.concertDay.shouldNotBeNull()
     }
 
     @AfterEach

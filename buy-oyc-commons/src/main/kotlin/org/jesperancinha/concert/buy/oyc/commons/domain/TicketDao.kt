@@ -2,6 +2,7 @@ package org.jesperancinha.concert.buy.oyc.commons.domain
 
 import io.micronaut.data.annotation.*
 import io.micronaut.data.model.naming.NamingStrategies
+import io.micronaut.data.model.naming.NamingStrategies.UnderScoreSeparatedLowerCase
 import io.micronaut.data.model.query.builder.sql.Dialect.POSTGRES
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository
 import io.micronaut.data.repository.jpa.kotlin.CoroutineJpaSpecificationExecutor
@@ -13,7 +14,7 @@ import java.util.*
 /**
  * Created by jofisaes on 19/12/2021
  */
-@MappedEntity(namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
+@MappedEntity(namingStrategy = UnderScoreSeparatedLowerCase::class)
 data class TicketReservation(
     @field: Id
     @field: AutoPopulated
@@ -29,7 +30,7 @@ data class TicketReservation(
 )
 
 @R2dbcRepository(dialect = POSTGRES)
-interface TicketRepository : CoroutineCrudRepository<TicketReservation, UUID>,
+interface TicketReservationRepository : CoroutineCrudRepository<TicketReservation, UUID>,
     CoroutineJpaSpecificationExecutor<TicketReservation> {
 
     @Join(value = "parkingReservation", type = Join.Type.OUTER)

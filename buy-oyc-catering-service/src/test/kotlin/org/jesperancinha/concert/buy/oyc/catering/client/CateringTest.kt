@@ -32,7 +32,7 @@ class CateringTest @Inject constructor(
     private val drinkReservationRepository: DrinkReservationRepository,
     private val mealRepository: MealRepository,
     private val mealReservationRepository: MealReservationRepository,
-    private val ticketRepository: TicketRepository,
+    private val ticketReservationRepository: TicketReservationRepository,
     private val cateringReactiveClient: CateringReactiveClient,
 ) : AbstractBuyOddYuccaConcertContainerTest() {
 
@@ -47,7 +47,7 @@ class CateringTest @Inject constructor(
     @Test
     @Transactional
     fun `Should reserve meals and drinks`() = runTest {
-        val (idTicket, reference, _, _, _, _, _) = ticketRepository.save(
+        val (idTicket, reference, _, _, _, _, _) = ticketReservationRepository.save(
             TicketReservation(
                 reference = UUID.randomUUID(),
                 name = "name",

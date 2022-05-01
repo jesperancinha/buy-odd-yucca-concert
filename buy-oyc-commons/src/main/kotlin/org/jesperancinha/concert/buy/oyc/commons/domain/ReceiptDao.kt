@@ -4,6 +4,7 @@ import io.micronaut.data.annotation.*
 import io.micronaut.data.annotation.Relation.Cascade.PERSIST
 import io.micronaut.data.annotation.Relation.Kind.ONE_TO_ONE
 import io.micronaut.data.model.naming.NamingStrategies
+import io.micronaut.data.model.naming.NamingStrategies.UnderScoreSeparatedLowerCase
 import io.micronaut.data.model.query.builder.sql.Dialect
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository
 import io.micronaut.data.repository.jpa.kotlin.CoroutineJpaSpecificationExecutor
@@ -14,7 +15,7 @@ import java.util.*
 /**
  * Created by jofisaes on 30/03/2022
  */
-@MappedEntity(value = "receipt", namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
+@MappedEntity(value = "receipt", namingStrategy = UnderScoreSeparatedLowerCase::class)
 data class Receipt(
     @field: Id
     @field: AutoPopulated

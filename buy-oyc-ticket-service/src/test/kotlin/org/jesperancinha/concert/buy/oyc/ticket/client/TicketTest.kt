@@ -22,7 +22,7 @@ import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogRepository
 import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogType.*
-import org.jesperancinha.concert.buy.oyc.commons.domain.TicketRepository
+import org.jesperancinha.concert.buy.oyc.commons.domain.TicketReservationRepository
 import org.jesperancinha.concert.buy.oyc.commons.dto.*
 import org.jesperancinha.concert.buy.oyc.containers.AbstractBuyOddYuccaConcertContainerTest
 import org.junit.jupiter.api.AfterAll
@@ -50,7 +50,7 @@ private const val API_YUCCA_PARKING = "/api/yucca-parking"
 @Property(name = "buy.oyc.concert.port", value = "7998")
 @Property(name = "buy.oyc.parking.port", value = "7997")
 class TicketTest @Inject constructor(
-    private val ticketRepository: TicketRepository,
+    private val ticketReservationRepository: TicketReservationRepository,
     private val ticketReactiveClient: TicketReactiveClient,
     private val auditLogRepository: AuditLogRepository
 ) : AbstractBuyOddYuccaConcertContainerTest() {
@@ -61,7 +61,7 @@ class TicketTest @Inject constructor(
 
     @BeforeEach
     fun setUpEach() = runTest {
-        ticketRepository.deleteAll()
+        ticketReservationRepository.deleteAll()
         wireMockServerCatering.stubResponse(
             API_YUCCA_CATERING_DRINK, jacksonMapper
                 .writeValueAsString(

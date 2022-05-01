@@ -38,7 +38,7 @@ private const val DELAY: Long = 20
 class ChainTest @Inject constructor(
     private val auditLogRepository: AuditLogRepository,
     private val receiptRepository: ReceiptRepository,
-    private val ticketRepository: TicketRepository,
+    private val ticketReservationRepository: TicketReservationRepository,
     private val concertDayRepository: ConcertDayRepository,
     private val concertDayReservationRepository: ConcertDayReservationRepository,
     private val parkingRepository: CarParkingRepository,
@@ -53,7 +53,7 @@ class ChainTest @Inject constructor(
     fun `setup project`() = runTest {
         receiptRepository.deleteAll()
         auditLogRepository.deleteAll()
-        ticketRepository.deleteAll()
+        ticketReservationRepository.deleteAll()
         concertDayRepository.deleteAll()
         concertDayReservationRepository.deleteAll()
         parkingRepository.deleteAll()
@@ -150,7 +150,7 @@ class ChainTest @Inject constructor(
         withContext(Dispatchers.IO) {
             delay(ofSeconds(DELAY).toMillis())
             receiptRepository.findAll().toList().shouldHaveSize(1)
-            ticketRepository.findAll().toList().shouldHaveSize(1)
+            ticketReservationRepository.findAll().toList().shouldHaveSize(1)
             drinkReservationRepository.findAll().toList().shouldHaveSize(1)
             mealReservationRepository.findAll().toList().shouldHaveSize(1)
             concertDayReservationRepository.findAll().toList().shouldHaveSize(1)
