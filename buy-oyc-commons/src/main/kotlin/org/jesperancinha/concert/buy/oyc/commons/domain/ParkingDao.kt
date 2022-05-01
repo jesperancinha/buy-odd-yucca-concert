@@ -1,7 +1,9 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
-import io.micronaut.data.annotation.*
-import io.micronaut.data.annotation.Relation.Kind.ONE_TO_ONE
+import io.micronaut.data.annotation.AutoPopulated
+import io.micronaut.data.annotation.DateCreated
+import io.micronaut.data.annotation.Id
+import io.micronaut.data.annotation.MappedEntity
 import io.micronaut.data.model.naming.NamingStrategies.UnderScoreSeparatedLowerCase
 import io.micronaut.data.model.query.builder.sql.Dialect
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository
@@ -26,7 +28,6 @@ data class ParkingReservation(
     @field: AutoPopulated
     var id: UUID? = null,
     val reference: UUID? = UUID.randomUUID(),
-    @field: Relation(value = ONE_TO_ONE, cascade = [Relation.Cascade.PERSIST])
     var carParking: CarParking? = null,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now()

@@ -7,6 +7,7 @@ import io.micronaut.data.model.query.builder.sql.Dialect
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository
 import io.micronaut.data.repository.jpa.kotlin.CoroutineJpaSpecificationExecutor
 import io.micronaut.data.repository.kotlin.CoroutineCrudRepository
+import kotlinx.coroutines.flow.Flow
 import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
@@ -33,7 +34,6 @@ data class ConcertDayReservation(
     @field: AutoPopulated
     var id: UUID? = null,
     val reference: UUID? = UUID.randomUUID(),
-    @field: Relation(value = Relation.Kind.ONE_TO_ONE, cascade = [Relation.Cascade.ALL])
     val concert: ConcertDay,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now()
@@ -48,4 +48,7 @@ interface ConcertDayReservationRepository : CoroutineCrudRepository<ConcertDayRe
     CoroutineJpaSpecificationExecutor<ConcertDayReservation> {
     @Join(value = "concert", type = Join.Type.FETCH)
     override suspend fun findById(id: UUID): ConcertDayReservation
+
+    @Join(value = "concert", type = Join.Type.FETCH)
+    override fun findAll(): Flow<ConcertDayReservation>
 }

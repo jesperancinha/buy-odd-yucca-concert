@@ -21,7 +21,7 @@ data class ConcertDayDto(
 val ConcertDayReservation.toDto: ConcertDayDto
     get() = ConcertDayDto(
         reference = reference,
-        concertId = concert?.id,
+        concertId = concert.id,
         createdAt = createdAt
     )
 

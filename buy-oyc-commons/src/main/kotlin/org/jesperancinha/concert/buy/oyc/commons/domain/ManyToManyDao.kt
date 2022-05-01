@@ -16,9 +16,7 @@ data class TicketReservationConcertDay(
     @field: Id
     @field: AutoPopulated
     var id: UUID? = null,
-    @field: Relation(value = Relation.Kind.ONE_TO_ONE, cascade = [Relation.Cascade.ALL])
     val ticketReservation: TicketReservation,
-    @field: Relation(value = Relation.Kind.ONE_TO_ONE, cascade = [Relation.Cascade.ALL])
     val concertDay: ConcertDayReservation
 )
 

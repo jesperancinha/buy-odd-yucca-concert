@@ -1,8 +1,9 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
-import io.micronaut.data.annotation.*
-import io.micronaut.data.annotation.Relation.Cascade.PERSIST
-import io.micronaut.data.annotation.Relation.Kind.ONE_TO_ONE
+import io.micronaut.data.annotation.AutoPopulated
+import io.micronaut.data.annotation.DateCreated
+import io.micronaut.data.annotation.Id
+import io.micronaut.data.annotation.MappedEntity
 import io.micronaut.data.model.naming.NamingStrategies
 import io.micronaut.data.model.query.builder.sql.Dialect
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository

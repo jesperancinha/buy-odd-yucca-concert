@@ -1,7 +1,6 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
 import io.micronaut.data.annotation.*
-import io.micronaut.data.model.naming.NamingStrategies
 import io.micronaut.data.model.naming.NamingStrategies.UnderScoreSeparatedLowerCase
 import io.micronaut.data.model.query.builder.sql.Dialect.POSTGRES
 import io.micronaut.data.r2dbc.annotation.R2dbcRepository
@@ -23,7 +22,6 @@ data class TicketReservation(
     val name: String,
     val address: String,
     val birthDate: LocalDate,
-    @field: Relation(value = Relation.Kind.ONE_TO_ONE, cascade = [Relation.Cascade.ALL])
     val parkingReservation: ParkingReservation? = null,
     @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now(),

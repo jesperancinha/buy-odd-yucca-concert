@@ -30,7 +30,7 @@ import javax.transaction.Transactional
  */
 @ExperimentalCoroutinesApi
 @MicronautTest
-class ReceiptTest @Inject constructor(
+class ConcertTest @Inject constructor(
     private val concertRepository: ConcertDayRepository,
     private val concertDayReservationRepository: ConcertDayReservationRepository,
     private val concertReactiveClient: ConcertReactiveClient,

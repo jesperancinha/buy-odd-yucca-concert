@@ -1,6 +1,7 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
 import io.kotest.matchers.collections.shouldBeEmpty
+import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.comparables.shouldBeEqualComparingTo
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields
 import io.kotest.matchers.nulls.shouldBeNull
@@ -233,6 +234,7 @@ class TicketReservationTest @Inject constructor(
         val concertDayReservationFinal = concertDayReservationRepository.findById(concertDayReservationId)
         concertDayReservationFinal.shouldNotBeNull()
         concertDayReservationFinal.concert.shouldNotBeNull()
+        concertDayReservationRepository.findAll().toList().shouldHaveSize(1)
 
         finalTicketReservationConcertId.shouldNotBeNull()
         val ticketReservationConcertFinal =
