@@ -62,3 +62,6 @@ logs
 
 # Accept files
 !kong_wait.sh
+
+# Draw.IO
+*.bkp
