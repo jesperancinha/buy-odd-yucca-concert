@@ -168,11 +168,18 @@ sequenceDiagram
         API -->> Redis: Publishes TicketDto Payload
         API -->> Customer Service Client: Response with reservation number
         Redis --x API: Listens to TicketDto
-        API -->> Ticket API: Posts ticket dto payload
+        API -->> Ticket: Posts ticket dto payload
         Ticket API -->> Redis: Publish Ticket Dto to Redis
-        Ticket API -->> API: ACK to API
-        Redis ->> Ticket API: Listen to Ticket Dto
-       
+        Ticket API --x API: Async ACK
+        Redis --x Ticket: Listen to Ticket Dto
+        Ticket -->> Concert: Post Concert Fragment
+        Concert --x Ticket: Async ACK
+        Ticket --> Catering: Send Drink(s)
+        Catering --x Ticket: Drink Async ACK
+        Ticket --> Catering: Send Meal(s)
+        Catering --x Ticket: Meal Async ACK
+        Ticket --> Parking: Send Parking Reservation
+        Parking --x Ticket: Parking Reservation ACK
     end
 ```
 
