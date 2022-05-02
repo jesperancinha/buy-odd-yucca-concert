@@ -155,10 +155,10 @@ sequenceDiagram
     participant Customer Service Client
     participant API
     participant Ticket API
-    participant Redis
     participant Concert API
     participant Catering API
     participant Parking API
+    participant Redis
     participant Database
     
     rect rgb(1,40,25)
@@ -173,13 +173,17 @@ sequenceDiagram
         Ticket API --x API: Async ACK
         Redis --x Ticket API: Listen to Ticket Dto
         Ticket API -->> Concert API: Post Concert Fragment
+        Concert API --x Redis: Publish Concert
         Concert API --x Ticket API: Async ACK
         Ticket API -->> Catering API: Send Drink(s)
+        Catering API --x Redis: Publish Drink(s)
         Catering API --x Ticket API: Drink Async ACK
         Ticket API -->> Catering API: Send Meal(s)
+        Catering API --x Redis: Publish Meal(s)
         Catering API --x Ticket API: Meal Async ACK
         Ticket API -->> Parking API: Send Parking Reservation
         Parking API --x Ticket API: Parking Reservation ACK
+        Parking API --x Redis: Publish Parking Reservation
         Redis --x Concert API: Listen to concert data
         Concert API --x Database: Persist concert data
         Redis --x Catering API: Listen to drink data
