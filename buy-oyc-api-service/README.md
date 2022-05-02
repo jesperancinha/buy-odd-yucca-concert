@@ -3,7 +3,7 @@
 Buy Odd Yucca Concert Gateway API service
 ---
 
-## [Sequence diagrame](https://mermaid-js.github.io/mermaid)
+## [Sequence diagram](https://mermaid-js.github.io/mermaid)
 
 ```mermaid
 sequenceDiagram
