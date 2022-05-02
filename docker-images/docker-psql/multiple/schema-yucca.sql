@@ -30,7 +30,7 @@ create table if not exists ticket.parking_reservation
 (
     id             UUID      NOT NULL,
     reference      UUID      NOT NULL UNIQUE,
-    car_parking_id UUID      NULL,
+    car_parking_id UUID,
     created_at     TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id),
     CONSTRAINT fk_car_parking

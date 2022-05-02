@@ -24,19 +24,19 @@ create table if not exists ticket.car_parking
     parking_number bigint    NOT NULL,
     created_at     TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id)
-    );
+);
 
 create table if not exists ticket.parking_reservation
 (
     id             UUID      NOT NULL,
     reference      UUID      NOT NULL UNIQUE,
-    car_parking_id UUID      NULL,
+    car_parking_id UUID,
     created_at     TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id),
     CONSTRAINT fk_car_parking
-    FOREIGN KEY (car_parking_id)
-    REFERENCES ticket.car_parking (id)
-    );
+        FOREIGN KEY (car_parking_id)
+            REFERENCES ticket.car_parking (id)
+);
 
 create table if not exists ticket.concert_day
 (
@@ -46,7 +46,7 @@ create table if not exists ticket.concert_day
     concert_date TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
     created_at   TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id)
-    );
+);
 
 create table if not exists ticket.concert_day_reservation
 (
@@ -56,9 +56,9 @@ create table if not exists ticket.concert_day_reservation
     created_at TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id),
     CONSTRAINT fk_concert
-    FOREIGN KEY (concert_id)
-    REFERENCES ticket.concert_day (id)
-    );
+        FOREIGN KEY (concert_id)
+            REFERENCES ticket.concert_day (id)
+);
 
 create table if not exists ticket.ticket_reservation
 (
@@ -71,9 +71,9 @@ create table if not exists ticket.ticket_reservation
     created_at             TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id),
     CONSTRAINT fk_parking_reservation
-    FOREIGN KEY (parking_reservation_id)
-    REFERENCES ticket.parking_reservation (id)
-    );
+        FOREIGN KEY (parking_reservation_id)
+            REFERENCES ticket.parking_reservation (id)
+);
 
 create table if not exists ticket.drink
 (
@@ -86,7 +86,7 @@ create table if not exists ticket.drink
     price      numeric,
     created_at TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id)
-    );
+);
 
 create table if not exists ticket.meal
 (
@@ -98,7 +98,7 @@ create table if not exists ticket.meal
     processed  boolean,
     created_at TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id)
-    );
+);
 
 create table if not exists ticket.drink_reservation
 (
@@ -109,12 +109,12 @@ create table if not exists ticket.drink_reservation
     created_at            TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id),
     CONSTRAINT fk_drink_ticket_reservation
-    FOREIGN KEY (ticket_reservation_id)
-    REFERENCES ticket.ticket_reservation (id),
+        FOREIGN KEY (ticket_reservation_id)
+            REFERENCES ticket.ticket_reservation (id),
     CONSTRAINT fk_drink_reservation
-    FOREIGN KEY (drink_id)
-    REFERENCES ticket.drink (id)
-    );
+        FOREIGN KEY (drink_id)
+            REFERENCES ticket.drink (id)
+);
 
 create table if not exists ticket.meal_reservation
 (
@@ -126,12 +126,12 @@ create table if not exists ticket.meal_reservation
     created_at            TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id),
     CONSTRAINT fk_meal_ticket_reservation
-    FOREIGN KEY (ticket_reservation_id)
-    REFERENCES ticket.ticket_reservation (id),
+        FOREIGN KEY (ticket_reservation_id)
+            REFERENCES ticket.ticket_reservation (id),
     CONSTRAINT fk_meal_reservation
-    FOREIGN KEY (meal_id)
-    REFERENCES ticket.meal (id)
-    );
+        FOREIGN KEY (meal_id)
+            REFERENCES ticket.meal (id)
+);
 
 create table ticket.receipt
 (

@@ -1,4 +1,3 @@
-
 create table ticket.car_parking
 (
     id             UUID,
@@ -10,7 +9,7 @@ create table ticket.parking_reservation
 (
     id             UUID      NOT NULL,
     reference      UUID      NOT NULL UNIQUE,
-    car_parking_id UUID      NULL,
+    car_parking_id UUID,
     created_at     TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP
 );
 
