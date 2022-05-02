@@ -180,10 +180,14 @@ sequenceDiagram
         Catering API --x Ticket API: Meal Async ACK
         Ticket API -->> Parking API: Send Parking Reservation
         Parking API --x Ticket API: Parking Reservation ACK
-        Redis --x Concert API: Persist concert data
-        Redis --x Catering API: Persist drink data
-        Redis --x Catering API: Persist meal data
-        Redis --x Parking API: Persist parking data
+        Redis --x Concert API: Listen to concert data
+        Concert API --x Database: Persist concert data
+        Redis --x Catering API: Listen to drink data
+        Catering API --x Database: Persist drinks data
+        Redis --x Catering API: Listen to meal data
+        Catering API --x Database: Persist meals data
+        Redis --x Parking API: Listen to parking data
+        Parking API --x Database: Persist parking data
     end
 ```
 
