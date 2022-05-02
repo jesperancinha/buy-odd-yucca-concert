@@ -148,9 +148,31 @@ make build-integration
 - [Kotlin Data Modelling with Micronaut](https://www.buymeacoffee.com/jesperancinha/kotlin-data-modelling-micronaut)
 - [Micronaut and Kotlin - Making round trip integration tests](https://www.buymeacoffee.com/jesperancinha/round-trip-testing-micronaut)
  
-## 7.  - References
+## 7. Sequence Diagram
 
-#### 7.1. - Online
+```mermaid
+sequenceDiagram
+    participant Customer Service Client
+    participant API
+    participant Ticket
+    participant Redis
+    participant Concert
+    participant Catering
+    participant Parking
+    
+    rect rgb(1,40,25)
+        Customer Service Client -->> API: Request Ticket Reservation (POST)
+        API -->> Customer Service Client: Response with reservation number
+        API --x Redis: Publishes TicketDto Payload
+        Redis --x API: Listens to TicketDto
+        API -->> Ticket API: Posts ticket dto payload
+        Ticket API ->> API: ACK to API
+    end
+```
+
+## 8. References
+
+#### 8.1. Online
 
 -   [What kinds of bot attacks are stopped by rate limiting?](https://www.cloudflare.com/en-gb/learning/bots/what-is-rate-limiting/)
 -   [Using Micronaut Data, JDBC, R2DBC, TestContainers, and Flyway with multiple schemas](https://www.zsiegel.com/2022/01/25/Micronaut-JDBC-R2DBC-Flyway-multiple-schemas)
@@ -181,7 +203,7 @@ make build-integration
 -   [Redhwan Nacef's Kong Tutorial On GitHub](https://github.com/redhwannacef/youtube-tutorials/tree/main/kong-gateway)
 -   [Lorem Picsum Phosots](https://picsum.photos/)
 
-#### 7.2. - Online videos
+#### 8.2. - Online videos
 
 <div align="center">
       <a title="Kong Gateway for Beginners: Adding a Service, Route and Plugins" href="https://www.youtube.com/watch?v=kGZyAEVioWg">
