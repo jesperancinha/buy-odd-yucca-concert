@@ -25,8 +25,8 @@ private const val MEAL_CHANNEL = "mealChannel"
 @DelicateCoroutinesApi
 @Singleton
 class CateringService(
-    private val drinkReservationRepository: DrinkReservationRepository,
-    private val mealReservationRepository: MealReservationRepository,
+    drinkReservationRepository: DrinkReservationRepository,
+    mealReservationRepository: MealReservationRepository,
     redisClient: RedisClient,
     private val pubSubDrinkCommands: RedisPubSubAsyncCommands<String, DrinkDto>,
     private val pubSubMealCommands: RedisPubSubAsyncCommands<String, MealDto>,
