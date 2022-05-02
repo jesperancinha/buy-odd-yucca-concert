@@ -154,11 +154,11 @@ make build-integration
 sequenceDiagram
     participant Customer Service Client
     participant API
-    participant Ticket
+    participant Ticket API
     participant Redis
-    participant Concert
-    participant Catering
-    participant Parking
+    participant Concert API
+    participant Catering API
+    participant Parking API
     participant Database
     
     rect rgb(1,40,25)
@@ -168,18 +168,22 @@ sequenceDiagram
         API -->> Redis: Publishes TicketDto Payload
         API -->> Customer Service Client: Response with reservation number
         Redis --x API: Listens to TicketDto
-        API -->> Ticket: Posts ticket dto payload
+        API -->> Ticket API: Posts ticket dto payload
         Ticket API -->> Redis: Publish Ticket Dto to Redis
         Ticket API --x API: Async ACK
-        Redis --x Ticket: Listen to Ticket Dto
-        Ticket -->> Concert: Post Concert Fragment
-        Concert --x Ticket: Async ACK
-        Ticket --> Catering: Send Drink(s)
-        Catering --x Ticket: Drink Async ACK
-        Ticket --> Catering: Send Meal(s)
-        Catering --x Ticket: Meal Async ACK
-        Ticket --> Parking: Send Parking Reservation
-        Parking --x Ticket: Parking Reservation ACK
+        Redis --x Ticket API: Listen to Ticket Dto
+        Ticket API -->> Concert API: Post Concert Fragment
+        Concert API --x Ticket API: Async ACK
+        Ticket API -->> Catering API: Send Drink(s)
+        Catering API --x Ticket API: Drink Async ACK
+        Ticket API -->> Catering API: Send Meal(s)
+        Catering API --x Ticket API: Meal Async ACK
+        Ticket API -->> Parking API: Send Parking Reservation
+        Parking API --x Ticket API: Parking Reservation ACK
+        Redis --x Concert API: Persist concert data
+        Redis --x Catering API: Persist drink data
+        Redis --x Catering API: Persist meal data
+        Redis --x Parking API: Persist parking data
     end
 ```
 
