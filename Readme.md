@@ -159,14 +159,20 @@ sequenceDiagram
     participant Concert
     participant Catering
     participant Parking
+    participant Database
     
     rect rgb(1,40,25)
         Customer Service Client -->> API: Request Ticket Reservation (POST)
+        API -->> Database: Persists Reservation
+        Database -->> API: Delivers record with Reference ID
+        API -->> Redis: Publishes TicketDto Payload
         API -->> Customer Service Client: Response with reservation number
-        API --x Redis: Publishes TicketDto Payload
         Redis --x API: Listens to TicketDto
         API -->> Ticket API: Posts ticket dto payload
-        Ticket API ->> API: ACK to API
+        Ticket API -->> Redis: Publish Ticket Dto to Redis
+        Ticket API -->> API: ACK to API
+        Redis ->> Ticket API: Listen to Ticket Dto
+       
     end
 ```
 
