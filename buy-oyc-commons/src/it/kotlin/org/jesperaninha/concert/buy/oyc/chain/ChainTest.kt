@@ -153,7 +153,7 @@ class ChainTest @Inject constructor(
             ticketReservationRepository.findAll().toList().shouldHaveSize(1)
             drinkReservationRepository.findAll().toList().shouldHaveSize(1)
             mealReservationRepository.findAll().toList().shouldHaveSize(1)
-            concertDayReservationRepository.findAll().toList().shouldHaveSize(1)
+            concertDayReservationRepository.findAll().toList().shouldHaveSize(2)
             parkingReservationRepository.findAll().toList().shouldHaveSize(1)
             auditLogRepository.findAll().toList().shouldHaveAtMostSize(5)
         }
