@@ -50,9 +50,9 @@ create table if not exists ticket.concert_day
 
 create table if not exists ticket.concert_day_reservation
 (
-    id         UUID      NOT NULL,
-    reference  UUID      NOT NULL UNIQUE,
-    concert_id UUID      NOT NULL UNIQUE,
+    id         UUID      NOT NULL UNIQUE,
+    reference  UUID      NOT NULL,
+    concert_id UUID      NOT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id),
     CONSTRAINT fk_concert
