@@ -116,6 +116,13 @@ class TicketReservationTest @Inject constructor(
             )
         )
 
+        concertDayReservationRepository.save(
+            ConcertDayReservation(
+                reference = UUID.randomUUID(),
+                concert = concertDaySaved
+            )
+        )
+
         concertDayReservation.shouldNotBeNull()
 
         val birthDate = LocalDate.now()
@@ -234,7 +241,7 @@ class TicketReservationTest @Inject constructor(
         val concertDayReservationFinal = concertDayReservationRepository.findById(concertDayReservationId)
         concertDayReservationFinal.shouldNotBeNull()
         concertDayReservationFinal.concert.shouldNotBeNull()
-        concertDayReservationRepository.findAll().toList().shouldHaveSize(1)
+        concertDayReservationRepository.findAll().toList().shouldHaveSize(2)
 
         finalTicketReservationConcertId.shouldNotBeNull()
         val ticketReservationConcertFinal =
