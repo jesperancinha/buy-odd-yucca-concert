@@ -1,5 +1,5 @@
 import requests
-from locust import HttpUser, task
+from locust import HttpUser, task, constant_throughput
 
 
 def send_payload(name, address, birth_date, concert_id, drink_id, meal_id):
@@ -37,12 +37,14 @@ def send_payload(name, address, birth_date, concert_id, drink_id, meal_id):
 
 
 class BuyOddYuccaConcert(HttpUser):
+    wait_time = constant_throughput(1)
+
     @task
     def yucca_ticket_welcome_message(self):
         send_payload(
             name="будинок",
             address="будинок Адреса",
-            birth_date="1991-08-24",
+            birth_date="1979-01-01",
             concert_id="5359A368-CA49-4027-BC25-F375E3EA2463",
             drink_id="B2A5E349-76E7-4CD6-8105-308D1BC94953",
             meal_id="59B97053-37CF-4FAF-AB50-E77CEF8E8CC8")
