@@ -16,7 +16,7 @@ no-test:
 docker:
 	docker-compose down -v
 	docker-compose rm -svf
-	mkdir -p kong_prefix kong_tmp_vol kong_data_vol
+	mkdir -p kong_prefix_vol kong_tmp_vol kong_data_vol
 	docker-compose up -d --build --remove-orphans
 	chmod -R 777 kong_tmp_vol
 	bash kong_wait.sh

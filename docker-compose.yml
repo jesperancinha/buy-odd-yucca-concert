@@ -8,7 +8,7 @@ x-kong-config: &kong-env
   KONG_PG_PASSWORD_FILE: /run/secrets/kong_postgres_password
 
 volumes:
-  kong_data: { }
+  kong_data_vol: { }
   kong_prefix_vol:
     driver_opts:
       type: tmpfs
@@ -128,7 +128,7 @@ services:
     networks:
       - yucca-net
     volumes:
-      - ./kong_data:/var/lib/postgresql/data
+      - ./kong_data_vol:/var/lib/postgresql/data
       - ./docker-images/docker-psql:/docker-entrypoint-initdb.d
       - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple
     networks:
