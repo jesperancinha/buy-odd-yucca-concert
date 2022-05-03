@@ -57,7 +57,7 @@ install:
 	nvm use --lts
 	brew tap kong/deck
 	brew install deck
-locust-welcome-start:
+locust-start:
 	cd locust/welcome && locust --host=localhost
 update-snyk:
 	npm i -g snyk
