@@ -1,6 +1,6 @@
 #!/bin/bash
 
-curl -i -X POST http://localhost:8001/services/buy-oyc-ticket-service/plugins \
+curl -i -X POST http://localhost:8001/services/buy-oyc-api-service/plugins \
     --data "name=rate-limiting"  \
     --data "config.second=1" \
     --data "config.hour=10000" \

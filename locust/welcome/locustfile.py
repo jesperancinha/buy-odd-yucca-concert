@@ -30,7 +30,10 @@ def send_payload(name, address, birth_date, concert_id, drink_id, meal_id):
     }
     r = requests.post('http://localhost:8000/api/yucca-api/api', json=payload)
     print(
-        f"Person: {name} living in {address} born on {birth_date}, just reserved concert {concert_id} with drink {drink_id} and meal {meal_id}, Status Code: {r.status_code}, Response: {r.json()}")
+        f"Person: {name} living in {address} born on {birth_date}, "
+        f"just reserved concert {concert_id} with drink {drink_id} and meal {meal_id}, "
+        f"Status Code: {r.status_code}, "
+        f"Response: {r.json()}")
 
 
 class BuyOddYuccaConcert(HttpUser):
