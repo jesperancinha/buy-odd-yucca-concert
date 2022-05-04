@@ -38,11 +38,14 @@
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/apache-maven-50.png "Maven")](https://maven.apache.org/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/postgres-50.png "PostgreSQL")](https://www.postgresql.org/)
 
+---
+
 ## 2.  -  Introduction 🌴
 
-🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧 !!! UNDER CONSTRUCTION !!! 🚧🚧🚧🚧🚧🚧🚧🚧🚧🚧 
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://itnext.io/configurable-kong-api-gateway-with-micronaut-services-in-kotlin-a-very-odd-yucca-tribute-concert-e0a978618eab)
+[Configurable Kong API Gateway with Micronaut Services in Kotlin — A very odd Yucca tribute concert](https://itnext.io/configurable-kong-api-gateway-with-micronaut-services-in-kotlin-a-very-odd-yucca-tribute-concert-e0a978618eab)
 
-## 3.  - Installing NVM
+## 3.  - Installing NVM 🌴
 
 You don't need to install NVM per se. This may only be need if you are running a non LTS version of nodejs. In that case, just run:
 
