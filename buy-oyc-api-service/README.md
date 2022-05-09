@@ -48,13 +48,13 @@ sequenceDiagram
 
 ## References
 
-- [Micronaut Tutorial: Reactive](https://piotrminkowski.com/2019/11/12/micronaut-tutorial-reactive/)
-- [Micronaut Redis](https://micronaut-projects.github.io/micronaut-redis/latest/guide/#introduction)
-- [Kotlin Symbol Processing: Early Thoughts](https://www.zacsweers.dev/kotlin-symbol-processor-early-thoughts/#:~:text=Google%20announced%20Kotlin%20Symbol%20Processing,first%20party%20tool%20for%20this.)
-- [What is CoroutineContext and how does it work?](https://kt.academy/article/cc-coroutine-context)
-- [Top 6 Queuing Systems for Backend Developers](https://geekflare.com/queuing-systems-for-backend-developers/)
-- [Getting started with Spring Data Redis with Kotlin](https://www.geekyhacker.com/2019/07/09/getting-started-with-spring-data-redis-with-kotlin/)
-- [Micronaut Tutorial: Beans and Scopes](https://piotrminkowski.com/2019/04/15/micronaut-tutorial-beans-and-scopes/)
+-   [Micronaut Tutorial: Reactive](https://piotrminkowski.com/2019/11/12/micronaut-tutorial-reactive/)
+-   [Micronaut Redis](https://micronaut-projects.github.io/micronaut-redis/latest/guide/#introduction)
+-   [Kotlin Symbol Processing: Early Thoughts](https://www.zacsweers.dev/kotlin-symbol-processor-early-thoughts/#:~:text=Google%20announced%20Kotlin%20Symbol%20Processing,first%20party%20tool%20for%20this.)
+-   [What is CoroutineContext and how does it work?](https://kt.academy/article/cc-coroutine-context)
+-   [Top 6 Queuing Systems for Backend Developers](https://geekflare.com/queuing-systems-for-backend-developers/)
+-   [Getting started with Spring Data Redis with Kotlin](https://www.geekyhacker.com/2019/07/09/getting-started-with-spring-data-redis-with-kotlin/)
+-   [Micronaut Tutorial: Beans and Scopes](https://piotrminkowski.com/2019/04/15/micronaut-tutorial-beans-and-scopes/)
 ---
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
