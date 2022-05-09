@@ -141,7 +141,7 @@ Read report after running:
 make build-integration
 ```
 
-## 6. Related Blog Posts
+## 6. Coffee Sessions ☕️
 
 - [Making Regression/Chain tests in Micronaut](https://www.buymeacoffee.com/jesperancinha/coroutines-kotest-engine-brawl)
 - [Pub-sub Redis in Micronaut](https://www.buymeacoffee.com/jesperancinha/pub-sub-redis-micronaut)
