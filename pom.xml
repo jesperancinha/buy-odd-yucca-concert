@@ -45,7 +45,7 @@
         <r2dbc-postgresql.version>0.8.12.RELEASE</r2dbc-postgresql.version>
         <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
         <maven-shade-plugin.version>3.3.0</maven-shade-plugin.version>
-        <micronaut-maven-plugin.version>3.2.3</micronaut-maven-plugin.version>
+        <micronaut-maven-plugin.version>3.2.4</micronaut-maven-plugin.version>
         <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M6</maven-surefire-plugin.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
