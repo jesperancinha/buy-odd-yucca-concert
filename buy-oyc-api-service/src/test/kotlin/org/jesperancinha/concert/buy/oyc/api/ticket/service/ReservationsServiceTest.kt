@@ -36,8 +36,9 @@ private const val API_YUCCA_TICKET = "/api/yucca-ticket"
 
 @ExperimentalCoroutinesApi
 @Testcontainers
-@MicronautTest(rebuildContext = true)
+@MicronautTest
 @Property(name = "buy.oyc.ticket.port", value = "7999")
+@Property(name = "micronaut.server.port", value = "-1")
 @DelicateCoroutinesApi
 internal class ReservationsServiceTest @Inject constructor(
     private val reservationsService: ReservationsService,
@@ -65,6 +66,7 @@ internal class ReservationsServiceTest @Inject constructor(
     }
 
     @Test
+    @Transactional
     fun `should get all reservations`() = runTest {
         reservationsService.getAll().toList().shouldNotBeNull()
     }
