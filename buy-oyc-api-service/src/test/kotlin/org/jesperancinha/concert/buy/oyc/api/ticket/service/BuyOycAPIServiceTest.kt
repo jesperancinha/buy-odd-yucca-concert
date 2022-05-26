@@ -7,7 +7,7 @@ import jakarta.inject.Inject
 import org.junit.jupiter.api.Test
 
 @MicronautTest
-class BuyOycTicketServiceTest(
+class BuyOycAPIServiceTest(
     @Inject
     val application: EmbeddedApplication<*>
 ) {
