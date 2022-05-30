@@ -4,7 +4,7 @@
   "private": true,
   "main": "./build/index.js",
   "dependencies": {
-    "@testing-library/react": "^13.2.0",
+    "@testing-library/react": "^13.3.0",
     "@testing-library/user-event": "^14.2.0",
     "@types/jest": "^27.5.1",
     "@types/node": "^17.0.36",
@@ -52,12 +52,12 @@
     "jest-svg-transformer": "^1.0.0",
     "jest-transform-stub": "^2.0.0",
     "react-scripts": "5.0.1",
-    "snyk": "^1.940.0"
+    "snyk": "^1.941.0"
   },
   "jest": {
     "testEnvironment": "jsdom",
     "moduleNameMapper": {
-       "^.+.(svg|css)$": "jest-transform-stub"
+      "^.+.(svg|css)$": "jest-transform-stub"
     },
     "setupFilesAfterEnv": [
       "<rootDir>/src/setuptests.ts"
