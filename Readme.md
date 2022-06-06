@@ -46,7 +46,7 @@
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://itnext.io/configurable-kong-api-gateway-with-micronaut-services-in-kotlin-a-very-odd-yucca-tribute-concert-e0a978618eab)
 [Configurable Kong API Gateway with Micronaut Services in Kotlin — A very odd Yucca tribute concert](https://itnext.io/configurable-kong-api-gateway-with-micronaut-services-in-kotlin-a-very-odd-yucca-tribute-concert-e0a978618eab)
 
-[![alt img](./docs/articles.oyc.banner.png)](https://itnext.io/configurable-kong-api-gateway-with-micronaut-services-in-kotlin-a-very-odd-yucca-tribute-concert-e0a978618eab)
+[![alt img](./docs/articles.oyc.banner.png "Configurable Kong API Gateway with Micronaut Services in Kotlin — A very odd Yucca tribute concert")](https://itnext.io/configurable-kong-api-gateway-with-micronaut-services-in-kotlin-a-very-odd-yucca-tribute-concert-e0a978618eab)
 
 ## 3.  - Installing NVM 🌴
 
