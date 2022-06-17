@@ -41,7 +41,7 @@
         <kotlinx-coroutines-core-jvm.version>1.6.2</kotlinx-coroutines-core-jvm.version>
         <kotlinx.version>1.6.1-native-mt</kotlinx.version>
         <postgresql.version>42.4.0</postgresql.version>
-        <flyway-core.version>8.5.12</flyway-core.version>
+        <flyway-core.version>8.5.13</flyway-core.version>
         <r2dbc-postgresql.version>0.8.12.RELEASE</r2dbc-postgresql.version>
         <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
         <maven-shade-plugin.version>3.3.0</maven-shade-plugin.version>
