@@ -257,6 +257,11 @@
                                     <artifactId>micronaut-validation</artifactId>
                                     <version>${micronaut.version}</version>
                                 </annotationProcessorPath>
+                                <annotationProcessorPath>
+                                    <groupId>io.micronaut.openapi</groupId>
+                                    <artifactId>micronaut-openapi</artifactId>
+                                    <version>${micronaut.openapi.version}</version>
+                                </annotationProcessorPath>
                             </annotationProcessorPaths>
                             <annotationProcessorArgs>
                                 <annotationProcessorArg>micronaut.processing.group=buy.oyc.catering.service

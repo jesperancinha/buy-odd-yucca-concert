@@ -126,6 +126,18 @@ Routes
 -   [Main](http://localhost:8001)
 -   [Routes](http://localhost:8001/routes)
 
+#### 4.4.4. - Swagger UI Tests
+
+Although this project is meant to be used with Locust and for benchmark testing and rate-limiting, it may be interesting to understand the data model first. Swagger UI helps with that. 
+
+Here are the endpoints for the services with the open port:
+
+- [buy-oyc-api-service](http://localhost:8088/swagger/views/swagger-ui/)
+- [buy-oyc-catering-service](http://localhost:8087/swagger/views/swagger-ui/)
+- [buy-oyc-concert-service](http://localhost:8085/swagger/views/swagger-ui/)
+- [buy-oyc-parking-service](http://localhost:8086/swagger/views/swagger-ui/)
+- [buy-oyc-ticket-service](http://localhost:8084/swagger/views/swagger-ui/)
+
 ### 4.5. - Security Report
 
 ```shell

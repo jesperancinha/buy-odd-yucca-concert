@@ -3,6 +3,11 @@ micronaut:
     name: buyOycCateringService
   server:
     port: 8087
+  router:
+    static-resources:
+      swagger:
+        paths: classpath:META-INF/swagger
+        mapping: /swagger/**
 
 r2dbc:
   datasources:
