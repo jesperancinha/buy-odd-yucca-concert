@@ -117,6 +117,7 @@ curl http://192.168.0.21:8000/api/yucca-ticket
 API
 
 -   [http://localhost:8080](http://localhost:8080)
+-   [http://localhost:8000/api/yucca-api/](http://localhost:8000/api/yucca-api/)
 -   [http://localhost:8000/api/yucca-ticket/](http://localhost:8000/api/yucca-ticket/)
 -   [http://localhost:8000/api/yucca-parking/](http://localhost:8000/api/yucca-parking/)
 -   [http://localhost:8000/api/yucca-catering/](http://localhost:8000/api/yucca-catering/)
@@ -130,6 +131,8 @@ Routes
 
 Although this project is meant to be used with Locust and for benchmark testing and rate-limiting, it may be interesting to understand the data model first. Swagger UI helps with that. 
 
+>Please run `make docker-clean-build-start` before anything.
+
 Here are the endpoints for the services with the open port:
 
 - [buy-oyc-api-service](http://localhost:8088/swagger/views/swagger-ui/)
@@ -137,6 +140,22 @@ Here are the endpoints for the services with the open port:
 - [buy-oyc-concert-service](http://localhost:8085/swagger/views/swagger-ui/)
 - [buy-oyc-parking-service](http://localhost:8086/swagger/views/swagger-ui/)
 - [buy-oyc-ticket-service](http://localhost:8084/swagger/views/swagger-ui/)
+
+Via Kong Gateway for `swagger.yml`
+
+-   [http://localhost:8000/api/yucca-api/swagger/swagger.yml](http://localhost:8000/api/yucca-api/swagger/swagger.yml)
+-   [http://localhost:8000/api/yucca-ticket/swagger/swagger.yml](http://localhost:8000/api/yucca-ticket/swagger/swagger.yml)
+-   [http://localhost:8000/api/yucca-parking/swagger/swagger.yml](http://localhost:8000/api/yucca-parking/swagger/swagger.yml)
+-   [http://localhost:8000/api/yucca-catering/swagger/swagger.yml](http://localhost:8000/api/yucca-catering/swagger/swagger.yml)
+-   [http://localhost:8000/api/yucca-concert/swagger/swagger.yml](http://localhost:8000/api/yucca-concert/swagger/swagger.yml)
+
+Via Kong Gateway for Swagger UI
+
+-   [http://localhost:8000/api/yucca-api/swagger/views/swagger-ui/](http://localhost:8000/api/yucca-api/swagger/views/swagger-ui/)
+-   [http://localhost:8000/api/yucca-ticket/swagger/views/swagger-ui/](http://localhost:8000/api/yucca-ticket/swagger/views/swagger-ui/)
+-   [http://localhost:8000/api/yucca-parking/swagger/views/swagger-ui/](http://localhost:8000/api/yucca-parking/swagger/views/swagger-ui/)
+-   [http://localhost:8000/api/yucca-catering/swagger/views/swagger-ui/](http://localhost:8000/api/yucca-catering/swagger/views/swagger-ui/)
+-   [http://localhost:8000/api/yucca-concert/swagger/views/swagger-ui/](http://localhost:8000/api/yucca-concert/swagger/views/swagger-ui/)
 
 ### 4.5. - Security Report
 
