@@ -72,3 +72,9 @@ build-integration: build-npm
 	cd buy-oyc-commons && mvn clean install -Pintegration
 integration:
 	cd buy-oyc-commons && mvn clean install -Pintegration
+dcup-light:
+	docker-compose up -d fla_postgres
+dcup: dcd
+	docker-compose up -d --build --remove-orphans
+dcd:
+	docker-compose down
