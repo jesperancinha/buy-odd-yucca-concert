@@ -132,6 +132,8 @@ Routes
 Although this project is meant to be used with Locust and for benchmark testing and rate-limiting, it may be interesting to understand the data model first. Swagger UI helps with that. 
 
 >Please run `make docker-clean-build-start` before anything.
+>If you are running the services outside Docker, please make sure to have these environment variables assigned:
+>`POSTGRESQL_HOST=localhost;REDIS_HOST=localhost`
 
 Here are the endpoints for the services with the open port:
 
