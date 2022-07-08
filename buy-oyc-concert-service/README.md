@@ -2,7 +2,7 @@
 
 ## Swagger UI
 
-- [buy-oyc-concert-service](http://localhost:8085/swagger/views/swagger-ui/)
+-   [buy-oyc-concert-service](http://localhost:8085/swagger/views/swagger-ui/)
 
 ## Micronaut 3.2.0 Documentation
 

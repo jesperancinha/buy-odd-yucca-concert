@@ -137,11 +137,11 @@ Although this project is meant to be used with Locust and for benchmark testing 
 
 Here are the endpoints for the services with the open port:
 
-- [buy-oyc-api-service](http://localhost:8088/swagger/views/swagger-ui/)
-- [buy-oyc-catering-service](http://localhost:8087/swagger/views/swagger-ui/)
-- [buy-oyc-concert-service](http://localhost:8085/swagger/views/swagger-ui/)
-- [buy-oyc-parking-service](http://localhost:8086/swagger/views/swagger-ui/)
-- [buy-oyc-ticket-service](http://localhost:8084/swagger/views/swagger-ui/)
+-   [buy-oyc-api-service](http://localhost:8088/swagger/views/swagger-ui/)
+-   [buy-oyc-catering-service](http://localhost:8087/swagger/views/swagger-ui/)
+-   [buy-oyc-concert-service](http://localhost:8085/swagger/views/swagger-ui/)
+-   [buy-oyc-parking-service](http://localhost:8086/swagger/views/swagger-ui/)
+-   [buy-oyc-ticket-service](http://localhost:8084/swagger/views/swagger-ui/)
 
 Via Kong Gateway for `swagger.yml`
 

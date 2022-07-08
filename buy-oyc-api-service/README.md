@@ -6,7 +6,7 @@ Buy Odd Yucca Concert Gateway API service
 
 ## Swagger UI
 
-- [buy-oyc-api-service](http://localhost:8088/swagger/views/swagger-ui/)
+-   [buy-oyc-api-service](http://localhost:8088/swagger/views/swagger-ui/)
 
 ## [Sequence diagram](https://mermaid-js.github.io/mermaid)
 

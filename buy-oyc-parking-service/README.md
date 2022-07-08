@@ -2,7 +2,7 @@
 
 ## Swagger UI
 
-- [buy-oyc-parking-service](http://localhost:8086/swagger/views/swagger-ui/)
+-   [buy-oyc-parking-service](http://localhost:8086/swagger/views/swagger-ui/)
 
 ## Micronaut 3.2.0 Documentation
 
