@@ -78,3 +78,13 @@ dcup: dcd
 	docker-compose up -d --build --remove-orphans
 dcd:
 	docker-compose down
+cypress-open:
+	cd e2e && yarn && npm run cypress
+cypress-electron:
+	cd e2e && make cypress-electron
+cypress-chrome:
+	cd e2e && make cypress-chrome
+cypress-firefox:
+	cd e2e && make cypress-firefox
+cypress-edge:
+	cd e2e && make cypress-edge
