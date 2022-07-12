@@ -9,10 +9,10 @@ x-kong-config: &kong-env
 
 volumes:
   kong_data_vol: { }
-#  kong_prefix_vol:
-#    driver_opts:
-#      type: tmpfs
-#      device: tmpfs
+  kong_prefix_vol:
+    driver_opts:
+      type: tmpfs
+      device: tmpfs
   kong_tmp_vol:
     driver_opts:
       type: tmpfs
@@ -89,7 +89,7 @@ services:
       retries: 20
       start_period: 0s
     volumes:
-#      - ./kong_prefix_vol:${KONG_PREFIX:-/var/run/kong}
+      - ./kong_prefix_vol:${KONG_PREFIX:-/var/run/kong}
       - ./kong_tmp_vol:/tmp
       - ./kong:/opt/kong
       - ./kong/kong-migration.sh:/opt/kong/kong-migration.sh

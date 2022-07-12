@@ -27,6 +27,7 @@ kong-full-action-setup:
 	tar -xf deck.tar.gz -C /tmp
 	sudo cp /tmp/deck /usr/local/bin/
 	sudo chmod -R 777 kong_tmp_vol
+	sudo chmod -R 777 kong_prefix_vol
 	bash kong_wait.sh
 	make kong-setup
 kong-setup:
