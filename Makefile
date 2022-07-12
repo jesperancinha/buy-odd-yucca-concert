@@ -22,6 +22,10 @@ kong-full-setup:
 	chmod -R 777 kong_tmp_vol
 	bash kong_wait.sh
 	make kong-setup
+kong-full-action-setup:
+	sudo chmod -R 777 kong_tmp_vol
+	bash kong_wait.sh
+	make kong-setup
 kong-setup:
 	cd kong && deck sync
 docker-databases: stop local
@@ -81,7 +85,7 @@ dcup-light:
 	docker-compose up -d fla_postgres
 dcup: dcd docker-clean docker kong-full-setup boyc-wait
 dcup-full: docker-clean-build-start kong-full-setup boyc-wait
-dcup-full-action: docker-clean b docker-action kong-full-setup boyc-wait
+dcup-full-action: docker-clean b docker-action kong-full-action-setup boyc-wait
 dcd:
 	docker-compose down
 cypress-open:
