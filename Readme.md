@@ -161,7 +161,7 @@ Via Kong Gateway for Swagger UI
 -   [http://localhost:8000/api/yucca-catering/swagger/views/swagger-ui/index.html](http://localhost:8000/api/yucca-catering/swagger/views/swagger-ui/index.html)
 -   [http://localhost:8000/api/yucca-concert/swagger/views/swagger-ui/index.html](http://localhost:8000/api/yucca-concert/swagger/views/swagger-ui/index.html)
 
-> Make sure to check the [e2e](./e2e) tests in order to see how Swagger is implemented. The Explorer textbox needs to be manually implemented.
+> Make sure to check the [e2e](./e2e) tests in order to see how Swagger is implemented. The Explorer textbox needs to be manually configured at the moment.
 
 ### 4.5. - Security Report
 
@@ -174,6 +174,22 @@ Read report after running:
 -   [buy-oyc-catering-service](buy-oyc-catering-service/target/dependency-check-report.html)
 -   [buy-oyc-parking-service](buy-oyc-parking-service/target/dependency-check-report.html)
 -   [buy-oyc-ticket-service](buy-oyc-ticket-service/target/dependency-check-report.html)
+
+#### 4.4.4.5 Cypress tests
+
+In order to run cypress tests, please run 
+
+```shell
+make dcup-full
+```
+
+Then go to the [e2e](./e2e) folder and run:
+
+```shell
+make cypress-open
+```
+
+The cypress test management window should open and you should be able to perform your tests manually.
 
 ## 5.  Run chain tests
 

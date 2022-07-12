@@ -2,7 +2,7 @@ name: e2e-buy-odd-yucca-concert
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
 
 jobs:
   e2e-electron:
