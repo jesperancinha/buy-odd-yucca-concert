@@ -16,9 +16,9 @@ function checkServiceByNameAndMessage() {
       counter=$((counter+1))
       if [ $counter -eq 200 ]; then
           echo "Failed after $counter tries! Cypress tests mail fail!!"
+          echo "$string"
           exit
       fi
-      echo "$string"
     done
     counter=$((counter+1))
     echo "Succeeded $name Service after $counter tries!"
