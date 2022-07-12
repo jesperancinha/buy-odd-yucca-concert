@@ -86,11 +86,13 @@ integration:
 	cd buy-oyc-commons && mvn clean install -Pintegration
 boyc-wait:
 	bash boyc_wait.sh
+database-wait:
+	bash database_wait.sh
 dcup-light:
 	docker-compose up -d fla_postgres
 dcup: dcd docker-clean docker kong-full-setup boyc-wait
 dcup-full: docker-clean-build-start kong-full-setup boyc-wait
-dcup-full-action: docker-clean b docker-action kong-full-action-setup boyc-wait
+dcup-full-action: docker-clean b docker-action database-wait kong-full-action-setup boyc-wait
 dcd:
 	docker-compose down
 cypress-open:
