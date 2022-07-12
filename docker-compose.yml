@@ -42,6 +42,8 @@ services:
     restart: on-failure
 
   kong:
+    env_file:
+      - .env
     hostname: kong
     container_name: kong
     image: "${KONG_DOCKER_TAG:-kong:2.7.1}"
