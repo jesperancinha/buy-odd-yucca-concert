@@ -164,21 +164,9 @@ Via Kong Gateway for Swagger UI
 
 > Make sure to check the [e2e](./e2e) tests in order to see how Swagger is implemented. The Explorer textbox needs to be manually configured at the moment.
 
-### 4.5. - Security Report
+#### 4.4.5 Cypress tests
 
-```shell
-mvn clean install -Powasp
-```
-Read report after running:
-
--   [buy-oyc-commons](buy-oyc-commons/target/dependency-check-report.html)
--   [buy-oyc-catering-service](buy-oyc-catering-service/target/dependency-check-report.html)
--   [buy-oyc-parking-service](buy-oyc-parking-service/target/dependency-check-report.html)
--   [buy-oyc-ticket-service](buy-oyc-ticket-service/target/dependency-check-report.html)
-
-#### 4.4.4.5 Cypress tests
-
-In order to run cypress tests, please run 
+In order to run cypress tests, please run
 
 ```shell
 make dcup-full
@@ -191,6 +179,18 @@ make cypress-open
 ```
 
 The cypress test management window should open and you should be able to perform your tests manually.
+
+### 4.5. - Security Report
+
+```shell
+mvn clean install -Powasp
+```
+Read report after running:
+
+-   [buy-oyc-commons](buy-oyc-commons/target/dependency-check-report.html)
+-   [buy-oyc-catering-service](buy-oyc-catering-service/target/dependency-check-report.html)
+-   [buy-oyc-parking-service](buy-oyc-parking-service/target/dependency-check-report.html)
+-   [buy-oyc-ticket-service](buy-oyc-ticket-service/target/dependency-check-report.html)
 
 ## 5.  Run chain tests
 
