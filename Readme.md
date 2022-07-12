@@ -11,6 +11,7 @@
 [![Build, Test, Coverage and Report](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert.yml/badge.svg)](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert.yml)
 [![Build and Chain Test](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert-chain-test.yml/badge.svg)](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert-chain-test.yml)
 [![Build status](https://ci.appveyor.com/api/projects/status/v9i0hi26hj0ny3u9?svg=true)](https://ci.appveyor.com/project/jesperancinha/buy-odd-yucca-concert)
+[![e2e-buy-odd-yucca-concert](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert-e2e.yml/badge.svg)](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert-e2e.yml)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/6a3c3910140f433e9092239a88b73de6)](https://www.codacy.com/gh/jesperancinha/buy-odd-yucca-concert/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/buy-odd-yucca-concert&amp;utm_campaign=Badge_Grade)
 [![BCH compliance](https://bettercodehub.com/edge/badge/jesperancinha/buy-odd-yucca-concert?branch=master)](https://bettercodehub.com/results/jesperancinha/buy-odd-yucca-concert) 
