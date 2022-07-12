@@ -18,7 +18,7 @@ function checkServiceByNameAndMessage() {
           echo "Failed after $counter tries! Cypress tests mail fail!!"
           exit
       fi
-      echor "$string"
+      echo "$string"
     done
     counter=$((counter+1))
     echo "Succeeded $name Service after $counter tries!"
