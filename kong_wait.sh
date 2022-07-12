@@ -11,6 +11,7 @@ function checkServiceByNameAndMessage() {
     while [[ "$string" != *"$message"* ]]
     do
       printf "."
+      docker-compose logs "$name"
       docker-compose logs "$name" &> "logs"
       string=$(cat logs)
       sleep 1
