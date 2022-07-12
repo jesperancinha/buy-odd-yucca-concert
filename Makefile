@@ -18,9 +18,10 @@ docker:
 	docker-compose rm -svf
 	mkdir -p kong_prefix_vol kong_tmp_vol kong_data_vol
 	docker-compose up -d --build --remove-orphans
+kong-full-setup:
 	chmod -R 777 kong_tmp_vol
 	bash kong_wait.sh
-	cd kong && deck sync
+	make kong-setup
 kong-setup:
 	cd kong && deck sync
 docker-databases: stop local
@@ -45,6 +46,8 @@ docker-clean:
 	docker-compose rm -svf
 docker-clean-build-start: docker-clean b docker
 docker-delete-apps: stop
+docker-action:
+	docker-compose -f docker-compose.yml up -d --build --remove-orphans
 prune-all: docker-delete
 	docker network prune -f
 	docker system prune --all -f
@@ -72,9 +75,22 @@ build-integration: build-npm
 	cd buy-oyc-commons && mvn clean install -Pintegration
 integration:
 	cd buy-oyc-commons && mvn clean install -Pintegration
+boyc-wait:
+	bash boyc_wait.sh
 dcup-light:
 	docker-compose up -d fla_postgres
-dcup: dcd
-	docker-compose up -d --build --remove-orphans
+dcup: dcd docker-clean docker kong-full-setup boyc-wait
+dcup-full: docker-clean-build-start kong-full-setup boyc-wait
+dcup-full-action: docker-clean b docker-action kong-full-setup boyc-wait
 dcd:
 	docker-compose down
+cypress-open:
+	cd e2e && yarn && npm run cypress
+cypress-electron:
+	cd e2e && make cypress-electron
+cypress-chrome:
+	cd e2e && make cypress-chrome
+cypress-firefox:
+	cd e2e && make cypress-firefox
+cypress-edge:
+	cd e2e && make cypress-edge

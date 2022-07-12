@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  buy-oyc-ticket:
+    ports:
+      - "8084:8084"
+
+  buy-oyc-concert:
+    ports:
+      - "8085:8085"
+
+  buy-oyc-parking:
+    ports:
+      - "8086:8086"
+
+  buy-oyc-catering:
+    ports:
+      - "8087:8087"
+
+  buy-oyc-api:
+    ports:
+      - "8088:8088"
+
+  buy-oyc-nginx:
+    ports:
+      - "8080:8080"
+  redis:
+    ports:
+       - "6379:6379"

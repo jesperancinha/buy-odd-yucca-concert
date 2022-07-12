@@ -2,7 +2,7 @@
 
 ## Swagger UI
 
-- [buy-oyc-catering-service](http://localhost:8087/swagger/views/swagger-ui/)
+-   [buy-oyc-catering-service](http://localhost:8087/swagger/views/swagger-ui/)
 
 ## Micronaut 3.2.0 Documentation
 

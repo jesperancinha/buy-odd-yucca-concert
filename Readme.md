@@ -11,6 +11,7 @@
 [![Build, Test, Coverage and Report](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert.yml/badge.svg)](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert.yml)
 [![Build and Chain Test](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert-chain-test.yml/badge.svg)](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert-chain-test.yml)
 [![Build status](https://ci.appveyor.com/api/projects/status/v9i0hi26hj0ny3u9?svg=true)](https://ci.appveyor.com/project/jesperancinha/buy-odd-yucca-concert)
+[![e2e-buy-odd-yucca-concert](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert-e2e.yml/badge.svg)](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert-e2e.yml)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/6a3c3910140f433e9092239a88b73de6)](https://www.codacy.com/gh/jesperancinha/buy-odd-yucca-concert/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/buy-odd-yucca-concert&amp;utm_campaign=Badge_Grade)
 [![BCH compliance](https://bettercodehub.com/edge/badge/jesperancinha/buy-odd-yucca-concert?branch=master)](https://bettercodehub.com/results/jesperancinha/buy-odd-yucca-concert) 
@@ -38,6 +39,8 @@
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/docker-compose-50.png "Docker Compose")](https://docs.docker.com/compose/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/testcontainers-50.png "Test containers")](https://www.testcontainers.org/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/apache-maven-50.png "Maven")](https://maven.apache.org/)
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/swagger-50.png "Swagger")](https://swagger.io/)
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/cypress-50.png "Cypress")](https://www.cypress.io/)
 
 ---
 
@@ -137,11 +140,11 @@ Although this project is meant to be used with Locust and for benchmark testing 
 
 Here are the endpoints for the services with the open port:
 
-- [buy-oyc-api-service](http://localhost:8088/swagger/views/swagger-ui/)
-- [buy-oyc-catering-service](http://localhost:8087/swagger/views/swagger-ui/)
-- [buy-oyc-concert-service](http://localhost:8085/swagger/views/swagger-ui/)
-- [buy-oyc-parking-service](http://localhost:8086/swagger/views/swagger-ui/)
-- [buy-oyc-ticket-service](http://localhost:8084/swagger/views/swagger-ui/)
+-   [buy-oyc-api-service](http://localhost:8088/swagger/views/swagger-ui/index.html)
+-   [buy-oyc-catering-service](http://localhost:8087/swagger/views/swagger-ui/index.html)
+-   [buy-oyc-concert-service](http://localhost:8085/swagger/views/swagger-ui/index.html)
+-   [buy-oyc-parking-service](http://localhost:8086/swagger/views/swagger-ui/index.html)
+-   [buy-oyc-ticket-service](http://localhost:8084/swagger/views/swagger-ui/index.html)
 
 Via Kong Gateway for `swagger.yml`
 
@@ -153,11 +156,13 @@ Via Kong Gateway for `swagger.yml`
 
 Via Kong Gateway for Swagger UI
 
--   [http://localhost:8000/api/yucca-api/swagger/views/swagger-ui/](http://localhost:8000/api/yucca-api/swagger/views/swagger-ui/)
--   [http://localhost:8000/api/yucca-ticket/swagger/views/swagger-ui/](http://localhost:8000/api/yucca-ticket/swagger/views/swagger-ui/)
--   [http://localhost:8000/api/yucca-parking/swagger/views/swagger-ui/](http://localhost:8000/api/yucca-parking/swagger/views/swagger-ui/)
--   [http://localhost:8000/api/yucca-catering/swagger/views/swagger-ui/](http://localhost:8000/api/yucca-catering/swagger/views/swagger-ui/)
--   [http://localhost:8000/api/yucca-concert/swagger/views/swagger-ui/](http://localhost:8000/api/yucca-concert/swagger/views/swagger-ui/)
+-   [http://localhost:8000/api/yucca-api/swagger/views/swagger-ui/index.html](http://localhost:8000/api/yucca-api/swagger/views/swagger-ui/index.html)
+-   [http://localhost:8000/api/yucca-ticket/swagger/views/swagger-ui/index.html](http://localhost:8000/api/yucca-ticket/swagger/views/swagger-ui/index.html)
+-   [http://localhost:8000/api/yucca-parking/swagger/views/swagger-ui/index.html](http://localhost:8000/api/yucca-parking/swagger/views/swagger-ui/index.html)
+-   [http://localhost:8000/api/yucca-catering/swagger/views/swagger-ui/index.html](http://localhost:8000/api/yucca-catering/swagger/views/swagger-ui/index.html)
+-   [http://localhost:8000/api/yucca-concert/swagger/views/swagger-ui/index.html](http://localhost:8000/api/yucca-concert/swagger/views/swagger-ui/index.html)
+
+> Make sure to check the [e2e](./e2e) tests in order to see how Swagger is implemented. The Explorer textbox needs to be manually configured at the moment.
 
 ### 4.5. - Security Report
 
@@ -170,6 +175,22 @@ Read report after running:
 -   [buy-oyc-catering-service](buy-oyc-catering-service/target/dependency-check-report.html)
 -   [buy-oyc-parking-service](buy-oyc-parking-service/target/dependency-check-report.html)
 -   [buy-oyc-ticket-service](buy-oyc-ticket-service/target/dependency-check-report.html)
+
+#### 4.4.4.5 Cypress tests
+
+In order to run cypress tests, please run 
+
+```shell
+make dcup-full
+```
+
+Then go to the [e2e](./e2e) folder and run:
+
+```shell
+make cypress-open
+```
+
+The cypress test management window should open and you should be able to perform your tests manually.
 
 ## 5.  Run chain tests
 

@@ -105,11 +105,15 @@
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-kotlin</artifactId>
         </dependency>
-
         <dependency>
             <groupId>io.micronaut</groupId>
             <artifactId>micronaut-management</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.swagger.core.v3</groupId>
+            <artifactId>swagger-annotations</artifactId>
+        </dependency>
+
         <dependency>
             <groupId>org.jetbrains.kotlinx</groupId>
             <artifactId>kotlinx-coroutines-test</artifactId>
@@ -257,7 +261,8 @@
                                 </annotationProcessorPath>
                             </annotationProcessorPaths>
                             <annotationProcessorArgs>
-                                <annotationProcessorArg>micronaut.processing.group=org.jesperancinha.concert.buy.oyc.ticket
+                                <annotationProcessorArg>
+                                    micronaut.processing.group=org.jesperancinha.concert.buy.oyc.ticket
                                 </annotationProcessorArg>
                                 <annotationProcessorArg>micronaut.processing.module=buyOycTicketService
                                 </annotationProcessorArg>
