@@ -89,9 +89,9 @@ boyc-wait:
 database-wait:
 	bash database_wait.sh
 dcup-light:
-	docker-compose up -d fla_postgres
+	docker-compose up -d yucca-db
 dcup-light-action:
-	docker-compose -f docker-compose.yml up -d fla_postgres
+	docker-compose -f docker-compose.yml up -d yucca-db
 dcup: dcd docker-clean docker kong-full-setup boyc-wait
 dcup-full: docker-clean-build-start kong-full-setup boyc-wait
 dcup-full-action: docker-clean b dcup-light-action database-wait docker-action kong-full-action-setup boyc-wait
