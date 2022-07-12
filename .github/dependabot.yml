@@ -8,3 +8,8 @@ updates:
     directory: "/buy-odd-yucca-gui"
     schedule:
       interval: "daily"
+
+  - package-ecosystem: "npm"
+    directory: "/e2e"
+    schedule:
+      interval: "daily"

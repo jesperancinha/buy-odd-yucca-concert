@@ -38,6 +38,8 @@
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/docker-compose-50.png "Docker Compose")](https://docs.docker.com/compose/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/testcontainers-50.png "Test containers")](https://www.testcontainers.org/)
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/apache-maven-50.png "Maven")](https://maven.apache.org/)
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/swagger-50.png "Swagger")](https://swagger.io/)
+[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/cypress-50.png "Cypress")](https://www.cypress.io/)
 
 ---
 
@@ -137,11 +139,11 @@ Although this project is meant to be used with Locust and for benchmark testing 
 
 Here are the endpoints for the services with the open port:
 
--   [buy-oyc-api-service](http://localhost:8088/swagger/views/swagger-ui/)
--   [buy-oyc-catering-service](http://localhost:8087/swagger/views/swagger-ui/)
--   [buy-oyc-concert-service](http://localhost:8085/swagger/views/swagger-ui/)
--   [buy-oyc-parking-service](http://localhost:8086/swagger/views/swagger-ui/)
--   [buy-oyc-ticket-service](http://localhost:8084/swagger/views/swagger-ui/)
+-   [buy-oyc-api-service](http://localhost:8088/swagger/views/swagger-ui/index.html)
+-   [buy-oyc-catering-service](http://localhost:8087/swagger/views/swagger-ui/index.html)
+-   [buy-oyc-concert-service](http://localhost:8085/swagger/views/swagger-ui/index.html)
+-   [buy-oyc-parking-service](http://localhost:8086/swagger/views/swagger-ui/index.html)
+-   [buy-oyc-ticket-service](http://localhost:8084/swagger/views/swagger-ui/index.html)
 
 Via Kong Gateway for `swagger.yml`
 
@@ -153,11 +155,13 @@ Via Kong Gateway for `swagger.yml`
 
 Via Kong Gateway for Swagger UI
 
--   [http://localhost:8000/api/yucca-api/swagger/views/swagger-ui/](http://localhost:8000/api/yucca-api/swagger/views/swagger-ui/)
--   [http://localhost:8000/api/yucca-ticket/swagger/views/swagger-ui/](http://localhost:8000/api/yucca-ticket/swagger/views/swagger-ui/)
--   [http://localhost:8000/api/yucca-parking/swagger/views/swagger-ui/](http://localhost:8000/api/yucca-parking/swagger/views/swagger-ui/)
--   [http://localhost:8000/api/yucca-catering/swagger/views/swagger-ui/](http://localhost:8000/api/yucca-catering/swagger/views/swagger-ui/)
--   [http://localhost:8000/api/yucca-concert/swagger/views/swagger-ui/](http://localhost:8000/api/yucca-concert/swagger/views/swagger-ui/)
+-   [http://localhost:8000/api/yucca-api/swagger/views/swagger-ui/index.html](http://localhost:8000/api/yucca-api/swagger/views/swagger-ui/index.html)
+-   [http://localhost:8000/api/yucca-ticket/swagger/views/swagger-ui/index.html](http://localhost:8000/api/yucca-ticket/swagger/views/swagger-ui/index.html)
+-   [http://localhost:8000/api/yucca-parking/swagger/views/swagger-ui/index.html](http://localhost:8000/api/yucca-parking/swagger/views/swagger-ui/index.html)
+-   [http://localhost:8000/api/yucca-catering/swagger/views/swagger-ui/index.html](http://localhost:8000/api/yucca-catering/swagger/views/swagger-ui/index.html)
+-   [http://localhost:8000/api/yucca-concert/swagger/views/swagger-ui/index.html](http://localhost:8000/api/yucca-concert/swagger/views/swagger-ui/index.html)
+
+> Make sure to check the [e2e](./e2e) tests in order to see how Swagger is implemented. The Explorer textbox needs to be manually implemented.
 
 ### 4.5. - Security Report
 
