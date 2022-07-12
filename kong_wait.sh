@@ -18,7 +18,11 @@ function checkServiceByNameAndMessage() {
       counter=$((counter+1))
       if [ $counter -eq 200 ]; then
           echo "Failed after $counter tries! Cypress tests mail fail!!"
-          exit
+          exit 1
+      fi
+      if [[ "$string" = *"[PostgreSQL error] failed to retrieve PostgreSQ"* ]]; then
+          echo "Failed PostgreSQL connection after $counter tries! Cypress tests mail fail!!"
+          exit 1
       fi
     done
     counter=$((counter+1))
