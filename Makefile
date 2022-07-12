@@ -26,6 +26,7 @@ kong-full-action-setup:
 	curl -sL https://github.com/kong/deck/releases/download/v1.12.3/deck_1.12.3_linux_amd64.tar.gz -o deck.tar.gz
 	tar -xf deck.tar.gz -C /tmp
 	sudo cp /tmp/deck /usr/local/bin/
+	sudo chmod -R 777 kong_data_vol
 	sudo chmod -R 777 kong_tmp_vol
 	sudo chmod -R 777 kong_prefix_vol
 	bash kong_wait.sh
