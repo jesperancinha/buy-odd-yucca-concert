@@ -92,6 +92,7 @@ dcup-light:
 	docker-compose up -d yucca-db
 dcup-light-action:
 	docker-compose -f docker-compose.yml up -d yucca-db
+	sudo chown -R 1000:1000 ./kong_data_vol
 dcup: dcd docker-clean docker kong-full-setup boyc-wait
 dcup-full: docker-clean-build-start kong-full-setup boyc-wait
 dcup-full-action: docker-clean b dcup-light-action database-wait docker-action kong-full-action-setup boyc-wait
