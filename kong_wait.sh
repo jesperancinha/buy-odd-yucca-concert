@@ -22,6 +22,7 @@ function checkServiceByNameAndMessage() {
       fi
       if [[ "$string" = *"[PostgreSQL error] failed to retrieve PostgreSQL"* ]]; then
           echo "Failed PostgreSQL connection after $counter tries! Cypress tests mail fail!!"
+          echo "$string"
           exit 1
       fi
     done
