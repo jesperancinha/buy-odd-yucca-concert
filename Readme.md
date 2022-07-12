@@ -11,6 +11,7 @@
 [![Build, Test, Coverage and Report](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert.yml/badge.svg)](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert.yml)
 [![Build and Chain Test](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert-chain-test.yml/badge.svg)](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert-chain-test.yml)
 [![Build status](https://ci.appveyor.com/api/projects/status/v9i0hi26hj0ny3u9?svg=true)](https://ci.appveyor.com/project/jesperancinha/buy-odd-yucca-concert)
+[![e2e-buy-odd-yucca-concert](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert-e2e.yml/badge.svg)](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert-e2e.yml)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/6a3c3910140f433e9092239a88b73de6)](https://www.codacy.com/gh/jesperancinha/buy-odd-yucca-concert/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/buy-odd-yucca-concert&amp;utm_campaign=Badge_Grade)
 [![BCH compliance](https://bettercodehub.com/edge/badge/jesperancinha/buy-odd-yucca-concert?branch=master)](https://bettercodehub.com/results/jesperancinha/buy-odd-yucca-concert) 
@@ -161,7 +162,7 @@ Via Kong Gateway for Swagger UI
 -   [http://localhost:8000/api/yucca-catering/swagger/views/swagger-ui/index.html](http://localhost:8000/api/yucca-catering/swagger/views/swagger-ui/index.html)
 -   [http://localhost:8000/api/yucca-concert/swagger/views/swagger-ui/index.html](http://localhost:8000/api/yucca-concert/swagger/views/swagger-ui/index.html)
 
-> Make sure to check the [e2e](./e2e) tests in order to see how Swagger is implemented. The Explorer textbox needs to be manually implemented.
+> Make sure to check the [e2e](./e2e) tests in order to see how Swagger is implemented. The Explorer textbox needs to be manually configured at the moment.
 
 ### 4.5. - Security Report
 
@@ -174,6 +175,22 @@ Read report after running:
 -   [buy-oyc-catering-service](buy-oyc-catering-service/target/dependency-check-report.html)
 -   [buy-oyc-parking-service](buy-oyc-parking-service/target/dependency-check-report.html)
 -   [buy-oyc-ticket-service](buy-oyc-ticket-service/target/dependency-check-report.html)
+
+#### 4.4.4.5 Cypress tests
+
+In order to run cypress tests, please run 
+
+```shell
+make dcup-full
+```
+
+Then go to the [e2e](./e2e) folder and run:
+
+```shell
+make cypress-open
+```
+
+The cypress test management window should open and you should be able to perform your tests manually.
 
 ## 5.  Run chain tests
 
