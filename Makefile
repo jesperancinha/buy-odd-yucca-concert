@@ -54,7 +54,7 @@ docker-clean:
 docker-clean-build-start: docker-clean b docker
 docker-delete-apps: stop
 docker-action:
-	docker-compose -f docker-compose.yml up -d --build --remove-orphans
+	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d
 prune-all: docker-delete
 	docker network prune -f
 	docker system prune --all -f
