@@ -1,4 +1,4 @@
-version: '3.1'
+version: '3.7'
 
 x-kong-config: &kong-env
   KONG_DATABASE: ${KONG_DATABASE:-off}
@@ -66,8 +66,6 @@ services:
       KONG_PORTAL_GUI_HOST: "0.0.0.0:8003"
       KONG_PORTAL: "on"
     restart: on-failure
-    depends_on:
-      - yucca-db
     secrets:
       - kong_postgres_password
     ports:
@@ -124,9 +122,7 @@ services:
     stdin_open: true
     tty: true
     ports:
-      - 5432:5432
-    networks:
-      - yucca-net
+      - "5432:5432"
     volumes:
       - ./kong_data_vol:/var/lib/postgresql/data
       - ./docker-images/docker-psql:/docker-entrypoint-initdb.d
@@ -230,7 +226,7 @@ services:
     container_name: redis
     image: redis
     ports:
-       - 6379:6379
+       - "6379:6379"
     networks:
       yucca-net:
         ipv4_address: ${REDIS_HOST}
