@@ -68,3 +68,6 @@ logs
 
 # Python
 __pycache__
+
+# Tar Gz
+*.tar.gz
