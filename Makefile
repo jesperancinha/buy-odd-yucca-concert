@@ -22,6 +22,14 @@ kong-full-setup:
 	chmod -R 777 kong_tmp_vol
 	bash kong_wait.sh
 	make kong-setup
+kong-full-action-setup:
+	curl -sL https://github.com/kong/deck/releases/download/v1.12.3/deck_1.12.3_linux_amd64.tar.gz -o deck.tar.gz
+	tar -xf deck.tar.gz -C /tmp
+	sudo cp /tmp/deck /usr/local/bin/
+	sudo chmod -R 777 kong_tmp_vol
+	sudo chmod -R 777 kong_prefix_vol
+	bash kong_wait.sh
+	make kong-setup
 kong-setup:
 	cd kong && deck sync
 docker-databases: stop local
@@ -81,7 +89,7 @@ dcup-light:
 	docker-compose up -d fla_postgres
 dcup: dcd docker-clean docker kong-full-setup boyc-wait
 dcup-full: docker-clean-build-start kong-full-setup boyc-wait
-dcup-full-action: docker-clean b docker-action kong-full-setup boyc-wait
+dcup-full-action: docker-clean b docker-action kong-full-action-setup boyc-wait
 dcd:
 	docker-compose down
 cypress-open:
