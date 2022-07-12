@@ -3,7 +3,7 @@
 function checkServiceByNameAndMessage() {
     name=$1
     message=$2
-    printf $name
+    printf "%s." "$name"
     docker-compose logs "$name" &> "logs"
     string=$(cat logs)
     echo "$string"
@@ -27,7 +27,7 @@ function checkServiceByNameAndMessage() {
       fi
     done
     counter=$((counter+1))
-    echo "Succeeded $name Service after $counter tries!"
+    echo "succeeded $name Service after $counter tries!"
 }
 
 checkServiceByNameAndMessage kong 'init_worker_by_lua'

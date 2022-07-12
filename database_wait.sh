@@ -9,7 +9,7 @@ function checkServiceByNameAndMessage() {
     counter=0
     while [[ "$string" != *"$message"* ]]
     do
-      printf "."
+      printf "%s." "$name"
       docker-compose logs "$name" &> "logs"
       string=$(cat logs)
       sleep 1
@@ -21,7 +21,7 @@ function checkServiceByNameAndMessage() {
       fi
     done
     counter=$((counter+1))
-    echo "Succeeded $name Service after $counter tries!"
+    echo "succeeded $name Service after $counter tries!"
 }
 
 checkServiceByNameAndMessage yucca-db 'database system is ready to accept connections'
