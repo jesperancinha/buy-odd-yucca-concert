@@ -14,8 +14,6 @@ local: no-test
 no-test:
 	mvn clean install -DskipTests
 docker:
-	docker-compose down -v
-	docker-compose rm -svf
 	mkdir -p kong_prefix_vol kong_tmp_vol kong_data_vol
 	docker-compose up -d --build --remove-orphans
 kong-full-setup:
@@ -89,15 +87,17 @@ boyc-wait:
 database-wait:
 	bash database_wait.sh
 dcup-light:
-	docker-compose up -d yucca-db
+	docker-compose --env-file ./.env up -d yucca-db
 dcup-light-action:
-	docker-compose -f docker-compose.yml up -d yucca-db
+	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d yucca-db
 	sudo chown -R 1000:1000 ./kong_data_vol
 dcup: dcd docker-clean docker kong-full-setup boyc-wait
-dcup-full: docker-clean-build-start kong-full-setup boyc-wait
-dcup-full-action: docker-clean b dcup-light-action database-wait docker-action kong-full-action-setup boyc-wait
+dcup-full: dcd docker-clean b dcup-light database-wait docker kong-full-setup boyc-wait
+dcup-full-action: dcd docker-clean b dcup-light-action database-wait docker-action kong-full-action-setup boyc-wait
 dcd:
 	docker-compose down
+	docker-compose down -v
+	docker-compose rm -svf
 cypress-open:
 	cd e2e && yarn && npm run cypress
 cypress-electron:

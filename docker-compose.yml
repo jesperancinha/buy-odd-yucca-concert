@@ -42,8 +42,6 @@ services:
     restart: on-failure
 
   kong:
-    env_file:
-      - .env
     hostname: kong
     container_name: kong
     image: "${KONG_DOCKER_TAG:-kong:2.7.1}"
@@ -105,7 +103,7 @@ services:
     hostname: yucca-db
     container_name: yucca-db
     image: postgres:14.2
-    user: 1000:1000
+    user: ${YUCCA_USER_DB}
     command: postgres -c listen_addresses='*'
     environment:
       POSTGRES_DB: ${KONG_PG_DATABASE:-kong}
