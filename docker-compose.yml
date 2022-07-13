@@ -103,7 +103,7 @@ services:
     hostname: yucca-db
     container_name: yucca-db
     image: postgres:14.2
-    user: "postgres"
+    user: ${YUCCA_USER_DB}
     command: postgres -c listen_addresses='*'
     environment:
       POSTGRES_DB: ${KONG_PG_DATABASE:-kong}
@@ -123,6 +123,8 @@ services:
     tty: true
     ports:
       - "5432:5432"
+    expose:
+      - 5432
     volumes:
       - ./kong_data_vol:/var/lib/postgresql/data
       - ./docker-images/docker-psql:/docker-entrypoint-initdb.d

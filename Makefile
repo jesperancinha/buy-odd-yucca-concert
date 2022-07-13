@@ -14,8 +14,6 @@ local: no-test
 no-test:
 	mvn clean install -DskipTests
 docker:
-	docker-compose down -v
-	docker-compose rm -svf
 	mkdir -p kong_prefix_vol kong_tmp_vol kong_data_vol
 	docker-compose up -d --build --remove-orphans
 kong-full-setup:
@@ -26,6 +24,7 @@ kong-full-action-setup:
 	curl -sL https://github.com/kong/deck/releases/download/v1.12.3/deck_1.12.3_linux_amd64.tar.gz -o deck.tar.gz
 	tar -xf deck.tar.gz -C /tmp
 	sudo cp /tmp/deck /usr/local/bin/
+	sudo chmod -R 777 kong_data_vol
 	sudo chmod -R 777 kong_tmp_vol
 	sudo chmod -R 777 kong_prefix_vol
 	bash kong_wait.sh
@@ -55,7 +54,7 @@ docker-clean:
 docker-clean-build-start: docker-clean b docker
 docker-delete-apps: stop
 docker-action:
-	docker-compose -f docker-compose.yml up -d --build --remove-orphans
+	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d
 prune-all: docker-delete
 	docker network prune -f
 	docker system prune --all -f
@@ -85,13 +84,20 @@ integration:
 	cd buy-oyc-commons && mvn clean install -Pintegration
 boyc-wait:
 	bash boyc_wait.sh
+database-wait:
+	bash database_wait.sh
 dcup-light:
-	docker-compose up -d fla_postgres
+	docker-compose --env-file ./.env up -d yucca-db
+dcup-light-action:
+	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d yucca-db
+	sudo chown -R 1000:1000 ./kong_data_vol
 dcup: dcd docker-clean docker kong-full-setup boyc-wait
-dcup-full: docker-clean-build-start kong-full-setup boyc-wait
-dcup-full-action: docker-clean b docker-action kong-full-action-setup boyc-wait
+dcup-full: dcd docker-clean b dcup-light database-wait docker kong-full-setup boyc-wait
+dcup-full-action: dcd docker-clean b dcup-light-action database-wait docker-action kong-full-action-setup boyc-wait
 dcd:
 	docker-compose down
+	docker-compose down -v
+	docker-compose rm -svf
 cypress-open:
 	cd e2e && yarn && npm run cypress
 cypress-electron:
