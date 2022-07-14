@@ -55,6 +55,7 @@ abstract class AbstractBuyOddYuccaConcertContainerTest {
         val config = ClassicConfiguration()
 
         init {
+            config.isCleanDisabled = false
             postgreSQLContainer.start()
             redis.start()
             config.setDataSource(
