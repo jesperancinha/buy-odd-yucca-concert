@@ -47,6 +47,7 @@ class TicketReservationTest @Inject constructor(
 
     @BeforeEach
     fun beforeEach() {
+        config.isCleanDisabled = false
         postgreSQLContainer.start()
         config.setDataSource(postgreSQLContainer.jdbcUrl, postgreSQLContainer.username, postgreSQLContainer.password)
         config.schemas = arrayOf("ticket")

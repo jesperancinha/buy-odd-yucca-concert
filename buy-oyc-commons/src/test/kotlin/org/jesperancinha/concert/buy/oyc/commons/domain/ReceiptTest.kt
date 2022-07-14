@@ -29,7 +29,8 @@ class ReceiptTest @Inject constructor(
     private val config = ClassicConfiguration()
 
     @BeforeEach
-    fun beforeEach() {
+    fun beforeEvach() {
+        config.isCleanDisabled = false
         postgreSQLContainer.start()
         config.setDataSource(postgreSQLContainer.jdbcUrl, postgreSQLContainer.username, postgreSQLContainer.password)
         config.schemas = arrayOf("ticket")
