@@ -11,7 +11,7 @@ flyway:
   datasources:
     default:
       enabled: true
-      cleanDisabled: false
+  cleanDisabled: false
 
 jackson:
   serialization:
