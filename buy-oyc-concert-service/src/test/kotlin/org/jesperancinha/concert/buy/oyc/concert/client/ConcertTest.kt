@@ -85,6 +85,7 @@ class ConcertTest @Inject constructor(
         @JvmStatic
         @BeforeAll
         fun setUp() {
+            config.isCleanDisabled = false
             postgreSQLContainer.start()
             redis.start()
             config.setDataSource(

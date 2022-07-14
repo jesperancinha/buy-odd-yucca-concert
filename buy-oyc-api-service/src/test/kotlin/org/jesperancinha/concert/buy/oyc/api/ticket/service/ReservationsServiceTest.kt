@@ -91,6 +91,7 @@ internal class ReservationsServiceTest @Inject constructor(
         @JvmStatic
         @BeforeAll
         fun setUp() {
+            config.isCleanDisabled = false
             redis.start()
             postgreSQLContainer.start()
             wireMockServer.start()
