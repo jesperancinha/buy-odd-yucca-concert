@@ -59,7 +59,7 @@
         <micronaut-redis-lettuce.version>5.2.0</micronaut-redis-lettuce.version>
         <wiremock.version>2.27.2</wiremock.version>
         <rxjava.version>3.1.5</rxjava.version>
-        <micronaut-rxjava3-http-client.version>2.2.1</micronaut-rxjava3-http-client.version>
+        <micronaut-rxjava3-http-client.version>2.3.0</micronaut-rxjava3-http-client.version>
     </properties>
 
     <profiles>
