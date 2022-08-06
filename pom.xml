@@ -42,8 +42,8 @@
         <kotest.version>5.0.3</kotest.version>
         <kotlinx-coroutines-core-jvm.version>1.6.4</kotlinx-coroutines-core-jvm.version>
         <kotlinx.version>1.6.3-native-mt</kotlinx.version>
-        <postgresql.version>42.4.0</postgresql.version>
-        <flyway-core.version>9.1.0</flyway-core.version>
+        <postgresql.version>42.4.1</postgresql.version>
+        <flyway-core.version>9.1.2</flyway-core.version>
         <r2dbc-postgresql.version>0.8.12.RELEASE</r2dbc-postgresql.version>
         <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
         <maven-shade-plugin.version>3.3.0</maven-shade-plugin.version>
@@ -59,7 +59,7 @@
         <micronaut-redis-lettuce.version>5.3.0</micronaut-redis-lettuce.version>
         <wiremock.version>2.27.2</wiremock.version>
         <rxjava.version>3.1.5</rxjava.version>
-        <micronaut-rxjava3-http-client.version>2.2.1</micronaut-rxjava3-http-client.version>
+        <micronaut-rxjava3-http-client.version>2.3.0</micronaut-rxjava3-http-client.version>
     </properties>
 
     <profiles>
