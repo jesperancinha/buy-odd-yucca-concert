@@ -56,10 +56,11 @@
         <testcontainers.version>1.17.3</testcontainers.version>
         <micronaut-flyway.version>5.4.0</micronaut-flyway.version>
         <dependency-check-maven.version>7.1.1</dependency-check-maven.version>
-        <micronaut-redis-lettuce.version>5.2.0</micronaut-redis-lettuce.version>
+        <micronaut-redis-lettuce.version>5.3.0</micronaut-redis-lettuce.version>
         <wiremock.version>2.27.2</wiremock.version>
         <rxjava.version>3.1.5</rxjava.version>
         <micronaut-rxjava3-http-client.version>2.3.0</micronaut-rxjava3-http-client.version>
+        <lettuce-core.version>6.2.0.RELEASE</lettuce-core.version>
     </properties>
 
     <profiles>
@@ -229,6 +230,11 @@
                 <groupId>io.micronaut.rxjava3</groupId>
                 <artifactId>micronaut-rxjava3-http-client</artifactId>
                 <version>${micronaut-rxjava3-http-client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.lettuce</groupId>
+                <artifactId>lettuce-core</artifactId>
+                <version>${lettuce-core.version}</version>
             </dependency>
 
             <dependency>
