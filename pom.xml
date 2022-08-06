@@ -60,6 +60,7 @@
         <wiremock.version>2.27.2</wiremock.version>
         <rxjava.version>3.1.5</rxjava.version>
         <micronaut-rxjava3-http-client.version>2.3.0</micronaut-rxjava3-http-client.version>
+        <lettuce-core.version>6.2.0.RELEASE</lettuce-core.version>
     </properties>
 
     <profiles>
@@ -229,6 +230,11 @@
                 <groupId>io.micronaut.rxjava3</groupId>
                 <artifactId>micronaut-rxjava3-http-client</artifactId>
                 <version>${micronaut-rxjava3-http-client.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.lettuce</groupId>
+                <artifactId>lettuce-core</artifactId>
+                <version>${lettuce-core.version}</version>
             </dependency>
 
             <dependency>
