@@ -29,13 +29,11 @@
         <java.version>17</java.version>
         <jdk.version>${java.version}</jdk.version>
         <release.version>${java.version}</release.version>
-        <micronaut.version>3.5.4</micronaut.version>
-        <micronaut.data.processor>3.5.0</micronaut.data.processor>
-        <micronaut.openapi.version>4.0.0</micronaut.openapi.version>
-        <exec.mainClass>buy.oyc.ticket.service.ApplicationKt</exec.mainClass>
+        <maven-shade-plugin.version>3.3.0</maven-shade-plugin.version>
+        <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
         <kotlin.version>1.7.10</kotlin.version>
-        <micronaut.runtime>netty</micronaut.runtime>
-        <micronaut-parent.version>3.5.4</micronaut-parent.version>
+
         <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
         <jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
         <mockk.version>1.12.5</mockk.version>
@@ -46,21 +44,24 @@
         <flyway-core.version>9.1.2</flyway-core.version>
         <r2dbc-postgresql.version>0.8.12.RELEASE</r2dbc-postgresql.version>
         <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
-        <maven-shade-plugin.version>3.3.0</maven-shade-plugin.version>
-        <micronaut-maven-plugin.version>3.4.0</micronaut-maven-plugin.version>
-        <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <kotlin.version>1.6.21</kotlin.version>
         <kotlinx-coroutines-test.version>1.6.3-native-mt</kotlinx-coroutines-test.version>
         <testcontainers.version>1.17.3</testcontainers.version>
         <micronaut-flyway.version>5.4.0</micronaut-flyway.version>
         <dependency-check-maven.version>7.1.1</dependency-check-maven.version>
-        <micronaut-redis-lettuce.version>5.3.0</micronaut-redis-lettuce.version>
         <wiremock.version>2.27.2</wiremock.version>
         <rxjava.version>3.1.5</rxjava.version>
-        <micronaut-rxjava3-http-client.version>2.3.0</micronaut-rxjava3-http-client.version>
         <lettuce-core.version>6.2.0.RELEASE</lettuce-core.version>
+
+        <micronaut.version>3.5.4</micronaut.version>
+        <micronaut.data.processor>3.5.0</micronaut.data.processor>
+        <micronaut.openapi.version>4.0.0</micronaut.openapi.version>
+        <micronaut.runtime>netty</micronaut.runtime>
+        <micronaut-parent.version>3.5.4</micronaut-parent.version>
+        <micronaut-maven-plugin.version>3.4.0</micronaut-maven-plugin.version>
+        <micronaut-redis-lettuce.version>5.3.0</micronaut-redis-lettuce.version>
+        <micronaut-rxjava3-http-client.version>2.3.0</micronaut-rxjava3-http-client.version>
     </properties>
 
     <profiles>
