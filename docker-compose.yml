@@ -104,7 +104,7 @@ services:
     container_name: yucca-db
     image: postgres:14.2
     user: ${YUCCA_USER_DB}
-    command: postgres -c listen_addresses='*'
+    command: postgres -c listen_addresses='*' -c 'max_connections=400' -c 'shared_buffers=100MB'
     environment:
       POSTGRES_DB: ${KONG_PG_DATABASE:-kong}
       POSTGRES_USER: ${KONG_PG_USER:-kong}
