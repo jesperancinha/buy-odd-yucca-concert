@@ -3,7 +3,7 @@
 function checkServiceByNameAndMessage() {
     name=$1
     message=$2
-    printf $name
+    printf "$name"
     docker-compose logs "$name" &> "logs"
     string=$(cat logs)
     counter=0
@@ -19,6 +19,8 @@ function checkServiceByNameAndMessage() {
           echo "$string"
           exit
       fi
+                echo "$string"
+
     done
     counter=$((counter+1))
     echo "succeeded $name Service after $counter tries!"
