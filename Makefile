@@ -92,8 +92,8 @@ database-wait:
 	bash database_wait.sh
 dcup-light:
 	docker-compose --env-file ./.env up -d yucca-db
-	make set-permissions
 	sudo chown -R 1000:1000 ./kong_data_vol
+	make set-permissions
 	bash database_wait.sh
 dcup-light-action:
 	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d yucca-db
