@@ -251,6 +251,11 @@
                                 </annotationProcessorPath>
                                 <annotationProcessorPath>
                                     <groupId>io.micronaut</groupId>
+                                    <artifactId>micronaut-core</artifactId>
+                                    <version>${micronaut.version}</version>
+                                </annotationProcessorPath>
+                                <annotationProcessorPath>
+                                    <groupId>io.micronaut</groupId>
                                     <artifactId>micronaut-graal</artifactId>
                                     <version>${micronaut.version}</version>
                                 </annotationProcessorPath>
