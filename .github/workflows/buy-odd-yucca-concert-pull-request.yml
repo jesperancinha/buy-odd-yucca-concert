@@ -15,5 +15,8 @@ jobs:
             java-version: '17'
             distribution: 'adopt'
 
+        - name: Start DB
+          run: make dcup-light
+
         - name: Build and Test
           run:  mvn clean install jacoco:prepare-agent package jacoco:report
