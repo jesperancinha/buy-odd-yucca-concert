@@ -88,6 +88,9 @@ database-wait:
 	bash database_wait.sh
 dcup-light:
 	docker-compose --env-file ./.env up -d yucca-db
+	sudo chmod -R 777 kong_data_vol
+	sudo chmod -R 777 kong_tmp_vol
+	sudo chmod -R 777 kong_prefix_vol
 	sudo chown -R 1000:1000 ./kong_data_vol
 	bash database_wait.sh
 dcup-light-action:
