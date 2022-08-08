@@ -19,8 +19,6 @@ function checkServiceByNameAndMessage() {
           echo "$string"
           exit
       fi
-                echo "$string"
-
     done
     counter=$((counter+1))
     echo "succeeded $name Service after $counter tries!"
