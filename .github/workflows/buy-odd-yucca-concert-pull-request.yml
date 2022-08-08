@@ -16,7 +16,7 @@ jobs:
             distribution: 'adopt'
 
         - name: Start DB
-          run: make dcup-light
+          run: make dcup-light-action
 
         - name: Build and Test
           run:  mvn clean install jacoco:prepare-agent package jacoco:report
