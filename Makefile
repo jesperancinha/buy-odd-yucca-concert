@@ -88,10 +88,12 @@ database-wait:
 	bash database_wait.sh
 dcup-light:
 	docker-compose --env-file ./.env up -d yucca-db
+	sudo chown -R 1000:1000 ./kong_data_vol
 	bash database_wait.sh
 dcup-light-action:
 	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d yucca-db
 	sudo chown -R 1000:1000 ./kong_data_vol
+	bash database_wait.sh
 dcup: dcd docker-clean docker kong-full-setup boyc-wait
 dcup-full: dcd docker-clean b dcup-light database-wait docker kong-full-setup boyc-wait
 dcup-full-action: dcd docker-clean b dcup-light-action database-wait docker-action kong-full-action-setup boyc-wait
