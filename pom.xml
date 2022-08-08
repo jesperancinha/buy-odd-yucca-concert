@@ -58,7 +58,6 @@
         <micronaut.data.processor>3.5.0</micronaut.data.processor>
         <micronaut.openapi.version>4.0.0</micronaut.openapi.version>
         <micronaut.runtime>netty</micronaut.runtime>
-        <micronaut-parent.version>3.6.0</micronaut-parent.version>
         <micronaut-maven-plugin.version>3.4.0</micronaut-maven-plugin.version>
         <micronaut-redis-lettuce.version>5.3.0</micronaut-redis-lettuce.version>
         <micronaut-rxjava3-http-client.version>2.3.0</micronaut-rxjava3-http-client.version>
@@ -183,7 +182,7 @@
             <dependency>
                 <groupId>io.micronaut</groupId>
                 <artifactId>micronaut-parent</artifactId>
-                <version>${micronaut-parent.version}</version>
+                <version>${micronaut.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
