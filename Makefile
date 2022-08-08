@@ -1,3 +1,5 @@
+SHELL=/bin/bash
+
 b: build-npm build-maven
 build: build-npm
 	mvn clean install
@@ -20,13 +22,15 @@ kong-full-setup:
 	chmod -R 777 kong_tmp_vol
 	bash kong_wait.sh
 	make kong-setup
+set-permissions:
+	sudo chmod -R 777 kong_data_vol && [ -d kong_data_vol ] || mkdir kong_data_vol && sudo chmod -R 777 kong_data_vol
+	sudo chmod -R 777 kong_tmp_vol && [ -d kong_tmp_vol ] || mkdir kong_tmp_vol && sudo chmod -R 777 kong_tmp_vol
+	sudo chmod -R 777 kong_prefix_vol && [ -d kong_prefix_vol ] || mkdir kong_prefix_vol && sudo chmod -R 777 kong_prefix_vol
 kong-full-action-setup:
 	curl -sL https://github.com/kong/deck/releases/download/v1.12.3/deck_1.12.3_linux_amd64.tar.gz -o deck.tar.gz
 	tar -xf deck.tar.gz -C /tmp
 	sudo cp /tmp/deck /usr/local/bin/
-	sudo chmod -R 777 kong_data_vol
-	sudo chmod -R 777 kong_tmp_vol
-	sudo chmod -R 777 kong_prefix_vol
+	make set-permissions
 	bash kong_wait.sh
 	make kong-setup
 kong-setup:
@@ -88,9 +92,7 @@ database-wait:
 	bash database_wait.sh
 dcup-light:
 	docker-compose --env-file ./.env up -d yucca-db
-	sudo chmod -R 777 kong_data_vol
-	sudo chmod -R 777 kong_tmp_vol
-	sudo chmod -R 777 kong_prefix_vol
+	make set-permissions
 	sudo chown -R 1000:1000 ./kong_data_vol
 	bash database_wait.sh
 dcup-light-action:
