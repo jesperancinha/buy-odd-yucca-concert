@@ -56,16 +56,16 @@ class ParkingTest @Inject constructor(
         val awaitFirstReceiptDto = findAll.awaitFirstOrNull()
         awaitFirstReceiptDto.shouldBeNull()
 
-        val concertDayDto = ParkingReservationDto(
+        val parkingReservationDto = ParkingReservationDto(
             reference = UUID.randomUUID(),
             carParkingId = parkingNumber
         )
 
-        val add = parkingReactiveClient.add(concertDayDto)
-        val blockingGet = withContext(Dispatchers.IO) {
+        val add = parkingReactiveClient.add(parkingReservationDto)
+        val responseDto = withContext(Dispatchers.IO) {
             add.blockingGet()
         }
-        blockingGet.message.shouldBe("Saved successfully !")
+        responseDto.message.shouldBe("Saved successfully !")
         val findAll2 = parkingReactiveClient.findAll()
         findAll2.shouldNotBeNull()
         findAll2.subscribe()
