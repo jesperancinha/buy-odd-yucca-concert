@@ -1,7 +1,6 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
 import io.kotest.matchers.collections.shouldBeEmpty
-import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.comparables.shouldBeEqualComparingTo
 import io.kotest.matchers.equality.shouldBeEqualToComparingFields
 import io.kotest.matchers.nulls.shouldBeNull
@@ -110,21 +109,21 @@ class TicketReservationTest @Inject constructor(
 
         concertDaySaved.shouldNotBeNull()
 
-        val concertDayReservation = concertDayReservationRepository.save(
+        val concertDayReservation1 = concertDayReservationRepository.save(
             ConcertDayReservation(
                 reference = UUID.randomUUID(),
                 concert = concertDaySaved
             )
         )
 
-        concertDayReservationRepository.save(
+        val concertDayReservation2 = concertDayReservationRepository.save(
             ConcertDayReservation(
                 reference = UUID.randomUUID(),
                 concert = concertDaySaved
             )
         )
 
-        concertDayReservation.shouldNotBeNull()
+        concertDayReservation1.shouldNotBeNull()
 
         val birthDate = LocalDate.now()
         val ticketReservation = TicketReservation(
@@ -139,19 +138,19 @@ class TicketReservationTest @Inject constructor(
         id.shouldNotBeNull()
         val reservation = ticketReservationRepository.findById(id)
 
-        concertDayReservation.shouldNotBeNull()
+        concertDayReservation1.shouldNotBeNull()
         reservation.shouldNotBeNull()
 
         val ticketReservationConcertDay = ticketReservationConcertRepository
             .save(
                 TicketReservationConcertDay(
                     ticketReservation = reservation,
-                    concertDay = concertDayReservation
+                    concertDay = concertDayReservation1
                 )
             )
         ticketReservationConcertDay.shouldNotBeNull()
         ticketReservationConcertDay.ticketReservation shouldBe reservation
-        ticketReservationConcertDay.concertDay shouldBe concertDayReservation
+        ticketReservationConcertDay.concertDay shouldBe concertDayReservation1
 
         val ticketReservationId = ticketReservationConcertDay.id
         ticketReservationId.shouldNotBeNull()
@@ -236,13 +235,19 @@ class TicketReservationTest @Inject constructor(
         finalTicketReservation.shouldNotBeNull()
         finalTicketReservation.parkingReservation.shouldNotBeNull()
 
-        concertDayReservation.shouldNotBeNull()
-        val concertDayReservationId = concertDayReservation.id
+        concertDayReservation1.shouldNotBeNull()
+        val concertDayReservationId = concertDayReservation1.id
         concertDayReservationId.shouldNotBeNull()
+
         val concertDayReservationFinal = concertDayReservationRepository.findById(concertDayReservationId)
         concertDayReservationFinal.shouldNotBeNull()
         concertDayReservationFinal.concert.shouldNotBeNull()
-        concertDayReservationRepository.findAll().toList().shouldHaveSize(2)
+
+        val cdrId2 = concertDayReservation2.id
+        cdrId2.shouldNotBeNull()
+        val concertDayReservationFinal2 = concertDayReservationRepository.findById(cdrId2)
+        concertDayReservationFinal2.shouldNotBeNull()
+        concertDayReservationFinal2.concert.shouldNotBeNull()
 
         finalTicketReservationConcertId.shouldNotBeNull()
         val ticketReservationConcertFinal =

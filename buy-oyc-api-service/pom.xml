@@ -241,7 +241,12 @@
                                 <annotationProcessorPath>
                                     <groupId>io.micronaut.data</groupId>
                                     <artifactId>micronaut-data-processor</artifactId>
-                                    <version>${micronaut.data.processor}</version>
+                                    <version>${micronaut.version}</version>
+                                </annotationProcessorPath>
+                                <annotationProcessorPath>
+                                    <groupId>io.micronaut</groupId>
+                                    <artifactId>micronaut-core</artifactId>
+                                    <version>${micronaut.version}</version>
                                 </annotationProcessorPath>
                                 <annotationProcessorPath>
                                     <groupId>io.micronaut</groupId>
@@ -348,7 +353,7 @@
             <plugin>
                 <groupId>io.micronaut.build</groupId>
                 <artifactId>micronaut-maven-plugin</artifactId>
-                <version>3.4.0</version>
+                <version>${micronaut-maven-plugin.version}</version>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
