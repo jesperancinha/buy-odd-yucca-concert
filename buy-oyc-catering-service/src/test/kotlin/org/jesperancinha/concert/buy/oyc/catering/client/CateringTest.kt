@@ -5,6 +5,7 @@ import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
@@ -42,12 +43,8 @@ class CateringTest @Inject constructor(
         drinkReservationRepository.deleteAll()
         mealRepository.deleteAll()
         mealReservationRepository.deleteAll()
-    }
-
-    @Test
-    @Transactional
-    fun `Should reserve meals and drinks`() = runTest {
-        val (idTicket, reference, _, _, _, _, _) = ticketReservationRepository.save(
+        ticketReservationRepository.deleteAll()
+        ticketReservationRepository.save(
             TicketReservation(
                 reference = UUID.randomUUID(),
                 name = "name",
@@ -56,7 +53,7 @@ class CateringTest @Inject constructor(
             )
         )
 
-        val (idDrink, _, _, _, _, _, _, _) = drinkRepository.save(
+        drinkRepository.save(
             Drink(
                 name = "Loca Cola",
                 width = 10,
@@ -67,7 +64,7 @@ class CateringTest @Inject constructor(
 
             )
         )
-        val (idMeal, _, _, _, _, _, _) = mealRepository.save(
+        mealRepository.save(
             Meal(
                 coupon = UUID.randomUUID(),
                 boxType = BoxType.L,
@@ -75,8 +72,14 @@ class CateringTest @Inject constructor(
                 price = BigDecimal(100)
             )
         )
+    }
 
-
+    @Test
+    @Transactional
+    fun `Should reserve meals and drinks`() = runTest {
+        val (idTicket, reference, _, _, _, _, _) = ticketReservationRepository.findAll().first()
+        val (idDrink, _, _, _, _, _, _, _) = drinkRepository.findAll().first()
+        val (idMeal, _, _, _, _, _, _) = mealRepository.findAll().first()
         val addMeal = cateringReactiveClient.createMeal(
             MealDto(
                 reference = reference,
