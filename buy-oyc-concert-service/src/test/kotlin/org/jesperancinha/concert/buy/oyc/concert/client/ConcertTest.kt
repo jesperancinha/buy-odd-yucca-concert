@@ -8,6 +8,7 @@ import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.reactive.awaitFirstOrNull
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
@@ -40,18 +41,19 @@ class ConcertTest @Inject constructor(
     fun setUpEach() = runTest {
         concertRepository.deleteAll()
         concertDayReservationRepository.deleteAll()
-    }
-
-    @Test
-    @Transactional
-    fun `should create concert day reservation`() = runTest {
-        val (id, _, _, _, _) = concertRepository.save(
+        concertRepository.save(
             ConcertDay(
                 name = "The Sweet Potato Tour",
                 description = "A celebration of all potatoes of the World",
                 concertDate = LocalDate.now()
             )
         )
+    }
+
+    @Test
+    @Transactional
+    fun `should create concert day reservation`() = runTest {
+        val (id, _, _, _, _) = concertRepository.findAll().first()
         val findAll = concertReactiveClient.findAll()
         findAll.shouldNotBeNull()
         findAll.subscribe()
