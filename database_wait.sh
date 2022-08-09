@@ -3,7 +3,7 @@
 function checkServiceByNameAndMessage() {
     name=$1
     message=$2
-    printf $name
+    printf "$name"
     docker-compose logs "$name" &> "logs"
     string=$(cat logs)
     counter=0

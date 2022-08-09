@@ -17,6 +17,7 @@ import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.reactive.awaitFirst
 import kotlinx.coroutines.test.runTest
@@ -58,6 +59,7 @@ class ReceiptTest @Inject constructor(
     @BeforeEach
     fun setUpEach() = runTest {
         receiptRepository.deleteAll()
+        receiptRepository.save(Receipt())
         val ticketDto = TicketDto(name = "name", address = "address", birthDate = LocalDate.now())
         stubResponse(
             API_YUCCA_TICKET, jacksonMapper
@@ -69,7 +71,7 @@ class ReceiptTest @Inject constructor(
     @Test
     @Transactional
     fun `should create a general reservation`() = runTest {
-        val (_, referenceSaved, createdDate) = receiptRepository.save(Receipt())
+        val (_, referenceSaved, createdDate) = receiptRepository.findAll().first()
         val findAll = receiptReactiveClient.findAll()
         findAll.shouldNotBeNull()
         findAll.subscribe {

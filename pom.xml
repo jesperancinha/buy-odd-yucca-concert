@@ -39,7 +39,7 @@
         <mockk.version>1.12.5</mockk.version>
         <kotest.version>5.0.3</kotest.version>
         <kotlinx-coroutines-core-jvm.version>1.6.4</kotlinx-coroutines-core-jvm.version>
-        <kotlinx.version>1.6.3-native-mt</kotlinx.version>
+        <kotlinx.version>1.6.4</kotlinx.version>
         <postgresql.version>42.4.1</postgresql.version>
         <flyway-core.version>9.1.2</flyway-core.version>
         <r2dbc-postgresql.version>0.8.12.RELEASE</r2dbc-postgresql.version>
@@ -48,20 +48,18 @@
         <kotlin.version>1.6.21</kotlin.version>
         <kotlinx-coroutines-test.version>1.6.3-native-mt</kotlinx-coroutines-test.version>
         <testcontainers.version>1.17.3</testcontainers.version>
-        <micronaut-flyway.version>5.4.0</micronaut-flyway.version>
         <dependency-check-maven.version>7.1.1</dependency-check-maven.version>
         <wiremock.version>2.27.2</wiremock.version>
         <rxjava.version>3.1.5</rxjava.version>
         <lettuce-core.version>6.2.0.RELEASE</lettuce-core.version>
 
-        <micronaut.version>3.5.4</micronaut.version>
-        <micronaut.data.processor>3.5.0</micronaut.data.processor>
+        <micronaut.version>3.6.0</micronaut.version>
         <micronaut.openapi.version>4.0.0</micronaut.openapi.version>
         <micronaut.runtime>netty</micronaut.runtime>
-        <micronaut-parent.version>3.5.4</micronaut-parent.version>
         <micronaut-maven-plugin.version>3.4.0</micronaut-maven-plugin.version>
         <micronaut-redis-lettuce.version>5.3.0</micronaut-redis-lettuce.version>
         <micronaut-rxjava3-http-client.version>2.3.0</micronaut-rxjava3-http-client.version>
+        <micronaut-flyway.version>5.4.0</micronaut-flyway.version>
     </properties>
 
     <profiles>
@@ -183,7 +181,7 @@
             <dependency>
                 <groupId>io.micronaut</groupId>
                 <artifactId>micronaut-parent</artifactId>
-                <version>${micronaut-parent.version}</version>
+                <version>${micronaut.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
