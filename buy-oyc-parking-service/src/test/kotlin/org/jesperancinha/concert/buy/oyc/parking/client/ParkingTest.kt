@@ -39,16 +39,16 @@ class ParkingTest @Inject constructor(
     fun setUpEach() = runTest {
         parkingRepository.deleteAll()
         parkingReservationRepository.deleteAll()
+        parkingRepository.save(
+            CarParking(
+                parkingNumber = 1
+            )
+        )
     }
 
     @Test
     @Transactional
     fun `should create car parking reservation`() = runTest {
-        val (_, parkingNumber, _) = parkingRepository.save(
-            CarParking(
-                parkingNumber = 1
-            )
-        )
         val findAll = parkingReactiveClient.findAll()
         findAll.shouldNotBeNull()
         findAll.subscribe()
@@ -58,7 +58,7 @@ class ParkingTest @Inject constructor(
 
         val parkingReservationDto = ParkingReservationDto(
             reference = UUID.randomUUID(),
-            carParkingId = parkingNumber
+            carParkingId = 1
         )
 
         val add = parkingReactiveClient.add(parkingReservationDto)
@@ -66,6 +66,7 @@ class ParkingTest @Inject constructor(
             add.blockingGet()
         }
         responseDto.message.shouldBe("Saved successfully !")
+
         val findAll2 = parkingReactiveClient.findAll()
         findAll2.shouldNotBeNull()
         findAll2.subscribe()
