@@ -231,7 +231,7 @@
                                 <annotationProcessorPath>
                                     <groupId>io.micronaut.data</groupId>
                                     <artifactId>micronaut-data-processor</artifactId>
-                                    <version>${micronaut.version}</version>
+                                    <version>${micronaut.data.processor.version}</version>
                                 </annotationProcessorPath>
                                 <annotationProcessorPath>
                                     <groupId>io.micronaut</groupId>
