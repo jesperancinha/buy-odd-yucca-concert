@@ -26,7 +26,7 @@ jobs:
 
   build-yarn:
     docker:
-      - image: cimg/node:17.3.1
+      - image: cimg/node:18.8.0
 
     working_directory: ~/repo
 
