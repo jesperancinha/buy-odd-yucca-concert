@@ -22,8 +22,6 @@ docker:
 	docker-compose up -d --build --remove-orphans
 kong-full-setup:
 	chmod -R 777 kong_tmp_vol
-	bash kong_wait.sh
-	make kong-setup
 set-permissions:
 	sudo chmod -R 777 kong_data_vol && [ -d kong_data_vol ] || mkdir kong_data_vol && sudo chmod -R 777 kong_data_vol
 	sudo chmod -R 777 kong_tmp_vol && [ -d kong_tmp_vol ] || mkdir kong_tmp_vol && sudo chmod -R 777 kong_tmp_vol
