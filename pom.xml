@@ -42,7 +42,7 @@
         <kotlinx.version>1.6.4</kotlinx.version>
         <postgresql.version>42.5.0</postgresql.version>
         <flyway-core.version>9.2.1</flyway-core.version>
-        <r2dbc-postgresql.version>0.8.12.RELEASE</r2dbc-postgresql.version>
+        <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
         <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <kotlin.version>1.6.21</kotlin.version>
@@ -60,7 +60,7 @@
         <micronaut-maven-plugin.version>3.4.0</micronaut-maven-plugin.version>
         <micronaut-redis-lettuce.version>5.3.0</micronaut-redis-lettuce.version>
         <micronaut-rxjava3-http-client.version>2.3.0</micronaut-rxjava3-http-client.version>
-        <micronaut-flyway.version>5.4.0</micronaut-flyway.version>
+        <micronaut-flyway.version>5.4.1</micronaut-flyway.version>
     </properties>
 
     <profiles>
