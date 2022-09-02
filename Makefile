@@ -59,7 +59,7 @@ docker-clean:
 	docker-compose rm -svf
 docker-clean-build-start: docker-clean b docker
 docker-delete-apps: stop
-docker-action:
+docker-action: create-folders
 	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d
 prune-all: docker-delete
 	docker network prune -f
