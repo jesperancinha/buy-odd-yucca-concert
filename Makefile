@@ -57,7 +57,7 @@ docker-clean:
 	docker-compose rm -svf
 docker-clean-build-start: docker-clean b docker
 docker-delete-apps: stop
-docker-action: create-folders
+docker-action: create-folders set-permissions
 	sudo chown -R 1000:1000 ./kong_data_vol
 	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d
 	docker-compose logs
