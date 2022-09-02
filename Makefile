@@ -4,13 +4,15 @@ b: build-npm build-maven
 build: build-npm
 	mvn clean install
 build-npm:
-	cd buy-odd-yucca-gui && yarn install && yarn build
+	cd buy-odd-yucca-gui && yarn && yarn build
 build-maven:
 	mvn clean install -DskipTests
 test:
 	mvn test
 test-maven:
 	mvn test
+test-node:
+	cd buy-odd-yucca-gui && npm run jest
 local: no-test
 	mkdir -p bin
 no-test:
@@ -88,23 +90,24 @@ integration:
 	cd buy-oyc-commons && mvn clean install -Pintegration
 boyc-wait:
 	bash boyc_wait.sh
+create-folders:
+	mkdir -p kong_prefix_vol kong_tmp_vol kong_data_vol
 database-wait:
 	bash database_wait.sh
 dcup-light:
 	docker-compose --env-file ./.env up -d yucca-db
 	make set-permissions
 	bash database_wait.sh
-dcup-light-action:
+dcup-light-action: create-folders
 	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d yucca-db
-	sudo chown -R 1000:1000 ./kong_data_vol
 	bash database_wait.sh
 dcup-light-open-action:
 	docker-compose --env-file ./.env-pipeline up -d yucca-db
 	sudo chown -R 1000:1000 ./kong_data_vol
 	bash database_wait.sh
 dcup: dcd docker-clean docker kong-full-setup boyc-wait
-dcup-full: dcd docker-clean b dcup-light database-wait docker kong-full-setup boyc-wait
-dcup-full-action: dcd docker-clean b dcup-light-action database-wait docker-action kong-full-action-setup boyc-wait
+dcup-full: dcd docker-clean b docker kong-full-setup boyc-wait
+dcup-full-action: dcd docker-clean b docker-action boyc-wait
 dcd:
 	docker-compose down
 	docker-compose down -v
@@ -119,3 +122,10 @@ cypress-firefox:
 	cd e2e && make cypress-firefox
 cypress-edge:
 	cd e2e && make cypress-edge
+coverage-maven:
+	mvn jacoco:prepare-agent package jacoco:report
+coverage-node:
+	cd buy-odd-yucca-gui && npm run coverage
+report:
+	mvn omni-coveragereporter:report
+local-pipeline: build-maven build-npm test-maven test-node report coverage-maven coverage-node

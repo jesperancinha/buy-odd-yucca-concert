@@ -1,12 +1,10 @@
-FROM openjdk:17-slim-buster
+FROM openjdk:17-alpine
 
 WORKDIR /root
 
 ENV LANG=C.UTF-8
 
-RUN apt update -y
-
-RUN apt install curl -y
+RUN apk --no-cache add curl
 
 COPY entrypoint.sh /root
 

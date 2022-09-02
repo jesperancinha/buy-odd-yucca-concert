@@ -71,3 +71,8 @@ __pycache__
 
 # Tar Gz
 *.tar.gz
+
+# Kong
+deck.tar.gz
+deck
+CHANGELOG.md

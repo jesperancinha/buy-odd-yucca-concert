@@ -34,7 +34,7 @@ jobs:
       - checkout
 
       - run:
-          command: yarn install --force
+          command: yarn --force
           working_directory: buy-odd-yucca-gui
 
       - run:

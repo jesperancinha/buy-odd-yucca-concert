@@ -38,6 +38,6 @@ jobs:
           run: mvn clean install -Powasp
 
         - name: NPM Snyk Security Check
-          run: cd buy-odd-yucca-gui && yarn install && npm run snyk
+          run: cd buy-odd-yucca-gui && yarn && npm run snyk
           env:
              SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
