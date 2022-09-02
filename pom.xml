@@ -42,7 +42,7 @@
         <kotlinx.version>1.6.4</kotlinx.version>
         <postgresql.version>42.5.0</postgresql.version>
         <flyway-core.version>9.2.1</flyway-core.version>
-        <r2dbc-postgresql.version>0.8.12.RELEASE</r2dbc-postgresql.version>
+        <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
         <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <kotlin.version>1.6.21</kotlin.version>
