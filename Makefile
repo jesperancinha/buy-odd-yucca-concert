@@ -17,11 +17,8 @@ local: no-test
 	mkdir -p bin
 no-test:
 	mvn clean install -DskipTests
-docker:
-	mkdir -p kong_prefix_vol kong_tmp_vol kong_data_vol
+docker: create-folders set-permissions
 	docker-compose up -d --build --remove-orphans
-kong-full-setup:
-	chmod -R 777 kong_tmp_vol
 set-permissions:
 	sudo chmod -R 777 kong_data_vol && [ -d kong_data_vol ] || mkdir kong_data_vol && sudo chmod -R 777 kong_data_vol
 	sudo chmod -R 777 kong_tmp_vol && [ -d kong_tmp_vol ] || mkdir kong_tmp_vol && sudo chmod -R 777 kong_tmp_vol
@@ -57,6 +54,7 @@ docker-clean:
 	docker-compose rm -svf
 docker-clean-build-start: docker-clean b docker
 docker-delete-apps: stop
+# docker-action is only used for remote pipelines
 docker-action: create-folders set-permissions
 	sudo chown -R 1000:1000 ./kong_data_vol
 	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d
@@ -105,8 +103,9 @@ dcup-light-open-action:
 	docker-compose --env-file ./.env-pipeline up -d yucca-db
 	sudo chown -R 1000:1000 ./kong_data_vol
 	bash database_wait.sh
-dcup: dcd docker-clean docker kong-full-setup boyc-wait
-dcup-full: dcd docker-clean b docker kong-full-setup boyc-wait
+dcup: dcd docker-clean docker boyc-wait
+dcup-full: dcd docker-clean b docker boyc-wait
+# dcup-full-action is only used for remote pipelines
 dcup-full-action: dcd docker-clean b docker-action boyc-wait
 dcd:
 	docker-compose down
