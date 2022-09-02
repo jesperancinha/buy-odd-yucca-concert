@@ -88,7 +88,7 @@ services:
       - "8002:8002"
       - "8003:8003"
     healthcheck:
-      test: [ "CMD", "kong", "health" ]
+      test: [ "CMD", "curl", "--silent", "http://127.0.0.1:8001" ]
       interval: 10s
       timeout: 10s
       retries: 20
