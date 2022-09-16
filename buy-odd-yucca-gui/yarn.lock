@@ -7638,9 +7638,9 @@ slash@^4.0.0:
   version "4.0.0"
   resolved "https://registry.npmjs.org/slash/-/slash-4.0.0.tgz"
 
-snyk@^1.1005.0:
-  version "1.1005.0"
-  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.1005.0.tgz#2531796b7211f4afa2ca0a8de00a3f528f4c8201"
+snyk@^1.1006.0:
+  version "1.1006.0"
+  resolved "https://registry.yarnpkg.com/snyk/-/snyk-1.1006.0.tgz#cff4e900c5798a67ebe9e81386d760914ed37c37"
 
 sockjs@^0.3.21:
   version "0.3.24"
