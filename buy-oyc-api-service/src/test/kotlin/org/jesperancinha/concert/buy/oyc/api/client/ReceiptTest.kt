@@ -5,6 +5,9 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.client.WireMock
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration
+import io.kotest.common.ExperimentalKotest
+import io.kotest.framework.concurrency.FixedInterval
+import io.kotest.framework.concurrency.eventually
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.longs.shouldBeLessThan
 import io.kotest.matchers.nulls.shouldNotBeNull
@@ -62,12 +65,12 @@ class ReceiptTest @Inject constructor(
         receiptRepository.save(Receipt())
         val ticketDto = TicketDto(name = "name", address = "address", birthDate = LocalDate.now())
         stubResponse(
-            API_YUCCA_TICKET, jacksonMapper
-                .writeValueAsString(ticketDto), 200
+            body = jacksonMapper.writeValueAsString(ticketDto),
         )
         wireMockServer.start()
     }
 
+    @ExperimentalKotest
     @Test
     @Transactional
     fun `should create a general reservation`() = runTest {
@@ -103,7 +106,12 @@ class ReceiptTest @Inject constructor(
         withContext(Dispatchers.IO) {
             sleep(1000)
         }
-        auditLogRepository.findAll().toList().shouldHaveSize(1)
+        eventually({
+            duration = 5000
+            interval = FixedInterval(1000)
+        }) {
+            auditLogRepository.findAll().toList().shouldHaveSize(1)
+        }
     }
 
     companion object {
@@ -130,15 +138,13 @@ class ReceiptTest @Inject constructor(
     }
 
     private fun stubResponse(
-        url: String,
         body: String,
-        status: Int = HttpStatus.OK.code
     ) {
         wireMockServer.stubFor(
-            WireMock.post(url)
+            WireMock.post(API_YUCCA_TICKET)
                 .willReturn(
                     WireMock.aResponse()
-                        .withStatus(status)
+                        .withStatus(HttpStatus.OK.code)
                         .withHeader(
                             HttpHeaders.CONTENT_TYPE,
                             MediaType.APPLICATION_JSON
