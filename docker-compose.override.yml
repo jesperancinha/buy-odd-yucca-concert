@@ -24,6 +24,11 @@ services:
   buy-oyc-nginx:
     ports:
       - "8080:8080"
+
   redis:
     ports:
-       - "6379:6379"
+      - "6379:6379"
+
+  yucca-db:
+    ports:
+      - "5432:5432"

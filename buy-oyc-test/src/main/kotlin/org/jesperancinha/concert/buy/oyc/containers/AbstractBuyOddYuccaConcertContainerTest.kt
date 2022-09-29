@@ -56,7 +56,9 @@ abstract class AbstractBuyOddYuccaConcertContainerTest {
 
         init {
             config.isCleanDisabled = false
-            postgreSQLContainer.start()
+            if(!postgreSQLContainer.isRunning) {
+                postgreSQLContainer.start()
+            }
             redis.start()
             config.setDataSource(
                 postgreSQLContainer.jdbcUrl,

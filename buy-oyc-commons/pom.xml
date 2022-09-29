@@ -229,7 +229,7 @@
                                 </annotationProcessorPath>
                                 <annotationProcessorPath>
                                     <groupId>io.micronaut</groupId>
-                                    <artifactId>micronaut-graal</artifactId>
+                                    <artifactId>micronaut-core</artifactId>
                                     <version>${micronaut.version}</version>
                                 </annotationProcessorPath>
                                 <annotationProcessorPath>
@@ -282,6 +282,7 @@
                         <configuration>
                             <sourceDirs>
                                 <sourceDir>${project.basedir}/src/test/kotlin</sourceDir>
+                                <sourceDir>${project.basedir}/src/it/kotlin</sourceDir>
                             </sourceDirs>
                             <annotationProcessorPaths combine.self="override">
                                 <annotationProcessorPath>
@@ -292,6 +293,11 @@
                                 <annotationProcessorPath>
                                     <groupId>io.micronaut</groupId>
                                     <artifactId>micronaut-validation</artifactId>
+                                    <version>${micronaut.version}</version>
+                                </annotationProcessorPath>
+                                <annotationProcessorPath>
+                                    <groupId>io.micronaut</groupId>
+                                    <artifactId>micronaut-core</artifactId>
                                     <version>${micronaut.version}</version>
                                 </annotationProcessorPath>
                             </annotationProcessorPaths>
@@ -472,7 +478,7 @@
                                         </annotationProcessorPath>
                                         <annotationProcessorPath>
                                             <groupId>io.micronaut</groupId>
-                                            <artifactId>micronaut-graal</artifactId>
+                                            <artifactId>micronaut-core</artifactId>
                                             <version>${micronaut.version}</version>
                                         </annotationProcessorPath>
                                         <annotationProcessorPath>
@@ -535,6 +541,11 @@
                                         <annotationProcessorPath>
                                             <groupId>io.micronaut</groupId>
                                             <artifactId>micronaut-validation</artifactId>
+                                            <version>${micronaut.version}</version>
+                                        </annotationProcessorPath>
+                                        <annotationProcessorPath>
+                                            <groupId>io.micronaut</groupId>
+                                            <artifactId>micronaut-core</artifactId>
                                             <version>${micronaut.version}</version>
                                         </annotationProcessorPath>
                                     </annotationProcessorPaths>
