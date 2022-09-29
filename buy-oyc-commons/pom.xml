@@ -229,6 +229,11 @@
                                 </annotationProcessorPath>
                                 <annotationProcessorPath>
                                     <groupId>io.micronaut</groupId>
+                                    <artifactId>micronaut-inject</artifactId>
+                                    <version>${micronaut.version}</version>
+                                </annotationProcessorPath>
+                                <annotationProcessorPath>
+                                    <groupId>io.micronaut</groupId>
                                     <artifactId>micronaut-core</artifactId>
                                     <version>${micronaut.version}</version>
                                 </annotationProcessorPath>
@@ -479,6 +484,12 @@
                                         <annotationProcessorPath>
                                             <groupId>io.micronaut</groupId>
                                             <artifactId>micronaut-core</artifactId>
+                                            <artifactId>micronaut-core</artifactId>
+                                            <version>${micronaut.version}</version>
+                                        </annotationProcessorPath>
+                                        <annotationProcessorPath>
+                                            <groupId>io.micronaut</groupId>
+                                            <artifactId>micronaut-inject</artifactId>
                                             <version>${micronaut.version}</version>
                                         </annotationProcessorPath>
                                         <annotationProcessorPath>
