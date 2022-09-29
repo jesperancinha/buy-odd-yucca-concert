@@ -1,45 +1,48 @@
-# a very minimal declarative config file
-_format_version: "2.1"
+_format_version: "3.0"
 _transform: true
-
 services:
-  - name: buy-oyc-ticket-service
-    url: http://buy-oyc-ticket:8084
-    routes:
-      - name: buy-oyc-ticket-service-routes
-        paths:
-          - /api/yucca-ticket
-        strip_path: true
-
-  - name: buy-oyc-concert-service
-    url: http://buy-oyc-concert:8085
-    routes:
-      - name: buy-oyc-concert-service-routes
-        paths:
-          - /api/yucca-concert
-        strip_path: true
-
-  - name: buy-oyc-catering-service
-    url: http://buy-oyc-catering:8087
-    routes:
-      - name: buy-oyc-catering-service-routes
-        paths:
-          - /api/yucca-catering
-        strip_path: true
-
-  - name: buy-oyc-parking-service
-    url: http://buy-oyc-parking:8086
-    routes:
-      - name: buy-oyc-parking-service-routes
-        paths:
-          - /api/yucca-parking
-        strip_path: true
-
-  - name: buy-oyc-api-service
-    url: http://buy-oyc-api:8088
-    routes:
-      - name: buy-oyc-api-service-routes
-        paths:
-          - /api/yucca-api
-        strip_path: true
-
+- host: buy-oyc-ticket
+  name: buy-oyc-ticket-service
+  port: 8084
+  protocol: http
+  routes:
+  - name: buy-oyc-ticket-service-routes
+    paths:
+    - /api/yucca-ticket
+    strip_path: true
+- host: buy-oyc-concert
+  name: buy-oyc-concert-service
+  port: 8085
+  protocol: http
+  routes:
+  - name: buy-oyc-concert-service-routes
+    paths:
+    - /api/yucca-concert
+    strip_path: true
+- host: buy-oyc-catering
+  name: buy-oyc-catering-service
+  port: 8087
+  protocol: http
+  routes:
+  - name: buy-oyc-catering-service-routes
+    paths:
+    - /api/yucca-catering
+    strip_path: true
+- host: buy-oyc-parking
+  name: buy-oyc-parking-service
+  port: 8086
+  protocol: http
+  routes:
+  - name: buy-oyc-parking-service-routes
+    paths:
+    - /api/yucca-parking
+    strip_path: true
+- host: buy-oyc-api
+  name: buy-oyc-api-service
+  port: 8088
+  protocol: http
+  routes:
+  - name: buy-oyc-api-service-routes
+    paths:
+    - /api/yucca-api
+    strip_path: true
