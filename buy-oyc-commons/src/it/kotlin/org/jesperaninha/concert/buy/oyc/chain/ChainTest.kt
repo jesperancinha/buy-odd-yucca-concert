@@ -1,5 +1,10 @@
+@file:OptIn(ExperimentalKotest::class, ExperimentalKotest::class)
+
 package org.jesperaninha.concert.buy.oyc.chain
 
+import io.kotest.common.ExperimentalKotest
+import io.kotest.framework.concurrency.FixedInterval
+import io.kotest.framework.concurrency.eventually
 import io.kotest.matchers.collections.shouldHaveAtMostSize
 import io.kotest.matchers.collections.shouldHaveSize
 import io.micronaut.http.HttpHeaders.ACCEPT
@@ -22,20 +27,20 @@ import org.jesperaninha.concert.buy.oyc.containers.CustomContextBuilder
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import java.lang.Thread.sleep
 import java.math.BigDecimal
 import java.net.URL
 import java.time.Duration.ofSeconds
 import java.time.LocalDate
 
 private const val DELAY: Long = 20
+private const val SMALL_DELAY: Long = 1
 
 /**
  * Created by jofisaes on 22/04/2022
  */
 @ExperimentalCoroutinesApi
 @MicronautTest(contextBuilder = [CustomContextBuilder::class])
-class ChainTest @Inject constructor(
+open class ChainTest @Inject constructor(
     private val auditLogRepository: AuditLogRepository,
     private val receiptRepository: ReceiptRepository,
     private val ticketReservationRepository: TicketReservationRepository,
@@ -66,54 +71,62 @@ class ChainTest @Inject constructor(
 
     @Test
     fun `should run chain test and create a concert reservation`() = runTest {
-        withContext(Dispatchers.IO) {
-            sleep(ofSeconds(DELAY).toMillis())
-        }
-
         val (serviceHost, servicePort) = dockerCompose.getContainerByServiceName("kong_1").get().let {
             it.host to it.firstMappedPort
         }
 
         val httpClient = HttpClient.create(URL("http://$serviceHost:$servicePort"))
 
-
-        withContext(Dispatchers.IO) {
-            delay(ofSeconds(DELAY).toMillis())
+        val drink = withContext(Dispatchers.IO) {
+            drinkRepository.save(
+                Drink(
+                    name = "BlueYellow",
+                    width = 5,
+                    height = 5,
+                    shape = "cylinder",
+                    volume = DELAY,
+                    price = BigDecimal.TEN
+                )
+            )
         }
 
-        val drink = drinkRepository.save(
-            Drink(
-                name = "BlueYellow",
-                width = 5,
-                height = 5,
-                shape = "cylinder",
-                volume = DELAY,
-                price = BigDecimal.TEN
-            )
-        )
-
-        val meal = mealRepository.save(
-            Meal(
-                boxType = BoxType.XS,
-                discount = 10,
-                price = BigDecimal.TEN
-            )
-        )
+        assertWithTries { drinkRepository.findAll().toList().shouldHaveSize(1) }
 
 
-        val concertDay = concertDayRepository.save(
-            ConcertDay(
-                name = "Kyiv Symphony Orchestra",
-                description = "Peace concert",
-                concertDate = LocalDate.now()
+        val meal = withContext(Dispatchers.IO) {
+            mealRepository.save(
+                Meal(
+                    boxType = BoxType.XS,
+                    discount = 10,
+                    price = BigDecimal.TEN
+                )
             )
-        )
+        }
 
-        val carParking = parkingRepository.save(
-            CarParking(
-                parkingNumber = 8
+        assertWithTries { mealRepository.findAll().toList().shouldHaveSize(1) }
+
+        val concertDay = withContext(Dispatchers.IO) {
+            concertDayRepository.save(
+                ConcertDay(
+                    name = "Kyiv Symphony Orchestra",
+                    description = "Peace concert",
+                    concertDate = LocalDate.now()
+                )
             )
-        )
+        }
+
+        assertWithTries { concertDayRepository.findAll().toList().shouldHaveSize(1) }
+
+        val carParking = withContext(Dispatchers.IO) {
+            parkingRepository.save(
+                CarParking(
+                    parkingNumber = 8
+                )
+            )
+        }
+
+        assertWithTries { parkingRepository.findAll().toList().shouldHaveSize(1) }
+
         val ticketDto = TicketDto(
             name = "name", address = "address", birthDate = LocalDate.now(),
             drinks = listOf(
@@ -144,25 +157,34 @@ class ChainTest @Inject constructor(
         dtoSingle.awaitFirst()
 
         withContext(Dispatchers.IO) {
-            delay(ofSeconds(DELAY).toMillis())
-        }
-
-        withContext(Dispatchers.IO) {
-            delay(ofSeconds(DELAY).toMillis())
-            receiptRepository.findAll().toList().shouldHaveSize(1)
-            ticketReservationRepository.findAll().toList().shouldHaveSize(1)
-            drinkReservationRepository.findAll().toList().shouldHaveSize(1)
-            mealReservationRepository.findAll().toList().shouldHaveSize(1)
-            concertDayReservationRepository.findAll().toList().shouldHaveSize(2)
-            parkingReservationRepository.findAll().toList().shouldHaveSize(1)
-            auditLogRepository.findAll().toList().shouldHaveAtMostSize(5)
+            assertWithTries { receiptRepository.findAll().toList().shouldHaveSize(1) }
+            assertWithTries { ticketReservationRepository.findAll().toList().shouldHaveSize(1) }
+            assertWithTries { drinkReservationRepository.findAll().toList().shouldHaveSize(1) }
+            assertWithTries { mealReservationRepository.findAll().toList().shouldHaveSize(1) }
+            assertWithTries { concertDayReservationRepository.findAll().toList().shouldHaveSize(2) }
+            assertWithTries { parkingReservationRepository.findAll().toList().shouldHaveSize(1) }
+            assertWithTries { auditLogRepository.findAll().toList().shouldHaveAtMostSize(5) }
         }
     }
 
     companion object {
+        @JvmStatic
         @AfterAll
         fun tearDown() {
             dockerCompose.stop()
+        }
+    }
+}
+
+@OptIn(ExperimentalKotest::class)
+private suspend fun <T> assertWithTries(function: suspend () -> Collection<T>) {
+    eventually({
+        duration = 60000
+        interval = FixedInterval(1000)
+    }) {
+        function()
+        withContext(Dispatchers.IO) {
+            delay(ofSeconds(SMALL_DELAY).toMillis())
         }
     }
 }

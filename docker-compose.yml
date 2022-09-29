@@ -43,7 +43,7 @@ services:
   kong:
     hostname: kong
     container_name: kong
-    image: "${KONG_DOCKER_TAG:-kong:2.7.1}"
+    image: "${KONG_DOCKER_TAG:-kong:latest}"
     depends_on:
         yucca-db:
           condition: service_healthy
@@ -139,8 +139,6 @@ services:
     restart: on-failure
     stdin_open: true
     tty: true
-    ports:
-      - "5432:5432"
     expose:
       - 5432
     volumes:
@@ -174,6 +172,7 @@ services:
 
   buy-oyc-concert:
     hostname: buy-oyc-concert
+    container_name: buy-oyc-concert
     depends_on:
         yucca-db:
           condition: service_healthy
