@@ -43,7 +43,7 @@ services:
   kong:
     hostname: kong
     container_name: kong
-    image: "${KONG_DOCKER_TAG:-kong:2.7.1}"
+    image: "${KONG_DOCKER_TAG:-kong:latest}"
     depends_on:
         yucca-db:
           condition: service_healthy
