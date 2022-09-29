@@ -76,3 +76,6 @@ __pycache__
 deck.tar.gz
 deck
 CHANGELOG.md
+
+# Ignore
+!buy-odd-yucca-gui/build/.fixed
