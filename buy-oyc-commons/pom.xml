@@ -2,7 +2,6 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
         <groupId>org.jesperancinha.concert</groupId>
         <artifactId>buy-odd-yucca-concert</artifactId>
@@ -221,7 +220,7 @@
                                 <annotationProcessorPath>
                                     <groupId>io.micronaut.data</groupId>
                                     <artifactId>micronaut-data-processor</artifactId>
-                                    <version>${micronaut.data.processor.version}</version>
+                                    <version>${micronaut.version}</version>
                                 </annotationProcessorPath>
                                 <annotationProcessorPath>
                                     <groupId>io.micronaut</groupId>
@@ -230,7 +229,7 @@
                                 </annotationProcessorPath>
                                 <annotationProcessorPath>
                                     <groupId>io.micronaut</groupId>
-                                    <artifactId>micronaut-graal</artifactId>
+                                    <artifactId>micronaut-core</artifactId>
                                     <version>${micronaut.version}</version>
                                 </annotationProcessorPath>
                                 <annotationProcessorPath>
@@ -283,6 +282,7 @@
                         <configuration>
                             <sourceDirs>
                                 <sourceDir>${project.basedir}/src/test/kotlin</sourceDir>
+                                <sourceDir>${project.basedir}/src/it/kotlin</sourceDir>
                             </sourceDirs>
                             <annotationProcessorPaths combine.self="override">
                                 <annotationProcessorPath>
@@ -293,6 +293,11 @@
                                 <annotationProcessorPath>
                                     <groupId>io.micronaut</groupId>
                                     <artifactId>micronaut-validation</artifactId>
+                                    <version>${micronaut.version}</version>
+                                </annotationProcessorPath>
+                                <annotationProcessorPath>
+                                    <groupId>io.micronaut</groupId>
+                                    <artifactId>micronaut-core</artifactId>
                                     <version>${micronaut.version}</version>
                                 </annotationProcessorPath>
                             </annotationProcessorPaths>
@@ -400,17 +405,17 @@
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-surefire-plugin</artifactId>
-                        <version>3.0.0-M7</version>
+                        <version>${maven-surefire-plugin.version}</version>
                     </plugin>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-failsafe-plugin</artifactId>
-                        <version>3.0.0-M7</version>
+                        <version>${maven-failsafe-plugin.version}</version>
                     </plugin>
                     <plugin>
                         <groupId>org.codehaus.mojo</groupId>
                         <artifactId>build-helper-maven-plugin</artifactId>
-                        <version>3.3.0</version>
+                        <version>${build-helper-maven-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>add-integration-test-source</id>
@@ -469,11 +474,11 @@
                                         <annotationProcessorPath>
                                             <groupId>io.micronaut.data</groupId>
                                             <artifactId>micronaut-data-processor</artifactId>
-                                            <version>${micronaut.data.processor.version}</version>
+                                            <version>${micronaut.version}</version>
                                         </annotationProcessorPath>
                                         <annotationProcessorPath>
                                             <groupId>io.micronaut</groupId>
-                                            <artifactId>micronaut-graal</artifactId>
+                                            <artifactId>micronaut-core</artifactId>
                                             <version>${micronaut.version}</version>
                                         </annotationProcessorPath>
                                         <annotationProcessorPath>
@@ -536,6 +541,11 @@
                                         <annotationProcessorPath>
                                             <groupId>io.micronaut</groupId>
                                             <artifactId>micronaut-validation</artifactId>
+                                            <version>${micronaut.version}</version>
+                                        </annotationProcessorPath>
+                                        <annotationProcessorPath>
+                                            <groupId>io.micronaut</groupId>
+                                            <artifactId>micronaut-core</artifactId>
                                             <version>${micronaut.version}</version>
                                         </annotationProcessorPath>
                                     </annotationProcessorPaths>

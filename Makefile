@@ -33,6 +33,12 @@ kong-full-action-setup:
 kong-setup:
 	cd kong && deck sync
 docker-databases: stop local
+docker-stop-all:
+	docker ps -a --format '{{.ID}}' | xargs -I {}  docker stop {}
+	docker network prune
+docker-remove-all: docker-stop-all
+	docker network list --format '{{.ID}}' | xargs -I {} docker network rm  {} || echo 'Done!'
+	docker ps -a --format '{{.ID}}' | xargs -I {}  docker rm {}
 coverage:
 	mvn clean install jacoco:prepare-agent package jacoco:report
 	cd buy-odd-yucca-gui && jest --coverage

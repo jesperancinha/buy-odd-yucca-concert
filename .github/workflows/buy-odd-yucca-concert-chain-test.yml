@@ -1,8 +1,6 @@
 name: Build and Chain Test
 
-on:
-  push:
-    branches: [ master ]
+on: push
 
 jobs:
   build-chain-regression-test:

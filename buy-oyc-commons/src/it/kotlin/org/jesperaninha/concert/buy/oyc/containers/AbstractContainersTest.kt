@@ -14,18 +14,18 @@ class DockerCompose(files: List<File>) : DockerComposeContainer<DockerCompose>(f
 
 /**
  * Created by jofisaes on 22/04/2022
+ * Reminder: Don't use container_name with testcontainers. It just doesn't work
  */
 abstract class AbstractContainersTest {
     companion object {
         private val file1 = File("../docker-compose-it.yml")
         private val file2 = File("docker-compose-it.yml")
         private val finalFile = if (file1.exists()) file1 else file2
-        private val logger = LoggerFactory.getLogger(AbstractContainersTest::class.java)
 
         @JvmStatic
         val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
             .withExposedService(
-                "yucca-db_1", 5432, defaultWaitStrategy()
+                "yucca-db", 5432, defaultWaitStrategy()
                     .withStartupTimeout(ofMinutes(5))
             )
             .withExposedService("redis_1", 6379, defaultWaitStrategy())
@@ -40,6 +40,7 @@ abstract class AbstractContainersTest {
             .withExposedService("buy-oyc-api_1", 8088, defaultWaitStrategy())
             .withLocalCompose(true)
 
+        @JvmStatic
         @AfterAll
         fun tearDown() {
             dockerCompose.stop()
@@ -55,9 +56,12 @@ class CustomContextBuilder : DefaultApplicationContextBuilder() {
                 it.start()
             }
             .also {
-                val serviceHost = it.getServiceHost("yucca-db_1", 5432)
+                val serviceHost = it.getServiceHost("yucca-db", 5432)
+                val servicePort = it.getServicePort("yucca-db", 5432)
                 logger.info("Preconfigured service host is $serviceHost")
+                logger.info("Preconfigured service port is $servicePort")
             }
+        dockerCompose.waitingFor("yucca-db", defaultWaitStrategy())
         val containerByServiceName = dockerCompose.getContainerByServiceName("yucca-db_1")
         val containerState = containerByServiceName.get()
         val servicePort = containerState.firstMappedPort
