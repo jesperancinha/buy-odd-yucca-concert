@@ -52,8 +52,7 @@
     "jest-environment-jsdom": "^29.1.1",
     "jest-svg-transformer": "^1.0.0",
     "jest-transform-stub": "^2.0.0",
-    "react-scripts": "5.0.1",
-    "snyk": "^1.1015.0"
+    "react-scripts": "5.0.1"
   },
   "jest": {
     "testEnvironment": "jsdom",
