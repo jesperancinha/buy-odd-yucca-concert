@@ -21,8 +21,7 @@
     "test": "export CI=true && react-scripts test",
     "eject": "react-scripts eject",
     "coverage": "jest --coverage",
-    "jest": "jest",
-    "snyk": "snyk test"
+    "jest": "jest"
   },
   "eslintConfig": {
     "extends": [
