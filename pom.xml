@@ -29,7 +29,7 @@
         <java.version>17</java.version>
         <jdk.version>${java.version}</jdk.version>
         <release.version>${java.version}</release.version>
-        <maven-shade-plugin.version>3.4.0</maven-shade-plugin.version>
+        <maven-shade-plugin.version>3.4.1</maven-shade-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
@@ -43,7 +43,7 @@
         <kotlinx-coroutines-core-jvm.version>1.6.4</kotlinx-coroutines-core-jvm.version>
         <kotlinx.version>1.6.4</kotlinx.version>
         <postgresql.version>42.5.0</postgresql.version>
-        <flyway-core.version>9.5.1</flyway-core.version>
+        <flyway-core.version>9.6.0</flyway-core.version>
         <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
         <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
