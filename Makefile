@@ -109,8 +109,8 @@ dcup-light-open-action:
 	docker-compose --env-file ./.env-pipeline up -d yucca-db
 	sudo chown -R 1000:1000 ./kong_data_vol
 	bash database_wait.sh
-dcup: dcd docker-clean docker boyc-wait
-dcup-full: dcd docker-clean b docker boyc-wait
+dcup: dcd docker-clean docker boyc-wait deck
+dcup-full: dcd docker-clean b docker boyc-wait deck
 # dcup-full-action is only used for remote pipelines
 dcup-full-action: dcd docker-clean b docker-action boyc-wait deck-pipeline
 dcd:
@@ -119,6 +119,8 @@ dcd:
 	docker-compose rm -svf
 deck-pipeline:
 	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d kong-deck
+deck:
+	docker-compose -f docker-compose.yml up -d kong-deck
 cypress-open:
 	cd e2e && yarn && npm run cypress
 cypress-electron:
