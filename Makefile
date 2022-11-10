@@ -62,8 +62,8 @@ docker-clean-build-start: docker-clean b docker
 docker-delete-apps: stop
 # docker-action is only used for remote pipelines
 docker-action: create-folders set-permissions
-	sudo chown -R 1000:1000 ./kong_data_vol
-	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d
+	#sudo chown -R 1000:1000 ./kong_data_vol
+	docker-compose -f docker-compose.yml up -d
 	docker-compose logs
 prune-all: docker-delete
 	docker network prune -f
@@ -109,14 +109,21 @@ dcup-light-open-action:
 	docker-compose --env-file ./.env-pipeline up -d yucca-db
 	sudo chown -R 1000:1000 ./kong_data_vol
 	bash database_wait.sh
-dcup: dcd docker-clean docker boyc-wait
-dcup-full: dcd docker-clean b docker boyc-wait
+dcup: dcd docker-clean docker boyc-wait deck
+dcup-full: dcd docker-clean b docker boyc-wait deck
 # dcup-full-action is only used for remote pipelines
-dcup-full-action: dcd docker-clean b docker-action boyc-wait
+dcup-full-action: dcd docker-clean b docker-action boyc-wait deck-pipeline deck-pipeline
 dcd:
 	docker-compose down
 	docker-compose down -v
 	docker-compose rm -svf
+deck-pipeline:
+	docker-compose -f docker-compose.yml up -d kong-deck
+	docker-compose logs kong-deck
+	docker-compose logs yucca-db
+	docker-compose logs kong
+deck:
+	docker-compose -f docker-compose.yml up -d kong-deck
 cypress-open:
 	cd e2e && yarn && npm run cypress
 cypress-electron:
