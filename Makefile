@@ -112,7 +112,7 @@ dcup-light-open-action:
 dcup: dcd docker-clean docker boyc-wait deck
 dcup-full: dcd docker-clean b docker boyc-wait deck
 # dcup-full-action is only used for remote pipelines
-dcup-full-action: dcd docker-clean b docker-action boyc-wait deck-pipeline
+dcup-full-action: dcd docker-clean b docker-action boyc-wait deck-pipeline deck-pipeline
 dcd:
 	docker-compose down
 	docker-compose down -v
@@ -120,6 +120,8 @@ dcd:
 deck-pipeline:
 	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d kong-deck
 	docker-compose logs kong-deck
+	docker-compose logs yucca-db
+	docker-compose logs kong
 deck:
 	docker-compose -f docker-compose.yml up -d kong-deck
 cypress-open:
