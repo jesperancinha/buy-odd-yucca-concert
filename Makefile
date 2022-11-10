@@ -62,8 +62,8 @@ docker-clean-build-start: docker-clean b docker
 docker-delete-apps: stop
 # docker-action is only used for remote pipelines
 docker-action: create-folders set-permissions
-	sudo chown -R 1000:1000 ./kong_data_vol
-	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d
+	#sudo chown -R 1000:1000 ./kong_data_vol
+	docker-compose -f docker-compose.yml up -d
 	docker-compose logs
 prune-all: docker-delete
 	docker network prune -f
