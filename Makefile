@@ -64,7 +64,6 @@ docker-delete-apps: stop
 docker-action: create-folders set-permissions
 	sudo chown -R 1000:1000 ./kong_data_vol
 	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d
-	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d kong-deck
 	docker-compose logs
 prune-all: docker-delete
 	docker network prune -f
@@ -113,11 +112,13 @@ dcup-light-open-action:
 dcup: dcd docker-clean docker boyc-wait
 dcup-full: dcd docker-clean b docker boyc-wait
 # dcup-full-action is only used for remote pipelines
-dcup-full-action: dcd docker-clean b docker-action boyc-wait
+dcup-full-action: dcd docker-clean b docker-action boyc-wait deck-pipeline
 dcd:
 	docker-compose down
 	docker-compose down -v
 	docker-compose rm -svf
+deck-pipeline:
+	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d kong-deck
 cypress-open:
 	cd e2e && yarn && npm run cypress
 cypress-electron:
