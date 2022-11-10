@@ -64,6 +64,7 @@ docker-delete-apps: stop
 docker-action: create-folders set-permissions
 	sudo chown -R 1000:1000 ./kong_data_vol
 	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d
+	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d kong-deck
 	docker-compose logs
 prune-all: docker-delete
 	docker network prune -f

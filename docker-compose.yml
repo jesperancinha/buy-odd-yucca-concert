@@ -108,7 +108,7 @@ services:
       - ${PWD}/kong:/deck
     command: "--kong-addr http://kong:8001 -s /deck/kong.yaml sync"
     networks:
-      - yucca-net
+      yucca-net:
     depends_on:
       kong:
         condition: service_healthy
