@@ -119,6 +119,7 @@ dcd:
 	docker-compose rm -svf
 deck-pipeline:
 	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d kong-deck
+	docker-compose logs kong-deck
 deck:
 	docker-compose -f docker-compose.yml up -d kong-deck
 cypress-open:
