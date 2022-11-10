@@ -117,9 +117,9 @@ services:
     build:
       context: buy-oyc-ticket-service/.
     environment:
-      REDIS_HOST: ${REDIS_HOST}
-      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
-      KONG_SERVICE_IP: ${KONG_SERVICE_IP}
+      REDIS_HOST: redis
+      POSTGRESQL_HOST: yucca-db
+      KONG_SERVICE_IP: kong
     expose:
       - 8084
     networks:
@@ -138,8 +138,8 @@ services:
     build:
       context: buy-oyc-concert-service/.
     environment:
-      REDIS_HOST: ${REDIS_HOST}
-      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
+      REDIS_HOST: redis
+      POSTGRESQL_HOST: yucca-db
     networks:
       yucca-net:
     healthcheck:
@@ -156,8 +156,8 @@ services:
     build:
       context: buy-oyc-parking-service/.
     environment:
-      REDIS_HOST: ${REDIS_HOST}
-      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
+      REDIS_HOST: redis
+      POSTGRESQL_HOST: yucca-db
     networks:
       yucca-net:
     healthcheck:
@@ -174,8 +174,8 @@ services:
     build:
       context: buy-oyc-catering-service/.
     environment:
-      REDIS_HOST: ${REDIS_HOST}
-      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
+      REDIS_HOST: redis
+      POSTGRESQL_HOST: yucca-db
     networks:
       yucca-net:
     healthcheck:
@@ -192,9 +192,9 @@ services:
     build:
       context: buy-oyc-api-service/.
     environment:
-      REDIS_HOST: ${REDIS_HOST}
-      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
-      KONG_SERVICE_IP: ${KONG_SERVICE_IP}
+      REDIS_HOST: redis
+      POSTGRESQL_HOST: yucca-db
+      KONG_SERVICE_IP: kong
     networks:
       yucca-net:
     healthcheck:
@@ -211,7 +211,7 @@ services:
       - "8080:8080"
     restart: on-failure
     environment:
-      - KONG_SERVICE_IP=${KONG_SERVICE_IP}
+      - KONG_SERVICE_IP=kong
     deploy:
       resources:
         limits:
