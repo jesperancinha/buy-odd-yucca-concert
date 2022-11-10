@@ -18,11 +18,6 @@ volumes:
 
 networks:
   yucca-net:
-    external: false
-    ipam:
-      driver: default
-      config:
-        - subnet: ${NETWORK_SUBNET}
 
 services:
   kong-migrations-up:
@@ -38,7 +33,6 @@ services:
       - kong_postgres_password
     networks:
       - yucca-net
-    restart: on-failure
 
   kong:
     hostname: kong
@@ -57,6 +51,8 @@ services:
           condition: service_healthy
         buy-oyc-parking:
           condition: service_healthy
+        kong-migrations-up:
+          condition: service_completed_successfully
     user: "${KONG_USER:-kong}"
     environment:
       <<: *kong-env
@@ -70,6 +66,7 @@ services:
       KONG_ADMIN_GUI_URL: "http://0.0.0.0:8002"
       KONG_PORTAL_GUI_HOST: "0.0.0.0:8003"
       KONG_PORTAL: "on"
+      KONG_LUA_PACKAGE_PATH: "./?.lua;./?/init.lua;"
     restart: on-failure
     secrets:
       - kong_postgres_password
@@ -102,7 +99,6 @@ services:
       - no-new-privileges
     networks:
       yucca-net:
-        ipv4_address: ${KONG_SERVICE_IP}
 
   kong-deck:
     hostname: kong-deck
@@ -147,7 +143,6 @@ services:
       - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple
     networks:
       yucca-net:
-        ipv4_address: ${POSTGRESQL_HOST}
 
   buy-oyc-ticket:
     hostname: buy-oyc-ticket
@@ -158,12 +153,11 @@ services:
     build:
       context: buy-oyc-ticket-service/.
     environment:
-      REDIS_HOST: ${REDIS_HOST}
-      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
-      KONG_SERVICE_IP: ${KONG_SERVICE_IP}
+      REDIS_HOST: redis
+      POSTGRESQL_HOST: yucca-db
+      KONG_SERVICE_IP: kong
     networks:
       yucca-net:
-        ipv4_address: ${YUCCA_TICKET_SERVICE_IP}
     healthcheck:
       test: ["CMD", "curl", "--silent", "http://127.0.0.1:8084/swagger/views/swagger-ui/index.html"]
       interval: 5s
@@ -179,11 +173,10 @@ services:
     build:
       context: buy-oyc-concert-service/.
     environment:
-      REDIS_HOST: ${REDIS_HOST}
-      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
+      REDIS_HOST: redis
+      POSTGRESQL_HOST: yucca-db
     networks:
       yucca-net:
-        ipv4_address: ${YUCCA_CONCERT_SERVICE_IP}
     healthcheck:
       test: ["CMD", "curl", "--silent", "http://127.0.0.1:8085/swagger/views/swagger-ui/index.html"]
       interval: 5s
@@ -199,11 +192,10 @@ services:
     build:
       context: buy-oyc-parking-service/.
     environment:
-      REDIS_HOST: ${REDIS_HOST}
-      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
+      REDIS_HOST: redis
+      POSTGRESQL_HOST: yucca-db
     networks:
       yucca-net:
-        ipv4_address: ${YUCCA_PARKING_SERVICE_IP}
     healthcheck:
       test: ["CMD", "curl", "--silent", "http://127.0.0.1:8086/swagger/views/swagger-ui/index.html"]
       interval: 5s
@@ -219,11 +211,10 @@ services:
     build:
       context: buy-oyc-catering-service/.
     environment:
-      REDIS_HOST: ${REDIS_HOST}
-      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
+      REDIS_HOST: redis
+      POSTGRESQL_HOST: yucca-db
     networks:
       yucca-net:
-        ipv4_address: ${YUCCA_CATERING_SERVICE_IP}
     healthcheck:
       test: ["CMD", "curl", "--silent", "http://127.0.0.1:8087/swagger/views/swagger-ui/index.html"]
       interval: 5s
@@ -239,12 +230,11 @@ services:
     build:
       context: buy-oyc-api-service/.
     environment:
-      REDIS_HOST: ${REDIS_HOST}
-      POSTGRESQL_HOST: ${POSTGRESQL_HOST}
-      KONG_SERVICE_IP: ${KONG_SERVICE_IP}
+      REDIS_HOST: redis
+      POSTGRESQL_HOST: yucca-db
+      KONG_SERVICE_IP: kong
     networks:
       yucca-net:
-        ipv4_address: ${YUCCA_API_SERVICE_IP}
     healthcheck:
       test: ["CMD", "curl", "--silent", "http://127.0.0.1:8088/swagger/views/swagger-ui/index.html"]
       interval: 5s
@@ -260,7 +250,7 @@ services:
       - "8080:8080"
     restart: on-failure
     environment:
-      - KONG_SERVICE_IP=${KONG_SERVICE_IP}
+      - KONG_SERVICE_IP=kong
     deploy:
       resources:
         limits:
@@ -269,7 +259,9 @@ services:
           memory: 300M
     networks:
       yucca-net:
-        ipv4_address: ${NGINX_SERVICE_IP}
+    depends_on:
+      kong:
+        condition: service_healthy
 
   redis:
     container_name: redis
@@ -278,7 +270,6 @@ services:
        - "6379:6379"
     networks:
       yucca-net:
-        ipv4_address: ${REDIS_HOST}
 
 secrets:
   kong_postgres_password:

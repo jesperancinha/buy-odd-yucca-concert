@@ -13,11 +13,6 @@ volumes:
 
 networks:
   yucca-net:
-    external: false
-    ipam:
-      driver: default
-      config:
-        - subnet: ${NETWORK_SUBNET}
 
 services:
   kong-migrations-up:
@@ -50,6 +45,8 @@ services:
         condition: service_healthy
       buy-oyc-parking:
         condition: service_healthy
+      kong-migrations-up:
+        condition: service_completed_successfully
     user: root:1000
     environment:
       <<: *kong-env
@@ -83,7 +80,6 @@ services:
       - no-new-privileges
     networks:
       yucca-net:
-        ipv4_address: ${KONG_SERVICE_IP}
 
   yucca-db:
     hostname: yucca-db
@@ -112,7 +108,6 @@ services:
     privileged: true
     networks:
       yucca-net:
-        ipv4_address: ${POSTGRESQL_HOST}
 
   buy-oyc-ticket:
     hostname: buy-oyc-ticket
@@ -129,7 +124,6 @@ services:
       - 8084
     networks:
       yucca-net:
-        ipv4_address: ${YUCCA_TICKET_SERVICE_IP}
     healthcheck:
       test: ["CMD", "curl", "--silent", "http://127.0.0.1:8084/swagger/views/swagger-ui/index.html"]
       interval: 5s
@@ -148,7 +142,6 @@ services:
       POSTGRESQL_HOST: ${POSTGRESQL_HOST}
     networks:
       yucca-net:
-        ipv4_address: ${YUCCA_CONCERT_SERVICE_IP}
     healthcheck:
       test: ["CMD", "curl", "--silent", "http://127.0.0.1:8085/swagger/views/swagger-ui/index.html"]
       interval: 5s
@@ -167,7 +160,6 @@ services:
       POSTGRESQL_HOST: ${POSTGRESQL_HOST}
     networks:
       yucca-net:
-        ipv4_address: ${YUCCA_PARKING_SERVICE_IP}
     healthcheck:
       test: ["CMD", "curl", "--silent", "http://127.0.0.1:8086/swagger/views/swagger-ui/index.html"]
       interval: 5s
@@ -186,7 +178,6 @@ services:
       POSTGRESQL_HOST: ${POSTGRESQL_HOST}
     networks:
       yucca-net:
-        ipv4_address: ${YUCCA_CATERING_SERVICE_IP}
     healthcheck:
       test: ["CMD", "curl", "--silent", "http://127.0.0.1:8087/swagger/views/swagger-ui/index.html"]
       interval: 5s
@@ -206,7 +197,6 @@ services:
       KONG_SERVICE_IP: ${KONG_SERVICE_IP}
     networks:
       yucca-net:
-        ipv4_address: ${YUCCA_API_SERVICE_IP}
     healthcheck:
       test: ["CMD", "curl", "--silent", "http://127.0.0.1:8088/swagger/views/swagger-ui/index.html"]
       interval: 5s
@@ -230,7 +220,9 @@ services:
           memory: 300M
     networks:
       yucca-net:
-        ipv4_address: ${NGINX_SERVICE_IP}
+    depends_on:
+      kong:
+        condition: service_healthy
 
   redis:
     image: redis
@@ -238,7 +230,6 @@ services:
        - "6379:6379"
     networks:
       yucca-net:
-        ipv4_address: ${REDIS_HOST}
 
 secrets:
   kong_postgres_password:

@@ -108,10 +108,10 @@ docker exec -it buy-oyc-ticket /bin/bash
 #### 4.4.2. - Endpoints from inside Docker
 
 
--   [http://192.168.0.21:8000/api/yucca-ticket](http://192.168.0.21:8000/api/yucca-ticket)
+-   [http://buy-oyc-ticket:8000/api/yucca-ticket](http://buy-oyc-ticket:8000/api/yucca-ticket)
 
 ```shell
-curl http://192.168.0.21:8000/api/yucca-ticket
+curl http://buy-oyc-ticket:8000/api/yucca-ticket
 ```
 
 #### 4.4.3. - Endpoints open to the outside
