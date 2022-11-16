@@ -58,7 +58,7 @@
         <micronaut.version>3.6.0</micronaut.version>
         <micronaut.openapi.version>4.0.0</micronaut.openapi.version>
         <micronaut.runtime>netty</micronaut.runtime>
-        <micronaut-maven-plugin.version>3.4.0</micronaut-maven-plugin.version>
+        <micronaut-maven-plugin.version>3.5.0</micronaut-maven-plugin.version>
         <micronaut-redis-lettuce.version>5.3.1</micronaut-redis-lettuce.version>
         <micronaut-rxjava3-http-client.version>2.3.0</micronaut-rxjava3-http-client.version>
         <micronaut-flyway.version>5.4.1</micronaut-flyway.version>
