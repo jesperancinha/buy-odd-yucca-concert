@@ -33,7 +33,7 @@
         <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0-M7</maven-failsafe-plugin.version>
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
-        <kotlin.version>1.7.21</kotlin.version>
+        <kotlin.version>1.7.22</kotlin.version>
         <omni-coveragereporter-maven-plugin.version>0.3.0</omni-coveragereporter-maven-plugin.version>
 
         <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
@@ -59,8 +59,8 @@
         <micronaut.openapi.version>4.0.0</micronaut.openapi.version>
         <micronaut.runtime>netty</micronaut.runtime>
         <micronaut-maven-plugin.version>3.5.0</micronaut-maven-plugin.version>
-        <micronaut-redis-lettuce.version>5.3.1</micronaut-redis-lettuce.version>
-        <micronaut-rxjava3-http-client.version>2.3.0</micronaut-rxjava3-http-client.version>
+        <micronaut-redis-lettuce.version>5.3.2</micronaut-redis-lettuce.version>
+        <micronaut-rxjava3-http-client.version>2.4.0</micronaut-rxjava3-http-client.version>
         <micronaut-flyway.version>5.4.1</micronaut-flyway.version>
     </properties>
 
