@@ -50,7 +50,7 @@
         <kotlin.version>1.6.21</kotlin.version>
         <kotlinx-coroutines-test.version>1.6.3-native-mt</kotlinx-coroutines-test.version>
         <testcontainers.version>1.17.6</testcontainers.version>
-        <dependency-check-maven.version>7.3.2</dependency-check-maven.version>
+        <dependency-check-maven.version>7.4.0</dependency-check-maven.version>
         <wiremock.version>2.27.2</wiremock.version>
         <rxjava.version>3.1.5</rxjava.version>
         <lettuce-core.version>6.2.1.RELEASE</lettuce-core.version>
