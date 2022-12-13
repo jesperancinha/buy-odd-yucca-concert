@@ -28,7 +28,7 @@ import javax.transaction.Transactional
  * Created by jofisaes on 21/04/2022
  */
 @ExperimentalCoroutinesApi
-@MicronautTest
+@MicronautTest(transactional = false)
 class ParkingTest @Inject constructor(
     private val parkingRepository: CarParkingRepository,
     private val parkingReservationRepository: ConcertDayReservationRepository,

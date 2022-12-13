@@ -8,7 +8,7 @@ import org.jesperancinha.concert.buy.oyc.containers.AbstractBuyOddYuccaConcertCo
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 
-@MicronautTest
+@MicronautTest(transactional = false)
 class BuyOycAPIServiceTest(
     @Inject
     val application: EmbeddedApplication<*>

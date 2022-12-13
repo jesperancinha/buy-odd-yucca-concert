@@ -30,7 +30,7 @@ import javax.transaction.Transactional
  * Created by jofisaes on 21/04/2022
  */
 @ExperimentalCoroutinesApi
-@MicronautTest
+@MicronautTest(transactional = false)
 class ConcertTest @Inject constructor(
     private val concertRepository: ConcertDayRepository,
     private val concertDayReservationRepository: ConcertDayReservationRepository,

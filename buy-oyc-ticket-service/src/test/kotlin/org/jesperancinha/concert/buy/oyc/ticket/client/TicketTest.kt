@@ -45,7 +45,7 @@ private const val API_YUCCA_PARKING = "/api/yucca-parking"
  * Created by jofisaes on 10/04/2022
  */
 @ExperimentalCoroutinesApi
-@MicronautTest
+@MicronautTest(transactional = false)
 @Property(name = "buy.oyc.catering.port", value = "7999")
 @Property(name = "buy.oyc.concert.port", value = "7998")
 @Property(name = "buy.oyc.parking.port", value = "7997")

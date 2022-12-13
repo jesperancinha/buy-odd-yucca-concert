@@ -7,14 +7,13 @@ import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.test.runTest
-import org.flywaydb.core.Flyway
 import org.jesperancinha.concert.buy.oyc.containers.AbstractBuyOddYuccaConcertContainerTest
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 
 @DelicateCoroutinesApi
 @ExperimentalCoroutinesApi
-@MicronautTest
+@MicronautTest(transactional = false)
 internal class TicketServiceTest @Inject constructor(
     private val ticketService: TicketService
 ) : AbstractBuyOddYuccaConcertContainerTest() {
