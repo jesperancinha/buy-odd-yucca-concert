@@ -37,14 +37,6 @@ services:
     paths:
     - /api/yucca-parking
     strip_path: true
-- url: http://buy-oyc-api:8088/api/yucca-api
-  name: buy-oyc-api-service
-  protocol: http
-  routes:
-  - name: buy-oyc-api-service-routes
-    paths:
-    - /api/yucca-api
-    strip_path: true
 - url: http://buy-oyc-api:8088/api/yucca-api/swagger-ui/res/**
   name: buy-oyc-api-service-swagger-ui
   protocol: http
@@ -52,4 +44,12 @@ services:
   - name: buy-oyc-api-service-routes-swagger-ui
     paths:
     - /api/yucca-api/swagger/views/swagger-ui/res
+    strip_path: true
+- url: http://buy-oyc-api:8088/api/yucca-api
+  name: buy-oyc-api-service
+  protocol: http
+  routes:
+  - name: buy-oyc-api-service-routes
+    paths:
+    - /api/yucca-api
     strip_path: true
