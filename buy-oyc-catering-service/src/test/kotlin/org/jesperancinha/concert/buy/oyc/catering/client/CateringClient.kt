@@ -12,7 +12,7 @@ import org.jesperancinha.concert.buy.oyc.commons.dto.ResponseDto
 /**
  * Created by jofisaes on 21/04/2022
  */
-@Client("/api")
+@Client("/api/yucca-catering/api")
 interface CateringReactiveClient {
     @Post("meal")
     fun createMeal(@Body parkingReservationDto: MealDto): Single<ResponseDto>
