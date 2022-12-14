@@ -3,6 +3,7 @@ micronaut:
     name: buyOycTicketService
   server:
     port: 8086
+    context-path: /api/yucca-parking
 
 r2dbc:
   datasources:

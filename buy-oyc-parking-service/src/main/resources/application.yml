@@ -3,6 +3,8 @@ micronaut:
     name: buyOycParkingService
   server:
     port: 8086
+    context-path: /api/yucca-parking
+
   router:
     static-resources:
       swagger:

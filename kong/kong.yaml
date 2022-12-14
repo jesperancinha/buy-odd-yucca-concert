@@ -28,28 +28,72 @@ services:
     paths:
     - /api/yucca-catering
     strip_path: true
-- host: buy-oyc-parking
-  name: buy-oyc-parking-service
-  port: 8086
+
+
+# Parking Service
+- url: http://buy-oyc-parking:8086/api/yucca-parking/swagger/views/swagger-ui/res
+  name: buy-oyc-parking-swagger-ui
   protocol: http
   routes:
-  - name: buy-oyc-parking-service-routes
+    - name: buy-oyc-parking-service-route-swagger-ui
+      paths:
+        - /api/yucca-parking/swagger-ui/res
+      strip_path: true
+- url: http://buy-oyc-parking:8086/api/yucca-parking/swagger
+  name: buy-oyc-parking-swagger
+  protocol: http
+  routes:
+    - name: buy-oyc-parking-service-route-swagger
+      paths:
+        - /api/yucca-parking/swagger
+      strip_path: true
+- url: http://buy-oyc-parking:8086/api/yucca-parking/api
+  name: buy-oyc-parking
+  protocol: http
+  routes:
+    - name: buy-oyc-parking-service-route
+      paths:
+        - /api/yucca-parking/api
+      strip_path: true
+- url: http://buy-oyc-parking:8086/api/yucca-parking
+  name: buy-oyc-parking-rest
+  protocol: http
+  routes:
+    - name: buy-oyc-parking-service-route-root
+      paths:
+        - /api/yucca-parking
+      strip_path: true
+
+# API Service
+- url: http://buy-oyc-api:8088/api/yucca-api/swagger/views/swagger-ui/res
+  name: buy-oyc-api-swagger-ui
+  protocol: http
+  routes:
+  - name: buy-oyc-api-service-route-swagger-ui
     paths:
-    - /api/yucca-parking
+    - /api/yucca-api/swagger-ui/res
     strip_path: true
-- url: http://buy-oyc-api:8088/api/yucca-api/swagger-ui/res/**
-  name: buy-oyc-api-service-swagger-ui
+- url: http://buy-oyc-api:8088/api/yucca-api/swagger
+  name: buy-oyc-api-swagger
   protocol: http
   routes:
-  - name: buy-oyc-api-service-routes-swagger-ui
+  - name: buy-oyc-api-service-route-swagger
     paths:
-    - /api/yucca-api/swagger/views/swagger-ui/res
+    - /api/yucca-api/swagger
+    strip_path: true
+- url: http://buy-oyc-api:8088/api/yucca-api/api
+  name: buy-oyc-api
+  protocol: http
+  routes:
+  - name: buy-oyc-api-service-route
+    paths:
+    - /api/yucca-api/api
     strip_path: true
 - url: http://buy-oyc-api:8088/api/yucca-api
-  name: buy-oyc-api-service
+  name: buy-oyc-api-rest
   protocol: http
   routes:
-  - name: buy-oyc-api-service-routes
-    paths:
-    - /api/yucca-api
-    strip_path: true
+    - name: buy-oyc-api-service-route-root
+      paths:
+        - /api/yucca-api
+      strip_path: true
