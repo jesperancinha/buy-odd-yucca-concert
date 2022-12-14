@@ -3,6 +3,7 @@ micronaut:
     name: buyOycAPIService
   server:
     port: 8088
+    context-path: /api/yucca-api
   router:
     static-resources:
       swagger:
