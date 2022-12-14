@@ -14,7 +14,7 @@ import reactor.core.publisher.Flux
 /**
  * Created by jofisaes on 21/04/2022
  */
-@Client("/api")
+@Client("/api/yucca-concert/api")
 interface ConcertReactiveClient {
     @Post
     fun add(@Body ticket: ConcertDayDto): Single<ResponseDto>

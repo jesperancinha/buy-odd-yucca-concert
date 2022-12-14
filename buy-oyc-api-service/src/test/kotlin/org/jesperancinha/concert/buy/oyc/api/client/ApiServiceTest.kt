@@ -47,9 +47,9 @@ private const val API_YUCCA_TICKET = "/api/yucca-ticket"
  * Created by jofisaes on 10/04/2022
  */
 @ExperimentalCoroutinesApi
-@MicronautTest
+@MicronautTest(transactional = false)
 @Property(name = "buy.oyc.ticket.port", value = "7999")
-class ReceiptTest @Inject constructor(
+class ApiServiceTest @Inject constructor(
     private val receiptRepository: ReceiptRepository,
     private val receiptReactiveClient: ReceiptReactiveClient,
     private val auditLogRepository: AuditLogRepository

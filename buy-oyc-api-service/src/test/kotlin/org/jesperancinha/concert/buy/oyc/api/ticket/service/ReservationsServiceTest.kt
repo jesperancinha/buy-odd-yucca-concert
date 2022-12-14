@@ -36,7 +36,7 @@ private const val API_YUCCA_TICKET = "/api/yucca-ticket"
 
 @ExperimentalCoroutinesApi
 @Testcontainers
-@MicronautTest
+@MicronautTest(transactional = false)
 @Property(name = "buy.oyc.ticket.port", value = "7999")
 @Property(name = "micronaut.server.port", value = "-1")
 @DelicateCoroutinesApi

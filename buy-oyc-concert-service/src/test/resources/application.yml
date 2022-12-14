@@ -3,7 +3,7 @@ micronaut:
     name: buyOycConcertService
   server:
     port: 8085
-
+    context-path: /api/yucca-concert
 r2dbc:
   datasources:
     default:

@@ -13,7 +13,7 @@ import io.swagger.v3.oas.annotations.servers.Server
         description = "Buy Odd Yucca Concert - Parking Service - Background Service for Car Parking Reservations",
         license = License(name = "Apache 2.0", url = "https://www.apache.org/licenses/LICENSE-2.0"),
     ),
-    servers = [Server(url = "http://localhost:8000/api/yucca-parking", description = "Server URL")]
+    servers = [Server(url = "http://localhost:8000", description = "Server URL")]
 )
 object ParkingServiceLauncher {
     @JvmStatic

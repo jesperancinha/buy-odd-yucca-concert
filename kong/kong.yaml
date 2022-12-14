@@ -1,48 +1,173 @@
 _format_version: "3.0"
 _transform: true
 services:
-- host: buy-oyc-ticket
-  name: buy-oyc-ticket-service
-  port: 8084
+
+# Ticket Service
+- url: http://buy-oyc-ticket:8084/api/yucca-ticket/swagger/views/swagger-ui/res
+  name: buy-oyc-ticket-swagger-ui
   protocol: http
   routes:
-  - name: buy-oyc-ticket-service-routes
-    paths:
-    - /api/yucca-ticket
-    strip_path: true
-- host: buy-oyc-concert
-  name: buy-oyc-concert-service
-  port: 8085
+    - name: buy-oyc-ticket-service-route-swagger-ui
+      paths:
+        - /api/yucca-ticket/swagger-ui/res
+      strip_path: true
+- url: http://buy-oyc-ticket:8084/api/yucca-ticket/swagger
+  name: buy-oyc-ticket-swagger
   protocol: http
   routes:
-  - name: buy-oyc-concert-service-routes
-    paths:
-    - /api/yucca-concert
-    strip_path: true
-- host: buy-oyc-catering
-  name: buy-oyc-catering-service
-  port: 8087
+    - name: buy-oyc-ticket-service-route-swagger
+      paths:
+        - /api/yucca-ticket/swagger
+      strip_path: true
+- url: http://buy-oyc-ticket:8084/api/yucca-ticket/api
+  name: buy-oyc-ticket
   protocol: http
   routes:
-  - name: buy-oyc-catering-service-routes
-    paths:
-    - /api/yucca-catering
-    strip_path: true
-- host: buy-oyc-parking
-  name: buy-oyc-parking-service
-  port: 8086
+    - name: buy-oyc-ticket-service-route
+      paths:
+        - /api/yucca-ticket/api
+      strip_path: true
+- url: http://buy-oyc-ticket:8084/api/yucca-ticket
+  name: buy-oyc-ticket-rest
   protocol: http
   routes:
-  - name: buy-oyc-parking-service-routes
-    paths:
-    - /api/yucca-parking
-    strip_path: true
-- host: buy-oyc-api
-  name: buy-oyc-api-service
-  port: 8088
+    - name: buy-oyc-ticket-service-route-root
+      paths:
+        - /api/yucca-ticket
+      strip_path: true
+
+# Concert Service
+- url: http://buy-oyc-concert:8085/api/yucca-concert/swagger/views/swagger-ui/res
+  name: buy-oyc-concert-swagger-ui
   protocol: http
   routes:
-  - name: buy-oyc-api-service-routes
+    - name: buy-oyc-concert-service-route-swagger-ui
+      paths:
+        - /api/yucca-concert/swagger-ui/res
+      strip_path: true
+- url: http://buy-oyc-concert:8085/api/yucca-concert/swagger
+  name: buy-oyc-concert-swagger
+  protocol: http
+  routes:
+    - name: buy-oyc-concert-service-route-swagger
+      paths:
+        - /api/yucca-concert/swagger
+      strip_path: true
+- url: http://buy-oyc-concert:8085/api/yucca-concert/api
+  name: buy-oyc-concert
+  protocol: http
+  routes:
+    - name: buy-oyc-concert-service-route
+      paths:
+        - /api/yucca-concert/api
+      strip_path: true
+- url: http://buy-oyc-concert:8085/api/yucca-concert
+  name: buy-oyc-concert-rest
+  protocol: http
+  routes:
+    - name: buy-oyc-concert-service-route-root
+      paths:
+        - /api/yucca-concert
+      strip_path: true
+
+# Parking Service
+- url: http://buy-oyc-parking:8086/api/yucca-parking/swagger/views/swagger-ui/res
+  name: buy-oyc-parking-swagger-ui
+  protocol: http
+  routes:
+    - name: buy-oyc-parking-service-route-swagger-ui
+      paths:
+        - /api/yucca-parking/swagger-ui/res
+      strip_path: true
+- url: http://buy-oyc-parking:8086/api/yucca-parking/swagger
+  name: buy-oyc-parking-swagger
+  protocol: http
+  routes:
+    - name: buy-oyc-parking-service-route-swagger
+      paths:
+        - /api/yucca-parking/swagger
+      strip_path: true
+- url: http://buy-oyc-parking:8086/api/yucca-parking/api
+  name: buy-oyc-parking
+  protocol: http
+  routes:
+    - name: buy-oyc-parking-service-route
+      paths:
+        - /api/yucca-parking/api
+      strip_path: true
+- url: http://buy-oyc-parking:8086/api/yucca-parking
+  name: buy-oyc-parking-rest
+  protocol: http
+  routes:
+    - name: buy-oyc-parking-service-route-root
+      paths:
+        - /api/yucca-parking
+      strip_path: true
+
+# Catering Service
+- url: http://buy-oyc-catering:8087/api/yucca-catering/swagger/views/swagger-ui/res
+  name: buy-oyc-catering-swagger-ui
+  protocol: http
+  routes:
+    - name: buy-oyc-catering-service-route-swagger-ui
+      paths:
+        - /api/yucca-catering/swagger-ui/res
+      strip_path: true
+- url: http://buy-oyc-catering:8087/api/yucca-catering/swagger
+  name: buy-oyc-catering-swagger
+  protocol: http
+  routes:
+    - name: buy-oyc-catering-service-route-swagger
+      paths:
+        - /api/yucca-catering/swagger
+      strip_path: true
+- url: http://buy-oyc-catering:8087/api/yucca-catering/api
+  name: buy-oyc-catering
+  protocol: http
+  routes:
+    - name: buy-oyc-catering-service-route
+      paths:
+        - /api/yucca-catering/api
+      strip_path: true
+- url: http://buy-oyc-catering:8087/api/yucca-catering
+  name: buy-oyc-catering-rest
+  protocol: http
+  routes:
+    - name: buy-oyc-catering-service-route-root
+      paths:
+        - /api/yucca-catering
+      strip_path: true
+
+# API Service
+- url: http://buy-oyc-api:8088/api/yucca-api/swagger/views/swagger-ui/res
+  name: buy-oyc-api-swagger-ui
+  protocol: http
+  routes:
+  - name: buy-oyc-api-service-route-swagger-ui
     paths:
-    - /api/yucca-api
+    - /api/yucca-api/swagger-ui/res
     strip_path: true
+- url: http://buy-oyc-api:8088/api/yucca-api/swagger
+  name: buy-oyc-api-swagger
+  protocol: http
+  routes:
+  - name: buy-oyc-api-service-route-swagger
+    paths:
+    - /api/yucca-api/swagger
+    strip_path: true
+- url: http://buy-oyc-api:8088/api/yucca-api/api
+  name: buy-oyc-api
+  protocol: http
+  routes:
+  - name: buy-oyc-api-service-route
+    paths:
+    - /api/yucca-api/api
+    strip_path: true
+- url: http://buy-oyc-api:8088/api/yucca-api
+  name: buy-oyc-api-rest
+  protocol: http
+  routes:
+    - name: buy-oyc-api-service-route-root
+      paths:
+        - /api/yucca-api
+      strip_path: true

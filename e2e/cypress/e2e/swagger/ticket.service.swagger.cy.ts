@@ -5,10 +5,9 @@ describe('Swagger Tests', () => {
 
   it('shows swagger', () => {
     cy.visit(`http://${host}:8000/api/yucca-ticket/swagger/views/swagger-ui/index.html`);
-    cy.get('form > input').type("{moveToStart}/api/yucca-ticket");
     cy.get('button').contains('Explore').click();
     cy.get('h2').contains('OpenAPI definition').should('not.be.null');
     cy.wait(1000);
-    cy.get('div[class="servers"] > label > select > option').should('have.value', 'http://localhost:8000/api/yucca-ticket')
+    cy.get('div[class="servers"] > label > select > option').should('have.value', 'http://localhost:8000')
   });
 })

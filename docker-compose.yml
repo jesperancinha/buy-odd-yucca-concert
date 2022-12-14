@@ -112,6 +112,20 @@ services:
     depends_on:
       kong:
         condition: service_healthy
+      yucca-db:
+        condition: service_healthy
+      buy-oyc-api:
+        condition: service_healthy
+      buy-oyc-ticket:
+        condition: service_healthy
+      buy-oyc-concert:
+        condition: service_healthy
+      buy-oyc-catering:
+        condition: service_healthy
+      buy-oyc-parking:
+        condition: service_healthy
+      kong-migrations-up:
+        condition: service_completed_successfully
 
   yucca-db:
     hostname: yucca-db

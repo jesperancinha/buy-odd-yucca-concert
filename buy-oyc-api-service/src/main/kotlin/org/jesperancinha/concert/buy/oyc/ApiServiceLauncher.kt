@@ -13,7 +13,7 @@ import io.swagger.v3.oas.annotations.servers.Server
         description = "Buy Odd Yucca Concert API - Api Service - Gateway application (not Kong) to make online reservations",
         license = License(name = "Apache 2.0", url = "https://www.apache.org/licenses/LICENSE-2.0"),
     ),
-    servers = [Server(url = "http://localhost:8000/api/yucca-api", description = "Server URL")]
+    servers = [Server(url = "http://localhost:8000", description = "Server URL")]
 )
 object ApiServiceLauncher {
     @JvmStatic

@@ -39,7 +39,7 @@ private const val SMALL_DELAY: Long = 1
  * Created by jofisaes on 22/04/2022
  */
 @ExperimentalCoroutinesApi
-@MicronautTest(contextBuilder = [CustomContextBuilder::class])
+@MicronautTest(contextBuilder = [CustomContextBuilder::class], transactional = false)
 open class ChainTest @Inject constructor(
     private val auditLogRepository: AuditLogRepository,
     private val receiptRepository: ReceiptRepository,

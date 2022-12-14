@@ -3,6 +3,8 @@ micronaut:
     name: buyOycTicketService
   server:
     port: 8084
+    context-path: /api/yucca-ticket
+
   router:
     static-resources:
       swagger:

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 
-@MicronautTest
+@MicronautTest(transactional = false)
 class MicronautTest(
     @Inject
     val application: EmbeddedApplication<*>

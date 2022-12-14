@@ -7,6 +7,12 @@ build-npm:
 	cd buy-odd-yucca-gui && yarn && yarn build
 build-maven:
 	mvn clean install -DskipTests
+build-api:
+	docker-compose stop buy-oyc-api
+	cd buy-oyc-api-service && rm -r target && mvn clean install -DskipTests
+	docker-compose rm buy-oyc-api
+	docker-compose build buy-oyc-api
+	docker-compose up -d buy-oyc-api
 test:
 	mvn test
 test-maven:
@@ -20,9 +26,9 @@ no-test:
 docker: create-folders set-permissions
 	docker-compose up -d --build --remove-orphans
 set-permissions:
-	sudo chmod -R 777 kong_data_vol && [ -d kong_data_vol ] || mkdir kong_data_vol && sudo chmod -R 777 kong_data_vol
-	sudo chmod -R 777 kong_tmp_vol && [ -d kong_tmp_vol ] || mkdir kong_tmp_vol && sudo chmod -R 777 kong_tmp_vol
-	sudo chmod -R 777 kong_prefix_vol && [ -d kong_prefix_vol ] || mkdir kong_prefix_vol && sudo chmod -R 777 kong_prefix_vol
+	if [[ -d kong_data_vol ]]; then sudo chmod -R 777 kong_data_vol; else mkdir kong_data_vol && sudo chmod -R 777 kong_data_vol; fi
+	if [[ -d kong_tmp_vol ]]; then sudo chmod -R 777 kong_tmp_vol; else mkdir kong_tmp_vol && sudo chmod -R 777 kong_tmp_vol; fi
+	if [[ -d kong_prefix_vol ]]; then sudo chmod -R 777 kong_prefix_vol; else mkdir kong_prefix_vol && sudo chmod -R 777 kong_prefix_vol; fi
 kong-full-action-setup:
 	curl -sL https://github.com/kong/deck/releases/download/v1.12.3/deck_1.12.3_linux_amd64.tar.gz -o deck.tar.gz
 	tar -xf deck.tar.gz -C /tmp
@@ -110,13 +116,16 @@ dcup-light-open-action:
 	sudo chown -R 1000:1000 ./kong_data_vol
 	bash database_wait.sh
 dcup: dcd docker-clean docker boyc-wait deck
-dcup-full: dcd docker-clean b docker boyc-wait deck
+dcup-full: dcd docker-clean b set-permissions docker boyc-wait
 # dcup-full-action is only used for remote pipelines
-dcup-full-action: dcd docker-clean b docker-action boyc-wait deck-pipeline deck-pipeline
+dcup-full-action: dcd docker-clean b docker-action boyc-wait
 dcd:
 	docker-compose down
 	docker-compose down -v
 	docker-compose rm -svf
+	if [[ -d kong_data_vol ]]; then sudo rm -r kong_data_vol; fi
+	if [[ -d kong_prefix_vol ]]; then sudo rm -r kong_prefix_vol; fi
+	if [[ -d kong_tmp_vol ]]; then sudo rm -r kong_tmp_vol; fi
 deck-pipeline:
 	docker-compose -f docker-compose.yml up -d kong-deck
 	docker-compose logs kong-deck

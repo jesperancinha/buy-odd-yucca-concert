@@ -7,7 +7,7 @@ import jakarta.inject.Inject
 import org.jesperancinha.concert.buy.oyc.containers.AbstractBuyOddYuccaConcertContainerTest
 import org.junit.jupiter.api.Test
 
-@MicronautTest
+@MicronautTest(transactional = false)
 class BuyOycParkingServiceTest(
     @Inject
     val application: EmbeddedApplication<*>

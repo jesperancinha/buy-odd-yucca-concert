@@ -29,7 +29,7 @@ import javax.transaction.Transactional
  * Created by jofisaes on 25/02/2022
  */
 @Testcontainers
-@MicronautTest
+@MicronautTest(transactional = false)
 @ExperimentalCoroutinesApi
 class TicketReservationTest @Inject constructor(
     private val ticketReservationRepository: TicketReservationRepository,

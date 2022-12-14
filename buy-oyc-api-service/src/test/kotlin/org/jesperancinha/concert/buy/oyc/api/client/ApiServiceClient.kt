@@ -17,7 +17,7 @@ import reactor.core.publisher.Flux
 /**
  * Created by jofisaes on 09/04/2022
  */
-@Client("/api")
+@Client("/api/yucca-api/api")
 interface ReceiptReactiveClient {
     @Post
     fun add(@Body ticket: TicketDto): Single<ResponseDto>
