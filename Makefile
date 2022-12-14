@@ -116,9 +116,9 @@ dcup-light-open-action:
 	sudo chown -R 1000:1000 ./kong_data_vol
 	bash database_wait.sh
 dcup: dcd docker-clean docker boyc-wait deck
-dcup-full: dcd docker-clean b set-permissions docker boyc-wait deck
+dcup-full: dcd docker-clean b set-permissions docker boyc-wait
 # dcup-full-action is only used for remote pipelines
-dcup-full-action: dcd docker-clean b docker-action boyc-wait deck-pipeline deck-pipeline
+dcup-full-action: dcd docker-clean b docker-action boyc-wait
 dcd:
 	docker-compose down
 	docker-compose down -v
