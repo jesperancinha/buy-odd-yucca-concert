@@ -51,6 +51,10 @@
 
 [![alt img](./docs/articles.oyc.banner.png "Configurable Kong API Gateway with Micronaut Services in Kotlin — A very odd Yucca tribute concert")](https://itnext.io/configurable-kong-api-gateway-with-micronaut-services-in-kotlin-a-very-odd-yucca-tribute-concert-e0a978618eab)
 
+#### 2.1. - Stable releases
+
+- [1.0.0](https://github.com/jesperancinha/buy-odd-yucca-concert/tree/1.0.0) - [ece419c8db3648da259b3044e21918e5fcda33c5](https://github.com/jesperancinha/buy-odd-yucca-concert/tree/1.0.0)
+
 ## 3.  - Installing NVM 🌴
 
 You don't need to install NVM per se. This may only be need if you are running a non LTS version of nodejs. In that case, just run:
