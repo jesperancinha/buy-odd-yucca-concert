@@ -28,15 +28,15 @@ abstract class AbstractContainersTest {
 
         @JvmStatic
         val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
-            .withBuyOycConfig("yucca-db", 5432)
-            .withBuyOycConfig("redis_1", 6379)
-            .withBuyOycConfig("kong_1", 8000)
-            .withBuyOycConfig("buy-oyc-ticket_1", 8084)
-            .withBuyOycConfig("buy-oyc-concert_1", 8085)
-            .withBuyOycConfig("buy-oyc-parking_1", 8086)
-            .withBuyOycConfig("buy-oyc-catering_1", 8087)
-            .withBuyOycConfig("buy-oyc-api_1", 8088)
-            .withBuyOycConfig("buy-oyc-nginx_1", 8080)
+            .withBuyOycContainer("yucca-db", 5432)
+            .withBuyOycContainer("redis_1", 6379)
+            .withBuyOycContainer("kong_1", 8000)
+            .withBuyOycContainer("buy-oyc-ticket_1", 8084)
+            .withBuyOycContainer("buy-oyc-concert_1", 8085)
+            .withBuyOycContainer("buy-oyc-parking_1", 8086)
+            .withBuyOycContainer("buy-oyc-catering_1", 8087)
+            .withBuyOycContainer("buy-oyc-api_1", 8088)
+            .withBuyOycContainer("buy-oyc-nginx_1", 8080)
             .withLocalCompose(true)
 
         @JvmStatic
@@ -48,7 +48,7 @@ abstract class AbstractContainersTest {
     }
 }
 
-private fun DockerCompose.withBuyOycConfig(serviceName: String, port:Int): DockerCompose =
+private fun DockerCompose.withBuyOycContainer(serviceName: String, port:Int): DockerCompose =
     withExposedService(serviceName, port, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
         .withLogConsumer(serviceName, logConsumer)
 
