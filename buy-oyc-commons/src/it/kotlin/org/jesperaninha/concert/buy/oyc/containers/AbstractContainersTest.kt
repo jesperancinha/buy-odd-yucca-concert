@@ -5,12 +5,15 @@ import org.jesperaninha.concert.buy.oyc.containers.AbstractContainersTest.Compan
 import org.junit.jupiter.api.AfterAll
 import org.slf4j.LoggerFactory
 import org.testcontainers.containers.DockerComposeContainer
+import org.testcontainers.containers.output.Slf4jLogConsumer
 import org.testcontainers.containers.wait.strategy.Wait.defaultWaitStrategy
 import java.io.File
 import java.time.Duration.ofMinutes
 
-
 class DockerCompose(files: List<File>) : DockerComposeContainer<DockerCompose>(files)
+
+private val logger = LoggerFactory.getLogger(AbstractContainersTest::class.java)
+private val logConsumer: Slf4jLogConsumer = Slf4jLogConsumer(logger)
 
 /**
  * Created by jofisaes on 22/04/2022
@@ -22,17 +25,18 @@ abstract class AbstractContainersTest {
         private val file2 = File("docker-compose-it.yml")
         private val finalFile = if (file1.exists()) file1 else file2
 
+
         @JvmStatic
         val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
-            .withExposedService("yucca-db", 5432, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
-            .withExposedService("redis_1", 6379, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
-            .withExposedService("kong_1", 8000, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
-            .withExposedService("buy-oyc-ticket_1", 8084, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
-            .withExposedService("buy-oyc-concert_1", 8085, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
-            .withExposedService("buy-oyc-parking_1", 8086, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
-            .withExposedService("buy-oyc-catering_1", 8087, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
-            .withExposedService("buy-oyc-api_1", 8088, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
-            .withExposedService("buy-oyc-nginx_1", 8080, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
+            .withBuyOycConfig("yucca-db", 5432)
+            .withBuyOycConfig("redis_1", 6379)
+            .withBuyOycConfig("kong_1", 8000)
+            .withBuyOycConfig("buy-oyc-ticket_1", 8084)
+            .withBuyOycConfig("buy-oyc-concert_1", 8085)
+            .withBuyOycConfig("buy-oyc-parking_1", 8086)
+            .withBuyOycConfig("buy-oyc-catering_1", 8087)
+            .withBuyOycConfig("buy-oyc-api_1", 8088)
+            .withBuyOycConfig("buy-oyc-nginx_1", 8080)
             .withLocalCompose(true)
 
         @JvmStatic
@@ -40,8 +44,13 @@ abstract class AbstractContainersTest {
         fun tearDown() {
             dockerCompose.stop()
         }
+
     }
 }
+
+private fun DockerCompose.withBuyOycConfig(serviceName: String, port:Int): DockerCompose =
+    withExposedService(serviceName, port, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
+        .withLogConsumer(serviceName, logConsumer)
 
 class CustomContextBuilder : DefaultApplicationContextBuilder() {
     init {
