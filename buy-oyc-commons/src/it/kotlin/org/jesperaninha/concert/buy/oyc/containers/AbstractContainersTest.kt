@@ -55,11 +55,15 @@ private fun DockerCompose.withBuyOycContainer(serviceName: String, port:Int): Do
 class CustomContextBuilder : DefaultApplicationContextBuilder() {
     init {
         eagerInitSingletons(true)
+
         dockerCompose
             .also {
+                logger.info("Starting docker compose...")
                 it.start()
+                logger.info("Docker compose has started!")
             }
             .also {
+                logger.info("Configuring properties...")
                 val serviceHost = it.getServiceHost("yucca-db", 5432)
                 val servicePort = it.getServicePort("yucca-db", 5432)
                 logger.info("Preconfigured service host is $serviceHost")
