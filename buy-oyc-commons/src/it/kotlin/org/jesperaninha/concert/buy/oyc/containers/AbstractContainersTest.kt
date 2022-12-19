@@ -24,20 +24,15 @@ abstract class AbstractContainersTest {
 
         @JvmStatic
         val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
-            .withExposedService(
-                "yucca-db", 5432, defaultWaitStrategy()
-                    .withStartupTimeout(ofMinutes(5))
-            )
-            .withExposedService("redis_1", 6379, defaultWaitStrategy())
-            .withExposedService(
-                "kong_1", 8000, defaultWaitStrategy()
-                    .withStartupTimeout(ofMinutes(2))
-            )
-            .withExposedService("buy-oyc-ticket_1", 8084, defaultWaitStrategy())
-            .withExposedService("buy-oyc-concert_1", 8085, defaultWaitStrategy())
-            .withExposedService("buy-oyc-parking_1", 8086, defaultWaitStrategy())
-            .withExposedService("buy-oyc-catering_1", 8087, defaultWaitStrategy())
-            .withExposedService("buy-oyc-api_1", 8088, defaultWaitStrategy())
+            .withExposedService("yucca-db", 5432, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
+            .withExposedService("redis_1", 6379, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
+            .withExposedService("kong_1", 8000, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
+            .withExposedService("buy-oyc-ticket_1", 8084, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
+            .withExposedService("buy-oyc-concert_1", 8085, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
+            .withExposedService("buy-oyc-parking_1", 8086, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
+            .withExposedService("buy-oyc-catering_1", 8087, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
+            .withExposedService("buy-oyc-api_1", 8088, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
+            .withExposedService("buy-oyc-nginx_1", 8080, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
             .withLocalCompose(true)
 
         @JvmStatic
