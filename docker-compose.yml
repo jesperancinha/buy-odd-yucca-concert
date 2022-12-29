@@ -103,7 +103,7 @@ services:
   kong-deck:
     hostname: kong-deck
     container_name: kong-deck
-    image: kong/deck
+    image: kong/deck:v1.16.1
     volumes:
       - ${PWD}/kong:/deck
     command: "--kong-addr http://kong:8001 -s /deck/kong.yaml sync"
