@@ -1,11 +1,16 @@
-# Buy Odd Yucca Concert - Chain Testing
+## Micronaut 3.2.0 Documentation
 
-## Curl request examples
+-   [User Guide](https://docs.micronaut.io/3.2.0/guide/index.html)
+-   [API Reference](https://docs.micronaut.io/3.2.0/api/index.html)
+-   [Configuration Reference](https://docs.micronaut.io/3.2.0/guide/configurationreference.html)
+-   [Micronaut Guides](https://guides.micronaut.io/index.html)
+-   [8.1.5.4 Composite Primary Keys](https://micronaut-projects.github.io/micronaut-data/latest/guide/#sqlCompositeId)
 
-```shell
-curl -X POST -H "Content-Type: application/json" -d "@payload1.json" http://localhost:8000/api/yucca-api/api
-curl -X POST -H "Content-Type: application/json" -d "@payload2.json" http://localhost:8000/api/yucca-api/api
-```
+---
+
+## Feature http-client documentation
+
+-   [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 
