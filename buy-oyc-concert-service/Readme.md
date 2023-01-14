@@ -1,11 +1,20 @@
-# Buy Odd Yucca Concert - Chain Testing
+# buy-oyc-concert-service
 
-## Curl request examples
+## Swagger UI
 
-```shell
-curl -X POST -H "Content-Type: application/json" -d "@payload1.json" http://localhost:8000/api/yucca-api/api
-curl -X POST -H "Content-Type: application/json" -d "@payload2.json" http://localhost:8000/api/yucca-api/api
-```
+-   [buy-oyc-concert-service](http://localhost:8085/swagger/views/swagger-ui/)
+
+## Micronaut 3.2.0 Documentation
+
+-   [User Guide](https://docs.micronaut.io/3.2.0/guide/index.html)
+-   [API Reference](https://docs.micronaut.io/3.2.0/api/index.html)
+-   [Configuration Reference](https://docs.micronaut.io/3.2.0/guide/configurationreference.html)
+-   [Micronaut Guides](https://guides.micronaut.io/index.html)
+---
+
+## Feature http-client documentation
+
+-   [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
 
 ## About me 👨🏽‍💻🚀🏳️‍🌈
 
