@@ -14,7 +14,6 @@
 [![e2e-buy-odd-yucca-concert](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert-e2e.yml/badge.svg)](https://github.com/jesperancinha/buy-odd-yucca-concert/actions/workflows/buy-odd-yucca-concert-e2e.yml)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/6a3c3910140f433e9092239a88b73de6)](https://www.codacy.com/gh/jesperancinha/buy-odd-yucca-concert/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=jesperancinha/buy-odd-yucca-concert&amp;utm_campaign=Badge_Grade)
-[![BCH compliance](https://bettercodehub.com/edge/badge/jesperancinha/buy-odd-yucca-concert?branch=master)](https://bettercodehub.com/results/jesperancinha/buy-odd-yucca-concert)
 [![Known Vulnerabilities](https://snyk.io/test/github/jesperancinha/buy-odd-yucca-concert/badge.svg)](https://snyk.io/test/github/jesperancinha/buy-odd-yucca-concert)
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Coverage/6a3c3910140f433e9092239a88b73de6)](https://www.codacy.com/gh/jesperancinha/buy-odd-yucca-concert/dashboard?utm_source=github.com&utm_medium=referral&utm_content=jesperancinha/buy-odd-yucca-concert&utm_campaign=Badge_Coverage)
