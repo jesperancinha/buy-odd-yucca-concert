@@ -51,7 +51,7 @@
         <testcontainers.version>1.17.6</testcontainers.version>
         <dependency-check-maven.version>7.4.4</dependency-check-maven.version>
         <wiremock.version>2.27.2</wiremock.version>
-        <rxjava.version>3.1.5</rxjava.version>
+        <rxjava.version>3.1.6</rxjava.version>
         <lettuce-core.version>6.2.2.RELEASE</lettuce-core.version>
 
         <micronaut.version>3.8.1</micronaut.version>
