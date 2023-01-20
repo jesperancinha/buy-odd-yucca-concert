@@ -1,4 +1,4 @@
-name: Build and Chain Test
+name: BOYC Build and Chain Test
 
 on: push
 
