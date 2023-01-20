@@ -33,11 +33,3 @@ jobs:
              COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_REPO_TOKEN }}
              CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
              CODACY_PROJECT_TOKEN: ${{ secrets.CODACY_PROJECT_TOKEN }}
-
-        - name: Maven OWASP Security Check
-          run: mvn clean install -Powasp
-
-        - name: NPM Snyk Security Check
-          run: cd buy-odd-yucca-gui && yarn && npm i -g snyk && npm run snyk
-          env:
-             SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
