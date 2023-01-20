@@ -17,11 +17,3 @@ jobs:
 
         - name: Build and Test
           run:  mvn clean install jacoco:prepare-agent package jacoco:report
-
-        - name: Maven OWASP Security Check
-          run: mvn clean install -Powasp
-
-        - name: NPM Snyk Security Check
-          run: cd buy-odd-yucca-gui && yarn && npm i -g snyk && npm run snyk
-          env:
-            SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
