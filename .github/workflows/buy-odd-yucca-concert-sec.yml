@@ -1,8 +1,6 @@
 name: BOYC Security Checks
 
-on:
-  push:
-    branches: [ master ]
+on: push
 
 jobs:
   security-checks:
