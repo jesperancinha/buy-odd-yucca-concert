@@ -26,18 +26,19 @@ abstract class AbstractContainersTest {
         private val finalFile = if (file1.exists()) file1 else file2
 
 
-        @JvmStatic
-        val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
-            .withBuyOycContainer("yucca-db", 5432)
-            .withBuyOycContainer("redis_1", 6379)
-            .withBuyOycContainer("kong_1", 8001)
-            .withBuyOycContainer("buy-oyc-ticket_1", 8084)
-            .withBuyOycContainer("buy-oyc-concert_1", 8085)
-            .withBuyOycContainer("buy-oyc-parking_1", 8086)
-            .withBuyOycContainer("buy-oyc-catering_1", 8087)
-            .withBuyOycContainer("buy-oyc-api_1", 8088)
-            .withBuyOycContainer("buy-oyc-nginx_1", 8080)
-            .withLocalCompose(true)
+        val dockerCompose: DockerCompose by lazy {
+            DockerCompose(listOf(finalFile))
+                .withBuyOycContainer("yucca-db", 5432)
+                .withBuyOycContainer("redis_1", 6379)
+                .withBuyOycContainer("kong_1", 8001)
+                .withBuyOycContainer("buy-oyc-ticket_1", 8084)
+                .withBuyOycContainer("buy-oyc-concert_1", 8085)
+                .withBuyOycContainer("buy-oyc-parking_1", 8086)
+                .withBuyOycContainer("buy-oyc-catering_1", 8087)
+                .withBuyOycContainer("buy-oyc-api_1", 8088)
+                .withBuyOycContainer("buy-oyc-nginx_1", 8080)
+                .withLocalCompose(true)
+        }
 
         @JvmStatic
         @AfterAll
@@ -48,7 +49,7 @@ abstract class AbstractContainersTest {
     }
 }
 
-private fun DockerCompose.withBuyOycContainer(serviceName: String, port:Int): DockerCompose =
+private fun DockerCompose.withBuyOycContainer(serviceName: String, port: Int): DockerCompose =
     withExposedService(serviceName, port, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
         .withLogConsumer(serviceName, logConsumer)
 
@@ -59,7 +60,12 @@ class CustomContextBuilder : DefaultApplicationContextBuilder() {
         dockerCompose
             .also {
                 logger.info("Starting docker compose...")
-                it.start()
+                runCatching {
+                    it.start()
+                }.getOrElse {
+                    it.stackTraceToString()
+                    logger.error("An error has occurred!", it)
+                }
                 logger.info("Docker compose has started!")
             }
             .also {
