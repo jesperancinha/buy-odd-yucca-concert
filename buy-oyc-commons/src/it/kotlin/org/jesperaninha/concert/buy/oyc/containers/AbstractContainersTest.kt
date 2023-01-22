@@ -63,8 +63,8 @@ class CustomContextBuilder : DefaultApplicationContextBuilder() {
                 runCatching {
                     it.start()
                 }.getOrElse {
-                    it.stackTraceToString()
                     logger.error("An error has occurred!", it)
+                    logger.error(it.stackTraceToString(), it)
                 }
                 logger.info("Docker compose has started!")
             }
