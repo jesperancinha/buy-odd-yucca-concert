@@ -6,12 +6,7 @@ x-kong-config: &kong-env
   KONG_PG_PASSWORD_FILE: /run/secrets/kong_postgres_password
 
 volumes:
-  kong_data_vol: { }
   kong_prefix_vol:
-    driver_opts:
-      type: tmpfs
-      device: tmpfs
-  kong_tmp_vol:
     driver_opts:
       type: tmpfs
       device: tmpfs
@@ -32,26 +27,27 @@ services:
       - kong_postgres_password
     networks:
       - yucca-net
+    restart: on-failure
 
   kong:
     hostname: kong
     image: "${KONG_DOCKER_TAG:-kong:latest}"
     depends_on:
-        yucca-db:
-          condition: service_healthy
-        buy-oyc-api:
-          condition: service_healthy
-        buy-oyc-ticket:
-          condition: service_healthy
-        buy-oyc-concert:
-          condition: service_healthy
-        buy-oyc-catering:
-          condition: service_healthy
-        buy-oyc-parking:
-          condition: service_healthy
-        kong-migrations-up:
-          condition: service_completed_successfully
-    user: "${KONG_USER:-kong}"
+      yucca-db:
+        condition: service_healthy
+      buy-oyc-api:
+        condition: service_healthy
+      buy-oyc-ticket:
+        condition: service_healthy
+      buy-oyc-concert:
+        condition: service_healthy
+      buy-oyc-catering:
+        condition: service_healthy
+      buy-oyc-parking:
+        condition: service_healthy
+      kong-migrations-up:
+        condition: service_completed_successfully
+    user: root:1000
     environment:
       <<: *kong-env
       KONG_ADMIN_ACCESS_LOG: /dev/stdout
@@ -78,8 +74,6 @@ services:
       retries: 20
       start_period: 0s
     volumes:
-      - ./kong_prefix_vol:${KONG_PREFIX:-/var/run/kong}
-      - ./kong_tmp_vol:/tmp
       - ./kong:/opt/kong
       - ./kong/kong-migration.sh:/opt/kong/kong-migration.sh
     security_opt:
@@ -87,37 +81,10 @@ services:
     networks:
       yucca-net:
 
-  kong-deck:
-    hostname: kong-deck
-    container_name: kong-deck
-    image: kong/deck
-    volumes:
-      - ${PWD}/kong:/deck
-    command: "--kong-addr http://kong:8001 -s /deck/kong.yaml sync"
-    networks:
-      yucca-net:
-    depends_on:
-      kong:
-        condition: service_healthy
-      yucca-db:
-        condition: service_healthy
-      buy-oyc-api:
-        condition: service_healthy
-      buy-oyc-ticket:
-        condition: service_healthy
-      buy-oyc-concert:
-        condition: service_healthy
-      buy-oyc-catering:
-        condition: service_healthy
-      buy-oyc-parking:
-        condition: service_healthy
-      kong-migrations-up:
-        condition: service_completed_successfully
-
   yucca-db:
     hostname: yucca-db
     image: postgres:14.2
-#    user: ${YUCCA_USER_DB}
+    user: "postgres"
     command: postgres -c listen_addresses='*' -c 'max_connections=400' -c 'shared_buffers=100MB'
     environment:
       POSTGRES_DB: ${KONG_PG_DATABASE:-kong}
@@ -130,17 +97,15 @@ services:
       test: [ "CMD", "pg_isready", "-U", "${KONG_PG_USER:-kong}" ]
       interval: 30s
       timeout: 30s
-      retries: 10
+      retries: 20
       start_period: 0s
     restart: on-failure
-    stdin_open: true
-    tty: true
     expose:
       - 5432
     volumes:
-      - ./kong_data_vol:/var/lib/postgresql/data
       - ./docker-images/docker-psql:/docker-entrypoint-initdb.d
       - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple
+    privileged: true
     networks:
       yucca-net:
 
