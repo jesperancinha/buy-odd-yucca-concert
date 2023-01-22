@@ -21,7 +21,7 @@ import javax.validation.Valid
 class ReceiptController(
     private val reservationsService: ReservationsService
 ) {
-    @Post
+    @Post("/")
     suspend fun postReservation(@Body ticketDto: @Valid TicketDto?): ResponseDto =
         ticketDto?.let {
             reservationsService.createTicket(ticketDto)
