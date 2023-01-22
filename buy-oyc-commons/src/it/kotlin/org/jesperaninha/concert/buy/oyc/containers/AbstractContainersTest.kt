@@ -31,6 +31,7 @@ abstract class AbstractContainersTest {
                 .withBuyOycContainer("yucca-db", 5432)
                 .withBuyOycContainer("redis_1", 6379)
                 .withBuyOycContainer("kong_1", 8001)
+                .withBuyOycContainer("kong_1", 8000)
                 .withBuyOycContainer("buy-oyc-ticket_1", 8084)
                 .withBuyOycContainer("buy-oyc-concert_1", 8085)
                 .withBuyOycContainer("buy-oyc-parking_1", 8086)
