@@ -72,7 +72,7 @@ open class ChainTest @Inject constructor(
     @Test
     fun `should run chain test and create a concert reservation`() = runTest {
         val (serviceHost, servicePort) = dockerCompose.getContainerByServiceName("kong_1").get().let {
-            it.host to it.firstMappedPort
+            it.host to it.getMappedPort(8000)
         }
 
         val httpClient = HttpClient.create(URL("http://$serviceHost:$servicePort"))
@@ -149,7 +149,7 @@ open class ChainTest @Inject constructor(
             )
         )
         val dtoSingle = httpClient.retrieve(
-            HttpRequest.POST("/api/yucca-api/api", ticketDto).header(
+            HttpRequest.POST("/api/yucca-api/api/", ticketDto).header(
                 ACCEPT, APPLICATION_JSON
             ), ResponseDto::class.java
         )

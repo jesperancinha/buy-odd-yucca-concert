@@ -5,12 +5,15 @@ import org.jesperaninha.concert.buy.oyc.containers.AbstractContainersTest.Compan
 import org.junit.jupiter.api.AfterAll
 import org.slf4j.LoggerFactory
 import org.testcontainers.containers.DockerComposeContainer
+import org.testcontainers.containers.output.Slf4jLogConsumer
 import org.testcontainers.containers.wait.strategy.Wait.defaultWaitStrategy
 import java.io.File
 import java.time.Duration.ofMinutes
 
-
 class DockerCompose(files: List<File>) : DockerComposeContainer<DockerCompose>(files)
+
+private val logger = LoggerFactory.getLogger(AbstractContainersTest::class.java)
+private val logConsumer: Slf4jLogConsumer = Slf4jLogConsumer(logger)
 
 /**
  * Created by jofisaes on 22/04/2022
@@ -22,40 +25,52 @@ abstract class AbstractContainersTest {
         private val file2 = File("docker-compose-it.yml")
         private val finalFile = if (file1.exists()) file1 else file2
 
-        @JvmStatic
-        val dockerCompose: DockerCompose = DockerCompose(listOf(finalFile))
-            .withExposedService(
-                "yucca-db", 5432, defaultWaitStrategy()
-                    .withStartupTimeout(ofMinutes(5))
-            )
-            .withExposedService("redis_1", 6379, defaultWaitStrategy())
-            .withExposedService(
-                "kong_1", 8000, defaultWaitStrategy()
-                    .withStartupTimeout(ofMinutes(2))
-            )
-            .withExposedService("buy-oyc-ticket_1", 8084, defaultWaitStrategy())
-            .withExposedService("buy-oyc-concert_1", 8085, defaultWaitStrategy())
-            .withExposedService("buy-oyc-parking_1", 8086, defaultWaitStrategy())
-            .withExposedService("buy-oyc-catering_1", 8087, defaultWaitStrategy())
-            .withExposedService("buy-oyc-api_1", 8088, defaultWaitStrategy())
-            .withLocalCompose(true)
+
+        val dockerCompose: DockerCompose by lazy {
+            DockerCompose(listOf(finalFile))
+                .withBuyOycContainer("yucca-db", 5432)
+                .withBuyOycContainer("redis_1", 6379)
+                .withBuyOycContainer("kong_1", 8001)
+                .withBuyOycContainer("kong_1", 8000)
+                .withBuyOycContainer("buy-oyc-ticket_1", 8084)
+                .withBuyOycContainer("buy-oyc-concert_1", 8085)
+                .withBuyOycContainer("buy-oyc-parking_1", 8086)
+                .withBuyOycContainer("buy-oyc-catering_1", 8087)
+                .withBuyOycContainer("buy-oyc-api_1", 8088)
+                .withBuyOycContainer("buy-oyc-nginx_1", 8080)
+                .withLocalCompose(true)
+        }
 
         @JvmStatic
         @AfterAll
         fun tearDown() {
             dockerCompose.stop()
         }
+
     }
 }
+
+private fun DockerCompose.withBuyOycContainer(serviceName: String, port: Int): DockerCompose =
+    withExposedService(serviceName, port, defaultWaitStrategy().withStartupTimeout(ofMinutes(5)))
+        .withLogConsumer(serviceName, logConsumer)
 
 class CustomContextBuilder : DefaultApplicationContextBuilder() {
     init {
         eagerInitSingletons(true)
+
         dockerCompose
             .also {
-                it.start()
+                logger.info("Starting docker compose...")
+                runCatching {
+                    it.start()
+                }.getOrElse {
+                    logger.error("An error has occurred!", it)
+                    logger.error(it.stackTraceToString(), it)
+                }
+                logger.info("Docker compose has started!")
             }
             .also {
+                logger.info("Configuring properties...")
                 val serviceHost = it.getServiceHost("yucca-db", 5432)
                 val servicePort = it.getServicePort("yucca-db", 5432)
                 logger.info("Preconfigured service host is $serviceHost")

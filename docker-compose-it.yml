@@ -95,8 +95,8 @@ services:
       - kong_postgres_password
     healthcheck:
       test: [ "CMD", "pg_isready", "-U", "${KONG_PG_USER:-kong}" ]
-      interval: 5s
-      timeout: 180s
+      interval: 30s
+      timeout: 30s
       retries: 20
       start_period: 0s
     restart: on-failure
