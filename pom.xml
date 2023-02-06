@@ -42,7 +42,7 @@
         <kotest.version>5.0.3</kotest.version>
         <kotlinx-coroutines-core-jvm.version>1.6.4</kotlinx-coroutines-core-jvm.version>
         <kotlinx.version>1.6.4</kotlinx.version>
-        <postgresql.version>42.5.2</postgresql.version>
+        <postgresql.version>42.5.3</postgresql.version>
         <flyway-core.version>9.14.1</flyway-core.version>
         <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
         <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
