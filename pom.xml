@@ -52,7 +52,7 @@
         <dependency-check-maven.version>8.1.0</dependency-check-maven.version>
         <wiremock.version>2.27.2</wiremock.version>
         <rxjava.version>3.1.6</rxjava.version>
-        <lettuce-core.version>6.2.2.RELEASE</lettuce-core.version>
+        <lettuce-core.version>6.2.3.RELEASE</lettuce-core.version>
 
         <micronaut.version>3.8.4</micronaut.version>
         <micronaut.data.version>3.9.0</micronaut.data.version>
