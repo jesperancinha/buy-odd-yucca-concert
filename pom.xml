@@ -30,11 +30,11 @@
         <jdk.version>${java.version}</jdk.version>
         <release.version>${java.version}</release.version>
         <maven-shade-plugin.version>3.4.1</maven-shade-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M8</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.0.0-M8</maven-failsafe-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M9</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.0.0-M9</maven-failsafe-plugin.version>
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
-        <kotlin.version>1.8.0</kotlin.version>
-        <omni-coveragereporter-maven-plugin.version>0.3.2</omni-coveragereporter-maven-plugin.version>
+        <kotlin.version>1.8.10</kotlin.version>
+        <omni-coveragereporter-maven-plugin.version>0.4.2</omni-coveragereporter-maven-plugin.version>
 
         <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
         <jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
@@ -42,19 +42,19 @@
         <kotest.version>5.0.3</kotest.version>
         <kotlinx-coroutines-core-jvm.version>1.6.4</kotlinx-coroutines-core-jvm.version>
         <kotlinx.version>1.6.4</kotlinx.version>
-        <postgresql.version>42.5.1</postgresql.version>
-        <flyway-core.version>9.12.0</flyway-core.version>
+        <postgresql.version>42.5.4</postgresql.version>
+        <flyway-core.version>9.15.1</flyway-core.version>
         <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
         <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
         <jacoco-maven-plugin.version>0.8.8</jacoco-maven-plugin.version>
         <kotlinx-coroutines-test.version>1.6.3-native-mt</kotlinx-coroutines-test.version>
         <testcontainers.version>1.17.6</testcontainers.version>
-        <dependency-check-maven.version>8.0.2</dependency-check-maven.version>
+        <dependency-check-maven.version>8.1.0</dependency-check-maven.version>
         <wiremock.version>2.27.2</wiremock.version>
         <rxjava.version>3.1.6</rxjava.version>
-        <lettuce-core.version>6.2.2.RELEASE</lettuce-core.version>
+        <lettuce-core.version>6.2.3.RELEASE</lettuce-core.version>
 
-        <micronaut.version>3.8.3</micronaut.version>
+        <micronaut.version>3.8.5</micronaut.version>
         <micronaut.data.version>3.9.0</micronaut.data.version>
         <micronaut.openapi.version>4.8.0</micronaut.openapi.version>
         <micronaut.runtime>netty</micronaut.runtime>
