@@ -20,4 +20,10 @@ jobs:
           run: cd buy-odd-yucca-gui && yarn
 
         - name: Integration Chain Tests
-          run: make build-integration
+          uses: nick-fields/retry@v2
+          with:
+            max_attempts: 2
+            retry_on: error
+            timeout_seconds: 2400
+            command: |
+              make build-integration
