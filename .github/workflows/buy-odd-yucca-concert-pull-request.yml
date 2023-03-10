@@ -16,4 +16,10 @@ jobs:
             distribution: 'adopt'
 
         - name: Build and Test
-          run:  mvn clean install jacoco:prepare-agent package jacoco:report
+          uses: nick-fields/retry@v2
+          with:
+            max_attempts: 2
+            retry_on: error
+            timeout_seconds: 2400
+            command: |
+              mvn clean install jacoco:prepare-agent package jacoco:report
