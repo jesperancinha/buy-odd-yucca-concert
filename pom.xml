@@ -55,7 +55,7 @@
         <lettuce-core.version>6.2.3.RELEASE</lettuce-core.version>
 
         <micronaut.version>3.8.8</micronaut.version>
-        <micronaut.data.version>3.9.6</micronaut.data.version>
+        <micronaut.data.version>3.9.7</micronaut.data.version>
         <micronaut.openapi.version>4.8.0</micronaut.openapi.version>
         <micronaut.runtime>netty</micronaut.runtime>
         <micronaut-maven-plugin.version>3.5.3</micronaut-maven-plugin.version>
