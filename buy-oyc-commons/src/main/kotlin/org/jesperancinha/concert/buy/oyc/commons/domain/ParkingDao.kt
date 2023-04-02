@@ -21,12 +21,12 @@ data class CarParking(
 
 @MappedEntity(namingStrategy = UnderScoreSeparatedLowerCase::class)
 data class ParkingReservation(
-    @Id
-    @AutoPopulated
+    @field: Id
+    @field: AutoPopulated
     var id: UUID? = null,
     val reference: UUID? = UUID.randomUUID(),
     var carParking: CarParking? = null,
-    @DateCreated
+    @field:DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now()
 )
 
