@@ -3,6 +3,8 @@ include ../Makefile
 integration:
 	mvn clean install -Pintegration
 
+b: build
+
 build:
 	cd .. && mvn clean install
 

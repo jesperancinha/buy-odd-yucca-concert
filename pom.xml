@@ -33,13 +33,13 @@
         <maven-surefire-plugin.version>3.0.0</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.0.0</maven-failsafe-plugin.version>
         <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
-        <kotlin.version>1.8.10</kotlin.version>
+        <kotlin.version>1.8.20</kotlin.version>
         <omni-coveragereporter-maven-plugin.version>0.4.2</omni-coveragereporter-maven-plugin.version>
 
         <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
         <jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
         <mockk.version>1.13.4</mockk.version>
-        <kotest.version>5.0.3</kotest.version>
+        <kotest.version>5.5.5</kotest.version>
         <kotlinx-coroutines-core-jvm.version>1.6.4</kotlinx-coroutines-core-jvm.version>
         <kotlinx.version>1.6.4</kotlinx.version>
         <postgresql.version>42.6.0</postgresql.version>
@@ -62,6 +62,7 @@
         <micronaut-redis-lettuce.version>5.3.2</micronaut-redis-lettuce.version>
         <micronaut-rxjava3-http-client.version>2.4.1</micronaut-rxjava3-http-client.version>
         <micronaut-flyway.version>5.5.0</micronaut-flyway.version>
+        <micronaut-test-kotest.version>3.9.2</micronaut-test-kotest.version>
     </properties>
 
     <profiles>
@@ -283,6 +284,24 @@
                 <groupId>io.r2dbc</groupId>
                 <artifactId>r2dbc-postgresql</artifactId>
                 <version>${r2dbc-postgresql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.micronaut.test</groupId>
+                <artifactId>micronaut-test-kotest</artifactId>
+                <version>${micronaut-test-kotest.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.kotest</groupId>
+                <artifactId>kotest-runner-junit5-jvm</artifactId>
+                <version>${kotest.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>io.kotest</groupId>
+                <artifactId>kotest-assertions-core-jvm</artifactId>
+                <version>${kotest.version}</version>
+                <scope>test</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
