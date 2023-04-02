@@ -15,15 +15,15 @@ import java.util.*
  */
 @MappedEntity(namingStrategy = UnderScoreSeparatedLowerCase::class)
 data class TicketReservation(
-    @field: Id
-    @field: AutoPopulated
+    @Id
+    @AutoPopulated
     var id: UUID? = null,
     val reference: UUID? = UUID.randomUUID(),
     val name: String,
     val address: String,
     val birthDate: LocalDate,
     val parkingReservation: ParkingReservation? = null,
-    @field:DateCreated
+    @DateCreated
     val createdAt: LocalDateTime? = LocalDateTime.now(),
 )
 

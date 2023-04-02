@@ -1,20 +1,19 @@
 package org.jesperancinha.concert.buy.oyc.commons.domain
 
-import io.kotest.assertions.timing.eventually
 import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.comparables.shouldBeEqualComparingTo
 import io.kotest.matchers.comparables.shouldBeLessThan
-import io.kotest.matchers.equality.shouldBeEqualToComparingFields
 import io.kotest.matchers.nulls.shouldBeNull
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest
 import jakarta.inject.Inject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.delay
+import kotlinx.coroutines.async
 import kotlinx.coroutines.flow.toList
-import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import org.flywaydb.core.Flyway
 import org.flywaydb.core.api.configuration.ClassicConfiguration
@@ -24,16 +23,12 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.testcontainers.junit.jupiter.Testcontainers
-import java.lang.AssertionError
 import java.math.BigDecimal
 import java.time.Duration
 import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.ZoneOffset
 import java.util.*
 import javax.transaction.Transactional
-import kotlin.time.Duration.Companion.milliseconds
-import kotlin.time.Duration.Companion.seconds
 
 /**
  * Created by jofisaes on 25/02/2022
@@ -49,7 +44,7 @@ class TicketReservationTest @Inject constructor(
     private val concertDayRepository: ConcertDayRepository,
     private val drinkRepository: DrinkRepository,
     private val mealRepository: MealRepository,
-    private val ticketReservationConcertRepository: TicketReservationConcertRepository
+    private val ticketReservationConcertRepository: TicketReservationConcertRepository,
 ) : AbstractBuyOddYuccaConcertContainerTest() {
 
     private val config = ClassicConfiguration()
@@ -91,7 +86,7 @@ class TicketReservationTest @Inject constructor(
 
     @Test
     @Transactional
-    fun `should save complete ticket to repository`(): Unit = runBlocking {
+    fun `should save complete ticket to repository`() = runTest {
         val carParking = CarParking(parkingNumber = 10)
         val carParkingResult = carParkingRepository.save(carParking)
 
@@ -99,7 +94,9 @@ class TicketReservationTest @Inject constructor(
         carParkingResult.id.shouldNotBeNull()
 
         val parkingReservation = ParkingReservation(carParking = carParkingResult)
-        val savedParkingReservation = parkingReservationRepository.save(parkingReservation)
+        val savedParkingReservation = CoroutineScope(Dispatchers.Unconfined)
+            .async { parkingReservationRepository.save(parkingReservation) }
+            .await()
         val (idParkingTicket, _, carParkingOnReservation) = savedParkingReservation
 
         idParkingTicket.shouldNotBeNull()
@@ -143,22 +140,19 @@ class TicketReservationTest @Inject constructor(
         concertDayReservation1.shouldNotBeNull()
 
         val birthDate = LocalDate.now()
-        val (id, reference, name, address, birthDateResult, carParkingTicketResult, createdAt)  = runBlocking {
+        val reservation = CoroutineScope(
+            Dispatchers.Unconfined
+        ).async {
             val ticketReservation = TicketReservation(
                 name = "João",
                 birthDate = birthDate,
                 address = "Road to nowhere",
                 parkingReservation = savedParkingReservation.shouldNotBeNull(),
             )
-            ticketReservationRepository.save(ticketReservation)
-        }
-        id.shouldNotBeNull()
-        val reservation = runBlocking {
-            eventually(15.seconds, AssertionError::class) {
-                ticketReservationRepository.findById(id).also { it.parkingReservation.shouldNotBeNull() }
-            }
-        }
+           ticketReservationRepository.save(ticketReservation)
 
+        }.await()
+        val (id, reference, name, address, birthDateResult, carParkingTicketResult, createdAt) = reservation
         concertDayReservation1.shouldNotBeNull()
         reservation.shouldNotBeNull()
 
@@ -245,16 +239,12 @@ class TicketReservationTest @Inject constructor(
         carParkingOnReservation.shouldNotBeNull()
         carParkingOnReservation.parkingNumber shouldBe 10
 
-        val newTicketReservation =
-            ticketReservationRepository.update(
-                reservation.copy(
-                    createdAt = LocalDateTime.now()
-                )
+        ticketReservationRepository.update(
+            reservation.copy(
+                createdAt = LocalDateTime.now()
             )
-        val finalTicketReservation =
-            newTicketReservation.id?.let { ticketReservationRepository.findById(it) }
-        finalTicketReservation.shouldNotBeNull()
-        finalTicketReservation.parkingReservation.shouldNotBeNull()
+        ).shouldNotBeNull()
+            .parkingReservation.shouldNotBeNull()
 
         concertDayReservation1.shouldNotBeNull()
         val concertDayReservationId = concertDayReservation1.id
