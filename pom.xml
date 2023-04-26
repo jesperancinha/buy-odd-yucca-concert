@@ -46,7 +46,7 @@
         <flyway-core.version>9.16.3</flyway-core.version>
         <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
         <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
-        <jacoco-maven-plugin.version>0.8.9</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
         <kotlinx-coroutines-test.version>1.6.3-native-mt</kotlinx-coroutines-test.version>
         <testcontainers.version>1.18.0</testcontainers.version>
         <dependency-check-maven.version>8.2.1</dependency-check-maven.version>
