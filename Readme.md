@@ -31,7 +31,7 @@
 Please check the [TechStack.md](TechStack.md) file for details.
 
 <details>
-<summary><h1><b>1. Introduction</b></h1></summary>
+<summary><h2><b>1. Introduction</b></h2></summary>
 
 ---
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://itnext.io/configurable-kong-api-gateway-with-micronaut-services-in-kotlin-a-very-odd-yucca-tribute-concert-e0a978618eab)
@@ -212,7 +212,7 @@ Read report after running:
 ---
 
 <details>
-<summary style="font-size:xx-large"><b>4.  Run chain tests</b></summary>
+<summary><h2><b>4.  Run chain tests</b></h2></summary>
 
 ---
 ```shell
@@ -224,7 +224,7 @@ make build-integration
 ---
 
 <details>
-<summary style="font-size:xx-large"><b>5. Coffee sessions</b></summary>
+<summary><h2><b>5. Coffee sessions</b></h2></summary>
 
 ---
 -   [Making Regression/Chain tests in Micronaut](https://www.buymeacoffee.com/jesperancinha/coroutines-kotest-engine-brawl)
@@ -289,7 +289,7 @@ sequenceDiagram
 ## 7  References
 
 <details>
-<summary style="font-size: large"><b>7.1. Online</b></summary>
+<summary><b>7.1. Online</b></summary>
 
 #### 
 
@@ -325,7 +325,7 @@ sequenceDiagram
 ---
 </details>
 <details>
-<summary style="font-size: large"><b>7.2. Online Videos</b></summary>
+<summary><b>7.2. Online Videos</b></summary>
 
 ---
 <div align="center">
