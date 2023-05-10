@@ -89,6 +89,7 @@ Wait for containers to start (usually no more than 10 seconds).
 ```shell
 make kong-setup
 ```
+---
 </details>
 
 <details>
