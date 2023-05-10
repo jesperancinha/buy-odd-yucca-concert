@@ -31,7 +31,7 @@
 Please check the [TechStack.md](TechStack.md) file for details.
 
 <details>
-<summary style="font-size:x-large"><b>1. Introduction</b></summary>
+<summary style="font-size:xx-large"><b>1. Introduction</b></summary>
 
 ---
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://itnext.io/configurable-kong-api-gateway-with-micronaut-services-in-kotlin-a-very-odd-yucca-tribute-concert-e0a978618eab)
@@ -212,7 +212,7 @@ Read report after running:
 ---
 
 <details>
-<summary style="font-size:x-large"><b>4.  Run chain tests</b></summary>
+<summary style="font-size:xx-large"><b>4.  Run chain tests</b></summary>
 
 ---
 ```shell
@@ -224,7 +224,7 @@ make build-integration
 ---
 
 <details>
-<summary style="font-size:x-large"><b>5. Coffee sessions</b></summary>
+<summary style="font-size:xx-large"><b>5. Coffee sessions</b></summary>
 
 ---
 -   [Making Regression/Chain tests in Micronaut](https://www.buymeacoffee.com/jesperancinha/coroutines-kotest-engine-brawl)
