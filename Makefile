@@ -4,14 +4,18 @@ b: build-npm build-maven
 build: build-npm
 	mvn clean install
 build-npm:
-	cd buy-odd-yucca-gui && yarn && yarn build
+	cd buy-odd-yucca-gui; \
+	yarn; \
+	yarn build
 build-maven:
 	mvn clean install -DskipTests
 build-api:
 	docker-compose stop buy-oyc-api
-	cd buy-oyc-api-service && rm -r target && mvn clean install -DskipTests
-	docker-compose rm buy-oyc-api
-	docker-compose build buy-oyc-api
+	cd buy-oyc-api-service; \
+ 	rm -r target; \
+ 	mvn clean install -DskipTests; \
+	docker-compose rm buy-oyc-api; \
+	docker-compose build buy-oyc-api; \
 	docker-compose up -d buy-oyc-api
 test:
 	mvn test

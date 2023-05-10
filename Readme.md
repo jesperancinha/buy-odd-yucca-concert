@@ -26,35 +26,27 @@
 
 ---
 
-## 1.  - Technologies used
+## Technologies used
+
+Please check the [TechStack.md](TechStack.md) file for details.
+
+<details>
+<summary style="font-size:x-large"><b>1. Introduction</b></summary>
 
 ---
-
-[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/kotlin-50.png "Kotlin")](https://kotlinlang.org/)
-[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/kong-50.png "Kong Framework")](https://konghq.com/kong)
-[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/micronaut-50.png "Micronaut Framework")](https://micronaut.io/)
-[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/postgres-50.png "PostgreSQL")](https://www.postgresql.org/)
-[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/docker-50.png "Docker")](https://www.docker.com/)
-[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/docker-compose-50.png "Docker Compose")](https://docs.docker.com/compose/)
-[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/testcontainers-50.png "Test containers")](https://www.testcontainers.org/)
-[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/apache-maven-50.png "Maven")](https://maven.apache.org/)
-[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/swagger-50.png "Swagger")](https://swagger.io/)
-[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-50/cypress-50.png "Cypress")](https://www.cypress.io/)
-
----
-
-## 2.  -  Introduction 🌴
-
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://itnext.io/configurable-kong-api-gateway-with-micronaut-services-in-kotlin-a-very-odd-yucca-tribute-concert-e0a978618eab)
 [Configurable Kong API Gateway with Micronaut Services in Kotlin — A very odd Yucca tribute concert](https://itnext.io/configurable-kong-api-gateway-with-micronaut-services-in-kotlin-a-very-odd-yucca-tribute-concert-e0a978618eab)
 
 [![alt img](./docs/articles.oyc.banner.png "Configurable Kong API Gateway with Micronaut Services in Kotlin — A very odd Yucca tribute concert")](https://itnext.io/configurable-kong-api-gateway-with-micronaut-services-in-kotlin-a-very-odd-yucca-tribute-concert-e0a978618eab)
 
-#### 2.1. - Stable releases
+#### 1.1. - Stable releases
 
 -   [1.0.0](https://github.com/jesperancinha/buy-odd-yucca-concert/tree/1.0.0) - [ece419c8db3648da259b3044e21918e5fcda33c5](https://github.com/jesperancinha/buy-odd-yucca-concert/tree/1.0.0)
 
-## 3.  - Installing NVM 🌴
+---
+</details>
+
+## 2.  - Installing NVM 🌴
 
 You don't need to install NVM per se. This may only be need if you are running a non LTS version of nodejs. In that case, just run:
 
@@ -63,11 +55,13 @@ nvm-install.sh
 node -v
 ```
 
-## 4.  - How to run
+## 3.  - How to run
 
-### 4.1 - Run docker
+<details>
+<summary style="font-size: large"><b>3.1 - Run docker</b></summary>
 
-#### 4.1.1. - Optional Intallation (Mostly if something is not quite correctly configured)
+---
+#### 3.1.1. - Optional Intallation (Mostly if something is not quite correctly configured)
 ```shell
 sudo usermod -a -G docker $(whoami)
 ```
@@ -78,29 +72,42 @@ Restart and:
 newgrp docker
 ```
 
-#### 4.1.2. - Start Application
+#### 3.1.2. - Start Application
 
 ```shell
 make docker-clean-build-start
 ```
+---
+</details>
 
-### 4.2 - Load Kong Settings
+<details>
+<summary style="font-size: large"><b>3.2 - Load Kong Settings</b></summary>
 
+---
 Wait for containers to start (usually no more than 10 seconds).
 
 ```shell
 make kong-setup
 ```
+</details>
 
-### 4.3 - Settings
+<details>
+<summary style="font-size: large"><b>3.3 - Settings</b></summary>
+
+---
+
 
 This project is built upon node v16.13.1
 
 [NVM-SH](https://github.com/nvm-sh/nvm/blob/master/README.md)
+---
+</details>
 
-### 4.4 - Docker Usage
+<details>
+<summary style="font-size: large"><b>3.4 - Docker Usage</b></summary>
 
-#### 4.4.1. - Using Containers
+---
+#### 3.4.1. - Using Containers
 ```shell
 docker exec -it buy-oyc-nginx /bin/bash
 docker exec -it kong /bin/bash
@@ -108,7 +115,7 @@ docker exec -it buy-oyc-parking /bin/bash
 docker exec -it buy-oyc-ticket /bin/bash
 ```
 
-#### 4.4.2. - Endpoints from inside Docker
+#### 3.4.2. - Endpoints from inside Docker
 
 
 -   [http://buy-oyc-ticket:8000/api/yucca-ticket](http://buy-oyc-ticket:8000/api/yucca-ticket)
@@ -117,7 +124,7 @@ docker exec -it buy-oyc-ticket /bin/bash
 curl http://buy-oyc-ticket:8000/api/yucca-ticket
 ```
 
-#### 4.4.3. - Endpoints open to the outside
+#### 3.4.3. - Endpoints open to the outside
 
 
 API
@@ -133,7 +140,7 @@ Routes
 -   [Main](http://localhost:8001)
 -   [Routes](http://localhost:8001/routes)
 
-#### 4.4.4. - Swagger UI Tests
+#### 3.4.4. - Swagger UI Tests
 
 Although this project is meant to be used with Locust and for benchmark testing and rate-limiting, it may be interesting to understand the data model first. Swagger UI helps with that.
 
@@ -167,7 +174,7 @@ Via Kong Gateway for Swagger UI
 
 > Make sure to check the [e2e](./e2e) tests in order to see how Swagger is implemented. The Explorer textbox needs to be manually configured at the moment.
 
-#### 4.4.5 Cypress tests
+#### 3.4.5 Cypress tests
 
 In order to run cypress tests, please run
 
@@ -182,9 +189,14 @@ make cypress-open
 ```
 
 The cypress test management window should open and you should be able to perform your tests manually.
+---
+</details>
 
-### 4.5. - Security Report
 
+<details>
+<summary style="font-size: large"><b>3.5. - Security Report</b></summary>
+
+---
 ```shell
 mvn clean install -Powasp
 ```
@@ -194,15 +206,27 @@ Read report after running:
 -   [buy-oyc-catering-service](buy-oyc-catering-service/target/dependency-check-report.html)
 -   [buy-oyc-parking-service](buy-oyc-parking-service/target/dependency-check-report.html)
 -   [buy-oyc-ticket-service](buy-oyc-ticket-service/target/dependency-check-report.html)
+---
+</details>
 
-## 5.  Run chain tests
+---
 
+<details>
+<summary style="font-size:x-large"><b>4.  Run chain tests</b></summary>
+
+---
 ```shell
 make build-integration
 ```
+---
+</details>
 
-## 6.  [Coffee Sessions](https://www.buymeacoffee.com/jesperancinha/posts) ☕️
+---
 
+<details>
+<summary style="font-size:x-large"><b>5. Coffee sessions</b></summary>
+
+---
 -   [Making Regression/Chain tests in Micronaut](https://www.buymeacoffee.com/jesperancinha/coroutines-kotest-engine-brawl)
 -   [Pub-sub Redis in Micronaut](https://www.buymeacoffee.com/jesperancinha/pub-sub-redis-micronaut)
 -   [Micronaut - Getting the basics](https://www.buymeacoffee.com/jesperancinha/micronaut-getting-basics)
@@ -210,8 +234,12 @@ make build-integration
 -   [Kotlin's reified and why you should use it(or maybe not)](https://www.buymeacoffee.com/jesperancinha/kotlin-reified-use)
 -   [Kotlin Data Modelling with Micronaut](https://www.buymeacoffee.com/jesperancinha/kotlin-data-modelling-micronaut)
 -   [Micronaut and Kotlin - Making round trip integration tests](https://www.buymeacoffee.com/jesperancinha/round-trip-testing-micronaut)
+---
+</details>
 
-## 7.  Sequence Diagram
+---
+
+## 6.  Sequence Diagram
 
 ```mermaid
 sequenceDiagram
@@ -258,9 +286,12 @@ sequenceDiagram
     end
 ```
 
-## 8.  References
+## 7  References
 
-#### 8.1. Online
+<details>
+<summary style="font-size: large"><b>7.1. Online</b></summary>
+
+#### 
 
 -   [Permission issue with PostgreSQL in docker container](https://stackoverflow.com/questions/56188573/permission-issue-with-postgresql-in-docker-container)
 -   [What kinds of bot attacks are stopped by rate limiting?](https://www.cloudflare.com/en-gb/learning/bots/what-is-rate-limiting/)
@@ -291,9 +322,12 @@ sequenceDiagram
 -   [Kong Inc.](https://en.wikipedia.org/wiki/Kong_Inc.)
 -   [Redhwan Nacef's Kong Tutorial On GitHub](https://github.com/redhwannacef/youtube-tutorials/tree/main/kong-gateway)
 -   [Lorem Picsum Phosots](https://picsum.photos/)
+---
+</details>
+<details>
+<summary style="font-size: large"><b>7.2. Online Videos</b></summary>
 
-#### 8.2. - Online videos
-
+---
 <div align="center">
       <a title="Kong Gateway for Beginners: Adding a Service, Route and Plugins" href="https://www.youtube.com/watch?v=kGZyAEVioWg">
      <img 
@@ -366,6 +400,9 @@ sequenceDiagram
           style="width:10%;">
       </a>
 </div>
+
+---
+</details>
 
 ## About me
 
