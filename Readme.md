@@ -31,7 +31,7 @@
 Please check the [TechStack.md](TechStack.md) file for details.
 
 <details>
-<summary><b style="font-size:xx-large">1. Introduction</b></summary>
+<summary><h2><b>1. Introduction</b></h2></summary>
 
 ---
 [![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://itnext.io/configurable-kong-api-gateway-with-micronaut-services-in-kotlin-a-very-odd-yucca-tribute-concert-e0a978618eab)
