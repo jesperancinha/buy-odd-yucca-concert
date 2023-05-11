@@ -39,7 +39,7 @@
         <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
         <jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
         <mockk.version>1.13.5</mockk.version>
-        <kotest.version>5.6.1</kotest.version>
+        <kotest.version>5.6.2</kotest.version>
         <kotlinx-coroutines-core-jvm.version>1.7.0</kotlinx-coroutines-core-jvm.version>
         <kotlinx.version>1.7.0</kotlinx.version>
         <postgresql.version>42.6.0</postgresql.version>
