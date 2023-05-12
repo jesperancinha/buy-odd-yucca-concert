@@ -32,7 +32,7 @@
         <maven-shade-plugin.version>3.4.1</maven-shade-plugin.version>
         <maven-surefire-plugin.version>3.1.0</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.1.0</maven-failsafe-plugin.version>
-        <build-helper-maven-plugin.version>3.3.0</build-helper-maven-plugin.version>
+        <build-helper-maven-plugin.version>3.4.0</build-helper-maven-plugin.version>
         <kotlin.version>1.8.21</kotlin.version>
         <omni-coveragereporter-maven-plugin.version>0.4.3</omni-coveragereporter-maven-plugin.version>
 
