@@ -43,7 +43,7 @@
         <kotlinx-coroutines-core-jvm.version>1.7.2</kotlinx-coroutines-core-jvm.version>
         <kotlinx.version>1.7.2</kotlinx.version>
         <postgresql.version>42.6.0</postgresql.version>
-        <flyway-core.version>9.20.0</flyway-core.version>
+        <flyway-core.version>9.20.1</flyway-core.version>
         <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
         <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
         <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
