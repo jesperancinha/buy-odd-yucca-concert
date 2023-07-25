@@ -43,7 +43,7 @@
         <kotlinx-coroutines-core-jvm.version>1.7.2</kotlinx-coroutines-core-jvm.version>
         <kotlinx.version>1.7.2</kotlinx.version>
         <postgresql.version>42.6.0</postgresql.version>
-        <flyway-core.version>9.20.1</flyway-core.version>
+        <flyway-core.version>9.21.0</flyway-core.version>
         <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
         <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
         <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
@@ -52,7 +52,7 @@
         <dependency-check-maven.version>8.3.1</dependency-check-maven.version>
         <wiremock.version>2.27.2</wiremock.version>
         <rxjava.version>3.1.6</rxjava.version>
-        <lettuce-core.version>6.2.4.RELEASE</lettuce-core.version>
+        <lettuce-core.version>6.2.5.RELEASE</lettuce-core.version>
 
         <micronaut.version>3.9.4</micronaut.version>
         <micronaut.data.version>4.0.1</micronaut.data.version>
