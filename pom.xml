@@ -26,7 +26,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <packaging>jar</packaging>
-        <java.version>17</java.version>
+        <java.version>19</java.version>
         <jdk.version>${java.version}</jdk.version>
         <release.version>${java.version}</release.version>
         <maven-shade-plugin.version>3.5.0</maven-shade-plugin.version>
@@ -55,7 +55,7 @@
         <lettuce-core.version>6.2.5.RELEASE</lettuce-core.version>
 
         <micronaut.version>3.10.0</micronaut.version>
-        <micronaut.data.version>3.10.0</micronaut.data.version>
+        <micronaut.data.version>${micronaut.version}</micronaut.data.version>
         <micronaut.openapi.version>4.8.0</micronaut.openapi.version>
         <micronaut.runtime>netty</micronaut.runtime>
         <micronaut-maven-plugin.version>3.5.4</micronaut-maven-plugin.version>
