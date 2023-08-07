@@ -154,3 +154,6 @@ coverage-node:
 report:
 	mvn omni-coveragereporter:report
 local-pipeline: build-maven build-npm test-maven test-node report coverage-maven coverage-node
+update-node:
+	sudo npm install -g n
+	sudo n lts
