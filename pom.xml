@@ -54,7 +54,7 @@
         <rxjava.version>3.1.6</rxjava.version>
         <lettuce-core.version>6.2.6.RELEASE</lettuce-core.version>
 
-        <micronaut.version>3.10.0</micronaut.version>
+        <micronaut.version>3.10.1</micronaut.version>
         <micronaut.data.version>${micronaut.version}</micronaut.data.version>
         <micronaut.openapi.version>4.8.0</micronaut.openapi.version>
         <micronaut.runtime>netty</micronaut.runtime>
