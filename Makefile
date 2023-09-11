@@ -138,7 +138,7 @@ deck-pipeline:
 deck:
 	docker-compose -f docker-compose.yml up -d kong-deck
 cypress-open:
-	cd e2e && yarn && npm run cypress
+	cd e2e && yarn && npm run cypress:open:electron
 cypress-electron:
 	cd e2e && make cypress-electron
 cypress-chrome:
