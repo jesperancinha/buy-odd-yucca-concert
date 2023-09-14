@@ -93,8 +93,12 @@ update-snyk:
 	npm i -g snyk
 update:
 	curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
-	npm install -g npm-check-updates
-	cd buy-odd-yucca-gui && npx browserslist --update-db && ncu -u && yarn
+	sudo npm install -g npm-check-updates
+	cd buy-odd-yucca-gui; \
+ 	ncu -u; \
+ 	yarnm; \
+ 	npx browserslist --update-db; \
+ 	yarn
 audit:
 	cd buy-odd-yucca-gui && npx browserslist --update-db && npm audit fix && yarn
 build-integration: build-npm
@@ -157,3 +161,13 @@ local-pipeline: build-maven build-npm test-maven test-node report coverage-maven
 update-node:
 	sudo npm install -g n
 	sudo n lts
+update-browser-list:
+	cd buy-odd-yucca-gui; \
+	ncu -u; \
+	yarn; \
+	npx update-browserslist-db@latest
+node-update:
+	curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+	source ~/.nvm/nvm.sh
+	nvm install --lts
+	nvm use --lts
