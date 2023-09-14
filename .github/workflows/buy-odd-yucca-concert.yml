@@ -19,7 +19,7 @@ jobs:
             distribution: 'adopt'
         - uses: actions/setup-node@v3
           with:
-            node-version: '16'
+            node-version: '18'
 
         - name: Install Jest
           run: cd buy-odd-yucca-gui && yarn && yarn add jest --dev
