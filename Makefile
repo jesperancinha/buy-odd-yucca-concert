@@ -166,3 +166,8 @@ update-browser-list:
 	ncu -u; \
 	yarn; \
 	npx update-browserslist-db@latest
+node-update:
+	curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
+	source ~/.nvm/nvm.sh
+	nvm install --lts
+	nvm use --lts
