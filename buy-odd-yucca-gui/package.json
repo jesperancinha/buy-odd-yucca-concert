@@ -13,7 +13,7 @@
     "caniuse-lite": "^1.0.30001534",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "typescript": "^4",
+    "typescript": "^5",
     "web-vitals": "^3.4.0"
   },
   "scripts": {
