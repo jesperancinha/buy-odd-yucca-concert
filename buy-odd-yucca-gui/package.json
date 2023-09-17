@@ -5,7 +5,7 @@
   "main": "./build/index.js",
   "dependencies": {
     "@testing-library/react": "^14.0.0",
-    "@testing-library/user-event": "^14.4.3",
+    "@testing-library/user-event": "^14.5.0",
     "@types/jest": "^29.5.4",
     "@types/node": "^20.6.0",
     "@types/react": "^18.2.21",
@@ -13,7 +13,7 @@
     "caniuse-lite": "^1.0.30001534",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "typescript": "^4",
+    "typescript": "^5",
     "web-vitals": "^3.4.0"
   },
   "scripts": {
@@ -50,7 +50,7 @@
     "@babel/preset-react": "^7.22.15",
     "@testing-library/jest-dom": "^6.1.3",
     "coverage": "^0.4.1",
-    "react-scripts": "^4"
+    "react-scripts": "^5"
   },
   "jest": {
     "testEnvironment": "jsdom",
