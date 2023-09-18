@@ -39,11 +39,11 @@
         <jakarta.annotation-api.version>2.1.1</jakarta.annotation-api.version>
         <jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
         <mockk.version>1.13.7</mockk.version>
-        <kotest.version>5.6.2</kotest.version>
+        <kotest.version>5.7.2</kotest.version>
         <kotlinx-coroutines-core-jvm.version>1.7.3</kotlinx-coroutines-core-jvm.version>
         <kotlinx.version>1.7.3</kotlinx.version>
         <postgresql.version>42.6.0</postgresql.version>
-        <flyway-core.version>9.21.2</flyway-core.version>
+        <flyway-core.version>9.22.1</flyway-core.version>
         <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
         <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
         <jacoco-maven-plugin.version>0.8.10</jacoco-maven-plugin.version>
