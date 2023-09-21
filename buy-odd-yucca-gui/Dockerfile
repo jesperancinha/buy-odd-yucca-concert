@@ -1,4 +1,4 @@
-FROM nginx:1.24
+FROM nginx:1.25.2
 
 ENV runningFolder /usr/local/bin/
 
