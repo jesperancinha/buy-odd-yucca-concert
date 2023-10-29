@@ -30,8 +30,8 @@
         <jdk.version>${java.version}</jdk.version>
         <release.version>${java.version}</release.version>
         <maven-shade-plugin.version>3.5.1</maven-shade-plugin.version>
-        <maven-surefire-plugin.version>3.1.2</maven-surefire-plugin.version>
-        <maven-failsafe-plugin.version>3.1.2</maven-failsafe-plugin.version>
+        <maven-surefire-plugin.version>3.2.1</maven-surefire-plugin.version>
+        <maven-failsafe-plugin.version>3.2.1</maven-failsafe-plugin.version>
         <build-helper-maven-plugin.version>3.4.0</build-helper-maven-plugin.version>
         <kotlin.version>1.9.10</kotlin.version>
         <omni-coveragereporter-maven-plugin.version>0.4.3</omni-coveragereporter-maven-plugin.version>
@@ -49,7 +49,7 @@
         <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
         <kotlinx-coroutines-test.version>1.6.3-native-mt</kotlinx-coroutines-test.version>
         <testcontainers.version>1.19.1</testcontainers.version>
-        <dependency-check-maven.version>8.4.0</dependency-check-maven.version>
+        <dependency-check-maven.version>8.4.2</dependency-check-maven.version>
         <wiremock.version>2.27.2</wiremock.version>
         <rxjava.version>3.1.8</rxjava.version>
         <lettuce-core.version>6.2.6.RELEASE</lettuce-core.version>
