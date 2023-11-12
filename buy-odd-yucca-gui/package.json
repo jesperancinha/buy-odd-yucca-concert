@@ -4,13 +4,13 @@
   "private": true,
   "main": "./build/index.js",
   "dependencies": {
-    "@testing-library/react": "^14.0.0",
+    "@testing-library/react": "^14.1.0",
     "@testing-library/user-event": "^14.5.1",
-    "@types/jest": "^29.5.7",
-    "@types/node": "^20.8.9",
-    "@types/react": "^18.2.33",
-    "@types/react-dom": "^18.2.14",
-    "caniuse-lite": "^1.0.30001558",
+    "@types/jest": "^29.5.8",
+    "@types/node": "^20.9.0",
+    "@types/react": "^18.2.37",
+    "@types/react-dom": "^18.2.15",
+    "caniuse-lite": "^1.0.30001561",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5",
@@ -44,10 +44,10 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.23.2",
+    "@babel/core": "^7.23.3",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@babel/preset-env": "^7.23.2",
-    "@babel/preset-react": "^7.22.15",
+    "@babel/preset-env": "^7.23.3",
+    "@babel/preset-react": "^7.23.3",
     "@testing-library/jest-dom": "^6.1.4",
     "coverage": "^0.4.1",
     "react-scripts": "^5"
