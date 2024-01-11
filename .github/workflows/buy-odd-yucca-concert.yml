@@ -34,7 +34,7 @@ jobs:
             retry_on: error
             timeout_seconds: 2400
             command: |
-              mvn clean install jacoco:prepare-agent package jacoco:report
+              make report
 
         - name: Coverage Reports
           run: mvn omni-coveragereporter:report
