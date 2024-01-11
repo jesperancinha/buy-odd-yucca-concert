@@ -83,7 +83,7 @@ services:
 
   yucca-db:
     hostname: yucca-db
-    image: postgres:14.2
+    image: postgres
     user: "postgres"
     command: postgres -c listen_addresses='*' -c 'max_connections=400' -c 'shared_buffers=100MB'
     environment:
