@@ -49,8 +49,9 @@ docker-stop-all:
 docker-remove-all: docker-stop-all
 	docker network list --format '{{.ID}}' | xargs -I {} docker network rm  {} || echo 'Done!'
 	docker ps -a --format '{{.ID}}' | xargs -I {}  docker rm {}
-coverage:
+build-report:
 	mvn clean install jacoco:prepare-agent package jacoco:report
+coverage: build-report
 	cd buy-odd-yucca-gui && jest --coverage
 	mvn omni-coveragereporter:report
 build-images:
