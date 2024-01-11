@@ -121,7 +121,7 @@ services:
   yucca-db:
     hostname: yucca-db
     container_name: yucca-db
-    image: postgres:14.2
+    image: postgres
 #    user: ${YUCCA_USER_DB}
     command: postgres -c listen_addresses='*' -c 'max_connections=400' -c 'shared_buffers=100MB'
     environment:
