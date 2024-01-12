@@ -34,7 +34,7 @@ abstract class AbstractBuyOddYuccaConcertContainerTest {
                         )
                     )
                 )
-            }
+            }.also { it.self().start() }
 
 
         @Container
@@ -50,16 +50,12 @@ abstract class AbstractBuyOddYuccaConcertContainerTest {
                         )
                     )
                 )
-            }
+            }.also { it.self().start() }
 
         val config = ClassicConfiguration()
 
         init {
             config.isCleanDisabled = false
-            if(!postgreSQLContainer.isRunning) {
-                postgreSQLContainer.start()
-            }
-            redis.start()
             config.setDataSource(
                 postgreSQLContainer.jdbcUrl,
                 postgreSQLContainer.username,
