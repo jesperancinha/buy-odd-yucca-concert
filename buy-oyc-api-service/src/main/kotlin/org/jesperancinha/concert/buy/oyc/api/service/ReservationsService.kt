@@ -19,10 +19,6 @@ import java.io.ObjectInputStream
 import java.net.URL
 import javax.validation.Valid
 
-
-/**
- * Created by jofisaes on 30/03/2022
- */
 @Singleton
 @DelicateCoroutinesApi
 class ReservationsService(

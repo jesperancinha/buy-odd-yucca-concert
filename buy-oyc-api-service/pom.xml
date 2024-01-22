@@ -78,10 +78,6 @@
             <artifactId>kotlin-reflect</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.jetbrains.kotlin</groupId>
-            <artifactId>kotlin-stdlib-jdk8</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.fasterxml.jackson.module</groupId>
             <artifactId>jackson-module-kotlin</artifactId>
         </dependency>
@@ -93,13 +89,15 @@
             <groupId>io.micronaut.flyway</groupId>
             <artifactId>micronaut-flyway</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/io.reactivex.rxjava3/rxjava -->
+        <dependency>
+            <groupId>org.jetbrains.kotlinx</groupId>
+            <artifactId>kotlinx-coroutines-reactor</artifactId>
+        </dependency>
         <dependency>
             <groupId>io.reactivex.rxjava3</groupId>
             <artifactId>rxjava</artifactId>
             <version>${rxjava.version}</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/io.micronaut.rxjava3/micronaut-rxjava3-http-client -->
         <dependency>
             <groupId>io.micronaut.rxjava3</groupId>
             <artifactId>micronaut-rxjava3-http-client</artifactId>
