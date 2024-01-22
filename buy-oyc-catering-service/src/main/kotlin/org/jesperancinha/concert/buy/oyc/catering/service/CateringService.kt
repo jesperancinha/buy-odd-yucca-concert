@@ -18,10 +18,6 @@ private const val DRINK_CHANNEL = "drinkChannel"
 
 private const val MEAL_CHANNEL = "mealChannel"
 
-/**
- * Created by jofisaes on 20/04/2022
- */
-
 @DelicateCoroutinesApi
 @Singleton
 class CateringService(
