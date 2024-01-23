@@ -48,7 +48,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.23.8",
     "@babel/preset-react": "^7.23.3",
-    "@testing-library/jest-dom": "^6.2.0",
+    "@testing-library/jest-dom": "^6.2.1",
     "coverage": "^0.4.1",
     "react-scripts": "^5"
   },
