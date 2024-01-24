@@ -125,7 +125,6 @@
             <groupId>io.micronaut.redis</groupId>
             <artifactId>micronaut-redis-lettuce</artifactId>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/io.reactivex.rxjava3/rxjava -->
         <dependency>
             <groupId>io.reactivex.rxjava3</groupId>
             <artifactId>rxjava</artifactId>
