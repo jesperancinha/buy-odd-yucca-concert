@@ -19,6 +19,10 @@ jobs:
             echo "export PATH=$JAVA_HOME/bin:$PATH" >> ~/.bashrc
 
       - run:
+          name: Java Version Check
+          command: java -version
+
+      - run:
           name: Maven Clean Install
           command: mvn clean install
 

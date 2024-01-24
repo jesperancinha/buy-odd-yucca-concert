@@ -1,32 +1,32 @@
-create schema if not exists ticket;
+CREATE SCHEMA IF NOT EXISTS ticket;
 
-drop table if exists ticket.car_parking;
+DROP TABLE IF EXISTS ticket.car_parking;
 
-drop table if exists ticket.parking_reservation;
+DROP TABLE IF EXISTS ticket.parking_reservation;
 
-drop table if exists ticket.ticket_reservation;
+DROP TABLE IF EXISTS ticket.ticket_reservation;
 
-drop table if exists ticket.drink;
+DROP TABLE IF EXISTS ticket.drink;
 
-drop table if exists ticket.receipt;
+DROP TABLE IF EXISTS ticket.receipt;
 
-drop table if exists ticket.ticket_reservation_concert_day;
+DROP TABLE IF EXISTS ticket.ticket_reservation_concert_day;
 
-drop table if exists ticket.concert_day;
+DROP TABLE IF EXISTS ticket.concert_day;
 
-drop table if exists ticket.concert_day_reservation;
+DROP TABLE IF EXISTS ticket.concert_day_reservation;
 
-drop table if exists ticket.audit_log;
+DROP TABLE IF EXISTS ticket.audit_log;
 
-create table if not exists ticket.car_parking
+CREATE TABLE IF NOT EXISTS ticket.car_parking
 (
     id             UUID,
-    parking_number bigint    NOT NULL,
+    parking_number BIGINT    NOT NULL,
     created_at     TIMESTAMP NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id)
 );
 
-create table if not exists ticket.parking_reservation
+CREATE TABLE IF NOT EXISTS ticket.parking_reservation
 (
     id             UUID      NOT NULL,
     reference      UUID      NOT NULL UNIQUE,
@@ -37,17 +37,17 @@ create table if not exists ticket.parking_reservation
         REFERENCES ticket.car_parking (id)
 );
 
-create table if not exists ticket.concert_day
+CREATE TABLE IF NOT EXISTS ticket.concert_day
 (
     id           UUID         NOT NULL,
-    name         varchar(255) NULL,
-    description  varchar(255) NULL,
+    name         VARCHAR(255) NULL,
+    description  VARCHAR(255) NULL,
     concert_date TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
     created_at   TIMESTAMP    NOT NULL DEFAULT LOCALTIMESTAMP,
     PRIMARY KEY (id)
 );
 
-create table if not exists ticket.concert_day_reservation
+CREATE TABLE IF NOT EXISTS ticket.concert_day_reservation
 (
     id         UUID      NOT NULL UNIQUE,
     reference  UUID      NOT NULL,
@@ -58,7 +58,7 @@ create table if not exists ticket.concert_day_reservation
         REFERENCES ticket.concert_day (id)
 );
 
-create table if not exists ticket.ticket_reservation
+CREATE TABLE IF NOT EXISTS ticket.ticket_reservation
 (
     id                     UUID      NOT NULL,
     reference              UUID      NOT NULL UNIQUE,
@@ -72,7 +72,7 @@ create table if not exists ticket.ticket_reservation
         REFERENCES ticket.parking_reservation (id)
 );
 
-create table if not exists ticket.drink
+CREATE TABLE IF NOT EXISTS ticket.drink
 (
     id         UUID,
     name       varchar(255) NULL,
@@ -85,7 +85,7 @@ create table if not exists ticket.drink
     PRIMARY KEY (id)
 );
 
-create table if not exists ticket.meal
+CREATE TABLE IF NOT EXISTS ticket.meal
 (
     id         UUID,
     coupon     UUID         NULL,
@@ -97,7 +97,7 @@ create table if not exists ticket.meal
     PRIMARY KEY (id)
 );
 
-create table if not exists ticket.drink_reservation
+CREATE TABLE IF NOT EXISTS ticket.drink_reservation
 (
     id                    UUID,
     reference             UUID      NOT NULL UNIQUE,
@@ -111,7 +111,7 @@ create table if not exists ticket.drink_reservation
         REFERENCES ticket.drink (id)
 );
 
-create table if not exists ticket.meal_reservation
+CREATE TABLE IF NOT EXISTS ticket.meal_reservation
 (
     id                    UUID,
     reference             UUID      NOT NULL UNIQUE,
@@ -126,7 +126,7 @@ create table if not exists ticket.meal_reservation
         REFERENCES ticket.meal (id)
 );
 
-create table ticket.receipt
+CREATE TABLE ticket.receipt
 (
     id                    UUID,
     reference             UUID,
@@ -137,7 +137,7 @@ create table ticket.receipt
         REFERENCES ticket.ticket_reservation (id)
 );
 
-create table ticket.ticket_reservation_concert_day
+CREATE TABLE ticket.ticket_reservation_concert_day
 (
     id                    UUID NOT NULL,
     ticket_reservation_id UUID,
@@ -148,7 +148,7 @@ create table ticket.ticket_reservation_concert_day
         REFERENCES ticket.concert_day_reservation (id)
 );
 
-create table ticket.audit_log
+CREATE TABLE ticket.audit_log
 (
     id             UUID NOT NULL,
     audit_log_type VARCHAR,
