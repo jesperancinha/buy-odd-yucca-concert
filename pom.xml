@@ -57,7 +57,6 @@
         <micronaut.openapi.version>4.8.0</micronaut.openapi.version>
         <micronaut.runtime>netty</micronaut.runtime>
         <micronaut-maven-plugin.version>3.5.4</micronaut-maven-plugin.version>
-        <micronaut-redis-lettuce.version>5.3.2</micronaut-redis-lettuce.version>
         <micronaut-test-kotest.version>3.9.2</micronaut-test-kotest.version>
     </properties>
 
@@ -179,11 +178,6 @@
                 <version>${micronaut.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.micronaut.redis</groupId>
-                <artifactId>micronaut-redis-lettuce</artifactId>
-                <version>${micronaut-redis-lettuce.version}</version>
             </dependency>
             <dependency>
                 <groupId>jakarta.annotation</groupId>
