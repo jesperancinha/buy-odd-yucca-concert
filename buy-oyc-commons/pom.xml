@@ -135,7 +135,6 @@
         <dependency>
             <groupId>io.micronaut.rxjava3</groupId>
             <artifactId>micronaut-rxjava3-http-client</artifactId>
-            <version>${micronaut-rxjava3-http-client.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
