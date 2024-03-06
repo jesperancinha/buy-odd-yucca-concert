@@ -10,7 +10,7 @@
     "@types/node": "^20.11.24",
     "@types/react": "^18.2.63",
     "@types/react-dom": "^18.2.20",
-    "caniuse-lite": "^1.0.30001593",
+    "caniuse-lite": "^1.0.30001594",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "typescript": "^5",
