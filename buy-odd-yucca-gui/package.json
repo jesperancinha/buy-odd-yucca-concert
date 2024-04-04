@@ -9,7 +9,7 @@
     "@types/jest": "^29.5.12",
     "@types/node": "^20.12.4",
     "@types/react": "^18.2.74",
-    "@types/react-dom": "^18.2.23",
+    "@types/react-dom": "^18.2.24",
     "caniuse-lite": "^1.0.30001605",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -44,7 +44,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.24.3",
+    "@babel/core": "^7.24.4",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.24.4",
     "@babel/preset-react": "^7.24.1",
