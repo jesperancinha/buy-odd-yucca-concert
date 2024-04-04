@@ -41,14 +41,14 @@
         <mockk.version>1.13.10</mockk.version>
         <kotest.version>5.8.1</kotest.version>
         <kotlinx.version>1.8.0</kotlinx.version>
-        <postgresql.version>42.7.2</postgresql.version>
-        <flyway-core.version>10.10.0</flyway-core.version>
+        <postgresql.version>42.7.3</postgresql.version>
+        <flyway-core.version>10.11.0</flyway-core.version>
         <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
         <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
-        <jacoco-maven-plugin.version>0.8.11</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
         <kotlinx-coroutines-test.version>1.6.3-native-mt</kotlinx-coroutines-test.version>
         <testcontainers.version>1.19.7</testcontainers.version>
-        <dependency-check-maven.version>9.0.9</dependency-check-maven.version>
+        <dependency-check-maven.version>9.1.0</dependency-check-maven.version>
         <wiremock.version>2.27.2</wiremock.version>
         <rxjava.version>3.1.8</rxjava.version>
         <lettuce-core.version>6.3.2.RELEASE</lettuce-core.version>
