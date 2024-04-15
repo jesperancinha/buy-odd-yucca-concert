@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.12.7",
-    "@types/react": "^18.2.77",
+    "@types/react": "^18.2.78",
     "@types/react-dom": "^18.2.25",
     "caniuse-lite": "^1.0.30001609",
     "react": "^18.2.0",
