@@ -92,12 +92,15 @@ locust-start:
 	cd locust/welcome && locust --host=localhost
 update-snyk:
 	npm i -g snyk
-update:
+remove-lock-files:
+	find . -name "package-lock.json" | xargs -I {} rm {}; \
+	find . -name "yarn.lock" | xargs -I {} rm {};
+update: remove-lock-files
 	curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 	sudo npm install -g npm-check-updates
 	cd buy-odd-yucca-gui; \
  	ncu -u; \
- 	yarnm; \
+ 	yarn; \
  	npx browserslist --update-db; \
  	yarn
 audit:
