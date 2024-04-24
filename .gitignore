@@ -32,8 +32,10 @@ cookies.txt
 tmlog.lck
 tmlog*.log
 
-# NodeJS
+# NPM
 node_modules
+package-lock.json
+yarn.lock
 
 # AWS
 *.pkg
