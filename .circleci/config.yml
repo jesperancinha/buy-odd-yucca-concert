@@ -10,12 +10,12 @@ jobs:
       - checkout
 
       - run:
-          name: Install SDK 19
-          command: wget https://download.java.net/java/GA/jdk19.0.2/fdb695a9d9064ad6b064dc6df578380c/7/GPL/openjdk-19.0.2_linux-x64_bin.tar.gz &&
-            tar xvf openjdk-19.0.2_linux-x64_bin.tar.gz &&
-            sudo mv jdk-19*/ /opt/jdk19 &&
-            export JAVA_HOME=/opt/jdk19 &&
-            echo "export JAVA_HOME=/opt/jdk19" >> ~/.bashrc &&
+          name: Install SDK 21
+          command: wget https://download.java.net/java/GA/jdk21.0.2/f2283984656d49d69e91c558476027ac/13/GPL/openjdk-21.0.2_linux-x64_bin.tar.gz &&
+            tar xvf openjdk-21.0.2_linux-x64_bin.tar.gz &&
+            sudo mv jdk-21*/ /opt/jdk21 &&
+            export JAVA_HOME=/opt/jdk21 &&
+            echo "export JAVA_HOME=/opt/jdk21" >> ~/.bashrc &&
             echo "export PATH=$JAVA_HOME/bin:$PATH" >> ~/.bashrc
 
       - run:
