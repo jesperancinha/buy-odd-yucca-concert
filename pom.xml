@@ -26,7 +26,7 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <packaging>jar</packaging>
-        <java.version>19</java.version>
+        <java.version>21</java.version>
         <jdk.version>${java.version}</jdk.version>
         <release.version>${java.version}</release.version>
         <maven-shade-plugin.version>3.5.3</maven-shade-plugin.version>

@@ -7,16 +7,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK 19
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
-          java-version: '19'
+          java-version: '21'
           distribution: 'adopt'
 
       - name: Start Docker
         uses: nick-fields/retry@v2
         with:
-          max_attempts: 5
+          max_attempts: 1
           retry_on: error
           timeout_seconds: 2400
           command: |
@@ -33,16 +33,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK 19
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
-          java-version: '19'
+          java-version: '21'
           distribution: 'adopt'
 
       - name: Start Docker
         uses: nick-fields/retry@v2
         with:
-          max_attempts: 5
+          max_attempts: 1
           retry_on: error
           timeout_seconds: 2400
           command: |
@@ -59,16 +59,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK 19
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
-          java-version: '19'
+          java-version: '21'
           distribution: 'adopt'
 
       - name: Start Docker
         uses: nick-fields/retry@v2
         with:
-          max_attempts: 5
+          max_attempts: 1
           retry_on: error
           timeout_seconds: 2400
           command: |
@@ -85,16 +85,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK 19
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
-          java-version: '19'
+          java-version: '21'
           distribution: 'adopt'
 
       - name: Start Docker
         uses: nick-fields/retry@v2
         with:
-          max_attempts: 5
+          max_attempts: 1
           retry_on: error
           timeout_seconds: 2400
           command: |
