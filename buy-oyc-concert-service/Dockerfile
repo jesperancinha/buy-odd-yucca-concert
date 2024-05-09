@@ -1,4 +1,4 @@
-FROM openjdk:19-alpine
+FROM maven:3-eclipse-temurin-21-alpine
 
 WORKDIR /root
 
