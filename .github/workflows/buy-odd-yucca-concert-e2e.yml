@@ -12,6 +12,9 @@ jobs:
         with:
           java-version: '21'
           distribution: 'adopt'
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
 
       - name: Start Docker
         uses: nick-fields/retry@v2
@@ -38,6 +41,9 @@ jobs:
         with:
           java-version: '21'
           distribution: 'adopt'
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
 
       - name: Start Docker
         uses: nick-fields/retry@v2
@@ -64,6 +70,9 @@ jobs:
         with:
           java-version: '21'
           distribution: 'adopt'
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
 
       - name: Start Docker
         uses: nick-fields/retry@v2
@@ -90,6 +99,9 @@ jobs:
         with:
           java-version: '21'
           distribution: 'adopt'
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '20'
 
       - name: Start Docker
         uses: nick-fields/retry@v2
