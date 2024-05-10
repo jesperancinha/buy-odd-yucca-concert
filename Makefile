@@ -71,9 +71,12 @@ docker-clean:
 	docker-compose rm -svf
 docker-clean-build-start: docker-clean b docker
 docker-delete-apps: stop
+docker-pull-images:
+	docker-compose pull
 # docker-action is only used for remote pipelines
 docker-action: create-folders set-permissions
 	#sudo chown -R 1000:1000 ./kong_data_vol
+	docker-compose build
 	docker-compose -f docker-compose.yml up -d
 	docker-compose logs
 prune-all: docker-delete
@@ -130,7 +133,7 @@ dcup-light-open-action:
 dcup: dcd docker-clean docker boyc-wait deck
 dcup-full: dcd docker-clean b set-permissions docker boyc-wait
 # dcup-full-action is only used for remote pipelines
-dcup-full-action: dcd docker-clean b docker-action boyc-wait
+dcup-full-action: dcd docker-clean docker-pull-images b docker-action boyc-wait
 dcd:
 	docker-compose down
 	docker-compose down -v
