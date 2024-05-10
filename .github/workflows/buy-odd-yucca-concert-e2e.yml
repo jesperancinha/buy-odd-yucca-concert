@@ -7,10 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK 19
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
-          java-version: '19'
+          java-version: '21'
           distribution: 'adopt'
 
       - name: Start Docker
@@ -21,6 +21,10 @@ jobs:
           timeout_seconds: 2400
           command: |
             make dcup-full-action
+
+      - name: Log Docker Compose output on failure
+        if: ${{ failure() }}
+        run: docker-compose logs
 
       - name: Run Cypress
         run: make cypress-electron
@@ -29,10 +33,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK 19
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
-          java-version: '19'
+          java-version: '21'
           distribution: 'adopt'
 
       - name: Start Docker
@@ -43,6 +47,10 @@ jobs:
           timeout_seconds: 2400
           command: |
             make dcup-full-action
+
+      - name: Log Docker Compose output on failure
+        if: ${{ failure() }}
+        run: docker-compose logs
 
       - name: Run Cypress
         run: make cypress-chrome
@@ -51,10 +59,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK 19
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
-          java-version: '19'
+          java-version: '21'
           distribution: 'adopt'
 
       - name: Start Docker
@@ -65,6 +73,10 @@ jobs:
           timeout_seconds: 2400
           command: |
             make dcup-full-action
+
+      - name: Log Docker Compose output on failure
+        if: ${{ failure() }}
+        run: docker-compose logs
 
       - name: Run Cypress
         run: make cypress-firefox
@@ -73,10 +85,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Set up JDK 19
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
-          java-version: '19'
+          java-version: '21'
           distribution: 'adopt'
 
       - name: Start Docker
@@ -87,6 +99,10 @@ jobs:
           timeout_seconds: 2400
           command: |
             make dcup-full-action
+
+      - name: Log Docker Compose output on failure
+        if: ${{ failure() }}
+        run: docker-compose logs
 
       - name: Run Cypress
         run: make cypress-edge
