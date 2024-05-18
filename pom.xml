@@ -27,8 +27,6 @@
 
         <packaging>jar</packaging>
         <java.version>21</java.version>
-        <jdk.version>${java.version}</jdk.version>
-        <release.version>${java.version}</release.version>
         <maven-shade-plugin.version>3.5.3</maven-shade-plugin.version>
         <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.2.5</maven-failsafe-plugin.version>
@@ -40,7 +38,7 @@
         <jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
         <mockk.version>1.13.10</mockk.version>
         <kotest.version>5.9.0</kotest.version>
-        <kotlinx.version>1.8.0</kotlinx.version>
+        <kotlinx.version>1.8.1</kotlinx.version>
         <postgresql.version>42.7.3</postgresql.version>
         <flyway-core.version>10.12.0</flyway-core.version>
         <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
@@ -48,7 +46,7 @@
         <jacoco-maven-plugin.version>0.8.12</jacoco-maven-plugin.version>
         <kotlinx-coroutines-test.version>1.6.3-native-mt</kotlinx-coroutines-test.version>
         <testcontainers.version>1.19.8</testcontainers.version>
-        <dependency-check-maven.version>9.1.0</dependency-check-maven.version>
+        <dependency-check-maven.version>9.2.0</dependency-check-maven.version>
         <wiremock.version>2.27.2</wiremock.version>
         <rxjava.version>3.1.8</rxjava.version>
         <lettuce-core.version>6.3.2.RELEASE</lettuce-core.version>
@@ -57,6 +55,8 @@
         <micronaut.openapi.version>4.8.0</micronaut.openapi.version>
         <micronaut.runtime>netty</micronaut.runtime>
         <micronaut-maven-plugin.version>3.5.4</micronaut-maven-plugin.version>
+        <micronaut-rxjava3-http-client.version>3.2.0</micronaut-rxjava3-http-client.version>
+        <micronaut-flyway.version>7.0.0</micronaut-flyway.version>
         <micronaut-test-kotest.version>3.9.2</micronaut-test-kotest.version>
     </properties>
 
@@ -198,6 +198,11 @@
                 <groupId>org.jetbrains.kotlin</groupId>
                 <artifactId>kotlin-stdlib</artifactId>
                 <version>${kotlin.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.micronaut.flyway</groupId>
+                <artifactId>micronaut-flyway</artifactId>
+                <version>${micronaut-flyway.version}</version>
             </dependency>
             <dependency>
                 <groupId>io.reactivex.rxjava3</groupId>
