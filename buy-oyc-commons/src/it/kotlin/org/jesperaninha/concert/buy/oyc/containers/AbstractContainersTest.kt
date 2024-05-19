@@ -70,8 +70,9 @@ class CustomContextBuilder : DefaultApplicationContextBuilder() {
                 logger.info("Docker compose has started!")
             }
         dockerCompose.waitingFor("yucca-db", defaultWaitStrategy())
-        val containerByServiceName = dockerCompose.getContainerByServiceName("yucca-db_1")
-        val containerState = containerByServiceName.get()
+        val containerState =
+            dockerCompose.getContainerByServiceName("yucca-db_1")
+                .or { dockerCompose.getContainerByServiceName("yucca-db") }.get()
         val servicePort = containerState.firstMappedPort
         val serviceHost = containerState.host
         logger.info("Configuring properties...")
