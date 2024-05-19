@@ -351,8 +351,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
                     <proc>none</proc>
-                    <source>${java.version}</source>
-                    <target>${java.version}</target>
+                    <source>${jdk.version}</source>
+                    <target>${jdk.version}</target>
                 </configuration>
                 <executions>
                     <execution>
