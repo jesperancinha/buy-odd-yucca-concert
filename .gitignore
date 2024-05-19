@@ -81,3 +81,4 @@ CHANGELOG.md
 
 # Ignore
 !buy-odd-yucca-gui/build/.fixed
+.attach_pid*
