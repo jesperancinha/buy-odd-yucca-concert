@@ -69,18 +69,14 @@ class CustomContextBuilder : DefaultApplicationContextBuilder() {
                 }
                 logger.info("Docker compose has started!")
             }
-            .also {
-                logger.info("Configuring properties...")
-                val serviceHost = it.getServiceHost("yucca-db", 5432)
-                val servicePort = it.getServicePort("yucca-db", 5432)
-                logger.info("Preconfigured service host is $serviceHost")
-                logger.info("Preconfigured service port is $servicePort")
-            }
         dockerCompose.waitingFor("yucca-db", defaultWaitStrategy())
         val containerByServiceName = dockerCompose.getContainerByServiceName("yucca-db_1")
         val containerState = containerByServiceName.get()
         val servicePort = containerState.firstMappedPort
         val serviceHost = containerState.host
+        logger.info("Configuring properties...")
+        logger.info("Preconfigured service host is $serviceHost")
+        logger.info("Preconfigured service port is $servicePort")
         val props = mapOf(
             "r2dbc.datasources.default.url" to "r2dbc:postgresql://kong@$serviceHost:$servicePort/yucca?currentSchema=ticket"
         )
