@@ -28,7 +28,7 @@ abstract class AbstractContainersTest {
 
         val dockerCompose: DockerCompose by lazy {
             DockerCompose(listOf(finalFile))
-                .withBuyOycContainer("yucca-db", 5432)
+                .withBuyOycContainer("yucca-db_1", 5432)
                 .withBuyOycContainer("redis_1", 6379)
                 .withBuyOycContainer("kong_1", 8001)
                 .withBuyOycContainer("kong_1", 8000)
