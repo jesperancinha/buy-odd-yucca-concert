@@ -37,7 +37,7 @@
         <omni-coveragereporter-maven-plugin.version>0.4.3</omni-coveragereporter-maven-plugin.version>
 
         <jakarta.annotation-api.version>3.0.0</jakarta.annotation-api.version>
-        <jakarta.persistence-api.version>3.1.0</jakarta.persistence-api.version>
+        <jakarta.persistence-api.version>3.2.0</jakarta.persistence-api.version>
         <mockk.version>1.13.11</mockk.version>
         <kotest.version>5.9.0</kotest.version>
         <kotlinx.version>1.8.1</kotlinx.version>
