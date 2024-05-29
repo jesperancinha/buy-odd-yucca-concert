@@ -4,6 +4,12 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
+    groups:
+      micronaut:
+        patterns:
+          - "micronaut"
+          - "micronaut*"
+          - "*micronaut*"
 
   - package-ecosystem: "npm"
     directory: "/buy-odd-yucca-gui"
