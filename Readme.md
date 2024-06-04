@@ -33,11 +33,6 @@ Please check the [TechStack.md](TechStack.md) file for details.
 <details>
 <summary><h2><b>1. Introduction</b></h2></summary>
 
----
-[![alt text](https://raw.githubusercontent.com/jesperancinha/project-signer/master/project-signer-templates/icons-20/medium-20.png "Medium")](https://itnext.io/configurable-kong-api-gateway-with-micronaut-services-in-kotlin-a-very-odd-yucca-tribute-concert-e0a978618eab)
-[Configurable Kong API Gateway with Micronaut Services in Kotlin — A very odd Yucca tribute concert](https://itnext.io/configurable-kong-api-gateway-with-micronaut-services-in-kotlin-a-very-odd-yucca-tribute-concert-e0a978618eab)
-
-[![alt img](./docs/articles.oyc.banner.png "Configurable Kong API Gateway with Micronaut Services in Kotlin — A very odd Yucca tribute concert")](https://itnext.io/configurable-kong-api-gateway-with-micronaut-services-in-kotlin-a-very-odd-yucca-tribute-concert-e0a978618eab)
 
 #### 1.1. - Stable releases
 
@@ -300,12 +295,9 @@ sequenceDiagram
 -   [Realtime Testing: Micronaut, Postgres and Testcontainer](https://blog.pallav.dev/realtime-testing-micronaut-postgres-and-testcontainer)
 -   [Entity-Relationship Diagram Symbols and Notation](https://www.lucidchart.com/pages/ER-diagram-symbols-and-meaning)
 -   [MICRONAUT 1.0 RC1 AND THE POWER OF AHEAD-OF-TIME COMPILATION](https://micronaut.io/2018/09/30/micronaut-1-0-rc1-and-the-power-of-ahead-of-time-compilation/)
--   [Building Micronaut applications with Micronaut Data R2dbc and Kotlin Coroutines](https://itnext.io/building-micronaut-applications-with-micronaut-data-r2dbc-and-kotlin-coroutines-a1416db5a7d0)
 -   [From Spring Boot to Micronaut](https://blog.frankel.ch/spring-to-micronaut/)
 -   [Create a New React App](https://reactjs.org/docs/create-a-new-react-app.html)
 -   [Micronaut: A five-minute introduction](https://dev.to/mkbaldwin/micronaut-a-five-minute-introduction-c27)
--   [Building Restful APIs with Micronaut](https://itnext.io/building-restful-apis-with-micronaut-98f4eb39211c)
--   [Creating a Rest application with Micronaut](https://medium.com/danieldiasjava/creating-a-rest-application-with-micronaut-30a001b3c38b)
 -   [Micronaut CLI](https://docs.micronaut.io/latest/guide/#cli)
 -   [CREATING YOUR FIRST MICRONAUT APPLICATION](https://guides.micronaut.io/latest/creating-your-first-micronaut-app-maven-kotlin.html)
 -   [Micronaut](https://micronaut.io/)
@@ -329,78 +321,21 @@ sequenceDiagram
 <summary><b>7.2. Online Videos</b></summary>
 
 ---
-<div align="center">
-      <a title="Kong Gateway for Beginners: Adding a Service, Route and Plugins" href="https://www.youtube.com/watch?v=kGZyAEVioWg">
-     <img 
-          src="https://img.youtube.com/vi/kGZyAEVioWg/0.jpg" 
-          style="width:10%;">
-      </a>
-      <a title="Kong Gateway Tutorial | API Gateway For Beginners" href="https://www.youtube.com/watch?v=20rOdqag4Dw">
-     <img 
-          src="https://img.youtube.com/vi/20rOdqag4Dw/0.jpg" 
-          style="width:10%;">
-      </a>
-      <a title="How to Use Kong Gateway JWT Plugin" href="https://www.youtube.com/watch?v=OjF95vVldxY">
-     <img 
-          src="https://img.youtube.com/vi/OjF95vVldxY/0.jpg" 
-          style="width:10%;">
-      </a>
-      <a title="Developing Micronaut Applications with IntelliJ IDEA" href="https://www.youtube.com/watch?v=KIp9PlyJOjg">
-     <img 
-          src="https://img.youtube.com/vi/KIp9PlyJOjg/0.jpg" 
-          style="width:10%;">
-      </a>
-      <a title="Micronaut Deep Dive by Graeme Rocher" href="https://www.youtube.com/watch?v=S5yfTfPeue8">
-     <img 
-          src="https://img.youtube.com/vi/S5yfTfPeue8/0.jpg" 
-          style="width:10%;">
-      </a>
-      <a title="Introduction to Micronaut • Graeme Rocher • GOTO 2019" href="https://www.youtube.com/watch?v=RtjSqRZ_md4">
-     <img 
-          src="https://img.youtube.com/vi/RtjSqRZ_md4/0.jpg" 
-          style="width:10%;">
-      </a>
-      <a title="What is Rate Limiting / API Throttling? | System Design Concepts" href="https://www.youtube.com/watch?v=9CIjoWPwAhU">
-     <img 
-          src="https://img.youtube.com/vi/9CIjoWPwAhU/0.jpg" 
-          style="width:10%;">
-      </a>
-      <a title="API Gateway Plugins for Kubernetes Ingress Controller" href="https://www.youtube.com/watch?v=xHpYbncyXmA">
-     <img 
-          src="https://img.youtube.com/vi/xHpYbncyXmA/0.jpg" 
-          style="width:10%;">
-      </a>
-      <a title="Installing Kong's API Gateway with Docker" href="https://www.youtube.com/watch?v=sJEID1xEZMg">
-     <img 
-          src="https://img.youtube.com/vi/sJEID1xEZMg/0.jpg" 
-          style="width:10%;">
-      </a>
-      <a title="DevOps Is More Than Configuration Management" href="https://www.youtube.com/watch?v=vmgvs11XKow">
-     <img 
-          src="https://img.youtube.com/vi/vmgvs11XKow/0.jpg" 
-          style="width:10%;">
-      </a>
-      <a title="DynamoDB Partitions - How they work - AWS Service Deep Dive" href="https://www.youtube.com/watch?v=WoxNmq5-E9o">
-     <img 
-          src="https://img.youtube.com/vi/WoxNmq5-E9o/0.jpg" 
-          style="width:10%;">
-      </a>
-      <a title="Working with DynamoDB Tables - Partition Key and Sort Key - Dynamo Deep Dive" href="https://www.youtube.com/watch?v=T6VZ_GfQdvo">
-     <img 
-          src="https://img.youtube.com/vi/T6VZ_GfQdvo/0.jpg" 
-          style="width:10%;">
-      </a>
-      <a title="AWS re:Invent 2018: Amazon DynamoDB Deep Dive: Advanced Design Patterns for DynamoDB (DAT401)" href="https://www.youtube.com/watch?v=HaEPXoXVf2k">
-     <img 
-          src="https://img.youtube.com/vi/HaEPXoXVf2k/0.jpg" 
-          style="width:10%;">
-      </a>
-      <a title="What is a DynamoDB GSI (Global Secondary Index) ?" href="https://www.youtube.com/watch?v=ihMOlb8EZKE">
-     <img 
-          src="https://img.youtube.com/vi/ihMOlb8EZKE/0.jpg" 
-          style="width:10%;">
-      </a>
-</div>
+
+-   [Kong Gateway for Beginners: Adding a Service, Route and Plugins](https://www.youtube.com/watch?v=kGZyAEVioWg)
+-   [Kong Gateway Tutorial | API Gateway For Beginners](https://www.youtube.com/watch?v=20rOdqag4Dw)
+-   [How to Use Kong Gateway JWT Plugin](https://www.youtube.com/watch?v=OjF95vVldxY)
+-   [Developing Micronaut Applications with IntelliJ IDEA](https://www.youtube.com/watch?v=KIp9PlyJOjg)
+-   [Micronaut Deep Dive by Graeme Rocher](https://www.youtube.com/watch?v=S5yfTfPeue8)
+-   [Introduction to Micronaut • Graeme Rocher • GOTO 2019](https://www.youtube.com/watch?v=RtjSqRZ_md4)
+-   [What is Rate Limiting / API Throttling? | System Design Concepts](https://www.youtube.com/watch?v=9CIjoWPwAhU)
+-   [API Gateway Plugins for Kubernetes Ingress Controller](https://www.youtube.com/watch?v=xHpYbncyXmA)
+-   [Installing Kong's API Gateway with Docker](https://www.youtube.com/watch?v=sJEID1xEZMg)
+-   [DevOps Is More Than Configuration Management](https://www.youtube.com/watch?v=vmgvs11XKow)
+-   [DynamoDB Partitions - How they work - AWS Service Deep Dive](https://www.youtube.com/watch?v=WoxNmq5-E9o)
+-   [Working with DynamoDB Tables - Partition Key and Sort Key - Dynamo Deep Dive](https://www.youtube.com/watch?v=T6VZ_GfQdvo)
+-   [AWS re:Invent 2018: Amazon DynamoDB Deep Dive: Advanced Design Patterns for DynamoDB (DAT401)](https://www.youtube.com/watch?v=HaEPXoXVf2k)
+-   [What is a DynamoDB GSI (Global Secondary Index) ?](https://www.youtube.com/watch?v=ihMOlb8EZKE)
 
 ---
 </details>

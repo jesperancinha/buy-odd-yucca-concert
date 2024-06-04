@@ -16,10 +16,6 @@
 
 -   [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
 
-## References
-
--  [9 Java Patterns That Kotlin Made Obsolete?](https://medium.com/@spitzbueb/9-java-patterns-in-kotlin-eac0cca1599f)
-
 ## About me
 
 [![GitHub followers](https://img.shields.io/github/followers/jesperancinha.svg?label=Jesperancinha&style=for-the-badge&logo=github&color=grey "GitHub")](https://github.com/jesperancinha)
