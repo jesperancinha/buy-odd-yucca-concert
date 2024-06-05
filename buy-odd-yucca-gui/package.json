@@ -4,7 +4,7 @@
   "private": true,
   "main": "./build/index.js",
   "dependencies": {
-    "@testing-library/react": "^15.0.4",
+    "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
     "@types/jest": "^29.5.12",
     "@types/node": "^20.12.7",
@@ -50,7 +50,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.24.4",
     "@babel/preset-react": "^7.24.1",
-    "@testing-library/jest-dom": "^6.4.2",
+    "@testing-library/jest-dom": "^6.4.5",
     "coverage": "^0.4.1",
     "react-scripts": "^5"
   },
