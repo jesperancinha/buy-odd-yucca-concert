@@ -30,7 +30,7 @@
         <jdk.version>${java.version}</jdk.version>
         <release.version>${java.version}</release.version>
         <maven-shade-plugin.version>3.6.0</maven-shade-plugin.version>
-        <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
+        <maven-surefire-plugin.version>3.3.0</maven-surefire-plugin.version>
         <maven-failsafe-plugin.version>3.3.0</maven-failsafe-plugin.version>
         <build-helper-maven-plugin.version>3.6.0</build-helper-maven-plugin.version>
         <kotlin.version>2.0.0</kotlin.version>
