@@ -82,3 +82,8 @@ CHANGELOG.md
 # Ignore
 !buy-odd-yucca-gui/build/.fixed
 .attach_pid*
+
+## Automation
+cypressUpdateOne.sh
+docker-composetmp.yml
+packagetmp.json
