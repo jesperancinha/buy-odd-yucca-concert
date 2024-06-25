@@ -11,8 +11,8 @@ jobs:
 
       - run:
           name: Install SDK 21
-          command: wget https://download.java.net/java/GA/jdk21.0.2/f2283984656d49d69e91c558476027ac/13/GPL/openjdk-21.0.2_linux-x64_bin.tar.gz &&
-            tar xvf openjdk-21.0.2_linux-x64_bin.tar.gz &&
+          command: wget https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.3%2B9/OpenJDK21U-jdk_x64_linux_hotspot_21.0.3_9.tar.gz &&
+            tar -xvf OpenJDK21U-jdk_x64_linux_hotspot_21.0.3_9.tar.gz &&
             sudo mv jdk-21*/ /opt/jdk21 &&
             export JAVA_HOME=/opt/jdk21 &&
             echo "export JAVA_HOME=/opt/jdk21" >> ~/.bashrc &&
