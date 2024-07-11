@@ -10,6 +10,10 @@ updates:
           - "micronaut"
           - "micronaut*"
           - "*micronaut*"
+      maven:
+        patterns:
+          - "*maven*"
+          - "maven*"
 
   - package-ecosystem: "npm"
     directory: "/buy-odd-yucca-gui"
