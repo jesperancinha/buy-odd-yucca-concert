@@ -134,7 +134,7 @@ dcup: dcd docker-clean docker boyc-wait deck
 dcup-full: dcd docker-clean b set-permissions docker boyc-wait
 # dcup-full-action is only used for remote pipelines
 dcup-full-action: dcd docker-clean docker-pull-images b docker-action boyc-wait
-dcd:
+dcd: dc-migration
 	docker compose down
 	docker compose down -v
 	docker compose rm -svf
