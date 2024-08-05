@@ -27,7 +27,7 @@ jobs:
 
       - name: Log Docker Compose output on failure
         if: ${{ failure() }}
-        run: docker-compose logs
+        run: docker compose logs
 
       - name: Run Cypress
         run: make cypress-electron
@@ -56,7 +56,7 @@ jobs:
 
       - name: Log Docker Compose output on failure
         if: ${{ failure() }}
-        run: docker-compose logs
+        run: docker compose logs
 
       - name: Run Cypress
         run: make cypress-chrome
@@ -85,7 +85,7 @@ jobs:
 
       - name: Log Docker Compose output on failure
         if: ${{ failure() }}
-        run: docker-compose logs
+        run: docker compose logs
 
       - name: Run Cypress
         run: make cypress-firefox
@@ -114,7 +114,7 @@ jobs:
 
       - name: Log Docker Compose output on failure
         if: ${{ failure() }}
-        run: docker-compose logs
+        run: docker compose logs
 
       - name: Run Cypress
         run: make cypress-edge
