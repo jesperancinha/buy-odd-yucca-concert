@@ -3,7 +3,7 @@
 function checkServiceByNameAndMessage() {
     name=$1
     message=$2
-    docker-compose logs "$name" > "logs"
+    docker compose logs "$name" > "logs"
     string=$(cat logs)
     counter=0
     echo "Project $GITHUB_RUN_ID"
@@ -11,7 +11,7 @@ function checkServiceByNameAndMessage() {
     while [[ "$string" != *"$message"* ]]
     do
       echo -e -n "\e[93m-\e[39m"
-      docker-compose logs "$name" > "logs"
+      docker compose logs "$name" > "logs"
       string=$(cat logs)
       sleep 1
       counter=$((counter+1))
