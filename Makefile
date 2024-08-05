@@ -77,7 +77,7 @@ docker-pull-images:
 docker-action: create-folders set-permissions
 	#sudo chown -R 1000:1000 ./kong_data_vol
 	docker compose build
-	docker compose -f docker compose.yml up -d
+	docker compose -f docker-compose.yml up -d
 	docker compose logs
 prune-all: docker-delete
 	docker network prune -f
@@ -124,7 +124,7 @@ dcup-light:
 	make set-permissions
 	bash database_wait.sh
 dcup-light-action: create-folders
-	docker compose --env-file ./.env-pipeline -f docker compose.yml up -d yucca-db
+	docker compose --env-file ./.env-pipeline -f docker-compose.yml up -d yucca-db
 	bash database_wait.sh
 dcup-light-open-action:
 	docker compose --env-file ./.env-pipeline up -d yucca-db
@@ -142,12 +142,12 @@ dcd:
 	if [[ -d kong_prefix_vol ]]; then sudo rm -r kong_prefix_vol; fi
 	if [[ -d kong_tmp_vol ]]; then sudo rm -r kong_tmp_vol; fi
 deck-pipeline:
-	docker compose -f docker compose.yml up -d kong-deck
+	docker compose -f docker-compose.yml up -d kong-deck
 	docker compose logs kong-deck
 	docker compose logs yucca-db
 	docker compose logs kong
 deck:
-	docker compose -f docker compose.yml up -d kong-deck
+	docker compose -f docker-compose.yml up -d kong-deck
 cypress-open:
 	cd e2e && yarn && npm run cypress:open:electron
 cypress-electron:
