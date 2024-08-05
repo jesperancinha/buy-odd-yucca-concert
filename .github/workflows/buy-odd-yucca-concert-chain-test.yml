@@ -19,6 +19,9 @@ jobs:
         - name: Build Front End Application
           run: cd buy-odd-yucca-gui && yarn
 
+        - name: Create alias
+          run: alias docker-compose="docker compose"
+
         - name: Integration Chain Tests
           uses: nick-fields/retry@v3
           with:
