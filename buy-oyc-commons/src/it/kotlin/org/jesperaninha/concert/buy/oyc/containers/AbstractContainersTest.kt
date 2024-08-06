@@ -4,6 +4,7 @@ import io.micronaut.context.DefaultApplicationContextBuilder
 import org.jesperaninha.concert.buy.oyc.containers.AbstractContainersTest.Companion.dockerCompose
 import org.junit.jupiter.api.AfterAll
 import org.slf4j.LoggerFactory
+import org.testcontainers.containers.ComposeContainer
 import org.testcontainers.containers.DockerComposeContainer
 import org.testcontainers.containers.output.Slf4jLogConsumer
 import org.testcontainers.containers.wait.strategy.Wait.defaultWaitStrategy
@@ -28,9 +29,8 @@ abstract class AbstractContainersTest {
         private val file2 = File("docker-compose-it.yml")
         private val finalFile = if (file1.exists()) file1 else file2
 
-
-        val dockerCompose: DockerCompose by lazy {
-            DockerCompose(listOf(finalFile))
+        val dockerCompose: ComposeContainer by lazy {
+            ComposeContainer(finalFile)
                 .withBuyOycContainer(YUCCA_DB_SERVICE_NAME, YUCCA_DB_SERVICE_PORT)
                 .withBuyOycContainer("redis_1", 6379)
                 .withBuyOycContainer("kong_1", 8001)
@@ -41,6 +41,7 @@ abstract class AbstractContainersTest {
                 .withBuyOycContainer("buy-oyc-api_1", 8088)
                 .withBuyOycContainer("buy-oyc-nginx_1", 8080)
                 .withLocalCompose(true)
+                .withOptions("--compatibility")
         }
 
         @JvmStatic
@@ -54,7 +55,7 @@ abstract class AbstractContainersTest {
 
 private const val STARTUP_CONTAINER_TIMEOUT_MINUTES = 10L
 
-private fun DockerCompose.withBuyOycContainer(serviceName: String, port: Int): DockerCompose =
+private fun ComposeContainer.withBuyOycContainer(serviceName: String, port: Int): ComposeContainer =
     withExposedService(
         serviceName,
         port,
@@ -67,10 +68,10 @@ class CustomContextBuilder : DefaultApplicationContextBuilder() {
         eagerInitSingletons(true)
 
         dockerCompose
-            .also {
+            .also { compose ->
                 logger.info("Starting docker compose...")
                 runCatching {
-                    it.start()
+                    compose.start()
                 }.getOrElse {
                     logger.error("An error has occurred!", it)
                     logger.error(it.stackTraceToString(), it)
