@@ -322,6 +322,7 @@ sequenceDiagram
 
 ---
 
+-   [Compose V2](https://java.testcontainers.org/modules/docker_compose/#compose-v2)
 -   [Kong Gateway for Beginners: Adding a Service, Route and Plugins](https://www.youtube.com/watch?v=kGZyAEVioWg)
 -   [Kong Gateway Tutorial | API Gateway For Beginners](https://www.youtube.com/watch?v=20rOdqag4Dw)
 -   [How to Use Kong Gateway JWT Plugin](https://www.youtube.com/watch?v=OjF95vVldxY)
