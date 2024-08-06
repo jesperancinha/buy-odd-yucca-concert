@@ -35,7 +35,6 @@ abstract class AbstractContainersTest {
                 .withBuyOycContainer(YUCCA_DB_SERVICE_NAME, YUCCA_DB_SERVICE_PORT)
                 .withBuyOycContainer("redis_1", 6379)
                 .withBuyOycContainer("kong_1", 8001)
-                .withBuyOycContainer("kong_1", 8000)
                 .withBuyOycContainer("buy-oyc-ticket_1", 8084)
                 .withBuyOycContainer("buy-oyc-concert_1", 8085)
                 .withBuyOycContainer("buy-oyc-parking_1", 8086)
