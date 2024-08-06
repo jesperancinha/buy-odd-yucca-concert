@@ -134,7 +134,7 @@ dcup: dcd docker-clean docker boyc-wait deck
 dcup-full: dcd docker-clean b set-permissions docker boyc-wait
 # dcup-full-action is only used for remote pipelines
 dcup-full-action: dcd docker-clean docker-pull-images b docker-action boyc-wait
-dcd:
+dcd: dc-migration
 	docker-compose down
 	docker-compose down -v
 	docker-compose rm -svf
@@ -195,3 +195,5 @@ deps-node-update:
 deps-quick-update: deps-cypress-update deps-plugins-update deps-java-update deps-node-update
 accept-prs:
 	curl -sL https://raw.githubusercontent.com/jesperancinha/project-signer/master/acceptPR.sh | bash
+dc-migration:
+	curl -sL https://raw.githubusercontent.com/jesperancinha/project-signer/master/setupDockerCompose.sh | bash
