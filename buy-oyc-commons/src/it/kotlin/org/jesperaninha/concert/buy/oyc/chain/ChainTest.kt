@@ -2,9 +2,8 @@
 
 package org.jesperaninha.concert.buy.oyc.chain
 
+import io.kotest.assertions.nondeterministic.eventuallyConfig
 import io.kotest.common.ExperimentalKotest
-import io.kotest.framework.concurrency.FixedInterval
-import io.kotest.framework.concurrency.eventually
 import io.kotest.matchers.collections.shouldHaveAtMostSize
 import io.kotest.matchers.collections.shouldHaveSize
 import io.micronaut.http.HttpHeaders.ACCEPT
@@ -28,9 +27,10 @@ import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import java.math.BigDecimal
-import java.net.URL
+import java.net.URI
 import java.time.Duration.ofSeconds
 import java.time.LocalDate
+import kotlin.time.Duration.Companion.seconds
 
 private const val DELAY: Long = 20
 private const val SMALL_DELAY: Long = 1
@@ -75,7 +75,7 @@ open class ChainTest @Inject constructor(
             it.host to it.getMappedPort(8000)
         }
 
-        val httpClient = HttpClient.create(URL("http://$serviceHost:$servicePort"))
+        val httpClient = HttpClient.create(URI.create("http://$serviceHost:$servicePort").toURL())
 
         val drink = withContext(Dispatchers.IO) {
             drinkRepository.save(
@@ -176,12 +176,12 @@ open class ChainTest @Inject constructor(
     }
 }
 
-@OptIn(ExperimentalKotest::class)
 private suspend fun <T> assertWithTries(function: suspend () -> Collection<T>) {
-    eventually({
-        duration = 60000
-        interval = FixedInterval(1000)
-    }) {
+    io.kotest.assertions.nondeterministic.eventually(
+        eventuallyConfig {
+            duration = 6.seconds
+            interval = 1.seconds
+        }) {
         function()
         withContext(Dispatchers.IO) {
             delay(ofSeconds(SMALL_DELAY).toMillis())

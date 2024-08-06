@@ -16,6 +16,7 @@ import org.jesperancinha.concert.buy.oyc.commons.dto.toTicketData
 import org.jesperancinha.concert.buy.oyc.commons.pubsub.initPubSub
 import org.jesperancinha.concert.buy.oyc.commons.rest.sendObject
 import java.io.ObjectInputStream
+import java.net.URI
 import java.net.URL
 import javax.validation.Valid
 import kotlin.annotation.AnnotationRetention.RUNTIME
@@ -77,7 +78,7 @@ class RedisBeanFactory {
         @Value("\${buy.oyc.concert.port}")
         port: Long
     ): Rx3HttpClient =
-        Rx3HttpClient.create(URL("http://" + host + ":" + port))
+        Rx3HttpClient.create(URI.create("http://$host:$port").toURL())
 
     @Singleton
     @ParkingClient
@@ -87,7 +88,7 @@ class RedisBeanFactory {
         @Value("\${buy.oyc.parking.port}")
         port: Long
     ): Rx3HttpClient =
-        Rx3HttpClient.create(URL("http://" + host + ":" + port))
+        Rx3HttpClient.create(URI.create("http://$host:$port").toURL())
 
     @Singleton
     @CateringClient
@@ -97,7 +98,7 @@ class RedisBeanFactory {
         @Value("\${buy.oyc.catering.port}")
         port: Long
     ): Rx3HttpClient =
-        Rx3HttpClient.create(URL("http://" + host + ":" + port))
+        Rx3HttpClient.create(URI.create("http://$host:$port").toURL())
 }
 
 @DelicateCoroutinesApi
