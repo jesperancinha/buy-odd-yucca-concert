@@ -16,6 +16,9 @@ class DockerCompose(files: List<File>) : DockerComposeContainer<DockerCompose>(f
 private val logger = LoggerFactory.getLogger(AbstractContainersTest::class.java)
 private val logConsumer: Slf4jLogConsumer = Slf4jLogConsumer(logger)
 
+private const val YUCCA_DB_SERVICE_NAME = "yucca-db_1"
+private const val YUCCA_DB_SERVICE_PORT = 5432
+
 /**
  * Created by jofisaes on 22/04/2022
  * Reminder: Don't use container_name with testcontainers. It just doesn't work
@@ -29,7 +32,7 @@ abstract class AbstractContainersTest {
 
         val dockerCompose: DockerCompose by lazy {
             DockerCompose(listOf(finalFile))
-                .withBuyOycContainer("yucca-db_1", 5432)
+                .withBuyOycContainer(YUCCA_DB_SERVICE_NAME, YUCCA_DB_SERVICE_PORT)
                 .withBuyOycContainer("redis_1", 6379)
                 .withBuyOycContainer("kong_1", 8001)
                 .withBuyOycContainer("kong_1", 8000)
@@ -54,7 +57,11 @@ abstract class AbstractContainersTest {
 private const val STARTUP_CONTAINER_TIMEOUT = 5L
 
 private fun DockerCompose.withBuyOycContainer(serviceName: String, port: Int): DockerCompose =
-    withExposedService(serviceName, port, defaultWaitStrategy().withStartupTimeout(ofMinutes(STARTUP_CONTAINER_TIMEOUT)))
+    withExposedService(
+        serviceName,
+        port,
+        defaultWaitStrategy().withStartupTimeout(ofMinutes(STARTUP_CONTAINER_TIMEOUT))
+    )
         .withLogConsumer(serviceName, logConsumer)
 
 class CustomContextBuilder : DefaultApplicationContextBuilder() {
@@ -72,19 +79,8 @@ class CustomContextBuilder : DefaultApplicationContextBuilder() {
                 }
                 logger.info("Docker compose has started!")
             }
-        dockerCompose.waitingFor("yucca-db", defaultWaitStrategy().withStartupTimeout(ofMinutes(
-            STARTUP_CONTAINER_TIMEOUT
-        )))
-        val containerState =
-            dockerCompose.getContainerByServiceName("yucca-db")
-                .or {
-                    dockerCompose.waitingFor("yucca-db_1", defaultWaitStrategy().withStartupTimeout(ofMinutes(
-                        STARTUP_CONTAINER_TIMEOUT
-                    )))
-                    dockerCompose.getContainerByServiceName("yucca-db_1")
-                }.get()
-        val servicePort = containerState.firstMappedPort
-        val serviceHost = containerState.host
+        val servicePort = dockerCompose.getServicePort(YUCCA_DB_SERVICE_NAME, YUCCA_DB_SERVICE_PORT)
+        val serviceHost = dockerCompose.getServiceHost(YUCCA_DB_SERVICE_NAME, YUCCA_DB_SERVICE_PORT)
         logger.info("Configuring properties...")
         logger.info("Preconfigured service host is $serviceHost")
         logger.info("Preconfigured service port is $servicePort")
