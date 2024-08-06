@@ -148,12 +148,6 @@ services:
       - ./docker-images/docker-psql/multiple:/docker-entrypoint-initdb.d/multiple
     networks:
       yucca-net:
-    deploy:
-      resources:
-        limits:
-          memory: 1000M
-        reservations:
-          memory: 1000M
 
   buy-oyc-ticket:
     hostname: buy-oyc-ticket
@@ -212,12 +206,6 @@ services:
       interval: 5s
       timeout: 240s
       retries: 60
-    deploy:
-      resources:
-        limits:
-          memory: 1000M
-        reservations:
-          memory: 1000M
 
   buy-oyc-catering:
     hostname: buy-oyc-catering
@@ -271,9 +259,9 @@ services:
     deploy:
       resources:
         limits:
-          memory: 1000M
+          memory: 300M
         reservations:
-          memory: 1000M
+          memory: 300M
     networks:
       yucca-net:
     depends_on:
