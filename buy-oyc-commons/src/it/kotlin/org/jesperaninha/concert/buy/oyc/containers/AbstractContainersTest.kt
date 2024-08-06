@@ -9,12 +9,14 @@ import org.testcontainers.containers.output.Slf4jLogConsumer
 import org.testcontainers.containers.wait.strategy.Wait.defaultWaitStrategy
 import java.io.File
 import java.time.Duration.ofMinutes
-import kotlin.time.Duration.Companion.minutes
 
 class DockerCompose(files: List<File>) : DockerComposeContainer<DockerCompose>(files)
 
 private val logger = LoggerFactory.getLogger(AbstractContainersTest::class.java)
 private val logConsumer: Slf4jLogConsumer = Slf4jLogConsumer(logger)
+
+private const val YUCCA_DB_SERVICE_NAME = "yucca-db_1"
+private const val YUCCA_DB_SERVICE_PORT = 5432
 
 /**
  * Created by jofisaes on 22/04/2022
@@ -29,10 +31,10 @@ abstract class AbstractContainersTest {
 
         val dockerCompose: DockerCompose by lazy {
             DockerCompose(listOf(finalFile))
-                .withBuyOycContainer("yucca-db_1", 5432)
+                .withBuyOycContainer(YUCCA_DB_SERVICE_NAME, YUCCA_DB_SERVICE_PORT)
                 .withBuyOycContainer("redis_1", 6379)
-                .withBuyOycContainer("kong_1", 8001)
                 .withBuyOycContainer("kong_1", 8000)
+                .withBuyOycContainer("kong_1", 8001)
                 .withBuyOycContainer("buy-oyc-ticket_1", 8084)
                 .withBuyOycContainer("buy-oyc-concert_1", 8085)
                 .withBuyOycContainer("buy-oyc-parking_1", 8086)
@@ -40,6 +42,7 @@ abstract class AbstractContainersTest {
                 .withBuyOycContainer("buy-oyc-api_1", 8088)
                 .withBuyOycContainer("buy-oyc-nginx_1", 8080)
                 .withLocalCompose(true)
+                .withOptions("--compatibility")
         }
 
         @JvmStatic
@@ -51,10 +54,14 @@ abstract class AbstractContainersTest {
     }
 }
 
-private const val STARTUP_CONTAINER_TIMEOUT = 5L
+private const val STARTUP_CONTAINER_TIMEOUT_MINUTES = 10L
 
 private fun DockerCompose.withBuyOycContainer(serviceName: String, port: Int): DockerCompose =
-    withExposedService(serviceName, port, defaultWaitStrategy().withStartupTimeout(ofMinutes(STARTUP_CONTAINER_TIMEOUT)))
+    withExposedService(
+        serviceName,
+        port,
+        defaultWaitStrategy().withStartupTimeout(ofMinutes(STARTUP_CONTAINER_TIMEOUT_MINUTES))
+    )
         .withLogConsumer(serviceName, logConsumer)
 
 class CustomContextBuilder : DefaultApplicationContextBuilder() {
@@ -62,29 +69,18 @@ class CustomContextBuilder : DefaultApplicationContextBuilder() {
         eagerInitSingletons(true)
 
         dockerCompose
-            .also {
+            .also { compose ->
                 logger.info("Starting docker compose...")
                 runCatching {
-                    it.start()
+                    compose.start()
                 }.getOrElse {
                     logger.error("An error has occurred!", it)
                     logger.error(it.stackTraceToString(), it)
                 }
                 logger.info("Docker compose has started!")
-            }
-        dockerCompose.waitingFor("yucca-db_1", defaultWaitStrategy().withStartupTimeout(ofMinutes(
-            STARTUP_CONTAINER_TIMEOUT
-        )))
-        val containerState =
-            dockerCompose.getContainerByServiceName("yucca-db_1")
-                .or {
-                    dockerCompose.waitingFor("yucca-db", defaultWaitStrategy().withStartupTimeout(ofMinutes(
-                        STARTUP_CONTAINER_TIMEOUT
-                    )))
-                    dockerCompose.getContainerByServiceName("yucca-db")
-                }.get()
-        val servicePort = containerState.firstMappedPort
-        val serviceHost = containerState.host
+            }.waitingFor(YUCCA_DB_SERVICE_NAME, defaultWaitStrategy())
+        val servicePort = dockerCompose.getServicePort(YUCCA_DB_SERVICE_NAME, YUCCA_DB_SERVICE_PORT)
+        val serviceHost = dockerCompose.getServiceHost(YUCCA_DB_SERVICE_NAME, YUCCA_DB_SERVICE_PORT)
         logger.info("Configuring properties...")
         logger.info("Preconfigured service host is $serviceHost")
         logger.info("Preconfigured service port is $servicePort")
