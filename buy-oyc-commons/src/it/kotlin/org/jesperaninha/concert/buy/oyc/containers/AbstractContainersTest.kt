@@ -9,7 +9,6 @@ import org.testcontainers.containers.output.Slf4jLogConsumer
 import org.testcontainers.containers.wait.strategy.Wait.defaultWaitStrategy
 import java.io.File
 import java.time.Duration.ofMinutes
-import kotlin.time.Duration.Companion.minutes
 
 class DockerCompose(files: List<File>) : DockerComposeContainer<DockerCompose>(files)
 
@@ -53,13 +52,13 @@ abstract class AbstractContainersTest {
     }
 }
 
-private const val STARTUP_CONTAINER_TIMEOUT = 5L
+private const val STARTUP_CONTAINER_TIMEOUT_MINUTES = 10L
 
 private fun DockerCompose.withBuyOycContainer(serviceName: String, port: Int): DockerCompose =
     withExposedService(
         serviceName,
         port,
-        defaultWaitStrategy().withStartupTimeout(ofMinutes(STARTUP_CONTAINER_TIMEOUT))
+        defaultWaitStrategy().withStartupTimeout(ofMinutes(STARTUP_CONTAINER_TIMEOUT_MINUTES))
     )
         .withLogConsumer(serviceName, logConsumer)
 

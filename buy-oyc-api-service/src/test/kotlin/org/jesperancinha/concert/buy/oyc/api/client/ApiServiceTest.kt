@@ -5,9 +5,8 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import com.github.tomakehurst.wiremock.WireMockServer
 import com.github.tomakehurst.wiremock.client.WireMock
 import com.github.tomakehurst.wiremock.core.WireMockConfiguration
+import io.kotest.assertions.nondeterministic.eventuallyConfig
 import io.kotest.common.ExperimentalKotest
-import io.kotest.framework.concurrency.FixedInterval
-import io.kotest.framework.concurrency.eventually
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.longs.shouldBeLessThan
 import io.kotest.matchers.nulls.shouldNotBeNull
@@ -39,6 +38,7 @@ import java.lang.Thread.sleep
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit.NANOS
 import javax.transaction.Transactional
+import kotlin.time.Duration.Companion.seconds
 
 private const val API_YUCCA_TICKET = "/api/yucca-ticket"
 
@@ -106,10 +106,11 @@ class ApiServiceTest @Inject constructor(
         withContext(Dispatchers.IO) {
             sleep(1000)
         }
-        eventually({
-            duration = 5000
-            interval = FixedInterval(1000)
-        }) {
+        io.kotest.assertions.nondeterministic.eventually(
+            eventuallyConfig {
+                duration = 5.seconds
+                interval = 1.seconds
+            }) {
             auditLogRepository.findAll().toList().shouldHaveSize(1)
         }
     }
