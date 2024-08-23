@@ -41,7 +41,7 @@
         <mockk.version>1.13.12</mockk.version>
         <kotest.version>5.9.1</kotest.version>
         <kotlinx.version>1.8.1</kotlinx.version>
-        <postgresql.version>42.7.3</postgresql.version>
+        <postgresql.version>42.7.4</postgresql.version>
         <flyway-core.version>10.17.2</flyway-core.version>
         <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
         <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
