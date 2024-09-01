@@ -5,10 +5,10 @@
   "main": "./build/index.js",
   "dependencies": {
     "@types/jest": "^29.5.12",
-    "@types/node": "^22.5.0",
-    "@types/react": "^18.3.4",
+    "@types/node": "^22.5.1",
+    "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",
-    "caniuse-lite": "^1.0.30001651",
+    "caniuse-lite": "^1.0.30001655",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jest-transform-stub": "^2.0.0",
@@ -45,7 +45,7 @@
   },
   "devDependencies": {
     "@testing-library/dom": "^10.4.0",
-    "@testing-library/react": "^16.0.0",
+    "@testing-library/react": "^16.0.1",
     "@testing-library/user-event": "^14.5.2",
     "@babel/core": "^7.25.2",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
