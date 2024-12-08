@@ -6,6 +6,7 @@ build: build-npm
 build-npm:
 	cd buy-odd-yucca-gui; \
 	yarn; \
+	yes | npx update-browserslist-db@latest; \
 	yarn build
 build-maven:
 	mvn clean install -DskipTests
