@@ -28,12 +28,14 @@ local: no-test
 	mkdir -p bin
 no-test:
 	mvn clean install -DskipTests
-docker: create-folders set-permissions
-	docker-compose up -d --build --remove-orphans
+create-folders:
+	mkdir -p kong_prefix_vol kong_tmp_vol kong_data_vol
 set-permissions:
 	if [[ -d kong_data_vol ]]; then sudo chmod -R 777 kong_data_vol; else mkdir kong_data_vol && sudo chmod -R 777 kong_data_vol; fi
 	if [[ -d kong_tmp_vol ]]; then sudo chmod -R 777 kong_tmp_vol; else mkdir kong_tmp_vol && sudo chmod -R 777 kong_tmp_vol; fi
 	if [[ -d kong_prefix_vol ]]; then sudo chmod -R 777 kong_prefix_vol; else mkdir kong_prefix_vol && sudo chmod -R 777 kong_prefix_vol; fi
+docker: create-folders set-permissions
+	docker-compose up -d --build --remove-orphans
 kong-full-action-setup:
 	curl -sL https://github.com/kong/deck/releases/download/v1.12.3/deck_1.12.3_linux_amd64.tar.gz -o deck.tar.gz
 	tar -xf deck.tar.gz -C /tmp
@@ -116,8 +118,6 @@ integration:
 	cd buy-oyc-commons && mvn clean install -Pintegration
 boyc-wait:
 	bash boyc_wait.sh
-create-folders:
-	mkdir -p kong_prefix_vol kong_tmp_vol kong_data_vol
 database-wait:
 	bash database_wait.sh
 dcup-light:
