@@ -11,7 +11,7 @@
     "jest-transform-stub": "^2.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "typescript": "<5.8.0"
+    "typescript": "^5.8.2"
   },
   "scripts": {
     "start": "react-scripts --openssl-legacy-provider start",
