@@ -8,7 +8,7 @@ build-npm:
 	yarn; \
 	yes | npx update-browserslist-db@latest; \
 	yarn build
-build-maven:
+build-maven: clean
 	mvn clean install -DskipTests
 build-api:
 	docker-compose stop buy-oyc-api
@@ -18,6 +18,8 @@ build-api:
 	docker-compose rm buy-oyc-api; \
 	docker-compose build buy-oyc-api; \
 	docker-compose up -d buy-oyc-api
+clean:
+	find . -name "dependency-reduced-pom.xml" | xargs -I {} rm {}
 test:
 	mvn test
 test-maven:
