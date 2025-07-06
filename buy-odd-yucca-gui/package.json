@@ -6,8 +6,8 @@
   "dependencies": {
     "@types/react": "^19.1.8",
     "@types/react-dom": "^19.1.6",
-    "jest": "^30.0.3",
-    "jest-environment-jsdom": "^30.0.2",
+    "jest": "^30.0.4",
+    "jest-environment-jsdom": "^30.0.4",
     "jest-transform-stub": "^2.0.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -41,9 +41,9 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.27.7",
+    "@babel/core": "^7.28.0",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-env": "^7.28.0",
     "@babel/preset-react": "^7.27.1",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
