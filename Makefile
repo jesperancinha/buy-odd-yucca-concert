@@ -181,6 +181,8 @@ node-update:
 	source ~/.nvm/nvm.sh
 	nvm install --lts
 	nvm use --lts
+docker-logs:
+	docker-compose -p ${GITHUB_RUN_ID} -f ../docker-compose.yml -f docker-compose.yml logs
 deps-update: update
 revert-deps-cypress-update:
 	if [ -f  e2e/docker-composetmp.yml ]; then rm e2e/docker-composetmp.yml; fi
