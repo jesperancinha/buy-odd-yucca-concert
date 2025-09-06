@@ -14,7 +14,7 @@ jobs:
           distribution: 'adopt'
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Setup Docker Compose
         run: make dc-migration
@@ -46,7 +46,7 @@ jobs:
           distribution: 'adopt'
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Setup Docker Compose
         run: make dc-migration
@@ -78,7 +78,7 @@ jobs:
           distribution: 'adopt'
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Setup Docker Compose
         run: make dc-migration
@@ -110,7 +110,7 @@ jobs:
           distribution: 'adopt'
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Setup Docker Compose
         run: make dc-migration
