@@ -2,6 +2,7 @@
 
 package org.jesperaninha.concert.buy.oyc.chain
 
+import io.kotest.assertions.nondeterministic.eventually
 import io.kotest.assertions.nondeterministic.eventuallyConfig
 import io.kotest.common.ExperimentalKotest
 import io.kotest.matchers.collections.shouldHaveAtMostSize
@@ -177,8 +178,8 @@ open class ChainTest @Inject constructor(
 }
 
 private suspend fun <T> assertWithTries(function: suspend () -> Collection<T>) {
-    io.kotest.assertions.nondeterministic.eventually(
-        eventuallyConfig {
+    eventually(
+        config = eventuallyConfig {
             duration = 6.seconds
             interval = 1.seconds
         }) {
