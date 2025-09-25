@@ -50,7 +50,7 @@
         <testcontainers.version>1.21.3</testcontainers.version>
         <dependency-check-maven.version>12.1.6</dependency-check-maven.version>
         <wiremock.version>2.27.2</wiremock.version>
-        <rxjava.version>3.1.11</rxjava.version>
+        <rxjava.version>3.1.12</rxjava.version>
 
         <micronaut.version>3.10.0</micronaut.version>
         <micronaut.openapi.version>4.8.0</micronaut.openapi.version>
