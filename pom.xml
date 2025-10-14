@@ -48,7 +48,7 @@
         <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
         <kotlinx-coroutines-test.version>1.6.3-native-mt</kotlinx-coroutines-test.version>
         <testcontainers.version>1.21.3</testcontainers.version>
-        <dependency-check-maven.version>12.1.7</dependency-check-maven.version>
+        <dependency-check-maven.version>12.1.8</dependency-check-maven.version>
         <wiremock.version>2.27.2</wiremock.version>
         <rxjava.version>3.1.12</rxjava.version>
 
