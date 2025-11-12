@@ -42,13 +42,13 @@
         <kotest.version>6.0.4</kotest.version>
         <kotlinx.version>1.10.2</kotlinx.version>
         <postgresql.version>42.7.8</postgresql.version>
-        <flyway-core.version>11.16.0</flyway-core.version>
+        <flyway-core.version>11.17.0</flyway-core.version>
         <r2dbc-postgresql.version>0.8.13.RELEASE</r2dbc-postgresql.version>
         <r2dbc-spi.version>1.0.0.RELEASE</r2dbc-spi.version>
         <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
         <kotlinx-coroutines-test.version>1.6.3-native-mt</kotlinx-coroutines-test.version>
         <testcontainers.version>1.21.3</testcontainers.version>
-        <dependency-check-maven.version>12.1.8</dependency-check-maven.version>
+        <dependency-check-maven.version>12.1.9</dependency-check-maven.version>
         <wiremock.version>2.27.2</wiremock.version>
         <rxjava.version>3.1.12</rxjava.version>
 
