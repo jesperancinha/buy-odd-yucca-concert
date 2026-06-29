@@ -1,0 +1,17 @@
+# Cline/Roo-Code AI Rules - Buy Odd Yucca Concert
+
+## Project Context
+This is a microservices-based concert ticket booking system using Kotlin/Micronaut and React.
+
+## Rules for AI
+- **Language**: Backend is Kotlin, Frontend is TypeScript.
+- **Testing**: Backend tests must use Kotest. Frontend tests must use Jest.
+- **Database**: Use Flyway for all schema changes in `buy-oyc-commons/src/main/resources/db/migration`.
+- **API**: Follow REST principles. Use Micronaut's `@Controller` and `@Get`/`@Post` annotations.
+- **Common Logic**: Shared code should go into the `buy-oyc-commons` module.
+- **Styles**: Follow existing patterns for formatting and naming.
+
+## Environment Commands
+- Run `make docker-clean-build-start` to rebuild and restart all services.
+- Use `make kong-setup` to configure the API Gateway.
+- Run tests via `mvn test`.
