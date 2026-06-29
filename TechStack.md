@@ -1,21 +1,28 @@
 # Buy Odd Yucca Concert TechStack
 
+Back to [Readme.md](Readme.md)
+
 - [Kotlin](https://kotlinlang.org/)
-
+- [Java](https://www.oracle.com/java/)
 - [Kong Framework](https://konghq.com/kong)
-
 - [Micronaut Framework](https://micronaut.io/)
-
 - [PostgreSQL](https://www.postgresql.org/)
-
 - [Docker](https://www.docker.com/)
-
 - [Docker Compose](https://docs.docker.com/compose/)
-
-- [Test containers](https://www.testcontainers.org/)
-
+- [Testcontainers](https://www.testcontainers.org/)
 - [Maven](https://maven.apache.org/)
-
 - [Swagger](https://swagger.io/)
-
 - [Cypress](https://www.cypress.io/)
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Jest](https://jestjs.io/)
+- [Flyway](https://flywaydb.org/)
+- [R2DBC](https://r2dbc.io/)
+- [MockK](https://mockk.io/)
+- [Kotest](https://kotest.io/)
+- [RxJava](http://reactivex.io/intro.html)
+- [WireMock](https://wiremock.org/)
+- [Locust](https://locust.io/)
+- [JaCoCo](https://www.jacoco.org/jacoco/)
+- [Nginx](https://www.nginx.com/)
+- [Snyk](https://snyk.io/)
