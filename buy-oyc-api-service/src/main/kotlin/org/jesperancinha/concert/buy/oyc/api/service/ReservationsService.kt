@@ -26,7 +26,7 @@ class ReservationsService(
     auditLogRepository: AuditLogRepository,
     private val pubSubCommands: RedisPubSubAsyncCommands<String, TicketDto>,
     redisClient: RedisClient,
-    @Value("\${buy.oyc.ticket.url}")
+    @Value($$"${buy.oyc.ticket.url}")
     val url: String,
     httpClient: Rx3HttpClient
 ) {
@@ -57,9 +57,9 @@ class RedisBeanFactory {
 
     @Singleton
     fun httpClient(
-        @Value("\${buy.oyc.ticket.host}")
+        @Value($$"${buy.oyc.ticket.host}")
         host: String,
-        @Value("\${buy.oyc.ticket.port}")
+        @Value($$"${buy.oyc.ticket.port}")
         port: Long
     ): Rx3HttpClient =
         Rx3HttpClient.create(URL("http://" + host + ":" + port))

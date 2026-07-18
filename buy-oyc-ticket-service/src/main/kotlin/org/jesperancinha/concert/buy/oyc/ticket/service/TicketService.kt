@@ -73,9 +73,9 @@ class RedisBeanFactory {
     @Singleton
     @ConcertClient
     fun httpConcertClient(
-        @Value("\${buy.oyc.concert.host}")
+        @Value($$"${buy.oyc.concert.host}")
         host: String,
-        @Value("\${buy.oyc.concert.port}")
+        @Value($$"${buy.oyc.concert.port}")
         port: Long
     ): Rx3HttpClient =
         Rx3HttpClient.create(URI.create("http://$host:$port").toURL())
@@ -83,9 +83,9 @@ class RedisBeanFactory {
     @Singleton
     @ParkingClient
     fun httpParkingClient(
-        @Value("\${buy.oyc.parking.host}")
+        @Value($$"${buy.oyc.parking.host}")
         host: String,
-        @Value("\${buy.oyc.parking.port}")
+        @Value($$"${buy.oyc.parking.port}")
         port: Long
     ): Rx3HttpClient =
         Rx3HttpClient.create(URI.create("http://$host:$port").toURL())
@@ -93,9 +93,9 @@ class RedisBeanFactory {
     @Singleton
     @CateringClient
     fun httpCateringClient(
-        @Value("\${buy.oyc.catering.host}")
+        @Value($$"${buy.oyc.catering.host}")
         host: String,
-        @Value("\${buy.oyc.catering.port}")
+        @Value($$"${buy.oyc.catering.port}")
         port: Long
     ): Rx3HttpClient =
         Rx3HttpClient.create(URI.create("http://$host:$port").toURL())
@@ -168,13 +168,13 @@ class TicketCodec : BuyOycCodec<TicketDto>() {
 
 @Singleton
 data class TicketServiceHttpConfiguration(
-    @Value("\${buy.oyc.catering.url.drink}")
+    @Value($$"${buy.oyc.catering.url.drink}")
     override val cateringDrinkUrl: String,
-    @Value("\${buy.oyc.catering.url.meal}")
+    @Value($$"${buy.oyc.catering.url.meal}")
     override val cateringMealUrl: String,
-    @Value("\${buy.oyc.concert.url}")
+    @Value($$"${buy.oyc.concert.url}")
     override val concertUrl: String,
-    @Value("\${buy.oyc.parking.url}")
+    @Value($$"${buy.oyc.parking.url}")
     override val parkingUrl: String,
 ) : TicketServiceHttpConfigurationInterface
 
