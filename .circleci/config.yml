@@ -1,4 +1,8 @@
 version: 2
+
+orbs:
+  qodana: jetbrains/qodana@2026.1
+
 jobs:
   build-maven:
     machine:
@@ -60,5 +64,4 @@ workflows:
     jobs:
       - code-quality:
           context: qodana
-orbs:
-  qodana: jetbrains/qodana@2026.1
+
