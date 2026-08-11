@@ -16,9 +16,6 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Setup Docker Compose
-        run: make dc-migration
-
       - name: Start Docker
         uses: nick-fields/retry@v4
         with:
@@ -47,9 +44,6 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: '24'
-
-      - name: Setup Docker Compose
-        run: make dc-migration
 
       - name: Start Docker
         uses: nick-fields/retry@v4
@@ -80,9 +74,6 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Setup Docker Compose
-        run: make dc-migration
-
       - name: Start Docker
         uses: nick-fields/retry@v4
         with:
@@ -111,9 +102,6 @@ jobs:
       - uses: actions/setup-node@v7
         with:
           node-version: '24'
-
-      - name: Setup Docker Compose
-        run: make dc-migration
 
       - name: Start Docker
         uses: nick-fields/retry@v4
