@@ -53,9 +53,10 @@ jobs:
 
     steps:
       - checkout
-
       - qodana/scan:
-          args: "-l,jetbrains/qodana-jvm"
+          args:
+            - "--linter"
+            - "jetbrains/qodana-jvm"
 
 workflows:
   build_all:
