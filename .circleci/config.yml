@@ -55,9 +55,8 @@ jobs:
       - checkout
 
       - qodana/scan:
-          args:
-            - "--linter"
-            - "jetbrains/qodana-jvm"
+          args: "-l=jetbrains/qodana-jvm"
+
 workflows:
   build_all:
     jobs:
