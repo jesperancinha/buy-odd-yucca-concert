@@ -4,14 +4,14 @@ function checkServiceByNameAndMessage() {
     name=$1
     message=$2
     printf "%s." "$name"
-    docker-compose logs "$name" &> "logs"
+    docker composelogs "$name" &> "logs"
     string=$(cat logs)
     echo "$string"
     counter=0
     while [[ "$string" != *"$message"* ]]
     do
       printf "."
-      docker-compose logs "$name" &> "logs"
+      docker composelogs "$name" &> "logs"
       string=$(cat logs)
       sleep 1
       counter=$((counter+1))
