@@ -11,13 +11,13 @@ build-npm:
 build-maven: clean
 	mvn clean install -DskipTests
 build-api:
-	docker-compose stop buy-oyc-api
+	docker compose stop buy-oyc-api
 	cd buy-oyc-api-service; \
  	rm -r target; \
  	mvn clean install -DskipTests; \
-	docker-compose rm buy-oyc-api; \
-	docker-compose build buy-oyc-api; \
-	docker-compose up -d buy-oyc-api
+	docker compose rm buy-oyc-api; \
+	docker compose build buy-oyc-api; \
+	docker compose up -d buy-oyc-api
 clean:
 	find . -name "dependency-reduced-pom.xml" | xargs -I {} rm {}
 test:
@@ -37,7 +37,7 @@ set-permissions:
 	if [[ -d kong_tmp_vol ]]; then sudo chmod -R 777 kong_tmp_vol; else mkdir kong_tmp_vol && sudo chmod -R 777 kong_tmp_vol; fi
 	if [[ -d kong_prefix_vol ]]; then sudo chmod -R 777 kong_prefix_vol; else mkdir kong_prefix_vol && sudo chmod -R 777 kong_prefix_vol; fi
 docker: create-folders set-permissions
-	docker-compose up -d --build --remove-orphans
+	docker compose up -d --build --remove-orphans
 kong-full-action-setup:
 	curl -sL https://github.com/kong/deck/releases/download/v1.12.3/deck_1.12.3_linux_amd64.tar.gz -o deck.tar.gz
 	tar -xf deck.tar.gz -C /tmp
@@ -61,7 +61,7 @@ coverage: build-report
 	mvn omni-coveragereporter:report
 build-images:
 build-docker: stop no-test build-npm
-	docker-compose up -d --build --remove-orphans
+	docker compose up -d --build --remove-orphans
 show:
 	docker ps -a  --format '{{.ID}} - {{.Names}} - {{.Status}}'
 docker-delete-idle:
@@ -72,25 +72,25 @@ docker-delete: stop
 docker-cleanup: docker-delete
 	docker images -q | xargs docker rmi
 docker-clean:
-	docker-compose down -v
-	docker-compose rm -svf
+	docker compose down -v
+	docker compose rm -svf
 docker-clean-build-start: docker-clean b docker
 docker-delete-apps: stop
 docker-pull-images:
-	docker-compose pull
+	docker compose pull
 # docker-action is only used for remote pipelines
 docker-action: create-folders set-permissions
 	#sudo chown -R 1000:1000 ./kong_data_vol
-	docker-compose build
-	docker-compose -f docker-compose.yml up -d
-	docker-compose logs
+	docker compose build
+	docker compose -f docker compose.yml up -d
+	docker compose logs
 prune-all: docker-delete
 	docker network prune -f
 	docker system prune --all -f
 	docker builder prune -f
 	docker system prune --all --volumes -f
 stop:
-	docker-compose down --remove-orphans
+	docker compose down --remove-orphans
 install:
 	nvm install --lts
 	nvm use --lts
@@ -113,7 +113,7 @@ update: remove-lock-files
  	yarn
 audit:
 	cd buy-odd-yucca-gui && npx browserslist --update-db && npm audit fix && yarn
-build-integration: dc-migration build-npm
+build-integration: build-npm
 	mvn clean install -DskipTests
 	cd buy-oyc-commons && mvn clean install -Pintegration
 integration:
@@ -123,14 +123,14 @@ boyc-wait:
 database-wait:
 	bash database_wait.sh
 dcup-light:
-	docker-compose --env-file ./.env up -d yucca-db
+	docker compose --env-file ./.env up -d yucca-db
 	make set-permissions
 	bash database_wait.sh
 dcup-light-action: create-folders
-	docker-compose --env-file ./.env-pipeline -f docker-compose.yml up -d yucca-db
+	docker compose --env-file ./.env-pipeline -f docker compose.yml up -d yucca-db
 	bash database_wait.sh
 dcup-light-open-action:
-	docker-compose --env-file ./.env-pipeline up -d yucca-db
+	docker compose --env-file ./.env-pipeline up -d yucca-db
 	sudo chown -R 1000:1000 ./kong_data_vol
 	bash database_wait.sh
 dcup: dcd docker-clean docker boyc-wait deck
@@ -138,19 +138,19 @@ dcup-full: dcd docker-clean b set-permissions docker boyc-wait
 # dcup-full-action is only used for remote pipelines
 dcup-full-action: dcd docker-clean docker-pull-images b docker-action boyc-wait
 dcd: dc-migration
-	docker-compose down
-	docker-compose down -v
-	docker-compose rm -svf
+	docker compose down
+	docker compose down -v
+	docker compose rm -svf
 	if [[ -d kong_data_vol ]]; then sudo rm -r kong_data_vol; fi
 	if [[ -d kong_prefix_vol ]]; then sudo rm -r kong_prefix_vol; fi
 	if [[ -d kong_tmp_vol ]]; then sudo rm -r kong_tmp_vol; fi
 deck-pipeline:
-	docker-compose -f docker-compose.yml up -d kong-deck
-	docker-compose logs kong-deck
-	docker-compose logs yucca-db
-	docker-compose logs kong
+	docker compose -f docker compose.yml up -d kong-deck
+	docker compose logs kong-deck
+	docker compose logs yucca-db
+	docker compose logs kong
 deck:
-	docker-compose -f docker-compose.yml up -d kong-deck
+	docker compose -f docker compose.yml up -d kong-deck
 cypress-open:
 	cd e2e && yarn && npm run cypress:open:electron
 cypress-electron:
@@ -182,10 +182,12 @@ node-update:
 	nvm install --lts
 	nvm use --lts
 docker-logs:
-	docker-compose -p ${GITHUB_RUN_ID} -f ../docker-compose.yml -f docker-compose.yml logs
+	docker compose -p ${GITHUB_RUN_ID} -f ../docker compose.yml -f docker compose.yml logs
+docker-all-logs:
+	docker compose logs
 deps-update: update
 revert-deps-cypress-update:
-	if [ -f  e2e/docker-composetmp.yml ]; then rm e2e/docker-composetmp.yml; fi
+	if [ -f  e2e/docker composetmp.yml ]; then rm e2e/docker-composetmp.yml; fi
 	if [ -f  e2e/packagetmp.json ]; then rm e2e/packagetmp.json; fi
 	git checkout e2e/docker-compose.yml
 	git checkout e2e/package.json
@@ -200,7 +202,5 @@ deps-node-update:
 deps-quick-update: deps-cypress-update deps-plugins-update deps-java-update deps-node-update
 accept-prs:
 	curl -sL https://raw.githubusercontent.com/jesperancinha/project-signer/master/acceptPR.sh | bash
-dc-migration:
-	curl -sL https://raw.githubusercontent.com/jesperancinha/project-signer/master/setupDockerCompose.sh | bash
 update-repo-prs:
 	curl -sL https://raw.githubusercontent.com/jesperancinha/project-signer/master/update-all-repo-prs.sh | bash
