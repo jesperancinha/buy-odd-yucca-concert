@@ -1,4 +1,7 @@
-version: 2
+version: 2.1
+
+orbs:
+  qodana: jetbrains/qodana@2026.1
 
 jobs:
   build-maven:
@@ -43,25 +46,24 @@ jobs:
       - run:
           command: yarn
           working_directory: buy-odd-yucca-gui
+
   code-quality:
     machine:
-      image: 'ubuntu-2004:current'
+      image: ubuntu-2204:2023.04.2
+
     steps:
       - checkout
-      - qodana/scan:
-          args: -l jetbrains/qodana-jvm # use space to separate arguments
 
-orbs:
-  qodana: jetbrains/qodana@2026.1
+      - qodana/scan:
+          args: "-l=jetbrains/qodana-jvm:2026.1"
 
 workflows:
-  version: 2
   build_all:
     jobs:
       - build-maven
       - build-yarn
+
   main:
     jobs:
       - code-quality:
           context: qodana
-
