@@ -1,5 +1,8 @@
 version: 2
 
+orbs:
+  qodana: jetbrains/qodana@2026.1
+
 jobs:
   build-maven:
     machine:
@@ -50,9 +53,6 @@ jobs:
       - checkout
       - qodana/scan:
           args: -l jetbrains/qodana-jvm # use space to separate arguments
-
-orbs:
-  qodana: jetbrains/qodana@2026.1
 
 workflows:
   version: 2
