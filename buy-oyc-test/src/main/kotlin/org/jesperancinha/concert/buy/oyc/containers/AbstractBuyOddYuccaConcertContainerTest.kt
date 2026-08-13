@@ -20,7 +20,7 @@ abstract class AbstractBuyOddYuccaConcertContainerTest {
     companion object {
         @Container
         @JvmField
-        val postgreSQLContainer: TestPostgresSQLContainer = TestPostgresSQLContainer("postgres:14")
+        val postgreSQLContainer: TestPostgresSQLContainer = TestPostgresSQLContainer("postgres:16-alpine")
             .withUsername("kong")
             .withPassword("kong")
             .withDatabaseName("yucca")
