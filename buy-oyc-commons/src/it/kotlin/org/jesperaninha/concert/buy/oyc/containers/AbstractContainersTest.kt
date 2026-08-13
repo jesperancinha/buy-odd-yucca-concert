@@ -4,13 +4,14 @@ import io.micronaut.context.DefaultApplicationContextBuilder
 import org.jesperaninha.concert.buy.oyc.containers.AbstractContainersTest.Companion.dockerCompose
 import org.junit.jupiter.api.AfterAll
 import org.slf4j.LoggerFactory
-import org.testcontainers.containers.DockerComposeContainer
+import org.testcontainers.containers.ComposeContainer
 import org.testcontainers.containers.output.Slf4jLogConsumer
 import org.testcontainers.containers.wait.strategy.Wait.defaultWaitStrategy
+import org.testcontainers.utility.DockerImageName
 import java.io.File
 import java.time.Duration.ofMinutes
 
-class DockerCompose(files: List<File>) : DockerComposeContainer<DockerCompose>(files)
+class DockerCompose(files: List<File>) : ComposeContainer(files)
 
 private val logger = LoggerFactory.getLogger(AbstractContainersTest::class.java)
 private val logConsumer: Slf4jLogConsumer = Slf4jLogConsumer(logger)
@@ -41,8 +42,6 @@ abstract class AbstractContainersTest {
                 .withBuyOycContainer("buy-oyc-catering_1", 8087)
                 .withBuyOycContainer("buy-oyc-api_1", 8088)
                 .withBuyOycContainer("buy-oyc-nginx_1", 8080)
-                .withLocalCompose(true)
-                .withOptions("--compatibility")
         }
 
         @JvmStatic
@@ -62,7 +61,7 @@ private fun DockerCompose.withBuyOycContainer(serviceName: String, port: Int): D
         port,
         defaultWaitStrategy().withStartupTimeout(ofMinutes(STARTUP_CONTAINER_TIMEOUT_MINUTES))
     )
-        .withLogConsumer(serviceName, logConsumer)
+        .withLogConsumer(serviceName, logConsumer) as DockerCompose
 
 class CustomContextBuilder : DefaultApplicationContextBuilder() {
     init {
