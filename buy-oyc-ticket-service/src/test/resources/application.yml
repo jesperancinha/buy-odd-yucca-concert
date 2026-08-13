@@ -21,7 +21,7 @@ jackson:
     failOnUnknownProperties: false
 
 redis:
-    uri: redis://localhost
+    uri: redis://${REDIS_HOST:localhost}:${REDIS_PORT:6379}
     timeout: 30s
 
 buy.oyc.catering:
