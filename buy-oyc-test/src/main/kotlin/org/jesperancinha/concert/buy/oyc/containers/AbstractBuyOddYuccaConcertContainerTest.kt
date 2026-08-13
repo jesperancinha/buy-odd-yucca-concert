@@ -7,11 +7,11 @@ import com.github.dockerjava.api.model.Ports.Binding.bindPort
 import org.flywaydb.core.Flyway
 import org.flywaydb.core.api.configuration.ClassicConfiguration
 import org.testcontainers.containers.GenericContainer
-import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.junit.jupiter.Container
+import org.testcontainers.postgresql.PostgreSQLContainer
 import org.testcontainers.utility.DockerImageName.parse
 
-class TestPostgresSQLContainer(imageName: String) : PostgreSQLContainer<TestPostgresSQLContainer>(imageName)
+class TestPostgresSQLContainer(imageName: String) : PostgreSQLContainer(imageName)
 
 private const val POSTGRESQL_PORT = 5432
 private const val REDIS_PORT = 6379
@@ -20,7 +20,7 @@ abstract class AbstractBuyOddYuccaConcertContainerTest {
     companion object {
         @Container
         @JvmField
-        val postgreSQLContainer: TestPostgresSQLContainer = TestPostgresSQLContainer("postgres:16-alpine")
+        val postgreSQLContainer = TestPostgresSQLContainer("postgres:16-alpine")
             .withUsername("kong")
             .withPassword("kong")
             .withDatabaseName("yucca")
