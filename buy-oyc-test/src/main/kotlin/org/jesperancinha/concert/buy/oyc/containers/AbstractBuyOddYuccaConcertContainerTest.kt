@@ -1,5 +1,6 @@
 package org.jesperancinha.concert.buy.oyc.containers
 
+import io.micronaut.test.support.TestPropertyProvider
 import org.flywaydb.core.Flyway
 import org.flywaydb.core.api.configuration.ClassicConfiguration
 import org.testcontainers.containers.GenericContainer
@@ -12,7 +13,7 @@ class TestPostgresSQLContainer(imageName: String) : PostgreSQLContainer(imageNam
 private const val POSTGRESQL_PORT = 5432
 private const val REDIS_PORT = 6379
 
-abstract class AbstractBuyOddYuccaConcertContainerTest {
+abstract class AbstractBuyOddYuccaConcertContainerTest : TestPropertyProvider {
     companion object {
         val postgreSQLContainer = TestPostgresSQLContainer("postgres:16-alpine")
             .withUsername("kong")
@@ -41,12 +42,49 @@ abstract class AbstractBuyOddYuccaConcertContainerTest {
             redis.waitingFor(Wait.forLogMessage(".*Ready to accept connections.*\\s", 1))
             System.setProperty(
                 "r2dbc.datasources.default.url",
-                "r2dbc:postgresql://kong@${postgreSQLContainer.host}:${postgreSQLContainer.getMappedPort(POSTGRESQL_PORT)}/yucca?currentSchema=ticket"
+                "r2dbc:postgresql://kong:kong@${postgreSQLContainer.host}:${postgreSQLContainer.getMappedPort(POSTGRESQL_PORT)}/yucca?currentSchema=ticket"
             )
             System.setProperty(
                 "redis.uri",
                 "redis://${redis.host}:${redis.getMappedPort(REDIS_PORT)}"
             )
+            System.setProperty(
+                "REDIS_HOST",
+                redis.host
+            )
+            System.setProperty(
+                "REDIS_PORT",
+                redis.getMappedPort(REDIS_PORT).toString()
+            )
+            System.setProperty(
+                "redis.host",
+                redis.host
+            )
+            System.setProperty(
+                "redis.port",
+                redis.getMappedPort(REDIS_PORT).toString()
+            )
+            System.setProperty(
+                "POSTGRESQL_HOST",
+                postgreSQLContainer.host
+            )
+            System.setProperty(
+                "POSTGRESQL_PORT",
+                postgreSQLContainer.getMappedPort(POSTGRESQL_PORT).toString()
+            )
         }
+    }
+
+    override fun getProperties(): MutableMap<String, String> {
+        return mutableMapOf(
+            "r2dbc.datasources.default.url" to "r2dbc:postgresql://kong:kong@${postgreSQLContainer.host}:${postgreSQLContainer.getMappedPort(POSTGRESQL_PORT)}/yucca?currentSchema=ticket",
+            "redis.uri" to "redis://${redis.host}:${redis.getMappedPort(REDIS_PORT)}",
+            "redis.host" to redis.host,
+            "redis.port" to redis.getMappedPort(REDIS_PORT).toString(),
+            "REDIS_HOST" to redis.host,
+            "REDIS_PORT" to redis.getMappedPort(REDIS_PORT).toString(),
+            "POSTGRESQL_HOST" to postgreSQLContainer.host,
+            "POSTGRESQL_PORT" to postgreSQLContainer.getMappedPort(POSTGRESQL_PORT).toString()
+        )
     }
 }
