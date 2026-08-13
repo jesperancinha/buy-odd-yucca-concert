@@ -8,6 +8,7 @@ import com.github.tomakehurst.wiremock.core.WireMockConfiguration
 import io.kotest.matchers.collections.shouldHaveSize
 import io.kotest.matchers.nulls.shouldNotBeNull
 import io.kotest.matchers.shouldBe
+import io.micronaut.context.DefaultApplicationContextBuilder
 import io.micronaut.context.annotation.Property
 import io.micronaut.http.HttpHeaders
 import io.micronaut.http.HttpStatus
@@ -45,7 +46,7 @@ private const val API_YUCCA_PARKING = "/api/yucca-parking"
  * Created by jofisaes on 10/04/2022
  */
 @ExperimentalCoroutinesApi
-@MicronautTest(transactional = false)
+@MicronautTest(contextBuilder = [TicketContextBuilder::class], transactional = false)
 @Property(name = "buy.oyc.catering.port", value = "7999")
 @Property(name = "buy.oyc.concert.port", value = "7998")
 @Property(name = "buy.oyc.parking.port", value = "7997")
@@ -156,10 +157,15 @@ class TicketTest @Inject constructor(
         val awaitFirstTicketDto = findAll.awaitFirst()
         awaitFirstTicketDto.reference shouldBe reference
 
-        withContext(Dispatchers.IO) {
-            sleep(2000)
+        var allAudits = auditLogRepository.findAll().toList()
+        var attempts = 0
+        while (allAudits.size < 4 && attempts < 10) {
+            withContext(Dispatchers.IO) {
+                sleep(2000)
+            }
+            allAudits = auditLogRepository.findAll().toList()
+            attempts++
         }
-        val allAudits = auditLogRepository.findAll().toList()
         allAudits.shouldHaveSize(4)
         allAudits.filter { it.auditLogType == DRINK }.shouldHaveSize(1)
         allAudits.filter { it.auditLogType == MEAL }.shouldHaveSize(1)
@@ -200,7 +206,7 @@ private fun WireMockServer.stubResponse(
     body: String,
     status: Int = HttpStatus.OK.code
 ) {
-    stubFor(
+        stubFor(
         WireMock.post(url)
             .willReturn(
                 WireMock.aResponse()
@@ -212,4 +218,22 @@ private fun WireMockServer.stubResponse(
                     .withBody(body)
             )
     )
+}
+
+class TicketContextBuilder : DefaultApplicationContextBuilder() {
+    init {
+        eagerInitSingletons(true)
+        val postgreSQLContainer = AbstractBuyOddYuccaConcertContainerTest.postgreSQLContainer
+        val redis = AbstractBuyOddYuccaConcertContainerTest.redis
+        properties(
+            mapOf(
+                "r2dbc.datasources.default.url" to "r2dbc:postgresql://kong:kong@${postgreSQLContainer.host}:${postgreSQLContainer.getMappedPort(5432)}/yucca?currentSchema=ticket",
+                "redis.uri" to "redis://${redis.host}:${redis.getMappedPort(6379)}",
+                "redis.host" to redis.host,
+                "redis.port" to redis.getMappedPort(6379).toString(),
+                "REDIS_HOST" to redis.host,
+                "REDIS_PORT" to redis.getMappedPort(6379).toString()
+            )
+        )
+    }
 }
