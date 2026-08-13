@@ -96,7 +96,7 @@ make kong-setup
 ---
 
 
-This project is built upon node v16.13.1
+This project is built upon node v24.19.0
 
 [NVM-SH](https://github.com/nvm-sh/nvm/blob/master/README.md)
 ---
