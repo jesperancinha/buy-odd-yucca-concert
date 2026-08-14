@@ -21,6 +21,7 @@ object ConcertServiceLauncher {
     fun main(args: Array<String>) {
         build()
             .args(*args)
+            .packages("org.jesperancinha.concert.buy.oyc")
             .start()
     }
 }
