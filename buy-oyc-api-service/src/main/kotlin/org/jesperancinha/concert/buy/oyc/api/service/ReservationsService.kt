@@ -71,8 +71,12 @@ class Listener(
     private val auditLogRepository: AuditLogRepository,
     private val client: Rx3HttpClient
 ) : RedisPubSubAdapter<String, TicketDto>() {
+    private val logger: org.slf4j.Logger = org.slf4j.LoggerFactory.getLogger(Listener::class.java)
     override fun message(key: String, ticketDto: TicketDto) {
         client.sendObject(ticketDto, url, auditLogRepository)
+            .subscribe({}, {
+                logger.error("Error sending ticketDto", it)
+            })
     }
 }
 
