@@ -15,6 +15,8 @@ import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.toTicketData
 import org.jesperancinha.concert.buy.oyc.commons.pubsub.initPubSub
 import org.jesperancinha.concert.buy.oyc.commons.rest.sendObject
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import java.io.ObjectInputStream
 import java.net.URI
 import java.net.URL
@@ -110,11 +112,13 @@ class Listener(
     private val httpCateringClient: Rx3HttpClient,
     private val ticketReservationRepository: TicketReservationRepository,
 ) : RedisPubSubAdapter<String, TicketDto>(), TicketServiceHttpConfigurationInterface by ticketServiceHttpConfiguration {
+    private val logger: Logger = LoggerFactory.getLogger(Listener::class.java)
+
     override fun message(key: String, ticketDto: TicketDto) {
         val ticketData = ticketDto.toTicketData
         CoroutineScope(Dispatchers.IO).launch {
             val ticketReservation = ticketReservationRepository.save(ticketData)
-            ticketDto.drinks.forEach {
+            val drinks = ticketDto.drinks.map {
                 httpCateringClient.sendObject(
                     it.apply {
                         reference = ticketDto.reference
@@ -124,7 +128,7 @@ class Listener(
                     auditLogRepository
                 )
             }
-            ticketDto.meals.forEach {
+            val meals = ticketDto.meals.map {
                 httpCateringClient.sendObject(
                     it.apply {
                         reference = ticketDto.reference
@@ -134,7 +138,7 @@ class Listener(
                     auditLogRepository
                 )
             }
-            ticketDto.concertDays.forEach {
+            val concertDays = ticketDto.concertDays.map {
                 httpConcertClient.sendObject(
                     it.apply {
                         reference = ticketDto.reference
@@ -143,12 +147,18 @@ class Listener(
                     auditLogRepository
                 )
             }
-            ticketDto.parkingReservation?.let {
-                httpParkingClient.sendObject(
-                    it.apply { reference = ticketDto.reference },
-                    ticketServiceHttpConfiguration.parkingUrl,
-                    auditLogRepository
+            val parkingReservations = ticketDto.parkingReservation?.let {
+                listOf(
+                    httpParkingClient.sendObject(
+                        it.apply { reference = ticketDto.reference },
+                        ticketServiceHttpConfiguration.parkingUrl,
+                        auditLogRepository
+                    )
                 )
+            } ?: emptyList()
+
+            (drinks + meals + concertDays + parkingReservations).forEach {
+                it.subscribe({}, { logger.error("Error sending object", it) })
             }
         }
     }

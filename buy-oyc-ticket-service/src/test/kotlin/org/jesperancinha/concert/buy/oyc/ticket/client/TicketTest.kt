@@ -159,9 +159,9 @@ class TicketTest @Inject constructor(
 
         var allAudits = auditLogRepository.findAll().toList()
         var attempts = 0
-        while (allAudits.size < 4 && attempts < 10) {
+        while (allAudits.size < 4 && attempts < 20) {
             withContext(Dispatchers.IO) {
-                sleep(2000)
+                sleep(1000)
             }
             allAudits = auditLogRepository.findAll().toList()
             attempts++

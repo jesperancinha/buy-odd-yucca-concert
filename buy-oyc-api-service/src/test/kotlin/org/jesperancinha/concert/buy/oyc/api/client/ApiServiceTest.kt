@@ -47,7 +47,7 @@ private const val API_YUCCA_TICKET = "/api/yucca-ticket"
  * Created by jofisaes on 10/04/2022
  */
 @ExperimentalCoroutinesApi
-@MicronautTest(transactional = false)
+@MicronautTest(contextBuilder = [ApiContextBuilder::class], transactional = false)
 @Property(name = "buy.oyc.ticket.port", value = "7999")
 class ApiServiceTest @Inject constructor(
     private val receiptRepository: ReceiptRepository,
@@ -103,16 +103,16 @@ class ApiServiceTest @Inject constructor(
             findAll2.toIterable()
         }.toList()
         awaitFirstReceiptDto2.shouldHaveSize(2)
-        withContext(Dispatchers.IO) {
-            sleep(1000)
+        var allAudits = auditLogRepository.findAll().toList()
+        var attempts = 0
+        while (allAudits.size < 1 && attempts < 20) {
+            withContext(Dispatchers.IO) {
+                sleep(1000)
+            }
+            allAudits = auditLogRepository.findAll().toList()
+            attempts++
         }
-        io.kotest.assertions.nondeterministic.eventually(
-            eventuallyConfig {
-                duration = 5.seconds
-                interval = 1.seconds
-            }) {
-            auditLogRepository.findAll().toList().shouldHaveSize(1)
-        }
+        allAudits.shouldHaveSize(1)
     }
 
     companion object {
@@ -152,6 +152,24 @@ class ApiServiceTest @Inject constructor(
                         )
                         .withBody(body)
                 )
+        )
+    }
+}
+
+class ApiContextBuilder : io.micronaut.context.DefaultApplicationContextBuilder() {
+    init {
+        eagerInitSingletons(true)
+        val postgreSQLContainer = AbstractBuyOddYuccaConcertContainerTest.postgreSQLContainer
+        val redis = AbstractBuyOddYuccaConcertContainerTest.redis
+        properties(
+            mapOf(
+                "r2dbc.datasources.default.url" to "r2dbc:postgresql://kong:kong@${postgreSQLContainer.host}:${postgreSQLContainer.getMappedPort(5432)}/yucca?currentSchema=ticket",
+                "redis.uri" to "redis://${redis.host}:${redis.getMappedPort(6379)}",
+                "redis.host" to redis.host,
+                "redis.port" to redis.getMappedPort(6379).toString(),
+                "REDIS_HOST" to redis.host,
+                "REDIS_PORT" to redis.getMappedPort(6379).toString()
+            )
         )
     }
 }
