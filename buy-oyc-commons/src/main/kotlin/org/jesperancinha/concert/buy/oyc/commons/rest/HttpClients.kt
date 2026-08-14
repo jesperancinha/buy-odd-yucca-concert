@@ -25,29 +25,18 @@ inline fun <reified T : BuyOycType> Rx3HttpClient.sendObject(
     buyOycType: T,
     url: String,
     auditLogRepository: AuditLogRepository
-): Single<ResponseDto> {
-    val retrieve =
-        retrieve(HttpRequest.POST(url, buyOycType).header(ACCEPT, APPLICATION_JSON), ResponseDto::class.java)
-    retrieve.doOnError {
-        logger.error("ERROR", it)
-    }.subscribe()
-    val buyOycValue: Single<ResponseDto> =
-        retrieve.firstOrError()
-    val singleScheduler = SingleScheduler()
-    buyOycValue.subscribeOn(singleScheduler)
+): Single<ResponseDto> =
+    retrieve(HttpRequest.POST(url, buyOycType).header(ACCEPT, APPLICATION_JSON), ResponseDto::class.java)
+        .firstOrError()
+        .doOnSuccess {
+            CoroutineScope(Dispatchers.IO).launch {
+                val auditLog = AuditLog(
+                    auditLogType = buyOycType.type,
+                    payload = buyOycType.toString()
+                )
+                val savedAuditLog = auditLogRepository.save(auditLog)
+            }
+        }
         .doOnError {
             logger.error("ERROR", it)
         }
-        .doOnSuccess {
-            CoroutineScope(Dispatchers.IO).launch {
-                auditLogRepository.save(
-                    AuditLog(
-                        auditLogType = buyOycType.type,
-                        payload = buyOycType.toString()
-                    )
-                )
-            }
-        }.subscribe()
-    singleScheduler.start()
-    return buyOycValue
-}
