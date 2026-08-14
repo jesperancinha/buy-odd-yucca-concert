@@ -30,12 +30,11 @@ inline fun <reified T : BuyOycType> Rx3HttpClient.sendObject(
         .firstOrError()
         .doOnSuccess {
             CoroutineScope(Dispatchers.IO).launch {
-                auditLogRepository.save(
-                    AuditLog(
-                        auditLogType = buyOycType.type,
-                        payload = buyOycType.toString()
-                    )
+                val auditLog = AuditLog(
+                    auditLogType = buyOycType.type,
+                    payload = buyOycType.toString()
                 )
+                val savedAuditLog = auditLogRepository.save(auditLog)
             }
         }
         .doOnError {
