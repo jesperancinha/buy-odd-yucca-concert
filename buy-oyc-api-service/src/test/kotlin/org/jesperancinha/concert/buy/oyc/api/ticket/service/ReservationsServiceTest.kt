@@ -23,6 +23,7 @@ import org.jesperancinha.concert.buy.oyc.commons.domain.Receipt
 import org.jesperancinha.concert.buy.oyc.commons.domain.ReceiptRepository
 import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
 import org.jesperancinha.concert.buy.oyc.containers.AbstractBuyOddYuccaConcertContainerTest
+import org.jesperancinha.concert.buy.oyc.containers.ContainersContextBuilder
 import org.junit.jupiter.api.AfterAll
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
@@ -36,7 +37,7 @@ private const val API_YUCCA_TICKET = "/api/yucca-ticket"
 
 @ExperimentalCoroutinesApi
 @Testcontainers
-@MicronautTest(transactional = false)
+@MicronautTest(contextBuilder = [ContainersContextBuilder::class], transactional = false)
 @Property(name = "buy.oyc.ticket.port", value = "7999")
 @Property(name = "micronaut.server.port", value = "-1")
 @DelicateCoroutinesApi
