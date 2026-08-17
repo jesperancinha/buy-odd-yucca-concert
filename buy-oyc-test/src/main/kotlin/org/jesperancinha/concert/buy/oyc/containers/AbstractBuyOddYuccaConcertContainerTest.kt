@@ -15,7 +15,7 @@ private const val REDIS_PORT = 6379
 
 abstract class AbstractBuyOddYuccaConcertContainerTest : TestPropertyProvider {
     companion object {
-        val postgreSQLContainer = TestPostgresSQLContainer("postgres:16-alpine")
+        val postgreSQLContainer: PostgreSQLContainer = TestPostgresSQLContainer("postgres:16-alpine")
             .withUsername("kong")
             .withPassword("kong")
             .withDatabaseName("yucca")
@@ -40,29 +40,15 @@ abstract class AbstractBuyOddYuccaConcertContainerTest : TestPropertyProvider {
             Flyway(config).migrate()
             postgreSQLContainer.waitingFor(Wait.forLogMessage(".*database system is ready to accept connections.*\\s", 1))
             redis.waitingFor(Wait.forLogMessage(".*Ready to accept connections.*\\s", 1))
+            setRedis()
+            setPostgreSQL()
+        }
+
+        fun setPostgreSQL() {
+            val postgresPort = postgreSQLContainer.getMappedPort(POSTGRESQL_PORT)
             System.setProperty(
                 "r2dbc.datasources.default.url",
-                "r2dbc:postgresql://kong:kong@${postgreSQLContainer.host}:${postgreSQLContainer.getMappedPort(POSTGRESQL_PORT)}/yucca?currentSchema=ticket"
-            )
-            System.setProperty(
-                "redis.uri",
-                "redis://${redis.host}:${redis.getMappedPort(REDIS_PORT)}"
-            )
-            System.setProperty(
-                "REDIS_HOST",
-                redis.host
-            )
-            System.setProperty(
-                "REDIS_PORT",
-                redis.getMappedPort(REDIS_PORT).toString()
-            )
-            System.setProperty(
-                "redis.host",
-                redis.host
-            )
-            System.setProperty(
-                "redis.port",
-                redis.getMappedPort(REDIS_PORT).toString()
+                "r2dbc:postgresql://kong:kong@${postgreSQLContainer.host}:$postgresPort/yucca?currentSchema=ticket"
             )
             System.setProperty(
                 "POSTGRESQL_HOST",
@@ -70,21 +56,47 @@ abstract class AbstractBuyOddYuccaConcertContainerTest : TestPropertyProvider {
             )
             System.setProperty(
                 "POSTGRESQL_PORT",
-                postgreSQLContainer.getMappedPort(POSTGRESQL_PORT).toString()
+                postgresPort.toString()
+            )
+        }
+
+        fun setRedis() {
+            val redisPort = redis.getMappedPort(REDIS_PORT)
+            System.setProperty(
+                "redis.uri",
+                "redis://${redis.host}:$redisPort"
+            )
+            System.setProperty(
+                "REDIS_HOST",
+                redis.host
+            )
+            System.setProperty(
+                "REDIS_PORT",
+                redisPort.toString()
+            )
+            System.setProperty(
+                "redis.host",
+                redis.host
+            )
+            System.setProperty(
+                "redis.port",
+                redisPort.toString()
             )
         }
     }
 
     override fun getProperties(): MutableMap<String, String> {
+        val redisPort = redis.getMappedPort(REDIS_PORT)
+        val postgresqlPort = postgreSQLContainer.getMappedPort(POSTGRESQL_PORT)
         return mutableMapOf(
-            "r2dbc.datasources.default.url" to "r2dbc:postgresql://kong:kong@${postgreSQLContainer.host}:${postgreSQLContainer.getMappedPort(POSTGRESQL_PORT)}/yucca?currentSchema=ticket",
-            "redis.uri" to "redis://${redis.host}:${redis.getMappedPort(REDIS_PORT)}",
+            "r2dbc.datasources.default.url" to "r2dbc:postgresql://kong:kong@${postgreSQLContainer.host}:$postgresqlPort/yucca?currentSchema=ticket",
+            "redis.uri" to "redis://${redis.host}:$redisPort",
             "redis.host" to redis.host,
-            "redis.port" to redis.getMappedPort(REDIS_PORT).toString(),
+            "redis.port" to redisPort.toString(),
             "REDIS_HOST" to redis.host,
-            "REDIS_PORT" to redis.getMappedPort(REDIS_PORT).toString(),
+            "REDIS_PORT" to redisPort.toString(),
             "POSTGRESQL_HOST" to postgreSQLContainer.host,
-            "POSTGRESQL_PORT" to postgreSQLContainer.getMappedPort(POSTGRESQL_PORT).toString()
+            "POSTGRESQL_PORT" to postgresqlPort.toString()
         )
     }
 }
