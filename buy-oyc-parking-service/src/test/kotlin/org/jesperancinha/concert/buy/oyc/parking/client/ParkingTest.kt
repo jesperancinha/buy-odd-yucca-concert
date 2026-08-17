@@ -11,6 +11,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.reactive.awaitFirstOrNull
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
+import org.apache.commons.io.ThreadUtils.sleep
 import org.flywaydb.core.Flyway
 import org.jesperancinha.concert.buy.oyc.commons.domain.CarParking
 import org.jesperancinha.concert.buy.oyc.commons.domain.CarParkingRepository
@@ -20,15 +21,16 @@ import org.jesperancinha.concert.buy.oyc.containers.AbstractBuyOddYuccaConcertCo
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import java.lang.Thread.sleep
 import java.util.*
 import javax.transaction.Transactional
+import kotlin.time.Duration.Companion.seconds
+import kotlin.time.toJavaDuration
 
 /**
  * Created by jofisaes on 21/04/2022
  */
 @ExperimentalCoroutinesApi
-@MicronautTest(transactional = false)
+@MicronautTest(contextBuilder = [org.jesperancinha.concert.buy.oyc.containers.ContainersContextBuilder::class], transactional = false)
 class ParkingTest @Inject constructor(
     private val parkingRepository: CarParkingRepository,
     private val parkingReservationRepository: ConcertDayReservationRepository,
@@ -70,9 +72,7 @@ class ParkingTest @Inject constructor(
         val findAll2 = parkingReactiveClient.findAll()
         findAll2.shouldNotBeNull()
         findAll2.subscribe()
-        withContext(Dispatchers.IO) {
-            sleep(1000)
-        }
+        sleep(1.seconds.toJavaDuration())
         val awaitFirstReceiptDto2 = withContext(Dispatchers.IO) {
             findAll2.toIterable()
         }.toList()
@@ -86,6 +86,8 @@ class ParkingTest @Inject constructor(
             config.isCleanDisabled = false
             postgreSQLContainer.start()
             redis.start()
+            setPostgreSQL()
+            setRedis()
             config.setDataSource(
                 postgreSQLContainer.jdbcUrl, postgreSQLContainer.username, postgreSQLContainer.password
             )
