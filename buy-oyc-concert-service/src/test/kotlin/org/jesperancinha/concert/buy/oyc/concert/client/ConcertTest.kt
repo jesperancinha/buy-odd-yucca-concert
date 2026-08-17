@@ -18,6 +18,7 @@ import org.jesperancinha.concert.buy.oyc.commons.domain.ConcertDayRepository
 import org.jesperancinha.concert.buy.oyc.commons.domain.ConcertDayReservationRepository
 import org.jesperancinha.concert.buy.oyc.commons.dto.ConcertDayDto
 import org.jesperancinha.concert.buy.oyc.containers.AbstractBuyOddYuccaConcertContainerTest
+import org.jesperancinha.concert.buy.oyc.containers.ContainersContextBuilder
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -30,7 +31,7 @@ import javax.transaction.Transactional
  * Created by jofisaes on 21/04/2022
  */
 @ExperimentalCoroutinesApi
-@MicronautTest(transactional = false)
+@MicronautTest(contextBuilder = [ContainersContextBuilder::class], transactional = false)
 class ConcertTest @Inject constructor(
     private val concertRepository: ConcertDayRepository,
     private val concertDayReservationRepository: ConcertDayReservationRepository,
