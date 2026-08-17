@@ -14,6 +14,7 @@ import org.jesperancinha.concert.buy.oyc.commons.domain.*
 import org.jesperancinha.concert.buy.oyc.commons.dto.DrinkDto
 import org.jesperancinha.concert.buy.oyc.commons.dto.MealDto
 import org.jesperancinha.concert.buy.oyc.containers.AbstractBuyOddYuccaConcertContainerTest
+import org.jesperancinha.concert.buy.oyc.containers.ContainersContextBuilder
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -27,7 +28,7 @@ import javax.transaction.Transactional
  * Created by jofisaes on 21/04/2022
  */
 @ExperimentalCoroutinesApi
-@MicronautTest(transactional = false)
+@MicronautTest(contextBuilder = [ContainersContextBuilder::class], transactional = false)
 class CateringTest @Inject constructor(
     private val drinkRepository: DrinkRepository,
     private val drinkReservationRepository: DrinkReservationRepository,

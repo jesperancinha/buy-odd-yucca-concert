@@ -18,6 +18,7 @@ import org.jesperancinha.concert.buy.oyc.commons.domain.CarParkingRepository
 import org.jesperancinha.concert.buy.oyc.commons.domain.ConcertDayReservationRepository
 import org.jesperancinha.concert.buy.oyc.commons.dto.ParkingReservationDto
 import org.jesperancinha.concert.buy.oyc.containers.AbstractBuyOddYuccaConcertContainerTest
+import org.jesperancinha.concert.buy.oyc.containers.ContainersContextBuilder
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -30,7 +31,7 @@ import kotlin.time.toJavaDuration
  * Created by jofisaes on 21/04/2022
  */
 @ExperimentalCoroutinesApi
-@MicronautTest(contextBuilder = [org.jesperancinha.concert.buy.oyc.containers.ContainersContextBuilder::class], transactional = false)
+@MicronautTest(contextBuilder = [ContainersContextBuilder::class], transactional = false)
 class ParkingTest @Inject constructor(
     private val parkingRepository: CarParkingRepository,
     private val parkingReservationRepository: ConcertDayReservationRepository,
