@@ -162,7 +162,7 @@ open class ChainTest @Inject constructor(
             assertWithTries { ticketReservationRepository.findAll().toList().shouldHaveSize(1) }
             assertWithTries { drinkReservationRepository.findAll().toList().shouldHaveSize(1) }
             assertWithTries { mealReservationRepository.findAll().toList().shouldHaveSize(1) }
-            assertWithTries { concertDayReservationRepository.findAll().toList().shouldHaveSize(2) }
+            assertWithTries { concertDayReservationRepository.findAll().toList().shouldHaveSize(1) }
             assertWithTries { parkingReservationRepository.findAll().toList().shouldHaveSize(1) }
             assertWithTries { auditLogRepository.findAll().toList().shouldHaveAtMostSize(5) }
         }

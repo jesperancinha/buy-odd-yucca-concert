@@ -10,6 +10,8 @@ services:
     - name: buy-oyc-ticket-service-route-swagger-ui
       paths:
         - /api/yucca-ticket/swagger-ui/res
+      protocols:
+        - http
       strip_path: true
 - url: http://buy-oyc-ticket:8084/api/yucca-ticket/swagger
   name: buy-oyc-ticket-swagger
@@ -18,6 +20,8 @@ services:
     - name: buy-oyc-ticket-service-route-swagger
       paths:
         - /api/yucca-ticket/swagger
+      protocols:
+        - http
       strip_path: true
 - url: http://buy-oyc-ticket:8084/api/yucca-ticket/api
   name: buy-oyc-ticket
@@ -26,6 +30,8 @@ services:
     - name: buy-oyc-ticket-service-route
       paths:
         - /api/yucca-ticket/api
+      protocols:
+        - http
       strip_path: true
 - url: http://buy-oyc-ticket:8084/api/yucca-ticket
   name: buy-oyc-ticket-rest
@@ -34,6 +40,8 @@ services:
     - name: buy-oyc-ticket-service-route-root
       paths:
         - /api/yucca-ticket
+      protocols:
+        - http
       strip_path: true
 
 # Concert Service
@@ -44,6 +52,8 @@ services:
     - name: buy-oyc-concert-service-route-swagger-ui
       paths:
         - /api/yucca-concert/swagger-ui/res
+      protocols:
+        - http
       strip_path: true
 - url: http://buy-oyc-concert:8085/api/yucca-concert/swagger
   name: buy-oyc-concert-swagger
@@ -52,6 +62,8 @@ services:
     - name: buy-oyc-concert-service-route-swagger
       paths:
         - /api/yucca-concert/swagger
+      protocols:
+        - http
       strip_path: true
 - url: http://buy-oyc-concert:8085/api/yucca-concert/api
   name: buy-oyc-concert
@@ -60,6 +72,8 @@ services:
     - name: buy-oyc-concert-service-route
       paths:
         - /api/yucca-concert/api
+      protocols:
+        - http
       strip_path: true
 - url: http://buy-oyc-concert:8085/api/yucca-concert
   name: buy-oyc-concert-rest
@@ -68,6 +82,8 @@ services:
     - name: buy-oyc-concert-service-route-root
       paths:
         - /api/yucca-concert
+      protocols:
+        - http
       strip_path: true
 
 # Parking Service
@@ -78,6 +94,8 @@ services:
     - name: buy-oyc-parking-service-route-swagger-ui
       paths:
         - /api/yucca-parking/swagger-ui/res
+      protocols:
+        - http
       strip_path: true
 - url: http://buy-oyc-parking:8086/api/yucca-parking/swagger
   name: buy-oyc-parking-swagger
@@ -86,6 +104,8 @@ services:
     - name: buy-oyc-parking-service-route-swagger
       paths:
         - /api/yucca-parking/swagger
+      protocols:
+        - http
       strip_path: true
 - url: http://buy-oyc-parking:8086/api/yucca-parking/api
   name: buy-oyc-parking
@@ -94,6 +114,8 @@ services:
     - name: buy-oyc-parking-service-route
       paths:
         - /api/yucca-parking/api
+      protocols:
+        - http
       strip_path: true
 - url: http://buy-oyc-parking:8086/api/yucca-parking
   name: buy-oyc-parking-rest
@@ -102,6 +124,8 @@ services:
     - name: buy-oyc-parking-service-route-root
       paths:
         - /api/yucca-parking
+      protocols:
+        - http
       strip_path: true
 
 # Catering Service
@@ -112,6 +136,8 @@ services:
     - name: buy-oyc-catering-service-route-swagger-ui
       paths:
         - /api/yucca-catering/swagger-ui/res
+      protocols:
+        - http
       strip_path: true
 - url: http://buy-oyc-catering:8087/api/yucca-catering/swagger
   name: buy-oyc-catering-swagger
@@ -120,6 +146,8 @@ services:
     - name: buy-oyc-catering-service-route-swagger
       paths:
         - /api/yucca-catering/swagger
+      protocols:
+        - http
       strip_path: true
 - url: http://buy-oyc-catering:8087/api/yucca-catering/api
   name: buy-oyc-catering
@@ -128,6 +156,8 @@ services:
     - name: buy-oyc-catering-service-route
       paths:
         - /api/yucca-catering/api
+      protocols:
+        - http
       strip_path: true
 - url: http://buy-oyc-catering:8087/api/yucca-catering
   name: buy-oyc-catering-rest
@@ -136,6 +166,8 @@ services:
     - name: buy-oyc-catering-service-route-root
       paths:
         - /api/yucca-catering
+      protocols:
+        - http
       strip_path: true
 
 # API Service
@@ -146,6 +178,8 @@ services:
   - name: buy-oyc-api-service-route-swagger-ui
     paths:
     - /api/yucca-api/swagger-ui/res
+    protocols:
+    - http
     strip_path: true
 - url: http://buy-oyc-api:8088/api/yucca-api/swagger
   name: buy-oyc-api-swagger
@@ -154,6 +188,8 @@ services:
   - name: buy-oyc-api-service-route-swagger
     paths:
     - /api/yucca-api/swagger
+    protocols:
+    - http
     strip_path: true
 - url: http://buy-oyc-api:8088/api/yucca-api/api
   name: buy-oyc-api
@@ -162,6 +198,8 @@ services:
   - name: buy-oyc-api-service-route
     paths:
     - /api/yucca-api/api
+    protocols:
+    - http
     strip_path: true
 - url: http://buy-oyc-api:8088/api/yucca-api
   name: buy-oyc-api-rest
@@ -170,4 +208,6 @@ services:
     - name: buy-oyc-api-service-route-root
       paths:
         - /api/yucca-api
+      protocols:
+        - http
       strip_path: true
