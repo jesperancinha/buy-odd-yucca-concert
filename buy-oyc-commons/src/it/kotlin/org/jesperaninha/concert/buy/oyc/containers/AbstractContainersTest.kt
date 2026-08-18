@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory
 import org.testcontainers.containers.ComposeContainer
 import org.testcontainers.containers.output.Slf4jLogConsumer
 import org.testcontainers.containers.wait.strategy.Wait.defaultWaitStrategy
-import org.testcontainers.utility.DockerImageName
 import java.io.File
 import java.time.Duration.ofMinutes
 
@@ -16,7 +15,7 @@ class DockerCompose(files: List<File>) : ComposeContainer(files)
 private val logger = LoggerFactory.getLogger(AbstractContainersTest::class.java)
 private val logConsumer: Slf4jLogConsumer = Slf4jLogConsumer(logger)
 
-private const val YUCCA_DB_SERVICE_NAME = "yucca-db_1"
+private const val YUCCA_DB_SERVICE_NAME = "yucca-db"
 private const val YUCCA_DB_SERVICE_PORT = 5432
 
 /**
@@ -27,21 +26,29 @@ abstract class AbstractContainersTest {
     companion object {
         private val file1 = File("../docker-compose-it.yml")
         private val file2 = File("docker-compose-it.yml")
+        private val envFile1 = File("../.env")
+        private val envFile2 = File(".env")
         private val finalFile = if (file1.exists()) file1 else file2
-
+        private val finalEnvFile = if (envFile1.exists()) envFile1 else envFile2
 
         val dockerCompose: DockerCompose by lazy {
             DockerCompose(listOf(finalFile))
                 .withBuyOycContainer(YUCCA_DB_SERVICE_NAME, YUCCA_DB_SERVICE_PORT)
-                .withBuyOycContainer("redis_1", 6379)
-                .withBuyOycContainer("kong_1", 8000)
-                .withBuyOycContainer("kong_1", 8001)
-                .withBuyOycContainer("buy-oyc-ticket_1", 8084)
-                .withBuyOycContainer("buy-oyc-concert_1", 8085)
-                .withBuyOycContainer("buy-oyc-parking_1", 8086)
-                .withBuyOycContainer("buy-oyc-catering_1", 8087)
-                .withBuyOycContainer("buy-oyc-api_1", 8088)
-                .withBuyOycContainer("buy-oyc-nginx_1", 8080)
+                .withBuyOycContainer("redis", 6379)
+                .withBuyOycContainer("kong", 8000)
+                .withBuyOycContainer("kong", 8001)
+                .withBuyOycContainer("buy-oyc-ticket", 8084)
+                .withBuyOycContainer("buy-oyc-concert", 8085)
+                .withBuyOycContainer("buy-oyc-parking", 8086)
+                .withBuyOycContainer("buy-oyc-catering", 8087)
+                .withBuyOycContainer("buy-oyc-api", 8088)
+                .withBuyOycContainer("buy-oyc-nginx", 8080)
+                .withEnv(finalEnvFile.readText().split("\n").mapNotNull {
+                    it.takeIf { it.contains("=") }?.let {
+                        val (key, value) = it.split("=")
+                        key to value
+                    }
+                }.toMap()) as DockerCompose
         }
 
         @JvmStatic
