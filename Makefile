@@ -182,7 +182,7 @@ node-update:
 	nvm install --lts
 	nvm use --lts
 docker-logs:
-	docker compose -p ${GITHUB_RUN_ID} -f ../docker-compose.yml -f docker-compose.yml logs
+	docker compose ${GITHUB_RUN_ID:+-p "$GITHUB_RUN_ID"} -f ../docker-compose.yml -f docker-compose.yml logs
 docker-all-logs:
 	docker compose logs
 deps-update: update
