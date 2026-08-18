@@ -9,6 +9,8 @@ services:
   - name: buy-oyc-ticket-service-routes
     paths:
     - /api/yucca-ticket
+    protocols:
+      - http
     strip_path: true
 - host: buy-oyc-concert
   name: buy-oyc-concert-service
@@ -18,6 +20,8 @@ services:
   - name: buy-oyc-concert-service-routes
     paths:
     - /api/yucca-concert
+    protocols:
+      - http
     strip_path: true
 - host: buy-oyc-catering
   name: buy-oyc-catering-service
@@ -27,6 +31,8 @@ services:
   - name: buy-oyc-catering-service-routes
     paths:
     - /api/yucca-catering
+    protocols:
+      - http
     strip_path: true
 - host: buy-oyc-parking
   name: buy-oyc-parking-service
@@ -36,6 +42,8 @@ services:
   - name: buy-oyc-parking-service-routes
     paths:
     - /api/yucca-parking
+    protocols:
+      - http
     strip_path: true
 - host: buy-oyc-api
   name: buy-oyc-api-service
@@ -45,4 +53,6 @@ services:
   - name: buy-oyc-api-service-routes
     paths:
     - /api/yucca-api
+    protocols:
+      - http
     strip_path: true
