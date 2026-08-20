@@ -24,7 +24,6 @@
 [![GitHub top language](https://img.shields.io/github/languages/top/jesperancinha/buy-odd-yucca-concert.svg)](#)
 [![GitHub top language](https://img.shields.io/github/languages/code-size/jesperancinha/buy-odd-yucca-concert.svg)](#)
 
-[![Project Skills](https://github.com/jesperancinha/project-skills/raw/master/badges/skills-badge.svg)](TechStack.md)
 ---
 
 ## Technologies used
