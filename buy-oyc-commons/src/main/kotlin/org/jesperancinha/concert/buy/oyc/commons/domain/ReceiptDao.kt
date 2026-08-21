@@ -12,9 +12,6 @@ import io.micronaut.data.repository.kotlin.CoroutineCrudRepository
 import java.time.LocalDateTime
 import java.util.*
 
-/**
- * Created by jofisaes on 30/03/2022
- */
 @MappedEntity(value = "receipt", namingStrategy = UnderScoreSeparatedLowerCase::class)
 data class Receipt(
     @field: Id

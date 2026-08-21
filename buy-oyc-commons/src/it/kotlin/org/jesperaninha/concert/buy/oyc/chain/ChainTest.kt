@@ -18,6 +18,7 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.reactive.awaitFirst
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import org.jesperancinha.concert.buy.oyc.commons.domain.*
@@ -36,9 +37,6 @@ import kotlin.time.ExperimentalTime
 private const val DELAY: Long = 20
 private const val SMALL_DELAY: Long = 1
 
-/**
- * Created by jofisaes on 22/04/2022
- */
 @ExperimentalCoroutinesApi
 @MicronautTest(contextBuilder = [CustomContextBuilder::class], transactional = false)
 open class ChainTest @Inject constructor(
@@ -71,7 +69,7 @@ open class ChainTest @Inject constructor(
     }
 
     @Test
-    fun `should run chain test and create a concert reservation`() = runTest {
+    fun `should run chain test and create a concert reservation`() = runBlocking {
         val (serviceHost, servicePort) = dockerCompose.getContainerByServiceName("kong").get().let {
             it.host to it.getMappedPort(8000)
         }

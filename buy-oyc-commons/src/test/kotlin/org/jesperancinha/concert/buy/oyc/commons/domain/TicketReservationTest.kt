@@ -30,9 +30,6 @@ import java.time.LocalDateTime
 import java.util.*
 import javax.transaction.Transactional
 
-/**
- * Created by jofisaes on 25/02/2022
- */
 @Testcontainers
 @MicronautTest(transactional = false)
 @ExperimentalCoroutinesApi

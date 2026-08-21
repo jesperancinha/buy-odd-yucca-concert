@@ -10,9 +10,6 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
 
-/**
- * Created by jofisaes on 19/12/2021
- */
 @MappedEntity(namingStrategy = UnderScoreSeparatedLowerCase::class)
 data class TicketReservation(
     @field: Id

@@ -8,9 +8,6 @@ import io.micronaut.data.repository.jpa.kotlin.CoroutineJpaSpecificationExecutor
 import io.micronaut.data.repository.kotlin.CoroutineCrudRepository
 import java.util.*
 
-/**
- * Created by jofisaes on 05/04/2022
- */
 @MappedEntity(namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
 data class TicketReservationConcertDay(
     @field: Id

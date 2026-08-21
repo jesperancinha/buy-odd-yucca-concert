@@ -12,9 +12,6 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.util.*
 
-/**
- * Created by jofisaes on 25/02/2022
- */
 @MappedEntity(namingStrategy = UnderScoreSeparatedLowerCase::class)
 data class ConcertDay(
     @field: Id

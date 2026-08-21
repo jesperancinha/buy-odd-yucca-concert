@@ -19,7 +19,6 @@ private const val YUCCA_DB_SERVICE_NAME = "yucca-db"
 private const val YUCCA_DB_SERVICE_PORT = 5432
 
 /**
- * Created by jofisaes on 22/04/2022
  * Reminder: Don't use container_name with testcontainers. It just doesn't work
  */
 abstract class AbstractContainersTest {

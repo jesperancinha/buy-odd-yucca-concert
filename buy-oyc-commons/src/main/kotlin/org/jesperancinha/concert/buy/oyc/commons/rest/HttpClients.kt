@@ -18,9 +18,6 @@ import org.slf4j.LoggerFactory
 
 val logger: Logger = LoggerFactory.getLogger(BuyOycType::class.java)
 
-/**
- * Created by jofisaes on 15/04/2022
- */
 inline fun <reified T : BuyOycType> Rx3HttpClient.sendObject(
     buyOycType: T,
     url: String,
