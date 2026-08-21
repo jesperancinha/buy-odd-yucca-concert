@@ -19,9 +19,6 @@ import org.jesperancinha.concert.buy.oyc.commons.pubsub.initPubSub
 import java.io.ObjectInputStream
 import javax.validation.Valid
 
-/**
- * Created by jofisaes on 20/04/2022
- */
 private const val CONCERT_CHANNEL = "concertChannel"
 
 @DelicateCoroutinesApi

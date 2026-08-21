@@ -36,9 +36,6 @@ import kotlin.time.ExperimentalTime
 private const val DELAY: Long = 20
 private const val SMALL_DELAY: Long = 1
 
-/**
- * Created by jofisaes on 22/04/2022
- */
 @ExperimentalCoroutinesApi
 @MicronautTest(contextBuilder = [CustomContextBuilder::class], transactional = false)
 open class ChainTest @Inject constructor(

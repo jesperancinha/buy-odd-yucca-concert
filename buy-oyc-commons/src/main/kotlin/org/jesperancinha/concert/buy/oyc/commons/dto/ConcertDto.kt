@@ -8,9 +8,6 @@ import java.io.Serializable
 import java.time.LocalDateTime
 import java.util.*
 
-/**
- * Created by jofisaes on 20/04/2022
- */
 data class ConcertDayDto(
     var reference: UUID? = null,
     var concertId: UUID? = null,

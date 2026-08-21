@@ -15,9 +15,6 @@ import org.testcontainers.junit.jupiter.Testcontainers
 import java.time.LocalDate
 import javax.transaction.Transactional
 
-/**
- * Created by jofisaes on 25/02/2022
- */
 @Testcontainers
 @MicronautTest(transactional = false)
 @ExperimentalCoroutinesApi

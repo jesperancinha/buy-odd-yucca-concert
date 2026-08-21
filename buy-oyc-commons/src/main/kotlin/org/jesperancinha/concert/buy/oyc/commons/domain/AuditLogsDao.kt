@@ -12,9 +12,6 @@ import io.micronaut.data.repository.kotlin.CoroutineCrudRepository
 import java.time.LocalDateTime
 import java.util.*
 
-/**
- * Created by jofisaes on 30/03/2022
- */
 @MappedEntity(value = "audit_log", namingStrategy = NamingStrategies.UnderScoreSeparatedLowerCase::class)
 data class AuditLog(
     @field: Id

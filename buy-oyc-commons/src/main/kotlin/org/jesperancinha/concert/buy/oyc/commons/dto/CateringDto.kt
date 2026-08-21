@@ -6,9 +6,6 @@ import org.jesperancinha.concert.buy.oyc.commons.domain.AuditLogType.MEAL
 import java.io.Serializable
 import java.util.*
 
-/**
- * Created by jofisaes on 17/04/2022
- */
 data class MealDto(
     var reference: UUID? = null,
     val mealId: UUID?,
