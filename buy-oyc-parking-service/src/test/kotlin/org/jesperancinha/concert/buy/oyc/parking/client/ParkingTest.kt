@@ -27,9 +27,6 @@ import javax.transaction.Transactional
 import kotlin.time.Duration.Companion.seconds
 import kotlin.time.toJavaDuration
 
-/**
- * Created by jofisaes on 21/04/2022
- */
 @ExperimentalCoroutinesApi
 @MicronautTest(contextBuilder = [ContainersContextBuilder::class], transactional = false)
 class ParkingTest @Inject constructor(

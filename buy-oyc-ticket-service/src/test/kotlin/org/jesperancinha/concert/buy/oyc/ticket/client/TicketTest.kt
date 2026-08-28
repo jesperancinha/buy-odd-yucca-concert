@@ -42,9 +42,6 @@ private const val API_YUCCA_CONCERT = "/api/yucca-concert"
 private const val API_YUCCA_PARKING = "/api/yucca-parking"
 
 
-/**
- * Created by jofisaes on 10/04/2022
- */
 @ExperimentalCoroutinesApi
 @MicronautTest(contextBuilder = [TicketContextBuilder::class], transactional = false)
 @Property(name = "buy.oyc.catering.port", value = "7999")

@@ -43,9 +43,6 @@ import kotlin.time.Duration.Companion.seconds
 private const val API_YUCCA_TICKET = "/api/yucca-ticket"
 
 
-/**
- * Created by jofisaes on 10/04/2022
- */
 @ExperimentalCoroutinesApi
 @MicronautTest(contextBuilder = [ApiContextBuilder::class], transactional = false)
 @Property(name = "buy.oyc.ticket.port", value = "7999")

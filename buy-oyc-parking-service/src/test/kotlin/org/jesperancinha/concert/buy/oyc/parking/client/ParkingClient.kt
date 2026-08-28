@@ -11,9 +11,6 @@ import org.jesperancinha.concert.buy.oyc.commons.dto.ResponseDto
 import reactor.core.publisher.Flux
 
 
-/**
- * Created by jofisaes on 21/04/2022
- */
 @Client("/api/yucca-parking/api")
 interface ParkingReactiveClient {
     @Post

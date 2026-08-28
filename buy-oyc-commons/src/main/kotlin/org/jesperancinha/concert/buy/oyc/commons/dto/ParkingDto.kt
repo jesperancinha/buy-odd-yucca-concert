@@ -8,9 +8,6 @@ import java.io.Serializable
 import java.time.LocalDateTime
 import java.util.*
 
-/**
- * Created by jofisaes on 18/04/2022
- */
 data class ParkingReservationDto(
     var reference: UUID? = null,
     var carParkingId: Long,

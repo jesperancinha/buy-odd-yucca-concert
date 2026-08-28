@@ -19,15 +19,11 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.io.ObjectInputStream
 import java.net.URI
-import java.net.URL
 import javax.validation.Valid
 import kotlin.annotation.AnnotationRetention.RUNTIME
 
 private const val TICKET_PERSIST_CHANNEL = "ticketPersistChannel"
 
-/**
- * Created by jofisaes on 30/03/2022
- */
 @DelicateCoroutinesApi
 @Singleton
 class TicketService(

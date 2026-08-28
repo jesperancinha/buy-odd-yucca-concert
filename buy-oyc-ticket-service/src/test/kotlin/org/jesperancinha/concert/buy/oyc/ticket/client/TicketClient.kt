@@ -11,9 +11,6 @@ import org.jesperancinha.concert.buy.oyc.commons.dto.TicketDto
 import reactor.core.publisher.Flux
 
 
-/**
- * Created by jofisaes on 09/04/2022
- */
 @Client("/api")
 interface TicketReactiveClient {
     @Post

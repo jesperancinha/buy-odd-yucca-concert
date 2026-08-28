@@ -16,7 +16,7 @@ import org.jesperancinha.concert.buy.oyc.commons.dto.toDto
 import org.jesperancinha.concert.buy.oyc.commons.pubsub.initPubSub
 import org.jesperancinha.concert.buy.oyc.commons.rest.sendObject
 import java.io.ObjectInputStream
-import java.net.URL
+import java.net.URI
 import javax.validation.Valid
 
 @Singleton
@@ -62,8 +62,7 @@ class RedisBeanFactory {
         @Value($$"${buy.oyc.ticket.port}")
         port: Long
     ): Rx3HttpClient =
-        Rx3HttpClient.create(URL("http://" + host + ":" + port))
-}
+        Rx3HttpClient.create(URI.create("http://$host:$port").toURL())}
 
 @DelicateCoroutinesApi
 class Listener(
